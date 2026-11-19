@@ -1,0 +1,13 @@
+# WorkBuddy 项目过程数据（非交付制品）
+.workbuddy/
+
+# DEBUG 开发版（过程层：六帽审计、迭代计划、版本前史）
+*-DEBUG开发版.md
+*-DEBUG开发版.html
+
+# 发布投影脚本（开发过程工具，非对外制品）
+ane_release_projector.py
+
+# 系统文件
+.DS_Store
+Thumbs.db

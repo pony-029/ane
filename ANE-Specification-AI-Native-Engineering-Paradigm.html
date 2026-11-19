@@ -1,0 +1,1475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ANE Specification: AI-Native Engineering Paradigm for Living Software Systems v0.5.0 · White Paper (Formal Release)</title>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<style>
+  :root{
+    --bg:#f7f8fa; --surface:#ffffff; --surface2:#f0f2f6;
+    --ink:#1a1d24; --ink2:#4a5160; --ink3:#7b8494;
+    --line:#e3e6ec;
+    --blue:#185fa5; --blue-l:#e6f1fb;
+    --purple:#534ab7; --purple-l:#eeedfe;
+    --teal:#0f6e56; --teal-l:#e1f5ee;
+    --amber:#854f0b; --amber-l:#faeeda;
+    --red:#a32d2d; --red-l:#fcebeb;
+    --shadow:0 1px 3px rgba(20,30,50,.06),0 8px 28px rgba(20,30,50,.05);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.75;font-size:14.5px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .layout{display:flex;max-width:1500px;margin:0 auto;align-items:flex-start}
+  aside{
+    position:sticky;top:0;height:100vh;width:270px;flex:0 0 270px;
+    background:var(--surface);border-right:1px solid var(--line);
+    padding:26px 18px;overflow-y:auto;
+  }
+  aside .brand{font-size:12px;letter-spacing:.16em;color:var(--purple);font-weight:600;text-transform:uppercase}
+  aside h1{font-size:17px;margin:8px 0 4px;line-height:1.4}
+  aside .ver{font-size:12px;color:var(--ink3);margin-bottom:20px}
+  nav a{
+    display:block;font-size:12.8px;color:var(--ink2);text-decoration:none;
+    padding:6px 10px;border-radius:7px;margin:1px 0;border-left:2px solid transparent;
+  }
+  nav a:hover{background:var(--surface2);color:var(--blue)}
+  nav .grp{font-size:10.5px;letter-spacing:.1em;color:var(--ink3);margin:16px 0 4px 10px;text-transform:uppercase}
+  main{flex:1;min-width:0;padding:0 56px 100px;max-width:1180px}
+  header.hero{padding:64px 0 40px;border-bottom:1px solid var(--line);margin-bottom:44px}
+  .tagrow{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+  .tag{font-size:11.5px;padding:4px 11px;border-radius:20px;font-weight:500}
+  .t-blue{background:var(--blue-l);color:var(--blue)}
+  .t-purple{background:var(--purple-l);color:var(--purple)}
+  .t-teal{background:var(--teal-l);color:var(--teal)}
+  header.hero h1{font-size:38px;line-height:1.25;letter-spacing:-.02em;margin-bottom:14px}
+  header.hero h1 span{color:var(--purple)}
+  .subtitle{font-size:16px;color:var(--ink2);max-width:760px}
+  .meta{margin-top:22px;font-size:12.5px;color:var(--ink3);display:flex;gap:22px;flex-wrap:wrap}
+  .meta b{color:var(--ink2);font-weight:600}
+  section{padding:30px 0 8px;scroll-margin-top:20px}
+  h2.sec{
+    font-size:24px;letter-spacing:-.01em;margin:0 0 6px;padding-bottom:12px;
+    border-bottom:2px solid var(--line);display:flex;align-items:baseline;gap:12px;
+  }
+  h2.sec .num{font-size:12px;color:var(--purple);font-weight:600;letter-spacing:.1em}
+  h3{font-size:16.5px;margin:26px 0 10px;color:var(--ink)}
+  h4{font-size:14px;margin:18px 0 8px;color:var(--ink2)}
+  p{margin:10px 0;color:var(--ink2)}
+  strong{color:var(--ink);font-weight:600}
+  .lead{font-size:15.5px;color:var(--ink2);background:var(--surface);border:1px solid var(--line);
+    border-left:3px solid var(--purple);padding:18px 22px;border-radius:0 12px 12px 0;margin:18px 0}
+  .callout{background:var(--surface);border:1px solid var(--line);border-radius:12px;
+    padding:18px 22px;margin:18px 0;box-shadow:var(--shadow)}
+  .callout.quote{border-left:4px solid var(--teal);background:var(--teal-l)}
+  .callout.warn{border-left:4px solid var(--red);background:var(--red-l)}
+  .callout .lbl{font-size:11px;letter-spacing:.1em;font-weight:600;text-transform:uppercase;
+    color:var(--ink3);display:block;margin-bottom:6px}
+  .grid{display:grid;gap:14px;margin:18px 0}
+  .g2{grid-template-columns:repeat(2,1fr)}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:12px;
+    padding:18px;box-shadow:var(--shadow)}
+  .card .ic{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;
+    justify-content:center;font-size:17px;margin-bottom:10px;font-weight:600}
+  .card h4{margin:0 0 6px;font-size:14.5px;color:var(--ink)}
+  .card p{font-size:12.8px;margin:0;color:var(--ink2);line-height:1.6}
+  .ic-blue{background:var(--blue-l);color:var(--blue)}
+  .ic-purple{background:var(--purple-l);color:var(--purple)}
+  .ic-teal{background:var(--teal-l);color:var(--teal)}
+  .ic-amber{background:var(--amber-l);color:var(--amber)}
+  .card.purple{border-top:3px solid var(--purple)}
+  .card.blue{border-top:3px solid var(--blue)}
+  .card.teal{border-top:3px solid var(--teal)}
+  .card.amber{border-top:3px solid var(--amber)}
+  .tw{overflow-x:auto;margin:16px 0;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+  table{border-collapse:collapse;width:100%;font-size:13px}
+  th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:var(--surface2);font-weight:600;color:var(--ink);font-size:12px;white-space:nowrap}
+  tr:last-child td{border-bottom:none}
+  tbody tr:hover{background:#fafbfc}
+  td code, p code{font-family:"SF Mono",Consolas,monospace;font-size:12px;
+    background:var(--surface2);padding:1px 6px;border-radius:5px;color:var(--purple)}
+  .clause{border:1px solid var(--line);border-radius:11px;padding:15px 18px;margin:12px 0;
+    background:var(--surface);display:flex;gap:14px;align-items:flex-start}
+  .clause .badge{flex:0 0 auto;font-size:11px;font-weight:600;padding:3px 10px;border-radius:6px;
+    background:var(--purple-l);color:var(--purple);white-space:nowrap}
+  .clause p{margin:0;font-size:13.2px}
+  .diagram{background:var(--surface);border:1px solid var(--line);border-radius:12px;
+    padding:22px;margin:20px 0;overflow-x:auto;box-shadow:var(--shadow)}
+  .diagram .cap{font-size:12px;color:var(--ink3);margin-top:12px;text-align:center}
+  .mermaid{display:flex;justify-content:center}
+  .spectrum{display:flex;gap:0;margin:18px 0;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+  .sp{flex:1;padding:16px 14px;color:#fff;min-width:0}
+  .sp .lv{font-size:11px;opacity:.85;font-weight:600;letter-spacing:.08em}
+  .sp .nm{font-size:13.5px;font-weight:600;margin:4px 0 6px}
+  .sp .ds{font-size:11.5px;opacity:.9;line-height:1.5}
+  .sp0{background:#5F5E5A}.sp1{background:#185FA5}.sp2{background:#534AB7}.sp3{background:#BA7517}
+  .hat{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--line)}
+  .hat:last-child{border-bottom:none}
+  .hat .dot{flex:0 0 34px;height:34px;border-radius:50%;display:flex;align-items:center;
+    justify-content:center;font-size:13px;font-weight:600;color:#fff}
+  .hat .body strong{font-size:13px}
+  .hat .body p{font-size:12.8px;margin:3px 0 0}
+  .hw{background:#888780}.hr{background:#D4537E}.hk{background:#2C2C2A}
+  .hy{background:#BA7517}.hg{background:#639922}.hb{background:#378ADD}
+  footer{margin-top:60px;padding-top:24px;border-top:1px solid var(--line);
+    font-size:12.5px;color:var(--ink3);text-align:center}
+  @media(max-width:1050px){
+    aside{display:none}
+    main{padding:0 24px 60px}
+    .g3{grid-template-columns:1fr}
+    header.hero h1{font-size:30px}
+  }
+</style>
+</head>
+<body>
+<div class="layout">
+<aside>
+  <div class="brand">AI Native Engineering</div>
+  <h1>ANE Specification v0.5.0</h1>
+  <div class="ver">AI-Native Engineering Paradigm for Living Software Systems · Created by Feng Lei · Formal Release</div>
+  <nav>
+    <div class="grp">Overview</div>
+    <a href="#exec">Executive Summary · One-Page Overview</a>
+    <a href="#preface">Preface · Software Is Life</a>
+    <a href="#ch0">Chapter 0 · Paradigm Positioning</a>
+    <div class="grp">Foundations</div>
+    <a href="#ch1">Chapter 1 · Core Axioms</a>
+    <a href="#ch2">Chapter 2 · Seven-Organ Architecture</a>
+    <a href="#ch3">Chapter 3 · Determinacy Grading D0–D3</a>
+    <div class="grp">Organ Specifications</div>
+    <a href="#ch4">Chapter 4 · Cerebellum</a>
+    <a href="#ch5">Chapter 5 · Main Brain and NTP</a>
+    <a href="#ch6">Chapter 6 · Hippocampus Memory</a>
+    <a href="#ch7">Chapter 7 · Immune Dual-Track Verification</a>
+    <a href="#ch8">Chapter 8 · IR-Layer Self-Repair</a>
+    <a href="#ch9">Chapter 9 · Human-Machine Tiered Authorization</a>
+    <div class="grp">Operation and Adoption</div>
+    <a href="#ch10">Chapter 10 · Evolution Flywheel</a>
+    <a href="#ch11">Chapter 11 · Maturity L0–L5</a>
+    <a href="#ch12">Chapter 12 · Metrics and Anti-Patterns</a>
+    <div class="grp">Protocols and Security</div>
+    <a href="#ch13">Chapter 13 · Interaction Pattern Matrix</a>
+    <a href="#ch14">Chapter 14 · Interaction Primitives</a>
+    <a href="#ch15">Chapter 15 · MCP Tool Ecosystem</a>
+    <a href="#ch16">Chapter 16 · Multi-Agent Collaboration</a>
+    <a href="#ch17">Chapter 17 · Security and Trust Boundaries</a>
+    <a href="#ch18">Chapter 18 · Cost Governance</a>
+    <a href="#ch19">Chapter 19 · Sublation of Traditional Software</a>
+    <div class="grp">Governance and Resilience</div>
+    <a href="#ch20">Chapter 20 · Organizational Governance and Compliance</a>
+    <a href="#ch21">Chapter 21 · Fail-Safe and Degradation</a>
+    <a href="#ch22">Chapter 22 · Identity and Traceability</a>
+    <a href="#ch23">Chapter 23 · Human Factors</a>
+    <a href="#ch24">Chapter 24 · Memory Boundaries</a>
+    <a href="#ch25">Chapter 25 · Meta-Specification</a>
+    <div class="grp">Verification and Adoption</div>
+    <a href="#ch26">Chapter 26 · Conformance Assessment</a>
+    <a href="#ch27">Chapter 27 · Migration and Adoption</a>
+    <a href="#ch28">Chapter 28 · Observability</a>
+    <a href="#ch29">Chapter 29 · Testing Evolving Systems</a>
+    <a href="#ch30">Chapter 30 · Boundaries and Misreadings</a>
+    <a href="#ch31">Chapter 31 · Economics and ROI</a>
+    <div class="grp">Release Engineering</div>
+    <a href="#ch32">Chapter 32 · Release Forms and Audience Views</a>
+    <a href="#ch33">Chapter 33 · Information Grading and Release Gates</a>
+    <a href="#ch34">Chapter 34 · Specification as Artefact</a>
+    <div class="grp">Internationalization and Artefact Governance</div>
+    <a href="#ch35">Chapter 35 · Multi-Language and Localization Governance</a>
+    <a href="#ch36">Chapter 36 · Artefact Naming and Identification</a>
+    <a href="#ch37">Chapter 37 · Structural Integrity and Post-Projection Verification</a>
+    <div class="grp">Appendix</div>
+    <a href="#appa">Appendix A · Glossary</a>
+  </nav>
+</aside>
+
+<main>
+<header class="hero">
+  <div class="tagrow">
+    <span class="tag t-purple">ANE v0.5.0</span>
+    <span class="tag t-blue">Static-Dynamic Integration</span>
+    <span class="tag t-teal">Dual-Brain Collaboration</span>
+    <span class="tag t-purple">Memory Moat</span>
+    <span class="tag t-blue">Governance and Resilience</span>
+    <span class="tag t-teal">Verifiable and Adoptable</span>
+    <span class="tag t-purple">Release Engineering</span>
+    
+  </div>
+  <h1>ANE Specification<br><span>AI-Native Engineering Paradigm for Living Software Systems</span></h1>
+  <p class="subtitle">ANE = <b>AI Native Engineering</b>. A general paradigm fusing classical cybernetics (static / Cerebellum) with modern artificial intelligence (dynamic / Main Brain). It turns AI from something "used" into something "harnessed," and applies to all systems and teams building AI-native software without binding to any specific product or framework.</p>
+  <div class="meta">
+    <span><b>Created by</b> Feng Lei (冯磊) · original paradigm and chief architecture design</span>
+    <span><b>Version</b> v0.5.0 · Formal Release</span>
+    <span><b>Date</b> 2026-11-20</span>
+    <span><b>Status</b> Formal Release</span>
+  </div>
+</header>
+
+<!-- ================= EXECUTIVE SUMMARY ================= -->
+<section id="exec">
+  <h2 class="sec"><span class="num">Overview</span>Executive Summary (One-Page)</h2>
+  <div class="lead">For decision-makers: if you read only one page, read this one.</div>
+  <div class="tw"><table>
+    <thead><tr><th>Dimension</th><th>One sentence</th></tr></thead>
+    <tbody>
+      <tr><td><b>What it is</b></td><td>A software engineering paradigm for the age of AI agents, treating software as a "digital living organism" and constraining probabilistic intelligence with a deterministic skeleton.</td></tr>
+      <tr><td><b>Core contradiction</b></td><td>What can be proven goes to the static layer, what can only be inferred goes to intelligence, with gates isolating the two and humans making the final ruling.</td></tr>
+      <tr><td><b>Seven organs</b></td><td>Skeleton · Cerebellum · Main Brain · Hippocampus · Immune System · Self-Repair · Sovereignty.</td></tr>
+      <tr><td><b>Three moats</b></td><td>Cerebellum first (80% of decisions cost zero tokens) · memory promotion · dual-track immunity.</td></tr>
+      <tr><td><b>Unified development and maintenance</b></td><td>Running is sensing, sensing is maintenance, maintenance is development, development is evolution.</td></tr>
+      <tr><td><b>Governance foundation</b></td><td>Compliance alignment · fail-safe · identity traceability · human factors · memory boundaries · meta-governance.</td></tr>
+      <tr><td><b>Release engineering</b></td><td>Artefact-based release: the specification derives external views from a single source of truth with zero process-layer residue; three-tier information grading (N/E/P) + release gates make the specification itself white-box, traceable, and anti-self-deception.</td></tr>
+      <tr><td><b>Internationalization and artefact governance</b></td><td>Multi-language governance (source / authoritative translation / frozen glossary / G7) · artefact naming rules (formal without suffix / development with suffix / English edition) · structural integrity checks (G6: continuous numbering / appendix renumbering / valid anchors), fixing the broken appendix in the formal edition.</td></tr>
+      <tr><td><b>Cold start and memory governance</b></td><td>Seed rules + explore/exploit adaptive switching (6.4) · hardware-topology awareness and adaptive prioritization (2.3 / 8.5) · domestic regulatory alignment (20.2) · Dual-Fold Collaboration pattern (13.4 / 14.3) · Promotion Audit against memory poisoning (17.2 / 24.3).</td></tr>
+      <tr><td><b>How to adopt</b></td><td>Start with L2 Cerebellum + L3 memory; add L4 self-repair only after immunity matures.</td></tr>
+      <tr><td><b>Inviolable red lines</b></td><td>Human sovereignty · anti-self-deception (silent failures = 0) · the global circuit breaker can stop everything at any time.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout quote"><span class="lbl">Three-Step Mantra</span>What can be proven goes to the static layer · what is uncertain goes to intelligence · what crosses a red line goes to humans.</div>
+</section>
+
+<!-- ================= PREFACE ================= -->
+<section id="preface">
+  <h2 class="sec"><span class="num">Preface</span>Software Is Life</h2>
+  <div class="lead">We discard the traditional notion that "software is a static tool." In the AI era, an excellent software system is a <b>digital organism with metabolism, immune self-repair, and continuous evolution</b>.</div>
+  <div class="grid g3">
+    <div class="card purple"><div class="ic ic-purple">SKL</div><h4>Static Skeleton</h4><p>The layered IR is the unshakeable law of physics, determining "what it is."</p></div>
+    <div class="card blue"><div class="ic ic-blue">BRN</div><h4>Dual-Brain Collaboration</h4><p>The Cerebellum handles high-frequency reflexes, the Main Brain handles unknown complexity, determining "how it thinks."</p></div>
+    <div class="card teal"><div class="ic ic-teal">HPC</div><h4>Hippocampal Memory</h4><p>Experience storage and retrieval make every success and failure a permanent memory, determining "who it is."</p></div>
+    <div class="card blue"><div class="ic ic-blue">IMM</div><h4>Immune System</h4><p>Multi-layer quality gates treat unproven generation as contamination, determining "how it stays pure."</p></div>
+    <div class="card amber"><div class="ic ic-amber">RPR</div><h4>Self-Repair Engine</h4><p>Minimal IR-layer repair heals it in place during operation, determining "how it survives wounded."</p></div>
+    <div class="card teal"><div class="ic ic-teal">HUM</div><h4>Human Sovereignty</h4><p>Tiered authorization interaction is the higher will it must submit to, determining "whether it should be allowed to evolve."</p></div>
+  </div>
+  <div class="callout quote"><span class="lbl">In One Sentence</span>
+    The static is its unshakeable bone and blood; the dynamic is its ever-flowing nerves and thought; and memory and immunity make it "itself." Development and maintenance, in this organism, are no longer the two ends of a pipeline but <b>the exhalation and inhalation of the same life process</b>: running is sensing, sensing is maintenance, maintenance is development, development is evolution.
+  </div>
+</section>
+
+<!-- ================= CH0 ================= -->
+<section id="ch0">
+  <h2 class="sec"><span class="num">Chapter 0</span>Paradigm Positioning and Problem Statement</h2>
+  <h3>Three Fractures in the Industry Status Quo</h3>
+  <div class="tw"><table>
+    <thead><tr><th>Fracture</th><th>Traditional practice</th><th>Consequence</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Determinacy fracture</strong></td><td>AI output goes directly into code or production without static constraints</td><td>Hallucination, instability, non-reproducibility</td></tr>
+      <tr><td><strong>Cost fracture</strong></td><td>Every decision asks the LLM (full-dependency patterns such as chaining and chain-of-thought prompting)</td><td>Token explosion, high latency, stalls and timeouts</td></tr>
+      <tr><td><strong>Lifecycle fracture</strong></td><td>Development–testing–deployment–maintenance is sliced into disconnected pipelines</td><td>Rot on arrival; maintenance becomes "debt repayment"</td></tr>
+    </tbody>
+  </table></div>
+  <h3>ANE's Position</h3>
+  <p>ANE draws a <b>clear responsibility boundary</b> between traditional software engineering and AI-wrapper development: whatever can be proven deterministically goes to the static skeleton and the Cerebellum (fast, cheap, reliable); whatever can only be inferred probabilistically goes to the Main Brain and memory (deep, accurate, learnable); between the two, <b>gates</b> provide immune isolation and <b>humans</b> make the final ruling.</p>
+  <h3>Relationship to Known Concepts (Avoid Reinventing the Wheel)</h3>
+  <div class="tw"><table>
+    <thead><tr><th>Known concept</th><th>ANE's absorption and transcendence</th></tr></thead>
+    <tbody>
+      <tr><td>Neurosymbolic AI</td><td>Inherits "symbolic + neural" fusion, and further provides engineered authority grading and a gate responsibility chain</td></tr>
+      <tr><td>DevOps / AIOps</td><td>Its end-state: operational feedback directly drives development, with the loop completed autonomously by the living system</td></tr>
+      <tr><td>Reinforcement learning / AutoML</td><td>The online version of "mutate–verify–consolidate," but strongly constrained by the static skeleton and human sovereignty</td></tr>
+      <tr><td>Retrieval-augmented generation</td><td>Elevated from a Q&amp;A add-on to a memory organ of the living system, a necessary capability for self-iteration</td></tr>
+      <tr><td>Human-in-the-loop</td><td>Refined into tiered authorization, balancing safety and efficiency while preventing humans from becoming a throughput bottleneck</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- ================= CH1 ================= -->
+<section id="ch1">
+  <h2 class="sec"><span class="num">Chapter 1</span>Core Axioms (Static-Dynamic Duality)</h2>
+  <p>This chapter is the highest law of the paradigm. All subsequent clauses are expansions of the axioms and must not conflict with them.</p>
+  <div class="grid g2">
+    <div class="card purple"><h4>Axiom 1 · The static is the foundation, the dynamic is the soul</h4><p>Underlying logic remains absolutely static and deterministic (strong typing, memory safety, state machines); AI acts only on surface logic, intent parsing, and code suggestions, never undermining the static foundation.</p></div>
+    <div class="card blue"><h4>Axiom 2 · Stillness within motion, motion within stillness</h4><p>Every AI generation must be constrained by static rules, with unverified output treated as contamination; the static foundation must self-repair, driving AI to hot-load optimization patches when the environment changes.</p></div>
+    <div class="card teal"><h4>Axiom 3 · Cerebellum first, Main Brain scarce</h4><p>High-frequency routine decisions must be completed in the Cerebellum without consuming the LLM; the Main Brain awakens only when local rules and memory cannot resolve an issue, with context compressed to the bare minimum.</p></div>
+    <div class="card amber"><h4>Axiom 4 · Memory is the moat</h4><p>Every success, failure, and rollback is structured and consolidated; the system self-iterates through memory, while AI without memory is merely a stateless repeater.</p></div>
+    <div class="card purple"><h4>Axiom 5 · Humans possess inalienable sovereignty</h4><p>Evolution touching the static foundation or production must be explicitly authorized by humans, with clear separation of human and machine; this cannot be bypassed for any efficiency rationale.</p></div>
+    <div class="card blue"><h4>Axiom 6 · Full-spectrum white box, no silence</h4><p>What cannot be explained cannot be controlled. On encountering an unknown problem, immediately raise an error, block, and record — never alter tests or forge green checkmarks.</p></div>
+    <div class="card teal"><h4>Axiom 7 · Stability first, mutation controlled</h4><p>Evolution adopts a "mutate–verify–stabilize" dual-track system. Mutation is allowed but must pass immune filtering, with failure triggering rollback; stability always takes precedence over cleverness.</p></div>
+  </div>
+</section>
+
+<!-- ================= CH2 ================= -->
+<section id="ch2">
+  <h2 class="sec"><span class="num">Chapter 2</span>Architecture Specification: The Seven-Organ Living-System Model</h2>
+  <div class="diagram">
+    <div class="mermaid">
+flowchart TB
+    subgraph HUMAN["Human Sovereignty Layer"]
+        HUM["Human engineer - veto"]
+    end
+    subgraph DYN["Dynamic Intelligence Side"]
+        BRAIN["Main Brain Cortex<br/>LLM agent - deliberation"]
+        HIPO["Hippocampus<br/>experience storage - retrieval augmentation"]
+    end
+    subgraph STA["Static Deterministic Side"]
+        CEREB["Cerebellum<br/>rules - state machine - cost model"]
+        IMMU["Immune System<br/>quality gates - dual-track verification"]
+        BASE["Layered IR Foundation<br/>static skeleton - self-repair carrier"]
+    end
+    HUM -->|authorize veto| BRAIN
+    HUM -->|adjudicate| IMMU
+    CEREB -->|NTP compressed context| BRAIN
+    BRAIN -->|candidate proposal| IMMU
+    HIPO <-->|retrieve write| BRAIN
+    HIPO <-->|experience hit| CEREB
+    IMMU -->|verification passed| BASE
+    BASE -->|runtime exception report| CEREB
+    </div>
+    <div class="cap">Figure 1 · Seven-organ living-system architecture: dynamic intelligence side and static deterministic side separate responsibilities, with human sovereignty adjudicating at the center</div>
+  </div>
+  <h3>Organ Responsibilities at a Glance</h3>
+  <div class="tw"><table>
+    <thead><tr><th>Organ</th><th>Core responsibility</th><th>Latency</th><th>Token</th><th>Typical implementation</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Skeleton</strong></td><td>Deterministic foundation for types, memory, and semantic equivalence</td><td>Resident</td><td>No</td><td>Layered IR and compiler backend</td></tr>
+      <tr><td><strong>Cerebellum</strong></td><td>High-frequency scheduling, instruction prioritization, local adjudication</td><td>Microseconds to milliseconds</td><td>No</td><td>Local rule base + state machine + cost model</td></tr>
+      <tr><td><strong>Main Brain</strong></td><td>Deep reasoning for unknown, complex problems</td><td>Seconds to minutes</td><td>Controlled</td><td>On-demand LLM agent</td></tr>
+      <tr><td><strong>Hippocampus</strong></td><td>Experience consolidation and retrieval</td><td>Persistent</td><td>Small on retrieval</td><td>Experience vector store + retrieval augmentation</td></tr>
+      <tr><td><strong>Immune</strong></td><td>Gates, consistency checks, regression, anti-self-deception</td><td>Compile time / pre-merge</td><td>No</td><td>Multi-layer quality gates + full regression</td></tr>
+      <tr><td><strong>Self-Repair</strong></td><td>Runtime hot patches and in-place optimization</td><td>Runtime</td><td>Case-dependent</td><td>IR-layer minimal repair engine</td></tr>
+      <tr><td><strong>Sovereignty</strong></td><td>Authorization, veto, goal setting</td><td>On demand</td><td>No</td><td>Tiered authorization interface</td></tr>
+    </tbody>
+  </table></div>
+  <h3>Data and Control Dual Flows</h3>
+  <div class="diagram">
+    <div class="mermaid">
+flowchart LR
+    subgraph DF["Data Flow DFG"]
+        A["Source code AST"] --> B["High-level representation"] --> C["Unified IR"] --> D["Local scheduling optimization"] --> E["Target instructions"]
+    end
+    subgraph CF["Control Flow CFG"]
+        F["Exception signal"] --> G{"Cerebellum solvable"}
+        G -->|yes| H["Local adjudication"]
+        G -->|no| I["Wake Main Brain"]
+        I --> J["Immune verification"]
+        J --> K{"IR layer hot-fixable"}
+        K -->|yes| L["Minimal patch"]
+        K -->|no| M["Escalate to human"]
+    end
+    E -.runtime feedback.-> F
+    </div>
+    <div class="cap">Figure 2 · Data flow (DFG) and control flow (CFG) dual-flow coupling</div>
+  </div>
+  <div class="callout"><span class="lbl">Target-environment awareness (cf. 8.5)</span>The skeleton must be more than logically correct — it must sense its runtime carrier. When high-level representations are lowered to target instructions, and when runtime minimal patches are generated, adaptive prioritization must account for the physical characteristics of the environment (instruction-set capability, accelerator scale, memory bandwidth, etc.). The same IR should yield different optimal instruction sequences on different hardware. This is the architectural anchor for 8.5 "hardware-topology awareness".</div>
+</section>
+
+<!-- ================= CH3 ================= -->
+<section id="ch3">
+  <h2 class="sec"><span class="num">Chapter 3</span>Determinacy Grading: The D0–D3 Authority Spectrum</h2>
+  <p>A core mechanism that lands the "static-dynamic duality" axiom into executable authority boundaries — each level has a clear statement of "what AI may do."</p>
+  <div class="spectrum">
+    <div class="sp sp0"><div class="lv">D0 · Physical law</div><div class="nm">Forbidden to touch</div><div class="ds">Type systems, memory models, state machines, cryptographic primitives; read-only, immutable enforced at compile time</div></div>
+    <div class="sp sp1"><div class="lv">D1 · Skeleton logic</div><div class="nm">Propose + prove</div><div class="ds">Scheduling policies, IR transformation, optimization processes; requires formal equivalence proof + human review</div></div>
+    <div class="sp sp2"><div class="lv">D2 · Surface logic</div><div class="nm">Generate + regress</div><div class="ds">Business code, glue code, configuration, interface adaptation; automatic gate release + audit after full regression</div></div>
+    <div class="sp sp3"><div class="lv">D3 · Intent expression</div><div class="nm">AI-led</div><div class="ds">Requirement parsing, comments, test generation, documentation; no side effects, human may review but not block operation</div></div>
+  </div>
+  <div class="callout warn"><span class="lbl">Iron Law</span>AI output may only land at its level of origin or a lower-risk level. Any change jumping directly from D3 to D0/D1 must traverse the Immune System's complete verification chain.</div>
+</section>
+
+<!-- ================= CH4 ================= -->
+<section id="ch4">
+  <h2 class="sec"><span class="num">Chapter 4</span>Cerebellum Specification (Cerebellum)</h2>
+  <div class="clause"><span class="badge">Clause 4</span><p><strong>Cerebellum First.</strong> Every core system must embed a local Cerebellum module responsible for high-frequency, fast, low-energy local scheduling and logic adjudication. Connecting all logic directly to the LLM is forbidden. 80% of routine decisions should terminate here.</p></div>
+  <div class="grid g2">
+    <div class="card blue"><h4>Must have</h4><p>Local rule base and priority matching · state machines and deterministic transitions · cost models (e.g., instruction prioritization) · fast retrieval of experience vectors</p></div>
+    <div class="card amber"><h4>Strictly forbidden</h4><p>Generative free creation · unverified dynamic execution · direct modification of the D0 foundation · silently swallowing unhandleable exceptions (must escalate)</p></div>
+  </div>
+  <p>The Cerebellum must still complete routine D0/D1 adjudication <strong>without network access and without an LLM</strong>, and its decisions must be explainable, replayable, and auditable. Typical implementation: local instruction scheduling and cost-model engines — across multiple target architectures, prioritization of hundreds or thousands of instructions is completed instantly by built-in cost models and state machines, burning no tokens and remaining precise and reproducible.</p>
+</section>
+
+<!-- ================= CH5 ================= -->
+<section id="ch5">
+  <h2 class="sec"><span class="num">Chapter 5</span>Main Brain Specification and the Neurotransmitter Protocol NTP</h2>
+  <div class="clause"><span class="badge">Clause 5</span><p><strong>Strategic Awakening.</strong> The LLM API may be awakened if and only if the Cerebellum encounters a difficulty that neither its local rule base nor its memory store can resolve. Context must be compressed to the bare minimum, transmitting only <strong>feature vectors and error codes</strong>, exchanging extremely low token consumption for advanced intelligence assistance. Main Brain output is a "proposal," not a "command."</p></div>
+  <h3>Neurotransmitter Protocol NTP (Neural Transmitter Protocol)</h3>
+  <p>Context transfer between the Cerebellum and the Main Brain must be structured; dumping the full code or logs into the LLM at once is forbidden:</p>
+  <pre style="background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;overflow-x:auto;font-size:12.5px;color:var(--ink2)"><code>{
+  "ntp_version": "1.0",
+  "signal_type": "DEADLOCK | PERF_REGRESSION | UNKNOWN",
+  "error_code": "E-CORE-0427",
+  "feature_vector": [0.12, -0.88, 0.33, "...compressed high-dimensional features..."],
+  "context_digest": "sha256:9f3a... (digest, not full text)",
+  "tried_rules": ["rule_114", "rule_208"],
+  "memory_hits": [],
+  "constraints": ["D0 immutable", "target architecture constraints"],
+  "budget_hint": { "max_tokens": 1200, "max_latency_ms": 8000 }
+}</code></pre>
+  <div class="callout quote"><span class="lbl">Design Intent</span>Transmit only features, error codes, constraints, and budgets, minimizing token consumption — this is where "using subtraction to counter addition" lands.</div>
+</section>
+
+<!-- ================= CH6 ================= -->
+<section id="ch6">
+  <h2 class="sec"><span class="num">Chapter 6</span>Memory Specification: Hippocampus and Experience Storage</h2>
+  <div class="clause"><span class="badge">Clause 6</span><p><strong>Memory Is the Moat.</strong> All software must connect to a dedicated experience store. Every success, failure, and rollback must be structured; AI must read past experience through retrieval augmentation and never repeat mistakes. <strong>Experience unverified by the Immune System is forbidden to be written</strong> (preventing memory pollution).</p></div>
+  <h3>Experience Record Structure</h3>
+  <div class="grid g3">
+    <div class="card purple"><h4>signature</h4><p>Problem feature vector / error code</p></div>
+    <div class="card purple"><h4>context</h4><p>Minimal context digest at trigger time</p></div>
+    <div class="card blue"><h4>action</h4><p>Action taken: rule / AI / rollback</p></div>
+    <div class="card blue"><h4>verification</h4><p>Gate result, consistency check, regression conclusion</p></div>
+    <div class="card teal"><h4>outcome</h4><p>success / failure / rollback</p></div>
+    <div class="card teal"><h4>lineage</h4><p>Provenance chain: system / change / authorizer</p></div>
+  </div>
+  <h3>Memory Lifecycle</h3>
+  <div class="diagram">
+    <div class="mermaid">
+stateDiagram-v2
+    [*] --> Pending: Capture event
+    Pending --> Stored: Immune verification passed
+    Pending --> Discarded: Verification failed anti-pollution
+    Stored --> FrequentHit: Retrieved multiple times
+    FrequentHit --> FixedRule: Consolidated into a Cerebellum rule
+    Stored --> Decay: Long time without hit or environment change
+    Decay --> Reverified: Appears again
+    Decay --> Archived: Confirmed invalid
+    </div>
+    <div class="cap">Figure 3 · Experience can be promoted to a Cerebellum rule — turning a Main Brain insight into a Cerebellum instinct, the fundamental reason the flywheel becomes ever more token-efficient</div>
+  </div>
+  <h3>6.4 Cold Start and Knowledge Quenching</h3>
+  <div class="callout quote"><span class="lbl">Problem</span>A living system is born with an empty memory — without initial experience, every problem is dumped onto the scarce and expensive Main Brain. This section specifies how a living system is "born with common sense."</div>
+  <div class="grid g2">
+    <div class="card purple"><h4>Seed Rules</h4><p>At L2/L3, human experts inject an immune-verified initial golden rule set; each rule carries source, scope, verification evidence, and validity period in the ledger. Unverified rules are forbidden.</p></div>
+    <div class="card blue"><h4>Explore Mode (mandatory cold start)</h4><p>Forced early on: proactively raise Main Brain invocation frequency to deliberately cover the unknown space and collect diverse samples; subject to the budget gates of Chapter 18.</p></div>
+    <div class="card teal"><h4>Exploit Mode</h4><p>Once the store reaches a coverage threshold (hit rate / sample diversity / rule coverage), switch automatically to local-priority, sharply reducing Main Brain calls. Thresholds and switch times are written to the ledger.</p></div>
+    <div class="card amber"><h4>Premature-convergence rollback</h4><p>If the hit rate stays below the lower bound after switching to Exploit, automatically fall back to Explore to collect samples, preventing an "experience cocoon."</p></div>
+  </div>
+  <div class="tw"><table>
+    <thead><tr><th>Mode</th><th>Trigger</th><th>Main Brain invocation</th><th>Purpose</th><th>Exit condition</th></tr></thead>
+    <tbody>
+      <tr><td><b>Explore</b> (mandatory cold start)</td><td>Empty memory / below threshold, or early L2/L3</td><td>High (deliberate sampling)</td><td>Collect samples, discover rules</td><td>Coverage threshold reached</td></tr>
+      <tr><td><b>Exploit</b></td><td>Threshold met, hit rate stable</td><td>Low (local priority)</td><td>Save cost, reduce latency</td><td>Hit rate below lower bound</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout"><span class="lbl">Knowledge quenching</span>Seed rules and Explore-phase samples are quenched into stable rules after immune verification, complementing 6.3 natural promotion — the former shortens cold start, the latter sustains evolution. Both must pass the same immune verification; "going live quickly" is never grounds to bypass it.</div>
+</section>
+
+<!-- ================= CH7 ================= -->
+<section id="ch7">
+  <h2 class="sec"><span class="num">Chapter 7</span>Immune Specification: Dual-Track Verification and Anti-Self-Deception</h2>
+  <div class="clause"><span class="badge">Clause 7</span><p><strong>Absolute Defense / Anti-Self-Deception.</strong> Eliminate all silent failures. On encountering an unknown problem, the system must immediately raise an error, block, and record — never covering it up by modifying test cases or forging green checkmarks. Errors are the nourishment of evolution; falsehoods are poison to software. Any code or patch dynamically generated by AI may be merged only when verified equivalent and error-free — unverified AI output is equivalent to a viral infection.</p></div>
+  <h3>Dual-Track Verification Model</h3>
+  <div class="grid g2">
+    <div class="card blue"><div class="ic ic-blue">Σ</div><h4>Symbolic track</h4><p>Formal equivalence proofs, multi-path consistency checks, type checking, state-machine reachability. Asks: "Is it mathematically/semantically correct?" Failure → immediate block.</p></div>
+    <div class="card teal"><div class="ic ic-teal">§</div><h4>Statistical track</h4><p>Full regression, fuzzing, shadow run. Asks: "Is it correct in actual behavior?" Failure → block and rollback.</p></div>
+  </div>
+  <p>Both tracks <strong>must pass simultaneously</strong> (logical AND); any failure is judged contamination.</p>
+  <div class="callout quote"><span class="lbl">Gate Responsibility Chain</span>AI candidate proposal → symbolic track (equivalence / consistency check) → statistical track (regression / fuzz) → human authorization (if touching D0/D1 or production) → allow merge / hot load → full-process ledger trail (traceable, replayable).</div>
+</section>
+
+<!-- ================= CH8 ================= -->
+<section id="ch8">
+  <h2 class="sec"><span class="num">Chapter 8</span>Self-Repair Specification: The Instant Repair Law of the IR Layer</h2>
+  <div class="clause"><span class="badge">Clause 8</span><p><strong>Instant Repair Law.</strong> The foundation of the living software system must contain a unified IR layer. When any runtime exception, performance bottleneck, or logic disorder occurs, the IR layer must possess an "omniscient view" spanning high-level source and low-level instructions, able to perform instruction-level refactoring, hot-patch generation, or optimization directly at the lower level at any time, achieving self-repair with "no restart, no human intervention, and in-place repair at any time."</p></div>
+  <div class="grid g2">
+    <div class="card amber"><h4>Traditional software: death cycle</h4><p>Error → crash → downtime → human digs through source → edit high-level language → recompile → redeploy. Extremely long cycle and extremely fragile.</p></div>
+    <div class="card teal"><h4>IR-driven: repair at any time</h4><p>All high-level representations and machine instructions ultimately flow through the unified IR layer, which has a god's-eye view and performs "keyhole surgery" directly at the IR layer without touching chaotic source code.</p></div>
+  </div>
+  <div class="callout warn"><span class="lbl">Direct Response to a Key Risk · Threefold Insurance</span>AI generation + runtime hot repair = superposition of two uncertainties, requiring: 1 <b>rollbackable</b> — create a checkpoint before a hot patch, automatic rollback on failure; 2 <b>provable</b> — the patch must pass symbolic-track equivalence verification; 3 <b>auditable</b> — every hot repair is written to the ledger and experience store for later human review.</div>
+  <div class="diagram">
+    <div class="mermaid">
+flowchart TD
+    S["Runtime exception / performance bottleneck"] --> C{"Cerebellum experience hit"}
+    C -->|yes| R["Local rule repair"]
+    C -->|no| B["Main Brain generates candidate patch"]
+    R --> V["Dual-track verification"]
+    B --> V
+    V -->|fail| RB["Rollback - record - escalate"]
+    V -->|pass| CP["Create checkpoint snapshot"]
+    CP --> HP["IR-layer minimal hot patch + hot load"]
+    HP --> W["Write to experience store"]
+    W --> OK["Self-repair complete - system stronger"]
+    </div>
+    <div class="cap">Figure 4 · IR-layer self-repair decision control flow, including rollback and audit branches</div>
+  </div>
+  <h3>8.5 Hardware-Topology-Aware Compilation Prioritization</h3>
+  <div class="callout quote"><span class="lbl">Corresponding to 2.3</span>The same IR does not have the same "optimal" instruction sequence on different physical carriers — repairing without regard to hardware may fix the logic while crippling performance.</div>
+  <div class="grid g2">
+    <div class="card amber"><h4>Mandatory requirement</h4><p>Minimal patches and compilation prioritization must adapt to the current runtime environment's physical characteristics: instruction-set and extensions, accelerator cores and type, memory hierarchy and bandwidth, interconnect and access affinity. A "one-size-fits-all" patch is forbidden.</p></div>
+    <div class="card blue"><h4>Profile acquisition</h4><p>Detect at startup, refresh on change, record in the observability ledger; on a missing profile degrade to a conservative baseline and alert (see Chapter 21) — never guess hardware capabilities.</p></div>
+    <div class="card teal"><h4>Cost-model linkage</h4><p>The prioritization cost model (Chapter 4 Cerebellum) must take the hardware profile as input for instruction scheduling, operator fusion, and parallelism; different profiles may yield different patch variants, each independently passing dual-track verification.</p></div>
+    <div class="card purple"><h4>Reproducibility</h4><p>Each variant must record "profile fingerprint → selected prioritization strategy" so that a repair in the same environment can be reproduced and replayed.</p></div>
+  </div>
+  <div class="tw"><table>
+    <thead><tr><th>Physical characteristic</th><th>Prioritization impact</th><th>Degradation when missing</th></tr></thead>
+    <tbody>
+      <tr><td>Instruction set / extensions</td><td>Instruction selection, vectorization path</td><td>Conservative baseline instruction set</td></tr>
+      <tr><td>Accelerator cores / type</td><td>Parallelism, operator offload</td><td>Disable offload, host path</td></tr>
+      <tr><td>Memory hierarchy / bandwidth</td><td>Data layout, cache blocking</td><td>Default blocking parameters</td></tr>
+      <tr><td>Interconnect / memory affinity</td><td>Thread binding, data placement</td><td>Ignore affinity constraints</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout"><span class="lbl">Generality statement</span>This clause specifies only the paradigm requirement to "sense and adapt to hardware physical characteristics"; it binds to no specific instruction set, accelerator architecture, or compiler implementation.</div>
+</section>
+
+<!-- ================= CH9 ================= -->
+<section id="ch9">
+  <h2 class="sec"><span class="num">Chapter 9</span>Human-Machine Collaboration: Human Sovereignty and Tiered Authorization</h2>
+  <p>Humans are not removed, but elevated to the position of "legislator / adjudicator."</p>
+  <div class="clause"><span class="badge">Clause 9</span><p><strong>Veto Power.</strong> No AI agent may directly modify main-branch code or issue instructions to production without explicit human authorization. Human and machine are separated, with clear authority and responsibility.</p></div>
+  <div class="clause"><span class="badge">Clause 10</span><p><strong>Full-Spectrum White Box.</strong> All low-level instruction mappings, compilation prioritization, and graph reconstruction must provide a global "god's-eye view" ledger. No black box may exist in the living system.</p></div>
+  <div class="callout quote"><span class="lbl">Numbering Note</span>Clause numbering = seven axioms + ten normative clauses, continuous with no duplicates.</div>
+  <h3>Tiered Authorization Model (Breaking the "Human Bottleneck")</h3>
+  <div class="tw"><table>
+    <thead><tr><th>Authorization level</th><th>Trigger condition</th><th>Human action</th></tr></thead>
+    <tbody>
+      <tr><td><strong>L0 automatic</strong></td><td>D3 layer, no side effects (documentation / comments / test generation)</td><td>After-the-fact audit only</td></tr>
+      <tr><td><strong>L1 review</strong></td><td>D2 layer, all gates green, high-confidence experience hit</td><td>Batch confirmation / spot check</td></tr>
+      <tr><td><strong>L2 strong authorization</strong></td><td>Touching D0/D1, production environment, irreversible changes</td><td>Explicit double-confirmation approval</td></tr>
+    </tbody>
+  </table></div>
+  <h3>Dual-Layer Confirmation and Collaboration Sequence</h3>
+  <div class="grid g2">
+    <div class="card purple"><h4>Judgment layer</h4><p>Presents the AI's intent, diff, rationale, and verification conclusion for human judgment.</p></div>
+    <div class="card blue"><h4>Authorization layer</h4><p>Only takes effect after explicit human approval. Judgment and authorization are separated to eliminate mis-touches.</p></div>
+  </div>
+  <div class="diagram">
+    <div class="mermaid">
+sequenceDiagram
+    participant Sys as Living system
+    participant CB as Cerebellum
+    participant AI as Main Brain
+    participant IM as Immune System
+    participant H as Human
+    Sys->>CB: Exception signal
+    CB->>CB: Attempt local adjudication
+    alt Locally solvable
+        CB->>Sys: Direct repair L0 audit
+    else Unknown complex
+        CB->>AI: NTP compressed context
+        AI->>AI: Retrieve memory + reasoning
+        AI->>IM: Submit candidate proposal
+        IM->>IM: Dual-track verification
+        IM->>H: Judgment layer diff rationale verification
+        H->>H: Authorization layer confirmation
+        H->>Sys: Approve deployment / veto rollback
+    end
+    </div>
+    <div class="cap">Figure 5 · Human-machine collaboration sequence: locally solvable closes the loop, unknown complexity escalates to human authorization</div>
+  </div>
+</section>
+
+<!-- ================= CH10 ================= -->
+<section id="ch10">
+  <h2 class="sec"><span class="num">Chapter 10</span>Evolution Theory: The Unified Development-Maintenance Flywheel</h2>
+  <div class="lead">Going live is not the end, but the beginning of life. Development and maintenance are no longer the two ends of a pipeline, but the exhalation and inhalation of the same life process.</div>
+  <div class="diagram">
+    <div class="mermaid">
+flowchart TB
+    A["1 Sense - Perceive<br/>collect runtime exceptions and performance data"] --> B["2 Deliberate<br/>Cerebellum first intercepts 80%"]
+    B --> C["3 Collaborate<br/>NTP wakes Main Brain - human authorization"]
+    C --> D["4 Verify<br/>immune dual-track - anti-self-deception"]
+    D --> E["5 Consolidate<br/>write experience to memory store"]
+    E --> F["6 Repair<br/>IR-layer minimal hot patch"]
+    F --> A
+    style A fill:#EEEDFE,stroke:#534AB7,color:#26215C
+    style B fill:#E6F1FB,stroke:#185FA5,color:#042C53
+    style C fill:#EEEDFE,stroke:#534AB7,color:#26215C
+    style D fill:#E6F1FB,stroke:#185FA5,color:#042C53
+    style E fill:#EEEDFE,stroke:#534AB7,color:#26215C
+    style F fill:#E6F1FB,stroke:#185FA5,color:#042C53
+    </div>
+    <div class="cap">Figure 6 · Unified development-maintenance flywheel: sense → deliberate → collaborate → verify → consolidate → repair → back to sense</div>
+  </div>
+  <h3>The Threefold Compounding of the Flywheel</h3>
+  <div class="grid g3">
+    <div class="card purple"><div class="ic ic-purple">1</div><h4>Cost compounding</h4><p>The thicker the experience store and the more rules promoted to the Cerebellum → fewer Main Brain awakenings → tokens and latency approach zero.</p></div>
+    <div class="card blue"><div class="ic ic-blue">2</div><h4>Capability compounding</h4><p>Each "mutate–verify–consolidate" exposes the system to more scenarios → faster response to the unknown.</p></div>
+    <div class="card teal"><div class="ic ic-teal">3</div><h4>Safety compounding</h4><p>Gates and experience reinforce each other → false positives decline, false negatives approach zero → the system becomes more trustworthy.</p></div>
+  </div>
+  <div class="callout quote"><span class="lbl">Development Is Maintenance, Maintenance Is Development</span>Traditional is "build a building, repair it when broken" — disconnected, decaying; ANE is like a tree, growing while self-repairing, in the same rhythm. <b>Running is sensing, sensing is maintenance, maintenance is development, development is evolution.</b></div>
+</section>
+
+<!-- ================= CH11 ================= -->
+<section id="ch11">
+  <h2 class="sec"><span class="num">Chapter 11</span>Adoption: The ANE Maturity Model L0–L5</h2>
+  <p>Allows the paradigm to be adopted progressively from "vision" rather than all at once.</p>
+  <div class="tw"><table>
+    <thead><tr><th>Level</th><th>Name</th><th>Characteristics</th><th>Criterion</th></tr></thead>
+    <tbody>
+      <tr><td><strong>L0</strong></td><td>Static workshop</td><td>Purely deterministic code, no AI involvement</td><td>No AI-generated code enters mainline</td></tr>
+      <tr><td><strong>L1</strong></td><td>Tool-assisted</td><td>AI completes/suggests, humans review everything</td><td>AI assistance but no automatic loop</td></tr>
+      <tr><td><strong>L2</strong></td><td>Cerebellum in place</td><td>Local rules intercept high-frequency decisions, zero tokens</td><td>Routine decisions bypass the LLM</td></tr>
+      <tr><td><strong>L3</strong></td><td>Memory loop</td><td>Experience store + retrieval augmentation effective</td><td>Same problem is not re-asked of the Main Brain</td></tr>
+      <tr><td><strong>L4</strong></td><td>Self-repair running</td><td>IR-layer hot patches + flywheel turning</td><td>Runtime repair without restart</td></tr>
+      <tr><td><strong>L5</strong></td><td>Living system</td><td>Unified development-maintenance, controlled self-iteration</td><td>Mutate–verify–consolidate fully automated, humans only strategic authorization</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout warn"><span class="lbl">Adoption Path</span>Starting with L2 (Cerebellum) and L3 (memory) yields the greatest benefit at the lowest risk; L4 (self-repair) may be enabled only after L2/L3 and the immune system are mature.</div>
+</section>
+
+<!-- ================= CH12 ================= -->
+<section id="ch12">
+  <h2 class="sec"><span class="num">Chapter 12</span>Metrics and Anti-Patterns</h2>
+  <h3>Key Metrics (KPI)</h3>
+  <div class="tw"><table>
+    <thead><tr><th>Metric</th><th>Definition</th><th>Target direction</th></tr></thead>
+    <tbody>
+      <tr><td>Cerebellum interception rate</td><td>locally adjudicated decisions / total decisions</td><td>↑ target ≥80%</td></tr>
+      <tr><td>Token-per-decision ratio</td><td>average tokens consumed per decision</td><td>↓</td></tr>
+      <tr><td>Memory hit rate</td><td>retrieval-augmented experience hits / Main Brain awakenings</td><td>↑</td></tr>
+      <tr><td>Experience promotion rate</td><td>share of experience consolidated into Cerebellum rules</td><td>↑</td></tr>
+      <tr><td>First-pass gate rate</td><td>share of proposals passing dual-track on the first try</td><td>↑</td></tr>
+      <tr><td>Self-repair success rate</td><td>successful hot patches / attempted hot patches</td><td>↑</td></tr>
+      <tr><td>Rollback rate</td><td>failed rollbacks / total changes</td><td>↓</td></tr>
+      <tr><td>MTTR</td><td>mean time to repair</td><td>↓</td></tr>
+      <tr><td>Silent-failure count</td><td>number of exceptions swallowed without reporting</td><td>= 0 (red line)</td></tr>
+    </tbody>
+  </table></div>
+  <h3>Anti-Pattern List (Explicit "Don'ts")</h3>
+  <div class="tw"><table>
+    <thead><tr><th>Anti-pattern</th><th>Harm</th><th>Correct practice</th></tr></thead>
+    <tbody>
+      <tr><td>Dumping full context into the LLM</td><td>Token explosion, high latency</td><td>Use NTP to transmit features and digests</td></tr>
+      <tr><td>AI directly modifying main branch / production</td><td>Bypassing sovereignty and immunity</td><td>Tiered authorization</td></tr>
+      <tr><td>Silent failure / fake green checkmark</td><td>Hides problems, system decays</td><td>Immediate error, block, record</td></tr>
+      <tr><td>Unverified experience written to store</td><td>Memory pollution, negative flywheel</td><td>Write only after immune verification</td></tr>
+      <tr><td>Hot update without snapshot</td><td>Non-rollbackable, disaster risk</td><td>Checkpoint + automatic rollback</td></tr>
+      <tr><td>Omni-LLM (no Cerebellum)</td><td>Stalls, burns money, unreliable</td><td>Cerebellum first</td></tr>
+      <tr><td>Unexplainable black box</td><td>Uncontrollable, untrustworthy</td><td>Full-spectrum white-box ledger</td></tr>
+      <tr><td>Unlimited rule-base growth</td><td>Cerebellum degenerates into a new monolith</td><td>Experience promotion + decay archiving</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- ================= CH13 ================= -->
+<section id="ch13">
+  <h2 class="sec"><span class="num">Chapter 13</span>Interaction Modes: The Agent Interaction-Pattern Matrix</h2>
+  <h3>Four Dimensions of Interaction</h3>
+  <div class="tw"><table>
+    <thead><tr><th>Dimension</th><th>Values</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Tense</strong></td><td>synchronous / asynchronous / streaming</td><td>whether the request blocks and whether results return incrementally</td></tr>
+      <tr><td><strong>Direction</strong></td><td>human→machine / machine→human / machine→machine / machine→tool</td><td>relationship of interacting subjects</td></tr>
+      <tr><td><strong>Autonomy</strong></td><td>suggestion / semi-automatic / fully automatic</td><td>corresponds to tiered authorization L0–L2</td></tr>
+      <tr><td><strong>Persistence</strong></td><td>single-shot / session / long-term memory</td><td>boundary across which state persists</td></tr>
+    </tbody>
+  </table></div>
+  <h3>Ten Standard Interaction Patterns</h3>
+  <div class="tw"><table>
+    <thead><tr><th>Pattern</th><th>Core idea</th><th>ANE position</th><th>Constraint</th></tr></thead>
+    <tbody>
+      <tr><td>Chain</td><td>steps executed in sequence</td><td>Cerebellum deterministic pipeline</td><td>single-point failure must be rollbackable</td></tr>
+      <tr><td>Routing</td><td>dispatch by feature</td><td>routes by D0–D3 grading</td><td>routing criteria must be explainable</td></tr>
+      <tr><td>Parallelization</td><td>subtasks concurrent</td><td>Main Brain batch reasoning / multi-track verification</td><td>aggregation must be deterministic</td></tr>
+      <tr><td>Planning</td><td>decompose goal into multi-step</td><td>Main Brain handles unknown complexity</td><td>plan must be shown</td></tr>
+      <tr><td>Reflection</td><td>producer + reviewer</td><td>the Immune System's "critic"</td><td>reviewer must not endorse itself</td></tr>
+      <tr><td>Tool Use</td><td>affect the external world</td><td>see MCP specification</td><td>least privilege + authorization</td></tr>
+      <tr><td>RAG</td><td>retrieve first, then reason</td><td>Hippocampus experience reading</td><td>retrieval with access control</td></tr>
+      <tr><td>Multi-Agent Collaboration</td><td>role division, shared memory</td><td>see Chapter 16</td><td>protocolized, no private chats</td></tr>
+      <tr><td>Human-in-the-Loop</td><td>humans adjudicate key decisions</td><td>veto power</td><td>avoid making humans a bottleneck</td></tr>
+      <tr><td>Event-Driven Architecture</td><td>state change as event</td><td>flywheel sense–self-repair chain</td><td>traceable and replayable events</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout quote"><span class="lbl">Selection Criteria</span>Use the Cerebellum when possible, not the Main Brain; synchronous when possible, not asynchronous (except self-repair / production changes, which must use an auditable async event chain); stream when possible (streamed content is not a verified conclusion); any side effect must explicitly carry an authorization credential and provenance identifier.</div>
+  <h3>13.4 Dual-Fold Collaboration</h3>
+  <div class="callout quote"><span class="lbl">Corresponding to Axioms 5 and 6</span>The mandatory formalization of the "dual-layer confirmation interaction" of 9.3 at the interface: it defines how the machine presents judgment to the human, and how the human writes intent back. The interface must present two semantically isolated "folds"; mixing cognition and authorization in one layer is forbidden.</div>
+  <div class="grid g2">
+    <div class="card blue"><h4>Fold 1 · Judgment Fold (machine→human)</h4><p><b>Cognitive Summary</b>: AI intent, candidates, diffs, evidence, verification conclusions, risk warnings. Determinacy D1–D3, not directly executable.</p></div>
+    <div class="card purple"><h4>Fold 2 · Authorization Fold (human→machine)</h4><p><b>Intent Binding</b>: the human binds approval/denial to one candidate action as a credential. Determinacy D0, human-made, machine cannot sign on its behalf.</p></div>
+  </div>
+  <div class="grid g2">
+    <div class="card amber"><h4>Folds cannot be merged</h4><p>Fold 1 only presents and explains, no side effects; Fold 2 only carries human deterministic intent, never auto-generated by AI. Bypassing Fold 2 violates Axiom 5.</p></div>
+    <div class="card teal"><h4>Summary needs evidence + binding must be precise</h4><p>A summary must give its evidence chain, never a bare conclusion; an intent binding must point to a specific candidate action (ID + parameters + target environment), preventing "approve A, execute B."</p></div>
+  </div>
+  <div class="callout"><span class="lbl">Full traceability</span>Every unfold, summary, binding, and denial is written to the ledger with an attest credential for replay. This pattern is the confluence of "full-spectrum white box" (Axiom 6) and "human sovereignty" (Axiom 5): Fold 1 ensures humans <b>understand</b>, Fold 2 ensures humans <b>decide</b>.</div>
+</section>
+
+<!-- ================= CH14 ================= -->
+<section id="ch14">
+  <h2 class="sec"><span class="num">Chapter 14</span>Interaction Primitives: Composable Minimal Interaction Units</h2>
+  <div class="diagram">
+    <div class="mermaid">
+flowchart TB
+    A["PERCEIVE group<br/>observe retrieve digest"] --> B["DELIBERATE group<br/>classify decide plan"]
+    B --> C["ACT group<br/>invoke generate patch"]
+    C --> D["VERIFY group<br/>prove regress attest"]
+    D --> E["CONSOLIDATE group<br/>write promote decay"]
+    E -.experience feedback.-> A
+    </div>
+    <div class="cap">Figure 7 · ANE's five interaction-primitive groups and the experience-feedback loop</div>
+  </div>
+  <h3>Primitive Definition Table (5 Groups, 15 Primitives)</h3>
+  <div class="tw"><table>
+    <thead><tr><th>Group</th><th>Primitive</th><th>Semantics</th><th>Level</th></tr></thead>
+    <tbody>
+      <tr><td>Perceive</td><td><code>observe</code></td><td>collect runtime signals and exceptions</td><td>D0</td></tr>
+      <tr><td>Perceive</td><td><code>retrieve</code></td><td>retrieve memories from the experience store</td><td>D1</td></tr>
+      <tr><td>Perceive</td><td><code>digest</code></td><td>compress raw context into a feature digest</td><td>D1</td></tr>
+      <tr><td>Deliberate</td><td><code>classify</code></td><td>grade by D0–D3</td><td>D0</td></tr>
+      <tr><td>Deliberate</td><td><code>decide</code></td><td>Cerebellum adjudication or escalation to Main Brain</td><td>D1</td></tr>
+      <tr><td>Deliberate</td><td><code>plan</code></td><td>generate a multi-step action plan</td><td>D3</td></tr>
+      <tr><td>Act</td><td><code>invoke</code></td><td>call an external tool (MCP contract)</td><td>D2</td></tr>
+      <tr><td>Act</td><td><code>generate</code></td><td>generate code/text/patch draft</td><td>D3</td></tr>
+      <tr><td>Act</td><td><code>patch</code></td><td>land a minimal modification in the IR layer</td><td>D1</td></tr>
+      <tr><td>Verify</td><td><code>prove</code></td><td>symbolic-track equivalence proof</td><td>D0</td></tr>
+      <tr><td>Verify</td><td><code>regress</code></td><td>statistical-track regression verification</td><td>D0</td></tr>
+      <tr><td>Verify</td><td><code>attest</code></td><td>generate an audit credential and write to ledger</td><td>D0</td></tr>
+      <tr><td>Consolidate</td><td><code>write</code></td><td>write verified experience</td><td>D1</td></tr>
+      <tr><td>Consolidate</td><td><code>promote</code></td><td>promote experience to a Cerebellum rule</td><td>D1</td></tr>
+      <tr><td>Consolidate</td><td><code>decay</code></td><td>experience decay and archiving</td><td>D1</td></tr>
+    </tbody>
+  </table></div>
+  <h3>Composition Rules</h3>
+  <div class="grid g2">
+    <div class="card blue"><h4>Type consistency</h4><p>Primitive output types must match downstream inputs (feature vectors, credentials, patches, judgments).</p></div>
+    <div class="card amber"><h4>Side-effect isolation</h4><p><code>invoke</code>/<code>patch</code> are side-effect primitives and must carry an <code>attest</code> credential in pairs.</p></div>
+    <div class="card teal"><h4>Verification cannot be skipped</h4><p>Before any <code>patch</code>, passing records of <code>prove</code> and <code>regress</code> must exist.</p></div>
+    <div class="card purple"><h4>Escalation is traceable</h4><p>The generate(D3)→patch(D1) jump must leave a complete primitive chain for replay audit.</p></div>
+  </div>
+  <div class="callout"><span class="lbl">Primitive encoding of Dual-Fold Collaboration (cf. 13.4)</span>Fold 1's "cognitive summary" is produced by <code>digest → retrieve → prove/regress</code>, stopping at <code>attest</code> (evidence credential) without landing; Fold 2's "intent binding" is a human-in-the-loop authorization write producing a credential bound to a specific action, after which <code>invoke</code>/<code>patch</code> is permitted.<br><b>Controlled chain</b>: <code>observe → digest → retrieve → decide(candidate) → prove+regress → attest(Fold 1) → [human intent binding] → invoke/patch → attest(Fold 2) → write</code>.<br><b>Key constraint</b>: <code>attest</code> appears once per fold with different semantics — "machine attests evidence" vs. "human grants authority"; absence of either is a bypass.</div>
+  <p>NTP is essentially the standardized payload format of the <code>digest → decide → plan</code> primitive group.</p>
+</section>
+
+<!-- ================= CH15 ================= -->
+<section id="ch15">
+  <h2 class="sec"><span class="num">Chapter 15</span>Tool Ecosystem: MCP and Capability Integration Specification</h2>
+  <div class="lead">Private tool integration leads to semantic fragmentation, hidden risk surfaces, masked failures, and an inability to accumulate an ecosystem. ANE requires tool integration to go through a <b>contractual protocol layer</b>, unifying capability discovery, permission negotiation, and audit tracing.</div>
+  <h3>Three-Part Architecture and ANE Organ Mapping</h3>
+  <div class="tw"><table>
+    <thead><tr><th>Protocol role</th><th>Responsibility</th><th>ANE counterpart</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Host</strong></td><td>hosts the agent, enforces security policies and user authorization</td><td>Sovereignty adjudication layer + Immune System</td></tr>
+      <tr><td><strong>Client</strong></td><td>maintains a 1:1 session with a single Server, performs capability negotiation and routing</td><td>Cerebellum local scheduling</td></tr>
+      <tr><td><strong>Server</strong></td><td>exposes tools/resources/prompts, focused on a single capability</td><td>capability unit callable by Main Brain / Cerebellum</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout quote"><span class="lbl">Core Principle</span>The Host never touches tools directly; all access goes through a negotiated contract; the Server must not read the full session and must not "see" other Servers.</div>
+  <h3>Four Capability Primitives + Capability Negotiation</h3>
+  <div class="tw"><table>
+    <thead><tr><th>Category</th><th>Representative operations</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td>Server · Tools</td><td><code>tools/list</code> · <code>tools/call</code></td><td>executable functions that change external state</td></tr>
+      <tr><td>Server · Resources</td><td><code>resources/list</code> · <code>resources/read</code></td><td>context data sources</td></tr>
+      <tr><td>Server · Prompts</td><td><code>prompts/list</code> · <code>prompts/get</code></td><td>reusable interaction templates</td></tr>
+      <tr><td>Client · Sampling</td><td><code>sampling/createMessage</code></td><td>Server requests the Host to perform model inference</td></tr>
+      <tr><td>Client · Elicitation</td><td><code>elicitation/create</code></td><td>requests supplementary information or confirmation (judgment layer)</td></tr>
+      <tr><td>Client · Logging</td><td><code>logging/*</code></td><td>structured logs for audit</td></tr>
+    </tbody>
+  </table></div>
+  <h3>Tool Contracts and Dual Validation</h3>
+  <div class="grid g2">
+    <div class="card blue"><h4>Contract</h4><p>Tools declare input via JSON Schema, with <code>additionalProperties: false</code> rejecting unexpected fields; descriptions from untrusted Servers must not be treated as trustworthy.</p></div>
+    <div class="card teal"><h4>Dual validation</h4><p>The Host validates agent parameters before sending; the Server validates again before execution — dual-defense redundancy.</p></div>
+  </div>
+  <h3>Tool Security Annotations → D0–D3 Authorization Mapping</h3>
+  <div class="tw"><table>
+    <thead><tr><th>Annotation</th><th>Meaning</th><th>ANE authorization requirement</th></tr></thead>
+    <tbody>
+      <tr><td><code>readOnlyHint</code></td><td>does not change external state</td><td>L0 automatic release (D3 read)</td></tr>
+      <tr><td><code>idempotentHint</code></td><td>repeated calls yield the same result</td><td>automatic retry after L1 review</td></tr>
+      <tr><td><code>destructiveHint</code></td><td>permanent impact</td><td>L2 strong authorization + rollback snapshot</td></tr>
+      <tr><td><code>openWorldHint</code></td><td>accesses data that may contain arbitrary instructions</td><td>treat as untrusted input, guard against injection</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout warn"><span class="lbl">Integration Gates</span>1 Contract review (complete Schema, clear transport mode); 2 least privilege (remote recommends OAuth 2.1 + PKCE with short-lived token rotation); 3 boundary declaration (filesystem tools declare allowed workspace roots, but the boundary is not a full security boundary and needs Host-policy backstop); 4 immune verification (side-effect calls generate an <code>attest</code> credential).</div>
+</section>
+
+<!-- ================= CH16 ================= -->
+<section id="ch16">
+  <h2 class="sec"><span class="num">Chapter 16</span>Multi-Agent Collaboration Protocol</h2>
+  <div class="grid g2">
+    <div class="card purple"><h4>Tool-context protocol</h4><p>Agent ↔ tool: capability discovery, tool calls, context exchange (Chapter 15).</p></div>
+    <div class="card blue"><h4>Agent-to-agent protocol</h4><p>Agent ↔ agent: capability advertising, task delegation, long-task state (this chapter).</p></div>
+  </div>
+  <h3>Capability Advertising and Task Lifecycle</h3>
+  <div class="grid g3">
+    <div class="card teal"><h4>Capability advertising</h4><p>A structured card declares skills, endpoints, and authentication methods for discovery by others.</p></div>
+    <div class="card blue"><h4>Task state machine</h4><p>Created → working → input required → completed / failed / cancelled.</p></div>
+    <div class="card amber"><h4>Interaction tenses</h4><p>Fast synchronous calls, long-task streaming subscriptions, and fully asynchronous notifications coexist.</p></div>
+  </div>
+  <p><strong>Opaque execution</strong>: collaborators need not expose internal thoughts, plans, or tools, exchanging only context, state, instructions, and data — protecting implementation privacy, while task metadata must remain auditable.</p>
+  <div class="callout warn"><span class="lbl">Collaboration Discipline</span>1 Single, replaceable responsibility; 2 all inter-agent messages pass through an observable bus; 3 cross-agent delegation may not bypass tiered authorization, and delegation touching D0/D1 or production returns to human adjudication; 4 conflicts are arbitrated by gate verification results and human judgment, not "majority vote."</div>
+</section>
+
+<!-- ================= CH17 ================= -->
+<section id="ch17">
+  <h2 class="sec"><span class="num">Chapter 17</span>Security and Trust Boundaries: OWASP Alignment</h2>
+  <h3>Three Trust Boundaries</h3>
+  <div class="grid g3">
+    <div class="card purple"><h4>What the model reads</h4><p>User input, retrieved documents, tool results, web content → prompt injection, system prompt leakage.</p></div>
+    <div class="card blue"><h4>What the model learns</h4><p>Training data, fine-tuning sets, vector stores → data poisoning, vector and embedding weaknesses.</p></div>
+    <div class="card amber"><h4>What the model can do</h4><p>Output handling, tool permissions, autonomous action → improper output handling, excessive agency.</p></div>
+  </div>
+  <div class="callout quote"><span class="lbl">Core Principle</span>Everything the model reads is treated as potentially adversarial input; every model output must be verified before use; every action is confined to the minimum blast radius.</div>
+  <h3>Top Ten Risks → ANE Countermeasure Matrix</h3>
+  <div class="tw"><table>
+    <thead><tr><th>Risk</th><th>ANE countermeasure</th><th>Organ primarily responsible</th></tr></thead>
+    <tbody>
+      <tr><td>Prompt injection</td><td>external content untrusted; tool annotations distinguish open-world data; least agency</td><td>Immune + Sovereignty</td></tr>
+      <tr><td>Sensitive information disclosure</td><td>access control on retrieval, secret isolation, output redaction</td><td>Hippocampus + Immune</td></tr>
+      <tr><td>Supply chain</td><td>tools / Servers / dependencies must have contracts and provenance reviewed</td><td>Immune</td></tr>
+      <tr><td>Data and model poisoning</td><td>experience writes must be verified; full lineage recorded</td><td>Hippocampus</td></tr>
+      <tr><td><b>Memory-promotion poisoning</b> (experience → global rule)</td><td><b>Promotion Audit</b>: N consecutive independent reproductions + human engineer signature endorsement (see 24.3), preventing AI inbreeding from corrupting rules</td><td>Immune + Sovereignty + Hippocampus</td></tr>
+      <tr><td>Improper output handling</td><td>mandatory validation before output to Shell/SQL/browser</td><td>Immune</td></tr>
+      <tr><td>Excessive agency</td><td>least agency: only the autonomy needed; time-limited permissions</td><td>Sovereignty + Immune</td></tr>
+      <tr><td>System prompt leakage</td><td>no secrets in prompts; assume extractability</td><td>Sovereignty</td></tr>
+      <tr><td>Vector and embedding weaknesses</td><td>mandatory per-user access control; guard against embedding inversion</td><td>Hippocampus</td></tr>
+      <tr><td>Misinformation</td><td>explicit uncertainty; review step for high-risk answers</td><td>Main Brain + Immune</td></tr>
+      <tr><td>Unbounded consumption</td><td>budget caps, rate limits, timeouts, cost alerts</td><td>Cost governance</td></tr>
+    </tbody>
+  </table></div>
+  <h3>Least Agency Principle</h3>
+  <div class="grid g2">
+    <div class="card amber"><p>Autonomy, tool set, permission scope, and validity period are all <b>task-level and time-limited</b>; automatically reclaimed at task end or timeout.</p></div>
+    <div class="card teal"><p>Destructive or money-related actions always require explicit human confirmation — the concretization of Axiom 5 in the security domain.</p></div>
+  </div>
+</section>
+
+<!-- ================= CH18 ================= -->
+<section id="ch18">
+  <h2 class="sec"><span class="num">Chapter 18</span>Cost Governance and Context Engineering</h2>
+  <h3>Three Budget Gates</h3>
+  <div class="tw"><table>
+    <thead><tr><th>Gate</th><th>Constraint</th><th>Trigger action</th></tr></thead>
+    <tbody>
+      <tr><td>Token budget</td><td>per-call / per-task cap (NTP <code>budget_hint</code>)</td><td>compress context on overrun or escalate to human</td></tr>
+      <tr><td>Time budget</td><td>per-step latency and total task duration caps</td><td>timeout degrades to local adjudication</td></tr>
+      <tr><td>Monetary budget</td><td>per-task cost cap</td><td>circuit break and alert</td></tr>
+    </tbody>
+  </table></div>
+  <h3>Five Context Engineering Strategies</h3>
+  <div class="grid g3">
+    <div class="card purple"><h4>Compression</h4><p><code>digest</code> transmits only features and digests, not full text.</p></div>
+    <div class="card blue"><h4>Caching</h4><p>Prompt caching for stable prefixes and high-frequency knowledge.</p></div>
+    <div class="card teal"><h4>Subtask isolation</h4><p>Sub-agents use fresh contexts and return only digests.</p></div>
+    <div class="card amber"><h4>Retrieval instead of stuffing</h4><p>Use RAG to fetch on demand rather than stuffing everything in.</p></div>
+    <div class="card purple"><h4>Experience promotion</h4><p>Consolidate high-frequency conclusions into the Cerebellum, permanently leaving the LLM.</p></div>
+  </div>
+  <div class="callout quote"><span class="lbl">Cost Observability</span>Record Token, latency, cost, and memory-hit status for every decision; use "Cerebellum interception rate / memory hit rate / token-per-decision ratio" as first-class metrics; denial-of-service-style consumption and wallet attacks are included in alerts and circuit breaking.</div>
+</section>
+
+<!-- ================= CH19 ================= -->
+<section id="ch19">
+  <h2 class="sec"><span class="num">Chapter 19</span>Sublation of Traditional Software Engineering</h2>
+  <div class="grid g2">
+    <div class="card teal"><h4>Virtues that must be inherited</h4><p>Strong typing and formal methods · version control and traceability · automated testing and regression · CI/CD and quality gates · code review · modularity and separation of concerns · immutable infrastructure and rollback</p></div>
+    <div class="card amber"><h4>Vices that must be overcome</h4><p>Long change cycles and slow feedback · maintenance as debt and rot on arrival · deterministic assumptions struggling with open environments · human-machine split · large amounts of glue code · change risk relying on human carefulness</p></div>
+  </div>
+  <h3>Sublation Comparison</h3>
+  <div class="tw"><table>
+    <thead><tr><th>Traditional vice</th><th>How ANE overcomes it</th></tr></thead>
+    <tbody>
+      <tr><td>Long change cycles, slow feedback</td><td>the flywheel makes running equal development, shortening the feedback loop</td></tr>
+      <tr><td>Maintenance as debt, rot on arrival</td><td>self-repair + experience promotion make the system stronger with use</td></tr>
+      <tr><td>Deterministic assumptions cannot handle open environments</td><td>Main Brain handles the unknown; immune filtering consolidates it into determinacy</td></tr>
+      <tr><td>Human-machine split</td><td>unified development and maintenance, with humans adjudicating at the center</td></tr>
+      <tr><td>Glue code and duplicated labor</td><td>primitive composition + tool protocol reuse</td></tr>
+      <tr><td>Change risk relying on human carefulness</td><td>gates + dual-track verification + tiered authorization institutionalized</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout quote"><span class="lbl">Sublation Principle</span><b>Retain the deterministic "bone," replace the rigid "shell."</b> Whatever can be proven continues to use traditional engineering means; whatever must adapt to openness is augmented with agents; between the two, immune gates and human sovereignty are always the boundary. ANE is the evolved state of traditional software engineering, not a replacement.</div>
+</section>
+
+<!-- ================= CH20 ================= -->
+<section id="ch20">
+  <h2 class="sec"><span class="num">Chapter 20</span>Organizational Governance and Compliance Alignment</h2>
+  <h3>20.1 Mapping of the Four Governance Functions (Aligned with NIST AI RMF)</h3>
+  <div class="tw"><table>
+    <thead><tr><th>RMF function</th><th>Connotation</th><th>ANE organ</th><th>Landing point</th></tr></thead>
+    <tbody>
+      <tr><td><b>GOVERN</b></td><td>risk culture, policies, accountability</td><td>Human Sovereignty layer</td><td>Axiom 5, tiered authorization, RACI</td></tr>
+      <tr><td><b>MAP</b></td><td>system context, capability boundaries, impacts</td><td>Skeleton + Main Brain</td><td>problem statement, D0–D3, NTP constraints</td></tr>
+      <tr><td><b>MEASURE</b></td><td>quantitative/qualitative assessment, monitoring</td><td>Immune + cost governance</td><td>KPI, dual-track verification, cost observability</td></tr>
+      <tr><td><b>MANAGE</b></td><td>response, go/no-go, decommissioning, improvement</td><td>Self-Repair + flywheel</td><td>self-repair, flywheel, circuit breaking</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout"><span class="lbl">Hard Requirement</span>Organizations claiming ANE conformance must be able to draw a map of the four functions to their own processes — missing any function means "organs without governance."</div>
+  <h3>20.2 Regulatory Alignment (Referencing the EU AI Act)</h3>
+  <div class="tw"><table>
+    <thead><tr><th>Regulatory requirement</th><th>ANE mechanism</th><th>Evidence material</th></tr></thead>
+    <tbody>
+      <tr><td>Risk-based regulation</td><td>D0–D3 + maturity L0–L5</td><td>grading ledger, maturity assessment</td></tr>
+      <tr><td>Lifecycle risk management</td><td>six flywheel stages</td><td>primitive-chain trace, lineage</td></tr>
+      <tr><td>Technical documentation and log retention</td><td><code>attest</code> credential + white-box ledger</td><td>audit logs, AI-BOM</td></tr>
+      <tr><td>Human oversight (Art.14)</td><td>Axiom 5 + tiered authorization + circuit breaker</td><td>authorization credentials, stop drill records</td></tr>
+      <tr><td>Accuracy / robustness / security</td><td>dual-track verification + OWASP</td><td>symbolic proofs, regression reports</td></tr>
+      <tr><td>Automation-bias protection</td><td>Chapter 23</td><td>judgment-layer design, review records</td></tr>
+    </tbody>
+  </table></div>
+  <h3>20.2b Domestic Regulatory Alignment (China)</h3>
+  <div class="tw"><table>
+    <thead><tr><th>Domestic regulation / standard</th><th>Core requirement</th><th>ANE mechanism</th><th>Evidence material</th></tr></thead>
+    <tbody>
+      <tr><td><b>Data Security Law</b></td><td>Data classification/grading, whole-process records, risk monitoring and response</td><td>three-tier information grading (N/E/P), experience-record lineage chain, global white-box ledger</td><td>data grading inventory, primitive-chain trace, tamper-proof audit logs</td></tr>
+      <tr><td><b>Personal Information Protection Law</b></td><td>Informed consent, data minimization, right to erasure</td><td>Least Agency (17.3), redaction before write, delete-by-source with cascade (24.4)</td><td>authorization credentials, redaction records, erasure deletion credentials</td></tr>
+      <tr><td><b>MLPS 2.0 (Level 3)</b></td><td>Identity authentication, access control, security auditing, data integrity and confidentiality</td><td>stable ID and AI-BOM (Ch.22), per-user access control (24.2), dual-track verification, full-spectrum white box</td><td>identity ledger, access logs, symbolic proofs and statistical regression reports</td></tr>
+      <tr><td><b>Generative-AI traceability / controllability</b></td><td>Generated-content labeling, process traceability, human intervention</td><td>Axiom 5 Human Sovereignty + Axiom 6 Anti-Self-Deception: attest credentials, tiered authorization, global circuit breaker, silent failures = 0</td><td>authorization credentials, circuit-breaker drill records, complete primitive-chain trace</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout quote"><span class="lbl">Why "Human Sovereignty + Anti-Self-Deception" satisfies domestic regulatory hard requirements</span>The core domestic demand is "traceable and controllable." <b>Axiom 5 (Human Sovereignty)</b> ensures every mutation requires explicit human authorization, is subject to veto and a global circuit breaker — "controllable"; <b>Axiom 6 (Anti-Self-Deception)</b> ensures the whole process is white-box and logged, silent failures are zero, conclusions replayable — "traceable." These are not documents added after launch but execution disciplines built into primitive chains and gates, making regulatory evidence a natural byproduct.</div>
+  <div class="callout warn"><span class="lbl">Temporal Facts (2026-08 Digital Omnibus Revision)</span>GPAI obligations from 2025-08; Art.14 human oversight and transparency from 2026-08; Annex III high-risk from 2027-12, Annex I from 2028-08. <b>ANE front-loads these obligations as built-in engineering capabilities rather than adding documentation after launch.</b></div>
+  <h3>20.3 Responsibility Matrix (RACI)</h3>
+  <div class="tw"><table>
+    <thead><tr><th>Activity</th><th>Living system / Cerebellum</th><th>Main Brain</th><th>Immune</th><th>Human sovereignty</th><th>Governance committee</th></tr></thead>
+    <tbody>
+      <tr><td>D0/D1 change approval</td><td>C</td><td>R (proposal)</td><td>C</td><td><b>A</b></td><td>I</td></tr>
+      <tr><td>Routine adjudication D2/D3</td><td><b>R/A</b></td><td>I</td><td>C</td><td>I (after audit)</td><td>I</td></tr>
+      <tr><td>Gate rule formulation</td><td>I</td><td>I</td><td>R</td><td>C</td><td><b>A</b></td></tr>
+      <tr><td>Memory store admission review</td><td>C</td><td>R</td><td><b>A</b></td><td>I</td><td>I</td></tr>
+      <tr><td>Circuit breaker trigger and recovery</td><td>R</td><td>I</td><td>C</td><td><b>A</b></td><td>I</td></tr>
+      <tr><td>Compliance evidence</td><td>C</td><td>I</td><td>R</td><td>C</td><td><b>A</b></td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout quote"><span class="lbl">Key Principle</span>R = Responsible · A = Accountable · C = Consulted · I = Informed. <b>The Main Brain never holds A (ultimate responsibility); A belongs to humans or the governance committee.</b></div>
+  <h3>20.4 Risk Register</h3>
+  <p>Every ANE system must maintain a living risk register: risk description, trust boundary, determinacy level, probability × impact, responsible organ, owner, status, and review date. The register itself is placed under version control and traceability.</p>
+</section>
+
+<!-- ================= CH21 ================= -->
+<section id="ch21">
+  <h2 class="sec"><span class="num">Chapter 21</span>Fail-Safe and Graceful Degradation</h2>
+  <div class="clause"><span class="badge">Clause 26</span><p><b>Fail-Safe Default State</b>: when any organ fails, the system must automatically retreat to a predefined fail-safe state — the skeleton remains intact, no side-effect writes occur, services continue in degraded mode; "fully automatic while broken" is absolutely forbidden.</p></div>
+  <div class="clause"><span class="badge">Clause 27</span><p><b>Global Circuit Breaker</b>: the system must provide a stop switch that humans can trigger at any time, freezing all self-repair, tool calls, and Main Brain awakenings within one minute and locking the most recent verified steady state. Aligned with EU AI Act Art.14, it cannot be bypassed by any automation.</p></div>
+  <h3>21.2 Organ-Level Failure Mode Analysis (FMEA)</h3>
+  <div class="tw"><table>
+    <thead><tr><th>Organ</th><th>Failure mode</th><th>Impact</th><th>Detection signal</th><th>Degradation action</th></tr></thead>
+    <tbody>
+      <tr><td>Skeleton</td><td>type/semantic foundation corrupted</td><td>catastrophic</td><td>consistency check failure</td><td>roll back to steady state + refuse external service</td></tr>
+      <tr><td>Cerebellum</td><td>rule base failure / misjudgment</td><td>high-frequency decision errors</td><td>interception rate drops sharply</td><td>conservative rules + restricted Main Brain</td></tr>
+      <tr><td>Main Brain</td><td>hallucination / timeout / unavailability</td><td>wrong candidates</td><td>gate pass rate drops sharply</td><td>reject output, fall back to local</td></tr>
+      <tr><td>Hippocampus</td><td>memory pollution / retrieval failure</td><td>negative flywheel</td><td>abnormal hit rate</td><td>freeze writes, empty-memory mode</td></tr>
+      <tr><td>Immune</td><td>gate bypass / missed detection</td><td>contamination enters mainline</td><td>ledger gap</td><td>reject changes, enter read-only</td></tr>
+      <tr><td>Self-Repair</td><td>hot patch failure</td><td>runtime corruption</td><td>rollback rate rises</td><td>automatic rollback + stop self-repair</td></tr>
+      <tr><td>Sovereignty</td><td>authorization chain failure</td><td>unauthorized changes</td><td>side effects without credentials</td><td>reject side effects, human takeover</td></tr>
+    </tbody>
+  </table></div>
+  <h3>21.3 Graceful Degradation Ladder</h3>
+  <div class="diagram">
+    <div class="mermaid">
+flowchart TB
+    L5["L5 Living system - fully automated controlled self-repair"] -->|immune anomaly| L4["L4 Freeze self-repair, keep memory loop"]
+    L4 -->|memory pollution| L3["L3 Freeze writes, keep local adjudication"]
+    L3 -->|Main Brain unavailable| L2["L2 Cerebellum + skeleton only"]
+    L2 -->|Cerebellum failure| L1["L1 Manual item-by-item review"]
+    L1 -->|circuit breaker triggered| L0["L0 Verified steady state read-only - always reachable"]
+    style L0 fill:#fcebeb,stroke:#a32d2d,stroke-width:2px
+    </div>
+    <div class="cap">Figure: Graceful degradation ladder — one-way tightening, automatic triggering, human acceleration</div>
+  </div>
+  <div class="callout warn"><span class="lbl">Iron Law</span>Degradation is one-way tightening, automatically triggered, manually accelerated by humans; upgrading back requires re-running immune verification and authorization and may not automatically rise. Circuit breakers must be drilled regularly; one never drilled is considered nonexistent.</div>
+</section>
+
+<!-- ================= CH22 ================= -->
+<section id="ch22">
+  <h2 class="sec"><span class="num">Chapter 22</span>Identity, Namespaces, and Traceability</h2>
+  <h3>22.1 Stable Identification System (URN Style)</h3>
+  <div class="tw"><table>
+    <thead><tr><th>Object</th><th>Format</th><th>Example</th></tr></thead>
+    <tbody>
+      <tr><td>Rule</td><td><code>urn:ane:rule:domain:seq@semver</code></td><td><code>urn:ane:rule:sched:114@2.1.0</code></td></tr>
+      <tr><td>Experience</td><td><code>urn:ane:exp:domain:hash</code></td><td><code>urn:ane:exp:core:9f3a…</code></td></tr>
+      <tr><td>Primitive call</td><td><code>urn:ane:op:type:trace-id</code></td><td><code>urn:ane:op:patch:t-8c21</code></td></tr>
+      <tr><td>Gate</td><td><code>urn:ane:gate:track:seq@semver</code></td><td><code>urn:ane:gate:symbol:03@1.4.0</code></td></tr>
+      <tr><td>Agent</td><td><code>urn:ane:agent:role:instance</code></td><td><code>urn:ane:agent:brain:prod-01</code></td></tr>
+      <tr><td>Steady-state snapshot</td><td><code>urn:ane:snap:system@digest</code></td><td><code>urn:ane:snap:core@sha256:…</code></td></tr>
+    </tbody>
+  </table></div>
+  <p>Identifiers may not be reused once published; a content change must produce a new versioned identifier; <code>trace-id</code> runs through an entire primitive chain.</p>
+  <h3>22.2 Semantic Versioning</h3>
+  <p>Every evolvable artefact (rules / experience templates / gates / tool contracts / prompts) carries <code>MAJOR.MINOR.PATCH</code>: MAJOR incompatible changes require re-verifying all dependents; MINOR adds backward-compatible capability; PATCH makes semantic-neutral fixes.</p>
+  <h3>22.3 AI-BOM (AI Bill of Materials)</h3>
+  <div class="grid g3">
+    <div class="card blue"><h4>Model / data</h4><p>Model name, version, provenance, license, capability boundary; experience-store snapshot, index version, data sources.</p></div>
+    <div class="card purple"><h4>Tools / rules</h4><p>Tool Server list, versions, permission annotations, contract digests; Cerebellum rule-set version, promotion provenance.</p></div>
+    <div class="card teal"><h4>Prompts</h4><p>System prompt version and template version. Supply-chain incidents can locate affected systems within minutes.</p></div>
+  </div>
+  <h3>22.4 Configuration as Code</h3>
+  <div class="callout"><span class="lbl">Requirement</span>Gate rules, authorization policies, degradation ladders, and circuit-breaker thresholds are all incorporated into version control and dual-track verification as code; existing only in someone's head or an admin configuration page is forbidden. Configuration changes go through the same immune chain as code changes.</div>
+</section>
+
+<!-- ================= CH23 ================= -->
+<section id="ch23">
+  <h2 class="sec"><span class="num">Chapter 23</span>Human Factors and Cognitive Engineering</h2>
+  <div class="clause"><span class="badge">Clause 28</span><p><b>Anti-Automation Bias</b>: the judgment layer must proactively present "where the system is uncertain, possible errors, and rejected alternatives" rather than only a seemingly authoritative conclusion. Aligned with the EU AI Act Art.14 requirement to guard against automation bias.</p></div>
+  <div class="clause"><span class="badge">Clause 29</span><p><b>Adjudication Challengeable</b>: humans must be able to view the evidence chain of any AI conclusion with one click (NTP payload, memory hits, gate results) and overturn it; the overturn record enters the experience store as a negative sample.</p></div>
+  <h3>23.2 Cognitive Load and Alert Governance</h3>
+  <div class="tw"><table>
+    <thead><tr><th>Anti-pattern</th><th>Consequence</th><th>ANE constraint</th></tr></thead>
+    <tbody>
+      <tr><td>Alert flood</td><td>alert fatigue</td><td>tiered aggregation, L0 automatic items do not disturb humans</td></tr>
+      <tr><td>Pop-up every time</td><td>authorization fatigue, blind agreement</td><td>batch processing, only L2 explicit confirmation</td></tr>
+      <tr><td>Only good news, no bad</td><td>automation bias</td><td>mandatory display of confidence, failures, alternatives</td></tr>
+      <tr><td>Unexplainable urgency</td><td>no responsible judgment possible</td><td>key adjudications must be pausable, no countdown pressure</td></tr>
+    </tbody>
+  </table></div>
+  <h3>23.3 Skill Retention and Authority-Responsibility Consistency</h3>
+  <div class="callout quote"><span class="lbl">Requirement</span>Regular "no-AI drills" (manually handle simulated failures with Main Brain/self-repair disabled); rotation training for key roles maintains understanding of the foundation; mandatory human post-mortem after circuit-breaker recovery. <b>A "veto power" without sufficient information and time is fake sovereignty</b> — the organization must invest presentation quality and human resources in the judgment layer commensurate with risk.</div>
+</section>
+
+<!-- ================= CH24 ================= -->
+<section id="ch24">
+  <h2 class="sec"><span class="num">Chapter 24</span>Multi-Tenancy and Memory Boundaries</h2>
+  <h3>24.1 Memory Partitions</h3>
+  <div class="tw"><table>
+    <thead><tr><th>Partition</th><th>Visibility</th><th>Write permission</th><th>Purpose</th></tr></thead>
+    <tbody>
+      <tr><td>Global public zone</td><td>read-only for all tenants</td><td>after governance committee review</td><td>general experience, security patches</td></tr>
+      <tr><td>Tenant private zone</td><td>only that tenant</td><td>after that tenant's immune verification</td><td>business-specific experience</td></tr>
+      <tr><td>Project isolation zone</td><td>only that project</td><td>after that project's immune verification</td><td>project-specific context</td></tr>
+      <tr><td>Temporary sandbox zone</td><td>creator</td><td>verification-free but non-promotable</td><td>tentative experience, burned on expiry</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout warn"><span class="lbl">Red Line</span>Without explicit authorization, experience may not be written or read across tenants; sandbox experience can never be directly promoted to a Cerebellum rule.</div>
+  <h3>24.2–24.4 Access Control · Isolation Verification · Right to Be Forgotten</h3>
+  <p>RAG must carry tenant/project context as a mandatory filter, not "recall from the whole store"; cross-zone retrieval requires a declared purpose and a trail; vectors must guard against inversion and membership inference. On admission, the Immune System verifies that "source tenant · authorization credential · target partition" are consistent. Redaction before writing; support deletion by source (right to be forgotten), cascade-cleaning vector indexes and derived rules and recording a deletion credential.</p>
+  <h3>24.3b Promotion Audit</h3>
+  <div class="callout quote"><span class="lbl">The last immune gate on the flywheel's main highway</span>Any experience promoted from a "private / sandbox zone" to a "global Cerebellum rule" must, in addition to routine immune verification, pass a Promotion Audit.</div>
+  <div class="grid g2">
+    <div class="card teal"><h4>① N consecutive independent reproductions</h4><p>Reproduce the same benefit across N mutually independent cycles / environments / evaluators, N set by the governance committee by risk (recommended N ≥ 3); independent means at least two of data source, execution environment, and verifying subject differ, preventing a single model from "self-endorsing."</p></div>
+    <div class="card purple"><h4>② Human engineer signature endorsement</h4><p>At least one authorized human engineer reviews the evidence and signs; the Main Brain may never self-sign a promotion. Signatures count toward RACI (20.3) and are traceable to a natural person.</p></div>
+    <div class="card amber"><h4>③ Anti-inbreeding check</h4><p>Examine correlation with ancestor / homologous variants; if the promotion basis is highly dependent on homologous samples (near self-reference), judge as inbreeding, reject, and downgrade to "under observation."</p></div>
+    <div class="card blue"><h4>Audit credential + degradation linkage</h4><p>Every promotion generates a credential (experience ID, N-reproduction evidence chain, endorser signature, correlation result) written to a tamper-proof ledger; corruption can be rolled back to pre-promotion state with cascade invalidation of downstream rules (cf. 24.4).</p></div>
+  </div>
+  <div class="callout warn"><span class="lbl">Why this is mandatory</span>Chapter 17 lists data / model poisoning as a risk, but this system's unique attack surface is "promotion" — an attacker can induce the Cerebellum to solidify a wrong experience into a global instinct, far more damaging than a single wrong output. The Promotion Audit, via "independent reproduction + human endorsement + anti-inbreeding," demotes AI self-promotion from "trusted" to "must be proven," upholding Axioms 5 and 6.</div>
+</section>
+
+<!-- ================= CH25 ================= -->
+<section id="ch25">
+  <h2 class="sec"><span class="num">Chapter 25</span>Meta-Specification: Governance and Evolution of the Specification Itself</h2>
+  <h3>25.1 Three-Layer Structure</h3>
+  <div class="grid g3">
+    <div class="card amber"><h4>Axiom layer · immutable</h4><p>Seven axioms of Chapter 1, a constitutional red line; change requires v2.0-level consensus.</p></div>
+    <div class="card purple"><h4>Clause layer · evolvable</h4><p>Mandatory clauses and organ specifications in each chapter; proposal–verification–approval–version bump.</p></div>
+    <div class="card blue"><h4>Guide layer · replaceable</h4><p>Implementation suggestions, examples, and patterns that follow best-practice updates.</p></div>
+  </div>
+  <p><b>Principle</b>: the lower may not violate the higher; any new clause conflicting with an axiom is rejected outright.</p>
+  <h3>25.2 Revision Process (Specification Flywheel)</h3>
+  <div class="diagram">
+    <div class="mermaid">
+flowchart LR
+    A["Propose observe/digest"] --> B["Grade classify"] --> C["Draft generate"]
+    C --> D{"Dual-track review prove/regress"}
+    D -->|no conflict and consistent| E["Human approval sovereignty layer"] --> F["Version bump semver"] --> G["Consolidate change into store"]
+    D -->|conflict| C
+    </div>
+    <div class="cap">Figure: Specification revision is itself one ANE flywheel</div>
+  </div>
+  <h3>25.3 Compatibility Commitments and Self-Application</h3>
+  <p>PATCH does not change semantics, MINOR adds backward-compatible capability, MAJOR changes semantics and requires a migration guide. The specification's iteration process is an instance of the meta-specification — each round "modify → verify → record," with both versions synchronized and red lines unbroken. <b>However the specification requires living systems to evolve, it requires itself to evolve in the same way.</b></p>
+  <div class="callout warn"><span class="lbl">25.5 Constitutional Red Lines</span>No version, organization, or efficiency rationale may delete or alter: 1 human sovereignty is inalienable; 2 anti-self-deception, silent failures = 0; 3 the global circuit breaker is always reachable.</div>
+</section>
+
+<!-- ================= CH26 ================= -->
+<section id="ch26">
+  <h2 class="sec"><span class="num">Chapter 26</span>Conformance Assessment Framework (ANE-CONF)</h2>
+  <h3>26.2 Three Conformance Levels</h3>
+  <div class="tw"><table>
+    <thead><tr><th>Level</th><th>Name</th><th>Criterion</th><th>Applicability</th></tr></thead>
+    <tbody>
+      <tr><td><b>ANE-C1</b></td><td>Principle conformance</td><td>seven axioms + D0–D3 grading + full-spectrum white-box ledger</td><td>internal pilots, early projects</td></tr>
+      <tr><td><b>ANE-C2</b></td><td>Mechanism conformance</td><td>C1 + interception rate ≥80% + memory loop + dual-track all green + circuit-breaker drill passed</td><td>production systems, internal delivery</td></tr>
+      <tr><td><b>ANE-C3</b></td><td>System conformance</td><td>C2 + organizational governance + compliance alignment + observability + migration/testing discipline + third-party audit</td><td>external certification, highly regulated industries</td></tr>
+    </tbody>
+  </table></div>
+  <h3>26.3 Four Evidence Types &amp; 26.4 Self-Assessment</h3>
+  <div class="grid g2">
+    <div class="card blue"><h4>Four evidence types</h4><p>Document review (clause-by-clause evidence) · configuration review (gates/authorization/circuit breaker as code) · behavioral review (primitive-chain trace + replay) · operational review (KPI snapshots).</p></div>
+    <div class="card amber"><h4>Seven questions, veto</h4><p>D0 foundation? Routine decisions off the LLM? Experience verified before write? Human veto + circuit breaker? Silent failures eliminated? AI output always dual-track? Fail-safe on failure? Any "no" disqualifies C1.</p></div>
+  </div>
+  <div class="callout quote"><span class="lbl">26.5 Continuous Conformance</span>Conformance is not a one-time certification but a <b>continuous state</b>: KPIs below threshold, failed circuit-breaker drills, or silent failures all trigger downgrade alerts. Conformance itself is a vital sign requiring continuous maintenance.</div>
+</section>
+
+<!-- ================= CH27 ================= -->
+<section id="ch27">
+  <h2 class="sec"><span class="num">Chapter 27</span>Migration and Adoption Path</h2>
+  <div class="grid g3">
+    <div class="card teal"><h4>Evolution, not revolution</h4><p>Start from localized high-value scenarios; no full-system rewrite.</p></div>
+    <div class="card blue"><h4>Solidify before intelligent</h4><p>First converge the static foundation, then add the Cerebellum and intelligent layer.</p></div>
+    <div class="card purple"><h4>Every step rollbackable</h4><p>Each stage has an explicit rollback point; failure returns to the previous steady state.</p></div>
+  </div>
+  <h3>27.2 Six-Step Migration Path</h3>
+  <div class="diagram">
+    <div class="mermaid">
+flowchart LR
+    A["1 Map<br/>boundary map"] --> B["2 Solidify foundation<br/>L0 to L1"] --> C["3 Build Cerebellum<br/>interception at least 80% L2"] --> D["4 Memory loop<br/>L3"] --> E["5 Immune + circuit breaker<br/>L4 prerequisite"] --> F["6 Self-repair flywheel<br/>L4 to L5"]
+    </div>
+    <div class="cap">Figure: Six-step migration — each step has entry conditions and exit verification</div>
+  </div>
+  <h3>27.3 Anti-Migration Patterns &amp; 27.4 Gradual Adoption</h3>
+  <div class="tw"><table>
+    <thead><tr><th>Anti-pattern</th><th>Consequence</th><th>Correct practice</th></tr></thead>
+    <tbody>
+      <tr><td>Start with full automation</td><td>hallucination enters mainline, cost explosion</td><td>solidify foundation + Cerebellum first</td></tr>
+      <tr><td>Self-repair without foundation</td><td>hot patch without rollback = disaster</td><td>do steps 2, 3, 5 before step 6</td></tr>
+      <tr><td>Pollute store before governance</td><td>negative flywheel</td><td>write only after verification</td></tr>
+      <tr><td>One-shot full migration</td><td>uncontrollable risk surface</td><td>shadow + canary gradual rollout</td></tr>
+      <tr><td>Treat as tool purchase</td><td>buying a platform ≠ landing the paradigm</td><td>build organizational governance in parallel</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout warn"><span class="lbl">Gradual Discipline</span>Shadow mode validates "reasoning and decision-making"; canary validates "consequences and side effects" — the two must not be confused. Shadow must suppress all side effects but never suppress logs.</div>
+</section>
+
+<!-- ================= CH28 ================= -->
+<section id="ch28">
+  <h2 class="sec"><span class="num">Chapter 28</span>Observability System</h2>
+  <h3>28.1 Three Pillars + Event Sourcing</h3>
+  <div class="grid g2">
+    <div class="card blue"><h4>Logs</h4><p>Structured events for primitive calls / authorization / gates / exceptions; audit logs guarantee delivery and tamper-resistance.</p></div>
+    <div class="card teal"><h4>Metrics</h4><p>KPI time series, high-cardinality drillable, derivable post hoc from richer data.</p></div>
+    <div class="card purple"><h4>Traces</h4><p>End-to-end DAG of a primitive chain across organs, trace-id throughout, correlating logs and metrics via shared context.</p></div>
+    <div class="card amber"><h4>Event Sourcing</h4><p>Full immutable stream of state-change events, replayable to the steady state at any moment.</p></div>
+  </div>
+  <div class="callout"><span class="lbl">28.2 Observability as Evidence</span>Every change produces <b>signed, timestamped artefacts</b> (configuration hash / data snapshot hash / score / security metrics / approval signature) stored in the ledger, serving directly as evidence for compliance and conformance. Audit logs require blocking delivery, not best-effort dropping.</div>
+  <h3>28.3–28.4 SLOs and Observation-to-Action</h3>
+  <p>Set SLOs for interception rate, gate pass rate, self-repair success rate, and cost/decision; use error budgets to datafy the "fast evolution vs stable reliability" trade-off (budget exhaustion freezes mutation). Loop: <code>observe→detect→trigger→verify→consolidate→feedback</code>. Anti-patterns: dashboards without looking, only good news, ungraded alerts.</p>
+</section>
+
+<!-- ================= CH29 ================= -->
+<section id="ch29">
+  <h2 class="sec"><span class="num">Chapter 29</span>Testing Evolving Systems</h2>
+  <div class="tw"><table>
+    <thead><tr><th>Method</th><th>Problem solved</th><th>ANE landing point</th></tr></thead>
+    <tbody>
+      <tr><td>Metamorphic testing</td><td>cannot preset exact output</td><td>similar inputs yield similar-quality outputs; equivalent rewrites preserved</td></tr>
+      <tr><td>Property-based testing</td><td>boundaries and input space</td><td>invariants always hold: valid Schema, safe refusal, D0 untouched</td></tr>
+      <tr><td>Golden-set regression</td><td>model/prompt change regression</td><td>curated samples fully run on every change</td></tr>
+      <tr><td>Adversarial / red teaming</td><td>injection / escalation / tool abuse</td><td>jailbreak, injection, PII leakage (aligned with Chapter 17)</td></tr>
+    </tbody>
+  </table></div>
+  <h3>29.2 Side-Effect and Deployment Testing</h3>
+  <div class="grid g2">
+    <div class="card amber"><h4>Shadow mode</h4><p>Handles real traffic, suppresses all side effects, records only. Intercept every tool call; suppress execution but never suppress logs.</p></div>
+    <div class="card blue"><h4>Canary</h4><p>1%→5%→25%→100%, with quality/safety/latency SLOs at each level and automatic rollback on breach (manual rollback = failed control).</p></div>
+    <div class="card purple"><h4>Chaos engineering</h4><p>Continuous low-blast-radius fault injection to validate FMEA and degradation paths; regular game days.</p></div>
+    <div class="card teal"><h4>Mutation testing</h4><p>AI-generated tests retained only after mechanical checks such as "mutants killed"; no self-evaluation or self-certification.</p></div>
+  </div>
+  <div class="callout warn"><span class="lbl">29.3–29.4 Evaluator Discipline</span>LLM-as-judge must be regularly calibrated with human annotation; human evaluation is the gold standard for subjective quality; generative tests are only proposals, included after mechanical verification + human review. <b>Regression and metamorphic tests are automatically triggered after every self-repair to confirm invariants hold. Testing never ends.</b></div>
+</section>
+
+<!-- ================= CH30 ================= -->
+<section id="ch30">
+  <h2 class="sec"><span class="num">Chapter 30</span>Applicability Boundaries and Clarification of Common Misreadings</h2>
+  <h3>30.1 Applicability Boundaries</h3>
+  <div class="tw"><table>
+    <thead><tr><th>Scenario</th><th>Why caution</th><th>Recommendation</th></tr></thead>
+    <tbody>
+      <tr><td>Hard real-time safety (flight control)</td><td>self-repair / Main Brain awakening introduces unpredictable latency</td><td>only static skeleton + formal verification, no runtime self-repair</td></tr>
+      <tr><td>Very small one-off scripts</td><td>cost of seven organs far exceeds benefit</td><td>lightweight engineering is enough</td></tr>
+      <tr><td>Fully offline, no network</td><td>Main Brain unreachable</td><td>strengthen Cerebellum, degrade to L2/L3</td></tr>
+      <tr><td>Highly regulated domains banning automatic changes</td><td>self-repair is non-compliant</td><td>disable automatic landing, all through L2 strong authorization</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout"><span class="lbl">Principle</span>ANE is a <b>tailorable paradigm</b>, not a cure-all. Select organs by scenario; better to use fewer than to misuse.</div>
+  <h3>30.2 What ANE Is Not (Ten Points)</h3>
+  <div class="tw"><table>
+    <thead><tr><th>Misreading</th><th>Clarification</th></tr></thead>
+    <tbody>
+      <tr><td>Letting AI write code fully automatically</td><td>Wrong. AI output is a proposal requiring immune verification + authorization; the Main Brain is scarce</td></tr>
+      <tr><td>Humans can stop caring</td><td>Wrong. Humans are elevated to adjudicators; sovereignty is inalienable</td></tr>
+      <tr><td>Discard traditional software engineering</td><td>Wrong. Sublation: inherit the deterministic hard core</td></tr>
+      <tr><td>Cerebellum = crude rule engine</td><td>Wrong. It is the strategic cost-control layer, key to the flywheel</td></tr>
+      <tr><td>The bigger the memory store the better</td><td>Wrong. Verify before writing + promote + decay + forget</td></tr>
+      <tr><td>Self-repair = arbitrary hot updates</td><td>Wrong. Threefold insurance + fail-safe preconditions</td></tr>
+      <tr><td>Conforming = buying a platform</td><td>Wrong. ANE is a paradigm, independent of products</td></tr>
+      <tr><td>L5 is the only goal</td><td>Wrong. Most systems are optimal at L2/L3</td></tr>
+      <tr><td>Circuit breaker can wait</td><td>Wrong. Must be drilled regularly; undrilled means nonexistent</td></tr>
+      <tr><td>The specification is static</td><td>Wrong. It evolves by the meta-specification every round</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout quote"><span class="lbl">30.3 Semantic Guardianship</span>The creator (Feng Lei) and the governance committee maintain the specification's semantic integrity: implementations claiming ANE compatibility should pass the evidenced assessment of the conformance framework in Chapter 26, not merely cite terminology.</div>
+</section>
+
+<!-- ================= CH31 ================= -->
+<section id="ch31">
+  <h2 class="sec"><span class="num">Chapter 31</span>Economics and Adoption Decisions</h2>
+  <h3>31.2 Five Benefit Types (ROI Model)</h3>
+  <div class="grid g3">
+    <div class="card teal"><h4>Efficiency benefit</h4><p>MTTR↓, change cycle↓, labor freed — self-repair shifts maintenance from "firefighting" to "growth."</p></div>
+    <div class="card blue"><h4>Cost benefit</h4><p>Token/decision ratio↓, Main Brain calls↓ — Cerebellum interception + memory promotion compounding.</p></div>
+    <div class="card purple"><h4>Quality benefit</h4><p>Rollback rate↓, silent failures = 0, defect escape↓ — dual-track immunity + observability.</p></div>
+    <div class="card amber"><h4>Risk benefit</h4><p>Compliance evidence cost↓, incident loss↓ — compliance alignment + circuit breaking + audit evidence.</p></div>
+    <div class="card blue"><h4>Moat benefit</h4><p>The experience store appreciates with use — a compounding asset growing stronger with use.</p></div>
+  </div>
+  <div class="callout"><span class="lbl">Simplified ROI</span><code>ROI = (efficiency + cost + quality + risk avoidance) − total investment</code>, where "cost benefit" compounds with the flywheel — the fundamental economic difference between ANE and the "pile on compute / pile on tokens" route.</div>
+  <h3>31.3 Decision Tree &amp; 31.4 Realization Cadence</h3>
+  <div class="callout warn"><span class="lbl">Decision Tree</span>Short term (L2/L3): tokens and MTTR drop immediately; medium term (L4): maintenance shifts from "firefighting" to "growth"; long term (L5/C3): the experience moat becomes an inimitable organizational capability. One-off / short-lived systems need no ANE.</div>
+  <div class="callout quote"><span class="lbl">In One Sentence</span><b>The economics of ANE are to exchange deterministic "subtraction" (Cerebellum interception, memory promotion) for the "multiplication" of intelligence (growing stronger with use), rather than piling up "addition" with compute.</b></div>
+</section>
+
+<!-- ================= CH32 ================= -->
+<section id="ch32">
+  <h2 class="sec"><span class="num">Chapter 32</span>Release Forms and Audience Views</h2>
+  <h3>32.1 Why a Specification Needs Multiple Release Forms</h3>
+  <p>One specification serves three audiences at once, whose needs conflict:</p>
+  <div class="tw"><table>
+    <thead><tr><th>Audience</th><th>Cares about</th><th>Does not need</th><th>Required form</th></tr></thead>
+    <tbody>
+      <tr><td>Adoption decision-makers</td><td>value, cost, risk, feasibility</td><td>clause details, audit process</td><td>executive summary + conformance levels</td></tr>
+      <tr><td>Implementers / architects</td><td>precise clauses, interfaces, contracts, gates</td><td>background of design trade-offs</td><td>full normative text (formal release)</td></tr>
+      <tr><td>Maintainers / governance committee</td><td>why defined this way, what changed, basis</td><td>—</td><td>development view (including process layer)</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout"><span class="lbl">Core Contradiction</span>One document cannot be both "minimal" and "complete." ANE's answer is <b>single source of truth, multiple projections</b> (Chapter 34), rather than maintaining several documents that evolve independently.</div>
+  <h3>32.2 Three-Layer View Model</h3>
+  <div class="grid g3">
+    <div class="card blue"><h4>V1 Decision Summary Layer</h4><p>One-page executive summary + conformance levels. Decide "whether to adopt" within 5 minutes.</p></div>
+    <div class="card teal"><h4>V2 Normative Text Layer</h4><p>All normative content. <b>The main body of the formal release and the sole authoritative text</b> usable for conformance assessment.</p></div>
+    <div class="card purple"><h4>V3 Development Process Layer</h4><p>Design decision records, change rationale, version history. <b>Exclusive to the development view, not a conformance criterion.</b></p></div>
+  </div>
+  <div class="callout quote"><span class="lbl">Iron Law</span>V2 is the sole authority; V1 may not distort V2 when citing it; V3 may not tamper with V2 when explaining it. Normative statements across the three layers must be word-for-word identical; any difference is a document defect.</div>
+  <h3>32.3 View Consistency Constraints</h3>
+  <div class="callout"><span class="lbl">Four Constraints</span>1 <b>One-way derivation</b>: V1/V3 derive from V2, not the reverse; 2 <b>same clause source</b>: "Clause X" numbers, wording, and semantics are identical across views; 3 <b>projection verifiable</b>: release views can be deterministically regenerated from the source word-for-word; 4 <b>process-layer isolation</b>: content with version trails, phase markers, or process-record wording belongs only to V3.</div>
+</section>
+
+<!-- ================= CH33 ================= -->
+<section id="ch33">
+  <h2 class="sec"><span class="num">Chapter 33</span>Information Grading and Release Gates</h2>
+  <h3>33.1 Three-Tier Information Grading (N / E / P)</h3>
+  <div class="tw"><table>
+    <thead><tr><th>Tier</th><th>Definition</th><th>Typical content</th><th>In formal release</th></tr></thead>
+    <tbody>
+      <tr><td><b>N Normative</b></td><td>authoritative statements prescribing "how the system should be implemented"</td><td>axioms, clauses, interfaces, contracts, glossary, conclusion</td><td>✅ all must be retained</td></tr>
+      <tr><td><b>E Evidentiary</b></td><td>artefacts proving "the implementation conforms to the specification"</td><td>design review conclusions, verification records, traces, conformance assessments</td><td>⚠️ trimmed as needed (full text not included by default)</td></tr>
+      <tr><td><b>P Process</b></td><td>traces recording "how the specification was designed"</td><td>version history, phase notes, evolution plans, review rounds, draft notes</td><td>❌ all removed</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout quote"><span class="lbl">Decision Mantra</span>"How the system should be" → N; "how we prove / verify" → E; "how this document came to be" → P.</div>
+  <h3>33.2 Formal Release Purity Checklist (Prohibited Items)</h3>
+  <div class="callout warn"><span class="lbl">Any Occurrence = Gate Failure</span>1 Version-number iteration trails; 2 per-round versions and process timestamps; 3 design-review records and role labels; 4 evolution plans and version-increment rules; 5 early-version and draft history; 6 form labels and multi-view release descriptions themselves.</div>
+  <p><b>Boundary note</b>: external compliance references within the N layer (e.g., "aligned with EU AI Act Art.14") are normative content and are <b>retained</b>; this chapter itself, being N layer, is retained in the formal edition, but its example version wording is expressed with placeholders.</p>
+  <h3>33.3 Release Gate</h3>
+  <div class="tw"><table>
+    <thead><tr><th>Gate</th><th>Check item</th><th>Pass criterion</th></tr></thead>
+    <tbody>
+      <tr><td>G1 purity</td><td>scan for prohibited keywords from 33.2</td><td>zero hits</td></tr>
+      <tr><td>G2 completeness</td><td>word-for-word comparison of N-layer clauses with the source of truth</td><td>zero differences</td></tr>
+      <tr><td>G3 consistency</td><td>chapter numbering, terminology, anchors</td><td>fully aligned</td></tr>
+      <tr><td>G4 renderability</td><td>diagram syntax, label closure</td><td>no errors</td></tr>
+      <tr><td>G5 attribution</td><td>creator attribution retained</td><td>hit</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout quote"><span class="lbl">Discipline</span>Failure of any item prohibits release — this is the "anti-self-deception" principle applied to the document itself: a draft with residual process traces may not masquerade as a formal standard.</div>
+</section>
+
+<!-- ================= CH34 ================= -->
+<section id="ch34">
+  <h2 class="sec"><span class="num">Chapter 34</span>Specification as Artefact: Single Source of Truth and Deterministic Projection</h2>
+  <h3>34.1 Specification as Artefact (Spec-as-Artefact)</h3>
+  <p>A specification is not a one-off article, but an <b>artefact under version control, buildable and verifiable</b>: it has a stable identity (name + semantic version + attribution, Chapter 22); a build process (projecting views from the source); quality gates (G1–G5); and compatibility commitments (Chapter 25). This is fully isomorphic with ANE's requirements for living systems — however the specification uses ANE to govern itself is how it requires living systems to govern themselves.</p>
+  <h3>34.2 Single Source of Truth (SSOT)</h3>
+  <div class="grid g3">
+    <div class="card purple"><h4>Development view = sole source</h4><p>All normative clauses are edited and maintained only in the source.</p></div>
+    <div class="card teal"><h4>Release view = derived artefact</h4><p>Generated from the source by deterministic rules; <b>direct manual editing is forbidden</b>.</p></div>
+    <div class="card amber"><h4>No dual writing</h4><p>Change only the source, then re-project — radically eliminating drift between versions.</p></div>
+  </div>
+  <h3>34.3 Deterministic Projection Rules</h3>
+  <p>Projection is a pure function from source to formal release: <code>Release = Project(Debug, Rules)</code>:</p>
+  <div class="callout"><span class="lbl">Rule Set</span><b>R1 retain</b>: executive summary (without process wording), preface, N-layer content of Chapters 0–34, glossary, conclusion.<br><b>R2 remove</b>: process descriptions, newly added chapter introductions, P-layer process appendices.<br><b>R3 rewrite</b>: header version fixed to the formal identifier, TOC without P-layer appendices, footer without process rounds.<br><b>R4 keep</b>: attribution, clause numbering, Mermaid diagrams, and table structure word-for-word.</div>
+  <div class="mermaid">
+flowchart LR
+  A["Development view - source of truth<br/>SSOT"] -->|"R1 keep N layer"| C["Release view"]
+  A -->|"R2 remove P layer"| C
+  A -->|"R3 rewrite header"| C
+  A -->|"R4 verbatim keep"| C
+  C --> G{"Release gate<br/>G1 to G5"}
+  G -->|"pass"| R["Publish externally"]
+  G -->|"fail"| A
+  R -.->|"reproject verbatim diff"| V["Reproducibility verification"]
+</div>
+  <div class="callout quote"><span class="lbl">Reproducibility</span>The same source + the same rules necessarily produce a word-for-word identical release view. If re-projection differs, the rules are ambiguous or manual intervention occurred; fix the rules, not the artefact.</div>
+  <h3>34.4 Machine-Readable Contracts and Consistency Self-Check</h3>
+  <p>The specification should provide machine-readable interface contracts (NTP, experience-record structure, stable IDs, RACI, etc.) so organs can interoperate and be externally verified; and establish a <b>consistency self-check script</b> that automatically executes G1–G5: keyword scanning, clause-number uniqueness, TOC anchors, diagram-count alignment, attribution placement, and word-for-word diff of N-layer across versions.</p>
+  <div class="callout warn"><span class="lbl">Discipline Significance</span>Turning "anti-self-deception" from a verbal principle into a <b>repeatedly runnable checker</b> — the specification no longer relies on humans claiming it is clean, but on machines proving it is clean.</div>
+</section>
+
+<!-- ================= CH35 ================= -->
+<section id="ch35">
+  <h2 class="sec"><span class="num">Chapter 35</span>Multi-Language and Localization Governance</h2>
+  <h3>35.1 The Essence: Translation Is a Derived View</h3>
+  <p>A multi-language version is essentially <b>different language projections of the same N-layer content</b>, not several independent documents: the source of truth is unique (this specification uses Chinese as the source); translations are derived views generated and verified through a deterministic process with no dual writing; terminology is the anchor, guaranteed by a <b>frozen glossary</b> rather than translators' improvisation.</p>
+  <h3>35.2 Three-Language Role Model</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Role</th><th>Definition</th><th>Authority</th><th>Update method</th></tr></thead>
+    <tbody>
+      <tr><td><b>Source language</b></td><td>language used for clause creation and adjudication (this specification = Chinese)</td><td>highest; the source prevails in ambiguity</td><td>edited directly in the source of truth</td></tr>
+      <tr><td><b>Authoritative translation</b></td><td>translation strictly derived from the source and verified by G7 (= English)</td><td>equal effect to the source</td><td>derived from source + verification</td></tr>
+      <tr><td><b>Reference translation</b></td><td>community / third-party translation without G7 verification</td><td>reference only, not a compliance basis</td><td>independently maintained, marked "non-authoritative"</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout warn"><span class="lbl">Iron Law for Ambiguity</span>Any semantic divergence between language versions is resolved in favor of the <b>source language</b>; reference translations may not serve as evidence for conformance assessment (Chapter 26).</div>
+  <h3>35.3 Frozen Glossary</h3>
+  <p>The first engineering task of localization is to establish a <b>frozen glossary</b> — once the multilingual mappings of key terms are approved by the governance committee, they are frozen; changes go through the meta-specification revision process (Chapter 25).</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Source term (Chinese)</th><th>Authoritative English translation</th><th>Meaning anchor</th></tr></thead>
+    <tbody>
+      <tr><td>Cerebellum (小脑)</td><td>Cerebellum</td><td>local deterministic high-frequency adjudication layer</td></tr>
+      <tr><td>Main Brain (大脑)</td><td>Main Brain / Deliberative Agent</td><td>on-demand LLM agent</td></tr>
+      <tr><td>Immune System (免疫系统)</td><td>Immune System</td><td>multi-layer quality gates + dual-track verification</td></tr>
+      <tr><td>Memory Moat (记忆护城河)</td><td>Memory Moat</td><td>learning barrier formed by experience store + retrieval augmentation</td></tr>
+      <tr><td>Deterministic Projection (确定性投影)</td><td>Deterministic Projection</td><td>pure-function release yielding word-for-word identical output from identical input</td></tr>
+      <tr><td>Process Layer / Normative Layer (过程层 / 规范层)</td><td>Process Layer / Normative Layer</td><td>P-layer / N-layer information grading</td></tr>
+    </tbody>
+  </table></div>
+  <p><b>Freezing discipline</b>: translation renderings may not drift with versions; new terms must be entered before use; unlisted terms may not appear in key clauses of authoritative translations.</p>
+  <h3>35.4 Multi-Language Artefact Governance Rules</h3>
+  <div class="grid g2">
+    <div class="card"><h4>1 · Version lockstep</h4><p>Source and authoritative translations must share the same version number; when the source bumps version, translations synchronize in the same cycle; long-term version misalignment is forbidden.</p></div>
+    <div class="card"><h4>2 · Structural alignment</h4><p>Translation chapter/clause/axiom/diagram numbers align one-to-one with the source (verified by G6).</p></div>
+    <div class="card"><h4>3 · Process layer not translated</h4><p>Source P-layer content (audit / evolution plans) does not enter formal translations — translations are also clean N-layer projections.</p></div>
+    <div class="card"><h4>4 · Translations traceable</h4><p>Authoritative translations are headed "translated from source vX.Y.Z + G7 passed + verification date."</p></div>
+  </div>
+  <h3>35.5 Localization Fidelity Gate G7</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Gate</th><th>Check content</th></tr></thead>
+    <tbody>
+      <tr><td>G7-a terminology consistency</td><td>100% frozen-glossary hit rate, no unauthorized translation drift</td></tr>
+      <tr><td>G7-b structural alignment</td><td>chapter/clause/axiom/diagram numbers correspond one-to-one with the source (G6 assisted)</td></tr>
+      <tr><td>G7-c semantic spot check</td><td>bidirectional back-translation spot checks on every axiom and clause; deviation beyond threshold requires human adjudication</td></tr>
+      <tr><td>G7-d purity inheritance</td><td>translations inherit source N-layer purity, running G1 zero-hit process-trace scan</td></tr>
+      <tr><td>G7-e version lockstep</td><td>translation header version == source version</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout quote"><span class="lbl">Key Assertion</span>Without G7, multilingual means "copying one specification into several that fight each other"; with G7, multilingual means "several authoritative texts of the same law."</div>
+</section>
+
+<!-- ================= CH36 ================= -->
+<section id="ch36">
+  <h2 class="sec"><span class="num">Chapter 36</span>Artefact Naming and Identification Specification</h2>
+  <h3>36.1 Three Elements of Naming</h3>
+  <div class="card blue"><code>&lt;topic name&gt; [form suffix] [language identifier] . &lt;extension&gt;</code></div>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Element</th><th>Values</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td>Topic name</td><td>fixed specification brand name</td><td>shared by all artefacts in the family, no independent renaming</td></tr>
+      <tr><td>Form suffix</td><td>none / <code>&lt;development form identifier&gt;</code></td><td>formal release has none, development view must have one</td></tr>
+      <tr><td>Language identifier</td><td>none (Chinese) / <code>-en</code> or English name</td><td>distinguishes language versions</td></tr>
+      <tr><td>Extension</td><td><code>.md</code> / <code>.html</code></td><td>delivery format</td></tr>
+    </tbody>
+  </table></div>
+  <h3>36.2 Semantic Contract of the Form Suffix</h3>
+  <div class="callout warn"><span class="lbl">Core Rule</span><b>The formal release has no suffix; the development view has a suffix.</b> The formal version is the "default state" — a suffixless file is the authoritative clean version; the development view contains process-layer content and must be prominently marked <code>&lt;development form identifier&gt;</code> in the filename to prevent misuse. Anti-patterns: adding "-formal / -final / -release" to the formal version, or omitting the form identifier on the development view — both undermine audience judgment.</div>
+  <h3>36.3 Three-Track Naming Instances for This Specification</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Artefact</th><th>File identifier</th><th>Audience</th><th>Purity</th></tr></thead>
+    <tbody>
+      <tr><td>Formal release</td><td><code>ANE-Specification-AI-Native-Engineering-Paradigm.md/.html</code></td><td>implementers / auditors / decision-makers</td><td>N layer, G1–G6 passed</td></tr>
+      <tr><td>Development view</td><td><code>ANE-Specification-…&lt;development form identifier&gt;.md/.html</code></td><td>maintainers / governance committee</td><td>full P-layer process</td></tr>
+      <tr><td>English authoritative translation</td><td><code>ANE-Specification-…-en.md/.html</code></td><td>international audience</td><td>N layer, G1–G7 passed</td></tr>
+    </tbody>
+  </table></div>
+  <h3>36.4 Naming Stability and Change Discipline</h3>
+  <div class="grid g3">
+    <div class="card"><h4>Release names are stable</h4><p>The filename is an external reference contract; renaming requires a minor bump and registration.</p></div>
+    <div class="card"><h4>Form matches content</h4><p>A development-view label must truly contain the P layer; a suffixless file must truly pass G1. Mismatch is a release incident.</p></div>
+    <div class="card"><h4>Included in G6</h4><p>Delivery validates "form suffix ↔ content purity" to prevent misnaming.</p></div>
+  </div>
+</section>
+
+<!-- ================= CH37 ================= -->
+<section id="ch37">
+  <h2 class="sec"><span class="num">Chapter 37</span>Structural Integrity and Post-Projection Verification</h2>
+  <h3>37.1 Problem: Purity and Integrity Are Two Things</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Dimension</th><th>G1 purity (old)</th><th>G6 structural integrity</th></tr></thead>
+    <tbody>
+      <tr><td>Check object</td><td>words (whether process-trace words appear)</td><td>structure (numbering, anchors, pairing, sequence)</td></tr>
+      <tr><td>Meaning of pass</td><td>no words that should not appear</td><td>structure self-consistent, no breaks, no dangling references</td></tr>
+      <tr><td>Failure example</td><td>—</td><td>appendix has only B but not A; chapter number skipped; anchor points to deleted content</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout quote"><span class="lbl">Lesson</span>Projection deletes whole blocks of content; after deletion, affected numbering must be <b>re-sequenced</b> — otherwise the higher the purity, the more hidden the structural break.</div>
+  <h3>37.2 G6 Structural Integrity Gate (Six Items)</h3>
+  <div class="grid g3">
+    <div class="card"><h4>G6-a appendix continuity</h4><p>Appendices run continuously from A with no skips; after P-layer appendices are removed, N-layer appendices are renumbered continuously with TOC / headings / anchors synchronized.</p></div>
+    <div class="card"><h4>G6-b chapter continuity</h4><p>Body chapter numbers run continuously, with no gaps or duplicates.</p></div>
+    <div class="card"><h4>G6-c clause uniqueness</h4><p>Each normative clause number is unique (cross-references do not count as definitions).</p></div>
+    <div class="card"><h4>G6-d valid anchors</h4><p>Every TOC anchor has a body target; no dangling links to deleted chapters.</p></div>
+    <div class="card"><h4>G6-e diagram pairing</h4><p>MD/HTML Mermaid diagram counts match; HTML section/div tags are balanced.</p></div>
+    <div class="card"><h4>G6-f name–reality consistency</h4><p>Form suffix matches purity: suffixless must pass G1, development-view suffix must contain the P layer.</p></div>
+  </div>
+  <h3>37.3 Appendix Renumbering Rule (Root-Cause Fix)</h3>
+  <div class="card blue"><b>R5 (renumbering)</b>: after deleting P-layer appendices, re-sequence retained N-layer appendices as A, B, C...; synchronously update TOC entries, body appendix headings, HTML section ids and <code>num</code>, and anchor references.</div>
+  <p>R5 is consolidated into the projection process, making appendix renumbering reproducible.</p>
+  <h3>37.4 Engineering the Structural Self-Check</h3>
+  <p>G6 should not be checked by human eyes, but executed automatically by projection/verification scripts (<code>ane_release_projector.py</code> and the accompanying G1–G6 checker). <b>The ultimate form of "anti-self-deception" is: the structural correctness of the specification is proven by machines, not claimed by humans.</b> This is in one lineage with Chapter 34's "specification as artefact" and Chapter 25's "using ANE to govern ANE."</p>
+</section>
+
+<!-- ================= APPENDIX A ================= -->
+<section id="appa">
+  <h2 class="sec"><span class="num">Appendix A</span>Glossary</h2>
+  <div class="tw"><table>
+    <thead><tr><th>Term</th><th>Definition</th></tr></thead>
+    <tbody>
+      <tr><td>ANE</td><td>AI Native Engineering — AI-native software engineering</td></tr>
+      <tr><td>Unified IR layer</td><td>deterministic foundation connecting high-level semantics and low-level instructions, serving as both compilation hub and self-repair carrier</td></tr>
+      <tr><td>Cerebellum</td><td>local deterministic high-frequency adjudication layer: rule base + state machine + cost model</td></tr>
+      <tr><td>Main Brain</td><td>on-demand LLM agent handling unknown, complex problems</td></tr>
+      <tr><td>NTP</td><td>Neural Transmitter Protocol, the structured compressed-context format from Cerebellum to Main Brain</td></tr>
+      <tr><td>Hippocampus</td><td>experience vector store + retrieval augmentation mechanism</td></tr>
+      <tr><td>Immune System</td><td>multi-layer quality gates + dual-track verification + anti-self-deception</td></tr>
+      <tr><td>Dual-track verification</td><td>symbolic track (semantic equivalence) + statistical track (behavioral regression) passing simultaneously</td></tr>
+      <tr><td>Tiered confirmation</td><td>dual confirmation interaction: judgment layer display + authorization layer approval</td></tr>
+      <tr><td>Experience promotion</td><td>high-frequency experience consolidated into Cerebellum local rules</td></tr>
+      <tr><td>Flywheel</td><td>closed loop of sense–deliberate–collaborate–verify–consolidate–repair</td></tr>
+      <tr><td>Steady state</td><td>stable version after immune filtering of mutation</td></tr>
+      <tr><td>Four governance functions</td><td>NIST AI RMF GOVERN/MAP/MEASURE/MANAGE, based on which this specification maps organs</td></tr>
+      <tr><td>RACI</td><td>responsibility matrix: Responsible R / Accountable A / Consulted C / Informed I; the Main Brain never holds A</td></tr>
+      <tr><td>Fail-safe state</td><td>predefined safe state the system retreats to when an organ fails</td></tr>
+      <tr><td>Global circuit breaker</td><td>stop switch letting humans freeze automation and lock the verified steady state at any time</td></tr>
+      <tr><td>FMEA</td><td>Failure Mode and Effects Analysis, enumerating failure modes/signals/degradation actions organ by organ</td></tr>
+      <tr><td>Stable identifier</td><td>URN-style globally unique ID; rules/experience/primitives/gates/agents/snapshots all have versioned identities</td></tr>
+      <tr><td>AI-BOM</td><td>AI bill of materials, registering the composition and versions of models/data/tools/rules/prompts</td></tr>
+      <tr><td>Automation bias</td><td>the cognitive tendency to over-trust automated conclusions, which must be actively guarded against</td></tr>
+      <tr><td>Memory partition</td><td>four-level experience isolation: global/tenant/project/sandbox, prohibiting unauthorized cross-zone flow</td></tr>
+      <tr><td>Meta-specification / constitutional red lines</td><td>governance rules of the specification itself; sovereignty, anti-self-deception, and global circuit breaker are three bottom lines never to be altered</td></tr>
+      <tr><td>ANE-CONF</td><td>conformance framework; three certification levels: C1 principle / C2 mechanism / C3 system</td></tr>
+      <tr><td>Conformance assessment</td><td>four evidence types — document / configuration / behavioral / operational review — determining whether a system truly conforms to ANE</td></tr>
+      <tr><td>Six migration steps</td><td>map → solidify foundation → build Cerebellum → memory loop → immune and circuit breaker → self-repair flywheel</td></tr>
+      <tr><td>Three pillars</td><td>observability logs / metrics / traces, requiring shared-context correlation</td></tr>
+      <tr><td>Event sourcing</td><td>full immutable state-change event stream, supporting replay to the steady state at any moment</td></tr>
+      <tr><td>Metamorphic testing</td><td>asserts input–output relations rather than exact values</td></tr>
+      <tr><td>Shadow mode</td><td>new version handles real traffic but suppresses all side effects, recording without taking effect</td></tr>
+      <tr><td>Canary</td><td>gradual rollout 1%→5%→25%→100%, automatic rollback on breach</td></tr>
+      <tr><td>SLO / error budget</td><td>service-level objective and tolerable unreliability allowance, datafying the stability–evolution trade-off</td></tr>
+      <tr><td>Misreading clarification / ROI model</td><td>the "what ANE is not" list; economic calculation of five benefit types minus total investment</td></tr>
+      <tr><td>Release form</td><td>three views: V1 decision summary / V2 normative text / V3 development process</td></tr>
+      <tr><td>Information grading</td><td>N normative / E evidentiary / P process; determines whether content may enter the formal release</td></tr>
+      <tr><td>Release gate</td><td>G1 purity / G2 completeness / G3 consistency / G4 renderability / G5 attribution</td></tr>
+      <tr><td>Single Source of Truth (SSOT)</td><td>development view is the sole editing source; release views are generated by projection, with no dual writing</td></tr>
+      <tr><td>Deterministic Projection</td><td><code>Release = Project(Debug, Rules)</code>, pure-function release yielding word-for-word identical output from identical input</td></tr>
+      <tr><td>Source / authoritative translation</td><td>the sole source-of-truth language for clauses / a translation strictly derived from the source and verified by G7</td></tr>
+      <tr><td>Frozen glossary</td><td>cross-language locked mappings of key terms, approved by the governance committee and not allowed to drift with versions</td></tr>
+      <tr><td>G6 structural integrity</td><td>gate verifying appendix continuity / chapter continuity / clause uniqueness / valid anchors / diagram pairing / name–reality consistency</td></tr>
+      <tr><td>G7 localization fidelity</td><td>gate verifying terminology consistency / structural alignment / semantic spot check / purity inheritance / version lockstep</td></tr>
+      <tr><td>Seed Rules</td><td>initial golden rule set injected by human experts during cold start, immune-verified</td></tr>
+      <tr><td>Explore / Exploit modes</td><td>Explore (high-frequency Main Brain sampling) / Exploit (local-priority token saving), switched by coverage threshold</td></tr>
+      <tr><td>Knowledge quenching</td><td>seed rules and Explore-phase samples quenched into stable rules after immune verification</td></tr>
+      <tr><td>Hardware-topology awareness</td><td>IR layer adaptively prioritizing compilation by runtime physical characteristics</td></tr>
+      <tr><td>Dual-Fold Collaboration</td><td>Fold 1 judgment layer (Cognitive Summary) + Fold 2 authorization layer (Intent Binding)</td></tr>
+      <tr><td>Cognitive Summary</td><td>Fold 1 output: intent, candidates, evidence, verification conclusions, risk warnings; not directly executable</td></tr>
+      <tr><td>Intent Binding</td><td>Fold 2 output: credential binding human approval to a specific candidate action</td></tr>
+      <tr><td>Promotion Audit</td><td>N independent reproductions + human signature endorsement + anti-inbreeding check before promotion</td></tr>
+      <tr><td>Inbreeding</td><td>rule corruption from promotion evidence depending on homologous / self-referential samples; must be rejected</td></tr>
+      <tr><td>Appendix renumbering R5</td><td>after projection deletes P-layer appendices, retained N-layer appendices are renumbered continuously with anchors synchronized</td></tr>
+      <tr><td>Form-suffix contract</td><td>naming rule: formal release has no suffix, development view carries the <code>&lt;development form identifier&gt;</code> suffix</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout quote" style="margin-top:24px"><span class="lbl">Conclusion</span>While an organization is still doing "addition" — piling up compute, models, and tokens — ANE is doing "subtraction and multiplication": setting rules for the Cerebellum, drawing boundaries for the Main Brain, building a moat for memory, and installing an immune system for evolution. <b>Even this specification obeys the rules it defines — projecting a clean formal release from a single source of truth and proving its own purity with gates. Only a specification that can govern itself is qualified to govern living systems.</b></div>
+</section>
+
+<footer>
+  <div>ANE Specification: AI-Native Engineering Paradigm for Living Software Systems v0.5.0 · Created by Feng Lei · Formal Release</div>
+  <div style="margin-top:8px">ANE = AI Native Engineering · MD and HTML versions carry identical content</div>
+</footer>
+</main>
+</div>
+
+<script>
+  mermaid.initialize({
+    startOnLoad:true,
+    theme:'base',
+    themeVariables:{
+      primaryColor:'#e6f1fb',primaryTextColor:'#042C53',primaryBorderColor:'#185FA5',
+      lineColor:'#7b8494',secondaryColor:'#eeedfe',tertiaryColor:'#e1f5ee',
+      fontFamily:'-apple-system, PingFang SC, Microsoft YaHei, sans-serif',
+      fontSize:'13px'
+    },
+    flowchart:{curve:'basis',useMaxWidth:true},
+    sequenceDiagram:{useMaxWidth:true}
+  });
+</script>
+</body>
+</html>
