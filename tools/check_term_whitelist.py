@@ -9,9 +9,18 @@ normative clause must either be listed in schemas/term-whitelist.json or the
 clause must carry a source-type annotation (本文原创 / 引用 / Original / Cited).
 
 Usage:
-  python tools/check_term_whitelist.py              # check configured tracks
-  python tools/check_term_whitelist.py --collect    # dump all tokens found as JSON
-  python tools/check_term_whitelist.py --verbose    # print every checked token
+  python tools/check_term_whitelist.py                     # check configured tracks
+  python tools/check_term_whitelist.py --collect           # token list (legacy JSON array)
+  python tools/check_term_whitelist.py --collect-evidence  # tokens WITH source evidence
+  python tools/check_term_whitelist.py --sync-from-evidence         # dry-run admission diff
+  python tools/check_term_whitelist.py --sync-from-evidence --apply  # commit admission
+  python tools/check_term_whitelist.py --verbose           # print every checked token
+
+Admission rule ("discover to evidence to register"): an undefined token may
+enter the whitelist only if it occurs in a clause carrying a source-type
+annotation; the track:line and source tag are recorded in the manifest's
+`provenance` map. Dry-run is the default; --apply is required to write.
+No evidence means rejected.
 
 Exit code 0 = every technical token is known or source-annotated, 1 = at least
 one undefined token found (CI gate). Zero dependency; missing files are skipped
@@ -96,6 +105,13 @@ def has_source_tag(chunk, cfg):
 
 def check(cfg, verbose):
     allowed = set(cfg["level_tokens"]) | set(cfg["known_tokens"])
+    # The provenance map itself must stay consistent: an orphan entry means a
+    # token was removed by hand without revoking the evidence that admitted it.
+    orphans = sorted(t for t in cfg.get("provenance", {}) if t not in allowed)
+    if orphans:
+        print(f"[FAIL] manifest provenance orphans (not in known_tokens): "
+              f"{', '.join(orphans)}")
+        return 1
     files = cfg["scopes"]["all_tracks"]
     scanned = 0
     checked = 0
@@ -125,24 +141,110 @@ def check(cfg, verbose):
     return 0 if not violations else 1
 
 
-def collect(cfg):
-    tokens = set()
+def collect_evidence(cfg):
+    """token -> {count, occurrences:[{track, line, source_type, snippet}]}.
+
+    Unlike check(), source-annotated chunks are KEPT here: they are precisely
+    the evidence that permits a new token to be admitted to the whitelist.
+    """
+    result = {}
     for name in cfg["scopes"]["all_tracks"]:
         p = BASE / name
-        if p.exists():
-            for _, chunk in chunks(p):
-                tokens.update(extract_tokens(chunk, cfg))
-    print(json.dumps(sorted(tokens), ensure_ascii=False, indent=2))
+        if not p.exists():
+            continue
+        for line_no, chunk in chunks(p):
+            tags = [t for t in cfg["matching"]["source_tags"] if t in chunk]
+            for token in extract_tokens(chunk, cfg):
+                entry = result.setdefault(token, {"count": 0, "occurrences": []})
+                entry["count"] += 1
+                entry["occurrences"].append({
+                    "track": name,
+                    "line": line_no,
+                    "source_type": tags[0] if tags else None,
+                    "snippet": chunk.strip()[:120],
+                })
+    return result
+
+
+def collect(cfg, detailed=False):
+    evidence = collect_evidence(cfg)
+    if detailed:
+        payload = {"total_tokens": len(evidence), "tokens": evidence}
+        print(json.dumps(payload, ensure_ascii=False, indent=2))
+    else:
+        print(json.dumps(sorted(evidence), ensure_ascii=False, indent=2))
+    return 0
+
+
+def sync_from_evidence(cfg, apply_changes):
+    """Admit only evidenced unknown tokens; dry-run unless --apply is given."""
+    evidence = collect_evidence(cfg)
+    allowed = set(cfg["level_tokens"]) | set(cfg["known_tokens"])
+    admissible, rejected = [], []
+    for token, info in evidence.items():
+        if token in allowed:
+            continue
+        witnessed = [o for o in info["occurrences"] if o["source_type"]]
+        if witnessed:
+            o = witnessed[0]
+            admissible.append({"token": token, "source_type": o["source_type"],
+                               "evidence_ref": f"{o['track']}:{o['line']}"})
+        else:
+            o = info["occurrences"][0]
+            rejected.append({"token": token, "reason": "no source annotation",
+                             "sample": f"{o['track']}:{o['line']}"})
+    admissible.sort(key=lambda x: x["token"])
+    rejected.sort(key=lambda x: x["token"])
+
+    before = len(cfg["known_tokens"])
+    if apply_changes and admissible:
+        cfg["known_tokens"] = sorted(set(cfg["known_tokens"]) |
+                                     {a["token"] for a in admissible})
+        provenance = cfg.setdefault("provenance", {})
+        for item in admissible:
+            provenance[item["token"]] = {"source_type": item["source_type"],
+                                         "evidence_ref": item["evidence_ref"]}
+        staging = MANIFEST.with_name(MANIFEST.name + ".tmp")
+        staging.write_text(json.dumps(cfg, ensure_ascii=False, indent=2) + "\n",
+                           encoding="utf-8")
+        staging.replace(MANIFEST)
+
+    summary = {
+        "mode": "applied" if apply_changes else "dry-run",
+        "manifest": str(MANIFEST.relative_to(BASE)),
+        "known_before": before,
+        "known_after": len(cfg["known_tokens"]),
+        "admissible": admissible,
+        "rejected": rejected,
+    }
+    if not apply_changes:
+        summary["apply_hint"] = ("python tools/check_term_whitelist.py "
+                                 "--sync-from-evidence --apply")
+    print(json.dumps(summary, ensure_ascii=False, indent=2))
     return 0
 
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("--collect", action="store_true", help="dump all tokens found as JSON")
+    ap.add_argument("--collect", action="store_true", help="dump token list as JSON")
+    ap.add_argument("--collect-evidence", action="store_true",
+                    help="dump tokens with track:line and source-type evidence")
+    ap.add_argument("--sync-from-evidence", action="store_true",
+                    help="admit evidenced unknown tokens (dry-run by default)")
+    ap.add_argument("--apply", action="store_true",
+                    help="with --sync-from-evidence, write the manifest atomically")
     ap.add_argument("--verbose", action="store_true", help="print every checked token")
     args = ap.parse_args()
+    if args.apply and not args.sync_from_evidence:
+        ap.error("--apply requires --sync-from-evidence")
     cfg = load_config()
-    return collect(cfg) if args.collect else check(cfg, args.verbose)
+    if args.sync_from_evidence:
+        return sync_from_evidence(cfg, args.apply)
+    if args.collect_evidence:
+        return collect(cfg, detailed=True)
+    if args.collect:
+        return collect(cfg)
+    return check(cfg, args.verbose)
 
 
 if __name__ == "__main__":

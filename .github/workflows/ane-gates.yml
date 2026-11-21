@@ -1,9 +1,11 @@
 name: ANE Gates
 
-# Every push and pull request to main must pass all ANE gates. The workflow runs
-# the same single entry point as local development (tools/check_all.py), so a
-# gate that passes locally cannot silently diverge in CI. Zero third-party
-# dependencies: only Python's standard library is used by the gate tools.
+# Every push and pull request to main must pass all ANE gates, including the
+# negative self-test that proves the gates actually fail on injected defects.
+# The workflow runs the same single entry point as local development
+# (tools/check_all.py --self-test), so a gate that passes locally cannot
+# silently diverge in CI. Zero third-party dependencies: only Python's standard
+# library is used by the gate tools and fixtures.
 
 on:
   push:
@@ -29,9 +31,9 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Run all ANE gates
-        run: python tools/check_all.py
+      - name: Run all ANE gates and negative self-test
+        run: python tools/check_all.py --self-test
 
       - name: Emit machine-readable gate summary
         if: always()
-        run: python tools/check_all.py --json
+        run: python tools/check_all.py --self-test --json

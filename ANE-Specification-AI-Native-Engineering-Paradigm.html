@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ANE Specification: AI-Native Engineering Paradigm for Living Software Systems v0.10.0 · White Paper (Formal Release)</title>
+<title>ANE Specification: AI-Native Engineering Paradigm for Living Software Systems v0.11.0 · White Paper (Formal Release)</title>
 <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
 <style>
   :root{
@@ -130,7 +130,7 @@
 <div class="layout">
 <aside>
   <div class="brand">AI Native Engineering</div>
-  <h1>ANE Specification v0.10.0</h1>
+  <h1>ANE Specification v0.11.0</h1>
   <div class="ver">AI-Native Engineering Paradigm for Living Software Systems · Created by Feng Lei · Formal Release</div>
   <nav>
     <div class="grp">Overview</div>
@@ -191,7 +191,7 @@
 <main>
 <header class="hero">
   <div class="tagrow">
-    <span class="tag t-purple">ANE v0.10.0</span>
+    <span class="tag t-purple">ANE v0.11.0</span>
     <span class="tag t-blue">Static-Dynamic Integration</span>
     <span class="tag t-teal">Dual-Brain Collaboration</span>
     <span class="tag t-purple">Memory Moat</span>
@@ -204,7 +204,7 @@
   <p class="subtitle">ANE = <b>AI Native Engineering</b>. A general paradigm fusing classical cybernetics (static / Cerebellum) with modern artificial intelligence (dynamic / Main Brain). It turns AI from something "used" into something "harnessed," and applies to all systems and teams building AI-native software without binding to any specific product or framework.</p>
   <div class="meta">
     <span><b>Created by</b> Feng Lei (冯磊) · original paradigm and chief architecture design</span>
-    <span><b>Version</b> v0.10.0 · Formal Release</span>
+    <span><b>Version</b> v0.11.0 · Formal Release</span>
     <span><b>Date</b> 2026-11-21</span>
     <span><b>Status</b> Formal Release</span>
   </div>
@@ -2610,6 +2610,271 @@ flowchart LR
   "conversion_digest": "sha256:be5665230dccdff22f251cbb51f59cbc68e6f1e78aa25dc8442c891e07906434"
 }</code></pre>
 <div class="tw"><table><tbody><tr><td>Field</td><td>Type</td><td>Plain meaning</td><td>Why needed</td><td>Source of value</td></tr><tr><td><code>conversion_version</code></td><td>string</td><td>Ledger format version, fixed <code>1.0</code></td><td>Old ledgers stay readable as the contract evolves</td><td>Schema <code>const</code></td></tr><tr><td><code>conversion_id</code></td><td>string</td><td>Stable number for this conversion</td><td>Multiple conversions cannot be confused</td><td><code>conv-</code> + lowercase id</td></tr><tr><td><code>organism_id</code></td><td>string</td><td>Identity of the system being converted</td><td>Responsibility chain stays continuous (41.3)</td><td>Ch.41 identity registry</td></tr><tr><td><code>fitness_tier</code></td><td>enum</td><td>Legacy fitness tier T1–T4</td><td>One-size-fits-all conversion is unsafe</td><td>43.2 tiering</td></tr><tr><td><code>target_tier</code></td><td>enum</td><td>Target maturity L0–L5, or unchanged</td><td>Completion criteria need a decidable target</td><td>Ch.26 maturity model</td></tr><tr><td><code>stages</code></td><td>array</td><td>Five surgery stages with exit-verification evidence</td><td>Stage ⑤ must pass before ⑥ may open</td><td>43.3 exit verification</td></tr><tr><td><code>gray_release</code></td><td>object</td><td>Current grey-release step and diff ratio</td><td>Release must stop when diff exceeds threshold</td><td>43.4 dual-track discipline</td></tr><tr><td><code>data_migration</code></td><td>array</td><td>Four temperature layers with strategies and forbidden flags</td><td>Prevents direct copy of runtime memory state</td><td>43.5 + 41.1</td></tr><tr><td><code>non_convertible</code></td><td>array</td><td>Non-convertible components and external-declaration state</td><td>T3/T4 must not pose as converted</td><td>43.6</td></tr><tr><td><code>completion</code></td><td>object</td><td>Five boolean completion criteria</td><td>Completion must be checkable item by item</td><td>43.7</td></tr><tr><td><code>conversion_digest</code></td><td>string</td><td>ANS-1 digest of the whole record</td><td>Ledger tampering becomes detectable</td><td>ANS-1 recomputation</td></tr></tbody></table></div>
+<h3>43.10 Three lifecycle states of a conversion ledger</h3>
+<p><b>【Original to this specification】</b> The single sample in 43.9 shows only an in-progress state. The lifecycle is determined by field combinations and has three states: BLOCKED (stage exit interrupted), ROLLED_BACK (grey release retreated), CLOSED (conversion completed). All three MUST satisfy cross-field semantic constraints enforced by <code>tools/validate_ntp.py</code>.</p>
+<p><b>【MUST】</b> A <code>BLOCKED</code> stage MUST have <code>exit_verified</code> = false; an <code>EXIT_VERIFIED</code> stage MUST have <code>exit_verified</code> = true.</p>
+<p><b>【MUST】</b> A <code>RETIRED</code> current_step requires <code>RETIRED</code> mode; when all five completion criteria are true, every stage MUST be <code>EXIT_VERIFIED</code> or <code>SKIPPED</code>, and the grey-release mode MUST be <code>RETIRED</code>.</p>
+<div class="tw"><table><tbody><tr><td>State</td><td>Determining field combination</td><td>Semantic constraint</td></tr><tr><td>BLOCKED</td><td>any stage state=BLOCKED with exit_verified=false</td><td>no further rollout; rollback point must be ready</td></tr><tr><td>ROLLED_BACK</td><td>current_step retreated to SHADOW with diff_ratio above threshold</td><td>daily readout MUST be true; retain rollback evidence</td></tr><tr><td>CLOSED</td><td>all stages EXIT_VERIFIED or SKIPPED, completion all true</td><td>mode RETIRED, ledger archived and human sovereignty confirmed</td></tr></tbody></table></div>
+<p><b>【MUST】</b> All three payloads MUST pass Schema and cross-field semantic validation; any failure makes them inadmissible as conformance-assessment input.</p>
+<h4>43.10.1 Stage interrupted (BLOCKED)</h4>
+<pre style="background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;overflow-x:auto;font-size:12.5px;color:var(--ink2)"><code>{
+  "conversion_version": "1.0",
+  "conversion_id": "conv-legacy-core-blocked-01",
+  "organism_id": "org-legacy-7a31",
+  "fitness_tier": "T3",
+  "target_tier": "L2",
+  "stages": [
+    {
+      "stage_id": "OBSERVE",
+      "state": "EXIT_VERIFIED",
+      "exit_verified": true,
+      "evidence_ref": "trace:2026-11-20/core-path"
+    },
+    {
+      "stage_id": "BASE",
+      "state": "EXIT_VERIFIED",
+      "exit_verified": true,
+      "evidence_ref": "test:suite-d0-invariants"
+    },
+    {
+      "stage_id": "CEREBELLUM",
+      "state": "BLOCKED",
+      "exit_verified": false,
+      "evidence_ref": "block:determinism-boundary-unresolved"
+    },
+    {
+      "stage_id": "MEMORY",
+      "state": "NOT_STARTED",
+      "exit_verified": false,
+      "evidence_ref": "pending:memory-readonly"
+    },
+    {
+      "stage_id": "SOVEREIGNTY",
+      "state": "NOT_STARTED",
+      "exit_verified": false,
+      "evidence_ref": "pending:sovereignty-cutover"
+    }
+  ],
+  "gray_release": {
+    "mode": "SHADOW",
+    "current_step": "SHADOW",
+    "diff_ratio": 0.37,
+    "rollback_ready": true,
+    "daily_readout": true
+  },
+  "data_migration": [
+    {
+      "temperature": "HOT",
+      "strategy": "rebuild-in-cerebellum",
+      "forbidden": false
+    },
+    {
+      "temperature": "WARM",
+      "strategy": "verified-digest-only",
+      "forbidden": false
+    },
+    {
+      "temperature": "COLD",
+      "strategy": "archive-append-only",
+      "forbidden": false
+    },
+    {
+      "temperature": "FROZEN",
+      "strategy": "register-reference-only",
+      "forbidden": false
+    }
+  ],
+  "non_convertible": [
+    {
+      "component": "hard-real-time-loop",
+      "disposition": "keep-in-deterministic-layer",
+      "declared_external": false
+    }
+  ],
+  "completion": {
+    "conformity_passed": false,
+    "old_retired_or_declared": false,
+    "ledger_archived": false,
+    "human_signoff": false,
+    "observation_cycle_done": false
+  },
+  "conversion_digest": "sha256:43cf3369e6c6415c43fb5bc22e49c00ee3225b7e8969f3e8e163c3d90f03933e"
+}</code></pre>
+<h4>43.10.2 Grey release retreated (ROLLED_BACK)</h4>
+<pre style="background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;overflow-x:auto;font-size:12.5px;color:var(--ink2)"><code>{
+  "conversion_version": "1.0",
+  "conversion_id": "conv-legacy-core-rollback-01",
+  "organism_id": "org-legacy-7a31",
+  "fitness_tier": "T2",
+  "target_tier": "L3",
+  "stages": [
+    {
+      "stage_id": "OBSERVE",
+      "state": "EXIT_VERIFIED",
+      "exit_verified": true,
+      "evidence_ref": "trace:2026-11-20/core-path"
+    },
+    {
+      "stage_id": "BASE",
+      "state": "EXIT_VERIFIED",
+      "exit_verified": true,
+      "evidence_ref": "test:suite-d0-invariants"
+    },
+    {
+      "stage_id": "CEREBELLUM",
+      "state": "EXIT_VERIFIED",
+      "exit_verified": true,
+      "evidence_ref": "metric:local-intercept-92pct"
+    },
+    {
+      "stage_id": "MEMORY",
+      "state": "EXIT_VERIFIED",
+      "exit_verified": true,
+      "evidence_ref": "verify:memory-readonly-digest"
+    },
+    {
+      "stage_id": "SOVEREIGNTY",
+      "state": "BLOCKED",
+      "exit_verified": false,
+      "evidence_ref": "rollback:diff-ratio-above-threshold"
+    }
+  ],
+  "gray_release": {
+    "mode": "DUAL_TRACK",
+    "current_step": "SHADOW",
+    "diff_ratio": 0.42,
+    "rollback_ready": true,
+    "daily_readout": true
+  },
+  "data_migration": [
+    {
+      "temperature": "HOT",
+      "strategy": "rebuild-in-cerebellum",
+      "forbidden": false
+    },
+    {
+      "temperature": "WARM",
+      "strategy": "verified-digest-only",
+      "forbidden": false
+    },
+    {
+      "temperature": "COLD",
+      "strategy": "archive-append-only",
+      "forbidden": false
+    },
+    {
+      "temperature": "FROZEN",
+      "strategy": "register-reference-only",
+      "forbidden": false
+    }
+  ],
+  "non_convertible": [
+    {
+      "component": "hard-real-time-loop",
+      "disposition": "keep-in-deterministic-layer",
+      "declared_external": false
+    }
+  ],
+  "completion": {
+    "conformity_passed": false,
+    "old_retired_or_declared": false,
+    "ledger_archived": false,
+    "human_signoff": false,
+    "observation_cycle_done": false
+  },
+  "conversion_digest": "sha256:5d653ad8848c3a86358c0458b6ff0dac84ef91bc8554178267ba5fc15a0588bc"
+}</code></pre>
+<h4>43.10.3 Completed and closed (CLOSED)</h4>
+<pre style="background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;overflow-x:auto;font-size:12.5px;color:var(--ink2)"><code>{
+  "conversion_version": "1.0",
+  "conversion_id": "conv-legacy-core-closed-01",
+  "organism_id": "org-legacy-7a31",
+  "fitness_tier": "T1",
+  "target_tier": "L4",
+  "stages": [
+    {
+      "stage_id": "OBSERVE",
+      "state": "EXIT_VERIFIED",
+      "exit_verified": true,
+      "evidence_ref": "trace:2026-11-20/core-path"
+    },
+    {
+      "stage_id": "BASE",
+      "state": "EXIT_VERIFIED",
+      "exit_verified": true,
+      "evidence_ref": "test:suite-d0-invariants"
+    },
+    {
+      "stage_id": "CEREBELLUM",
+      "state": "EXIT_VERIFIED",
+      "exit_verified": true,
+      "evidence_ref": "metric:local-intercept-92pct"
+    },
+    {
+      "stage_id": "MEMORY",
+      "state": "EXIT_VERIFIED",
+      "exit_verified": true,
+      "evidence_ref": "verify:memory-readonly-digest"
+    },
+    {
+      "stage_id": "SOVEREIGNTY",
+      "state": "EXIT_VERIFIED",
+      "exit_verified": true,
+      "evidence_ref": "audit:human-sovereignty-signoff"
+    },
+    {
+      "stage_id": "SELF_HEAL",
+      "state": "EXIT_VERIFIED",
+      "exit_verified": true,
+      "evidence_ref": "metric:flywheel-observation-cycle"
+    }
+  ],
+  "gray_release": {
+    "mode": "RETIRED",
+    "current_step": "RETIRED",
+    "diff_ratio": 0.0,
+    "rollback_ready": true,
+    "daily_readout": true
+  },
+  "data_migration": [
+    {
+      "temperature": "HOT",
+      "strategy": "rebuild-in-cerebellum",
+      "forbidden": false
+    },
+    {
+      "temperature": "WARM",
+      "strategy": "verified-digest-only",
+      "forbidden": false
+    },
+    {
+      "temperature": "COLD",
+      "strategy": "archive-append-only",
+      "forbidden": false
+    },
+    {
+      "temperature": "FROZEN",
+      "strategy": "register-reference-only",
+      "forbidden": false
+    }
+  ],
+  "non_convertible": [
+    {
+      "component": "hard-real-time-loop",
+      "disposition": "keep-in-deterministic-layer",
+      "declared_external": false
+    }
+  ],
+  "completion": {
+    "conformity_passed": true,
+    "old_retired_or_declared": true,
+    "ledger_archived": true,
+    "human_signoff": true,
+    "observation_cycle_done": true
+  },
+  "conversion_digest": "sha256:7369142daed52e2643b12905874b635bdf8333be70b6144687d2c3ca484e0889"
+}</code></pre>
+
 </section>
 <!-- ================= APPENDIX A ================= -->
 <section id="appa">
@@ -2741,7 +3006,7 @@ flowchart LR
 </section>
 
 <footer>
-  <div>ANE Specification: AI-Native Engineering Paradigm for Living Software Systems v0.10.0 · Created by Feng Lei · Formal Release</div>
+  <div>ANE Specification: AI-Native Engineering Paradigm for Living Software Systems v0.11.0 · Created by Feng Lei · Formal Release</div>
   <div style="margin-top:8px">ANE = AI Native Engineering · MD and HTML versions carry identical content</div>
 </footer>
 </main>

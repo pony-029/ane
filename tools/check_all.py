@@ -12,11 +12,13 @@ Gates:
   2. terms      — banned wording across all tracks and READMEs
   3. dualformat — G8 clause-level MD/HTML consistency
   4. whitelist  — no undefined technical token in normative clauses
+  5. selftest   — negative fixtures behave as expected (opt-in via --self-test)
 
 Usage:
-  python tools/check_all.py            # run all gates
+  python tools/check_all.py            # run the four standing gates
   python tools/check_all.py --only payload,terms
   python tools/check_all.py --json     # machine-readable summary to stdout
+  python tools/check_all.py --self-test  # also run negative fixtures in sandboxes
 
 Exit code 0 = all selected gates pass, 1 = at least one gate failed,
 2 = a gate could not be executed (missing tool / unexpected error).
@@ -39,12 +41,14 @@ GATES = [
     ("dualformat", "check_dual_format.py", "main", "G8 双格式一致"),
     ("whitelist", "check_term_whitelist.py", "main", "术语白名单"),
 ]
+SELFTEST = ("selftest", "../tests/run_self_test.py", "main", "负向测试自检")
+ALL_GATES = GATES + [SELFTEST]
 
 
 def load_module(name):
     """Import a tool by file path, with its own directory importable."""
     sys.path.insert(0, str(TOOLS))
-    spec = importlib.util.spec_from_file_location(name, TOOLS / name)
+    spec = importlib.util.spec_from_file_location(name, (TOOLS / name).resolve())
     if spec is None or spec.loader is None:
         raise ImportError("cannot load " + name)
     mod = importlib.util.module_from_spec(spec)
@@ -81,17 +85,21 @@ def run_gate(name, script, func, description):
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--only", help="comma-separated subset of: " +
-                    ",".join(g[0] for g in GATES))
+                    ",".join(g[0] for g in ALL_GATES))
     ap.add_argument("--json", action="store_true", help="emit JSON summary")
+    ap.add_argument("--self-test", action="store_true",
+                    help="include the negative-fixture self-test gate")
     args = ap.parse_args()
 
     selected = GATES
     if args.only:
         wanted = {x.strip() for x in args.only.split(",") if x.strip()}
-        unknown = wanted - {g[0] for g in GATES}
+        unknown = wanted - {g[0] for g in ALL_GATES}
         if unknown:
             ap.error("unknown gate(s): " + ", ".join(sorted(unknown)))
-        selected = [g for g in GATES if g[0] in wanted]
+        selected = [g for g in ALL_GATES if g[0] in wanted]
+    if args.self_test and not any(g[0] == "selftest" for g in selected):
+        selected = selected + [SELFTEST]
 
     results = []
     started = time.time()

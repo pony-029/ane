@@ -18,9 +18,9 @@ Three moats: **Cerebellum first** (high-frequency decisions cost zero tokens) ·
 
 ## Current version
 
-**v0.10.0** (2026-11-21) — gate closure and CI blocking layer.
+**v0.11.0** (2026-11-21) — gate self-proving and CI evidence layer.
 
-Twelfth round: §43.9 machine-readable conversion ledger (`schemas/conversion-1.0.schema.json`, ANS-1 digest and per-field glossary); term whitelist (`schemas/term-whitelist.json` + `tools/check_term_whitelist.py`); unified one-click gate `tools/check_all.py` (payload / wording / dual-format / whitelist, one exit code, `--only` and `--json`); GitHub Actions CI blocking (`.github/workflows/ane-gates.yml`, push/PR run the same entry point); G8 now covers the Chinese formal pair and skips absent tracks gracefully. All four previous recommendations closed with real implementations and end-to-end negative tests. Local and CI share one command: `python tools/check_all.py`.
+Thirteenth round: §43.10 three ledger lifecycle states (BLOCKED / ROLLED_BACK / CLOSED) with cross-field semantic gates; assetized negative fixtures in `tests/` (9 cases, sandbox execution, evidence assertions, zero worktree pollution) and `check_all --self-test`; whitelist evidence loop (`--collect-evidence` / `--sync-from-evidence --apply` + provenance); CI workflow upgraded to run the self-test; real GitHub Actions receipt and branch-protection script. All four previous recommendations closed with real implementations and end-to-end negative tests. Unified command: `python tools/check_all.py --self-test`.
 
 The full version evolution and revision discipline are specified in Chapters 34–37 of the specification; the eighth 30-round plan (round-level) is in Appendix J of the DEBUG edition.
 
@@ -40,6 +40,10 @@ The full version evolution and revision discipline are specified in Chapters 34�
 | `tools/check_term_whitelist.py` | Whitelist gate: blocks undefined technical identifiers in normative clauses |
 | `tools/check_all.py` | Unified gate: one entry point and exit code for all four gates (CI entry point) |
 | `.github/workflows/ane-gates.yml` | GitHub Actions: runs check_all on push/PR |
+| `tests/fixtures.py` | Assetized negative cases: digest tamper, schema violation, semantic breach, undefined token, wording, dual-format, missing track |
+| `tests/run_self_test.py` | Sandbox runner: disposable copies + evidence assertions, zero pollution |
+| `tests/test_evidence_flow.py` | Evidence loop test: discover to evidence to register to orphan rejection |
+| `tools/setup_branch_protection.py` | Branch protection: query / idempotently enable the mandatory ANE Gates check (admin token) |
 | `README.md` / `README_EN.md` | Chinese / English project notes |
 | `LICENSE` / `LICENSE-zh.md` | CC BY 4.0 licence (English legal text / Chinese translation) |
 
@@ -98,3 +102,15 @@ The content of this specification is licensed under [CC BY 4.0](LICENSE) — fre
 ---
 
 *ANE = AI Native Engineering · the static is bone and blood, the dynamic is nerve and thought; memory and immunity make it "itself."*
+
+## CI evidence receipt
+
+| Item | Fact |
+|---|---|
+| Workflow | `ANE Gates` (id `425704765`, state `active`) |
+| Real run | `44869211636`, conclusion `success`, at `2026-11-21T05:05:29Z`, commit `fdc1882` |
+| Query | read-only GitHub API: `GET /repos/pony-029/ane/actions/workflows/ane-gates.yml/runs` |
+| Local equivalent | fresh-clone simulation (no DEBUG tracks): 5/5 gates, 9/9 negative cases |
+| Branch protection | **not enabled yet**: API returned `401 Requires authentication` (no admin token); run `GITHUB_TOKEN=... python tools/setup_branch_protection.py --apply`, which reads the state back |
+
+> The real run above used the v0.10.0 configuration. This version adds `--self-test`; its configuration was verified by a fresh-clone simulation, and the post-push run conclusion is authoritative via the API.

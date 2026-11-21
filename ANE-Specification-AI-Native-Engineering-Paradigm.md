@@ -1,4 +1,4 @@
-# "ANE Specification: AI-Native Engineering Paradigm for Living Software Systems" v0.10.0 · Formal Release
+# "ANE Specification: AI-Native Engineering Paradigm for Living Software Systems" v0.11.0 · Formal Release
 
 > **ANE Specification — AI-Native Engineering Paradigm for Living Software Systems**
 >
@@ -8,7 +8,7 @@
 >
 > ANE = **AI Native Engineering** · static-dynamic integration · dual-brain collaboration · Memory Moat · unified development and maintenance · governance and resilience · verifiable and adoptable
 >
-> Version: **v0.10.0**　|　Date: 2026-11-21　|　Form: Formal Release
+> Version: **v0.11.0**　|　Date: 2026-11-21　|　Form: Formal Release
 >
 > This specification is expressed in a **general paradigm language**, not bound to any specific product, framework, or engineering implementation, and applies to all teams building AI-native software systems.
 >
@@ -2599,6 +2599,292 @@ flowchart LR
 | `non_convertible` | array | Non-convertible components and external-declaration state | T3/T4 must not pose as converted | 43.6 |
 | `completion` | object | Five boolean completion criteria | Completion must be checkable item by item | 43.7 |
 | `conversion_digest` | string | ANS-1 digest of the whole record | Ledger tampering becomes detectable | ANS-1 recomputation |
+
+### 43.10 Three lifecycle states of a conversion ledger
+
+**【Original to this specification】** The single sample in 43.9 shows only an in-progress state. The lifecycle is determined by field combinations and has three states: BLOCKED (stage exit interrupted), ROLLED_BACK (grey release retreated), CLOSED (conversion completed). All three MUST satisfy cross-field semantic constraints enforced by `tools/validate_ntp.py`.
+
+**【MUST】** A `BLOCKED` stage MUST have `exit_verified` = false; an `EXIT_VERIFIED` stage MUST have `exit_verified` = true.
+
+**【MUST】** A `RETIRED` current_step requires `RETIRED` mode; when all five completion criteria are true, every stage MUST be `EXIT_VERIFIED` or `SKIPPED`, and the grey-release mode MUST be `RETIRED`.
+
+| State | Determining field combination | Semantic constraint |
+|---|---|---|
+| BLOCKED | any stage state=BLOCKED with exit_verified=false | no further rollout; rollback point must be ready |
+| ROLLED_BACK | current_step retreated to SHADOW with diff_ratio above threshold | daily readout MUST be true; retain rollback evidence |
+| CLOSED | all stages EXIT_VERIFIED or SKIPPED, completion all true | mode RETIRED, ledger archived and human sovereignty confirmed |
+
+**【MUST】** All three payloads MUST pass Schema and cross-field semantic validation; any failure makes them inadmissible as conformance-assessment input.
+
+#### 43.10.1 Stage interrupted (BLOCKED)
+
+```json
+{
+  "conversion_version": "1.0",
+  "conversion_id": "conv-legacy-core-blocked-01",
+  "organism_id": "org-legacy-7a31",
+  "fitness_tier": "T3",
+  "target_tier": "L2",
+  "stages": [
+    {
+      "stage_id": "OBSERVE",
+      "state": "EXIT_VERIFIED",
+      "exit_verified": true,
+      "evidence_ref": "trace:2026-11-20/core-path"
+    },
+    {
+      "stage_id": "BASE",
+      "state": "EXIT_VERIFIED",
+      "exit_verified": true,
+      "evidence_ref": "test:suite-d0-invariants"
+    },
+    {
+      "stage_id": "CEREBELLUM",
+      "state": "BLOCKED",
+      "exit_verified": false,
+      "evidence_ref": "block:determinism-boundary-unresolved"
+    },
+    {
+      "stage_id": "MEMORY",
+      "state": "NOT_STARTED",
+      "exit_verified": false,
+      "evidence_ref": "pending:memory-readonly"
+    },
+    {
+      "stage_id": "SOVEREIGNTY",
+      "state": "NOT_STARTED",
+      "exit_verified": false,
+      "evidence_ref": "pending:sovereignty-cutover"
+    }
+  ],
+  "gray_release": {
+    "mode": "SHADOW",
+    "current_step": "SHADOW",
+    "diff_ratio": 0.37,
+    "rollback_ready": true,
+    "daily_readout": true
+  },
+  "data_migration": [
+    {
+      "temperature": "HOT",
+      "strategy": "rebuild-in-cerebellum",
+      "forbidden": false
+    },
+    {
+      "temperature": "WARM",
+      "strategy": "verified-digest-only",
+      "forbidden": false
+    },
+    {
+      "temperature": "COLD",
+      "strategy": "archive-append-only",
+      "forbidden": false
+    },
+    {
+      "temperature": "FROZEN",
+      "strategy": "register-reference-only",
+      "forbidden": false
+    }
+  ],
+  "non_convertible": [
+    {
+      "component": "hard-real-time-loop",
+      "disposition": "keep-in-deterministic-layer",
+      "declared_external": false
+    }
+  ],
+  "completion": {
+    "conformity_passed": false,
+    "old_retired_or_declared": false,
+    "ledger_archived": false,
+    "human_signoff": false,
+    "observation_cycle_done": false
+  },
+  "conversion_digest": "sha256:43cf3369e6c6415c43fb5bc22e49c00ee3225b7e8969f3e8e163c3d90f03933e"
+}
+```
+
+#### 43.10.2 Grey release retreated (ROLLED_BACK)
+
+```json
+{
+  "conversion_version": "1.0",
+  "conversion_id": "conv-legacy-core-rollback-01",
+  "organism_id": "org-legacy-7a31",
+  "fitness_tier": "T2",
+  "target_tier": "L3",
+  "stages": [
+    {
+      "stage_id": "OBSERVE",
+      "state": "EXIT_VERIFIED",
+      "exit_verified": true,
+      "evidence_ref": "trace:2026-11-20/core-path"
+    },
+    {
+      "stage_id": "BASE",
+      "state": "EXIT_VERIFIED",
+      "exit_verified": true,
+      "evidence_ref": "test:suite-d0-invariants"
+    },
+    {
+      "stage_id": "CEREBELLUM",
+      "state": "EXIT_VERIFIED",
+      "exit_verified": true,
+      "evidence_ref": "metric:local-intercept-92pct"
+    },
+    {
+      "stage_id": "MEMORY",
+      "state": "EXIT_VERIFIED",
+      "exit_verified": true,
+      "evidence_ref": "verify:memory-readonly-digest"
+    },
+    {
+      "stage_id": "SOVEREIGNTY",
+      "state": "BLOCKED",
+      "exit_verified": false,
+      "evidence_ref": "rollback:diff-ratio-above-threshold"
+    }
+  ],
+  "gray_release": {
+    "mode": "DUAL_TRACK",
+    "current_step": "SHADOW",
+    "diff_ratio": 0.42,
+    "rollback_ready": true,
+    "daily_readout": true
+  },
+  "data_migration": [
+    {
+      "temperature": "HOT",
+      "strategy": "rebuild-in-cerebellum",
+      "forbidden": false
+    },
+    {
+      "temperature": "WARM",
+      "strategy": "verified-digest-only",
+      "forbidden": false
+    },
+    {
+      "temperature": "COLD",
+      "strategy": "archive-append-only",
+      "forbidden": false
+    },
+    {
+      "temperature": "FROZEN",
+      "strategy": "register-reference-only",
+      "forbidden": false
+    }
+  ],
+  "non_convertible": [
+    {
+      "component": "hard-real-time-loop",
+      "disposition": "keep-in-deterministic-layer",
+      "declared_external": false
+    }
+  ],
+  "completion": {
+    "conformity_passed": false,
+    "old_retired_or_declared": false,
+    "ledger_archived": false,
+    "human_signoff": false,
+    "observation_cycle_done": false
+  },
+  "conversion_digest": "sha256:5d653ad8848c3a86358c0458b6ff0dac84ef91bc8554178267ba5fc15a0588bc"
+}
+```
+
+#### 43.10.3 Completed and closed (CLOSED)
+
+```json
+{
+  "conversion_version": "1.0",
+  "conversion_id": "conv-legacy-core-closed-01",
+  "organism_id": "org-legacy-7a31",
+  "fitness_tier": "T1",
+  "target_tier": "L4",
+  "stages": [
+    {
+      "stage_id": "OBSERVE",
+      "state": "EXIT_VERIFIED",
+      "exit_verified": true,
+      "evidence_ref": "trace:2026-11-20/core-path"
+    },
+    {
+      "stage_id": "BASE",
+      "state": "EXIT_VERIFIED",
+      "exit_verified": true,
+      "evidence_ref": "test:suite-d0-invariants"
+    },
+    {
+      "stage_id": "CEREBELLUM",
+      "state": "EXIT_VERIFIED",
+      "exit_verified": true,
+      "evidence_ref": "metric:local-intercept-92pct"
+    },
+    {
+      "stage_id": "MEMORY",
+      "state": "EXIT_VERIFIED",
+      "exit_verified": true,
+      "evidence_ref": "verify:memory-readonly-digest"
+    },
+    {
+      "stage_id": "SOVEREIGNTY",
+      "state": "EXIT_VERIFIED",
+      "exit_verified": true,
+      "evidence_ref": "audit:human-sovereignty-signoff"
+    },
+    {
+      "stage_id": "SELF_HEAL",
+      "state": "EXIT_VERIFIED",
+      "exit_verified": true,
+      "evidence_ref": "metric:flywheel-observation-cycle"
+    }
+  ],
+  "gray_release": {
+    "mode": "RETIRED",
+    "current_step": "RETIRED",
+    "diff_ratio": 0.0,
+    "rollback_ready": true,
+    "daily_readout": true
+  },
+  "data_migration": [
+    {
+      "temperature": "HOT",
+      "strategy": "rebuild-in-cerebellum",
+      "forbidden": false
+    },
+    {
+      "temperature": "WARM",
+      "strategy": "verified-digest-only",
+      "forbidden": false
+    },
+    {
+      "temperature": "COLD",
+      "strategy": "archive-append-only",
+      "forbidden": false
+    },
+    {
+      "temperature": "FROZEN",
+      "strategy": "register-reference-only",
+      "forbidden": false
+    }
+  ],
+  "non_convertible": [
+    {
+      "component": "hard-real-time-loop",
+      "disposition": "keep-in-deterministic-layer",
+      "declared_external": false
+    }
+  ],
+  "completion": {
+    "conformity_passed": true,
+    "old_retired_or_declared": true,
+    "ledger_archived": true,
+    "human_signoff": true,
+    "observation_cycle_done": true
+  },
+  "conversion_digest": "sha256:7369142daed52e2643b12905874b635bdf8333be70b6144687d2c3ca484e0889"
+}
+```
 
 ## Appendix A · Glossary
 

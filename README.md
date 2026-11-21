@@ -18,11 +18,11 @@ ANE（AI Native Engineering，AI 原生工程）是一套面向 AI Agent 时代�
 
 ## 当前版本
 
-**v0.10.0**（2026-11-21）— 门禁闭环与 CI 阻断层。
+**v0.11.0**（2026-11-21）— 门禁自证与 CI 实证层。
 
-第十二轮新增：§43.9 机器可读转换台账（`schemas/conversion-1.0.schema.json`，含 ANS-1 摘要与逐字段释义）；术语白名单（`schemas/term-whitelist.json` + `tools/check_term_whitelist.py`）；一键门禁 `tools/check_all.py`（载荷 / 措辞 / 双格式 / 白名单四类，统一退出码，支持 `--only` 与 `--json`）；GitHub Actions CI 阻断（`.github/workflows/ane-gates.yml`，push/PR 自动跑同一入口）；G8 补齐中文正式对并对缺轨优雅跳过。闭环上轮四条建议：① 一键门禁 ② 转换台账 Schema ③ 术语白名单 ④ CI 阻断，均真实实现并通过端到端负向测试。本地与 CI 统一命令：`python tools/check_all.py`。
+第十三轮新增：§43.10 转换台账生命周期三态（BLOCKED / ROLLED_BACK / CLOSED）与跨字段语义门禁；资产化负向测试 `tests/`（9 个用例，沙箱执行、证据断言、工作树零污染）与 `check_all --self-test`；白名单证据闭环（`--collect-evidence` / `--sync-from-evidence --apply` + provenance）；CI workflow 升级为跑自检；真实 GitHub Actions 回执与分支保护脚本。闭环上轮四条建议：① 负向测试资产化 ② CI 实证与分支保护 ③ 白名单证据闭环 ④ 台账生命周期三态，均真实实现并通过端到端负向测试。统一命令：`python tools/check_all.py --self-test`。
 
-完整的版本演进与修订纪律见规范第三十四～三十七章；第九轮 30 轮计划（逐轮级）见 DEBUG 开发版附录 K。
+完整的版本演进与修订纪律见规范第三十四～三十七章；第十轮 30 轮计划（逐轮级）见 DEBUG 开发版附录 L。
 
 ## 文件清单
 
@@ -42,6 +42,10 @@ ANE（AI Native Engineering，AI 原生工程）是一套面向 AI Agent 时代�
 | `tools/check_term_whitelist.py` | 白名单门禁：阻止未定义技术标识进入规范性条款 |
 | `tools/check_all.py` | 一键门禁：四类门禁统一入口与退出码（CI 单一入口） |
 | `.github/workflows/ane-gates.yml` | GitHub Actions：push/PR 自动执行 check_all |
+| `tests/fixtures.py` | 资产化负向用例：摘要篡改、Schema 越界、语义违规、未定义标识、措辞、双格式、缺轨 |
+| `tests/run_self_test.py` | 沙箱自检执行器：disposable 副本 + 证据断言，零污染真源 |
+| `tests/test_evidence_flow.py` | 证据闭环测试：发现→举证→入册→孤立证据拒绝 |
+| `tools/setup_branch_protection.py` | 分支保护：查询/幂等启用 ANE Gates 必选检查（需管理员令牌） |
 | `README.md` / `README_EN.md` | 中 / 英文项目说明 |
 | `LICENSE` / `LICENSE-zh.md` | CC BY 4.0 许可协议（英文法律文本 / 中文对照译文） |
 
@@ -102,3 +106,15 @@ ANE（AI Native Engineering，AI 原生工程）是一套面向 AI Agent 时代�
 ---
 
 *ANE = AI Native Engineering · 静态是骨与血，动态是神经与思，记忆与免疫让它成为"它自己"。*
+
+## CI 实证回执
+
+| 项 | 事实 |
+|---|---|
+| Workflow | `ANE Gates`（id `425704765`，state `active`） |
+| 真实运行 | run `44869211636`，结论 `success`，时间 `2026-11-21T05:05:29Z`，提交 `fdc1882` |
+| 查询方式 | 只读 GitHub API：`GET /repos/pony-029/ane/actions/workflows/ane-gates.yml/runs` |
+| 本地等价验证 | 干净克隆仿真（无 DEBUG 轨）：五类门禁 5/5、负向用例 9/9 |
+| 分支保护 | **当前未设置**：API 返回 `401 Requires authentication`（无管理员令牌）；用 `GITHUB_TOKEN=... python tools/setup_branch_protection.py --apply` 启用，脚本会读回确认 |
+
+> 说明：上述真实运行发生在 v0.10.0 配置上；本版新增 `--self-test` 的配置已通过干净克隆仿真，推送后的新运行结论以 API 查询为准。

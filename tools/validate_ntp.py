@@ -154,6 +154,37 @@ CONVERSION_MARKER = "conversion_version"
 CONVERSION_DIGEST = "conversion_digest"
 
 
+def conversion_semantics(inst):
+    """Cross-field lifecycle rules a structural Schema cannot express.
+
+    Makes the three ledger lifecycle states machine-checkable:
+    BLOCKED (stage exit interrupted), ROLLED_BACK (grey release retreated),
+    CLOSED (conversion completed). Returns human-readable violations.
+    """
+    errors = []
+    stages = inst.get("stages", [])
+    for i, stage in enumerate(stages):
+        state = stage.get("state")
+        verified = stage.get("exit_verified", False)
+        if state == "BLOCKED" and verified:
+            errors.append(f"$.stages[{i}]: BLOCKED stage must not have exit_verified=true")
+        if state == "EXIT_VERIFIED" and not verified:
+            errors.append(f"$.stages[{i}]: EXIT_VERIFIED stage requires exit_verified=true")
+    gray = inst.get("gray_release", {})
+    if gray.get("current_step") == "RETIRED" and gray.get("mode") != "RETIRED":
+        errors.append("$.gray_release: RETIRED step requires RETIRED mode")
+    completion = inst.get("completion", {})
+    keys = ("conformity_passed", "old_retired_or_declared", "ledger_archived",
+            "human_signoff", "observation_cycle_done")
+    if all(completion.get(k) is True for k in keys):
+        if gray.get("mode") != "RETIRED":
+            errors.append("$.gray_release: completed conversion requires RETIRED mode")
+        if any(s.get("state") not in ("EXIT_VERIFIED", "SKIPPED") for s in stages):
+            errors.append("$.stages: completed conversion requires all stages "
+                          "EXIT_VERIFIED or SKIPPED")
+    return errors
+
+
 def classify(inst):
     """Route a JSON object to the right schema: NTP, IOP kind, or conversion ledger."""
     if "ntp_version" in inst:
@@ -325,6 +356,8 @@ def main():
             else:
                 target = iop_validators[sub]
             errors = target.validate(inst)
+            if kind == "conversion":
+                errors += conversion_semantics(inst)
             if errors:
                 failures += 1
                 print(f"[FAIL] {p.name} block#{i} ({kind}/{sub or '-'}):")
