@@ -48,7 +48,7 @@ The specification has **37 chapters + a glossary (Appendix A)**, organized in la
 | Governance | 25–31 | Meta-specification, conformance assessment (ANE-CONF), migration and adoption, observability, evolution-system testing, applicability boundaries, economics |
 | Release | 32–37 | Release forms, information grading and gates, single source of truth and deterministic projection, multi-language governance, artefact naming, structural integrity checks |
 
-### Six enhancements and three fixes in v0.7.0
+### Six enhancements and four fixes in v0.7.0
 
 1. **Model Carrier Governance (5.6)** — six selection criteria · mandatory model card · upgrade/retirement gate · replaceable carrier that never becomes an architectural dependency.
 2. **Prompt Asset Governance (18.4)** — versioned templates with stable IDs · frozen-glossary interface · injection guard · change evaluation and rollback.
@@ -57,7 +57,7 @@ The specification has **37 chapters + a glossary (Appendix A)**, organized in la
 5. **NTP Timeout and Deduplication Parameters (5.5)** — D-tier timeout ranges, same-source merge windows, uplink caps, and cooling windows; timeouts always route to DEGRADED.
 6. **Three Arbitration Observability Metrics (12.1)** — quota exhaustion rate / rejection rate / D0-D1 preemption rate, making arbitration fairness auditable.
 
-Also fixes three misplaced cross-references (Promotion Audit → 24.3, two-brain extreme states → 21.3b), one name–reality mismatch, and three stale "new this round" labels.
+Also fixes four classes of issue: three misplaced cross-references (Promotion Audit → 24.3, two-brain extreme states → 21.3b), one name–reality mismatch, three stale "new this round" labels, and the parseability of the NTP payload examples (5.2 / 5.4) — all three are now valid JSON, with enum catalogues and field glosses moved into per-field glossaries, environment variables expressed as abstract tiers, and downlink candidates carrying only a `candidate.digest` fingerprint instead of inlined bodies, enforcing "the Main Brain never lands directly" at the protocol layer.
 
 ### Four groups of enhancements in v0.6.0 (archived)
 
@@ -69,7 +69,7 @@ Also fixes three misplaced cross-references (Promotion Audit → 24.3, two-brain
 ### Five enhancements in v0.5.0 (archived)
 
 1. **Cold Start and Knowledge Quenching (6.4)** — seed-rule injection + explore/exploit adaptive switching, solving "burning money on an empty memory from day one."
-2. **Hardware-Topology Awareness (2.3 / 8.5)** — the IR layer adaptively prioritizes compilation by instruction set, accelerator core count, and memory bandwidth.
+2. **Hardware-Topology Awareness (2.3 / 8.5)** — the semantic layer adaptively optimizes by processor capabilities, accelerator count, and memory and storage characteristics.
 3. **Domestic Regulatory Alignment (20.2)** — alignment with China's Data Security Law, Personal Information Protection Law, and MLPS 2.0 Level 3, explaining how human sovereignty and anti-self-deception satisfy "traceability and controllability."
 4. **Dual-Fold Collaboration (13.4 / 14.3)** — a mandatory human-machine pattern (Fold 1 judgment / Cognitive Summary + Fold 2 authorization / Intent Binding) and its primitive encoding.
 5. **Promotion Audit (24.3)** — N consecutive independent reproductions + human signature endorsement + anti-inbreeding check before experience promotion, guarding against memory-promotion poisoning.

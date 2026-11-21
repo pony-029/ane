@@ -146,7 +146,7 @@
     <a href="#ch5">Chapter 5 · Main Brain and NTP</a>
     <a href="#ch6">Chapter 6 · Hippocampus Memory</a>
     <a href="#ch7">Chapter 7 · Immune Dual-Track Verification</a>
-    <a href="#ch8">Chapter 8 · IR-Layer Self-Repair</a>
+    <a href="#ch8">Chapter 8 · semantic layer-Layer Self-Repair</a>
     <a href="#ch9">Chapter 9 · Human-Machine Tiered Authorization</a>
     <div class="grp">Operation and Adoption</div>
     <a href="#ch10">Chapter 10 · Evolution Flywheel</a>
@@ -239,11 +239,11 @@
   <h2 class="sec"><span class="num">Preface</span>Software Is Life</h2>
   <div class="lead">We discard the traditional notion that "software is a static tool." In the AI era, an excellent software system is a <b>digital organism with metabolism, immune self-repair, and continuous evolution</b>.</div>
   <div class="grid g3">
-    <div class="card purple"><div class="ic ic-purple">SKL</div><h4>Static Skeleton</h4><p>The layered IR is the unshakeable law of physics, determining "what it is."</p></div>
+    <div class="card purple"><div class="ic ic-purple">SKL</div><h4>Static Skeleton</h4><p>The layered semantic layer is the unshakeable law of physics, determining "what it is."</p></div>
     <div class="card blue"><div class="ic ic-blue">BRN</div><h4>Dual-Brain Collaboration</h4><p>The Cerebellum handles high-frequency reflexes, the Main Brain handles unknown complexity, determining "how it thinks."</p></div>
     <div class="card teal"><div class="ic ic-teal">HPC</div><h4>Hippocampal Memory</h4><p>Experience storage and retrieval make every success and failure a permanent memory, determining "who it is."</p></div>
     <div class="card blue"><div class="ic ic-blue">IMM</div><h4>Immune System</h4><p>Multi-layer quality gates treat unproven generation as contamination, determining "how it stays pure."</p></div>
-    <div class="card amber"><div class="ic ic-amber">RPR</div><h4>Self-Repair Engine</h4><p>Minimal IR-layer repair heals it in place during operation, determining "how it survives wounded."</p></div>
+    <div class="card amber"><div class="ic ic-amber">RPR</div><h4>Self-Repair Engine</h4><p>Minimal semantic-layer repair heals it in place during operation, determining "how it survives wounded."</p></div>
     <div class="card teal"><div class="ic ic-teal">HUM</div><h4>Human Sovereignty</h4><p>Tiered authorization interaction is the higher will it must submit to, determining "whether it should be allowed to evolve."</p></div>
   </div>
   <div class="callout quote"><span class="lbl">In One Sentence</span>
@@ -276,6 +276,59 @@
       <tr><td>Human-in-the-loop</td><td>Refined into tiered authorization, balancing safety and efficiency while preventing humans from becoming a throughput bottleneck</td></tr>
     </tbody>
   </table></div>
+  <h3>0.4 Background, Reading Path, and the "Inspectability Contract"</h3>
+  <div class="callout quote"><span class="lbl">For first-time readers</span>After this section you should be able to answer: why biological metaphors are used, where to start, and where to verify any claim. <b>Not understanding is a defect of the specification, not of the reader.</b></div>
+  <p><b>Why a "living system"</b>: traditional software is a machine — repaired after breaking; AI-native systems sense, adapt, and self-repair while running. Seven organ names are <b>functional codenames, not biological assumptions</b>: each has one responsibility, latency profile, and implementation anchor in Chapter 2, plus a plain entry with provenance in Appendix A.0.</p>
+  <p><b>Three background lines</b>: ① software engineering supplies the static foundation (version control, testing, gates, traceability) — inherited; ② AI Agents supply generalized reasoning — constrained, not deified; ③ edge and heterogeneous environments supply physical constraints — the skeleton must sense its environment.</p>
+  <div class="tw"><table>
+    <thead><tr><th>Beginner reading path</th><th>Question answered</th></tr></thead>
+    <tbody>
+      <tr><td>1 Executive summary</td><td>What the paradigm says</td></tr>
+      <tr><td>2 0.4 + Appendix A.0 glossary</td><td>Codenames translated into plain words</td></tr>
+      <tr><td>3 Chapter 1, seven axioms</td><td>Which red lines cannot be crossed</td></tr>
+      <tr><td>4 Chapter 2 organs + Chapter 14 primitives</td><td>Components and possible actions</td></tr>
+      <tr><td>5 Chapter 13 interaction</td><td>How to collaborate, trace, and see</td></tr>
+      <tr><td>6 Then 31 economics / 27 migration / 26 conformance</td><td>How to adopt and prove compliance</td></tr>
+    </tbody>
+  </table></div>
+  <div class="tw"><table>
+    <thead><tr><th>Reader question</th><th>Where to look</th><th>Guarantee</th></tr></thead>
+    <tbody>
+      <tr><td>What does this term mean?</td><td>Appendix A (plain explanation + provenance + source type)</td><td>Exactly one authoritative definition</td></tr>
+      <tr><td>What does this action do?</td><td>Chapter 14 primitive table</td><td>Name, semantics, D-tier, authorization flag</td></tr>
+      <tr><td>Can I see this step?</td><td>13.6 visualization list</td><td>Content, audience, provenance</td></tr>
+      <tr><td>What happened afterwards?</td><td>13.5 logs + 22.1 trace-id</td><td>One ID links the whole interaction</td></tr>
+      <tr><td>What is this based on?</td><td>Clause IDs + axioms + Appendix A.1</td><td>Traces to an axiom or superior clause</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout quote"><span class="lbl">Numbers are inspectable too</span>Every figure (80%, N ≥ 3, 99%, 1–3 uplinks, D0–D3, L0–L5, G1–G7) is explained in A.1 with meaning, rationale, source, and adjustment rules. <b>A number without provenance may not enter a normative clause.</b></div>
+  <h3>0.5 First Principles: Where Every Design Comes From</h3>
+  <div class="callout warn"><span class="lbl">Design discipline</span>"The industry does it this way" is not a reason. Every axiom, mechanism, term, and number must trace to an irreducible first principle; <b>anything that cannot must not enter normative clauses</b>.</div>
+  <div class="tw"><table>
+    <thead><tr><th>ID</th><th>First principle</th><th>Source</th><th>Derived ANE design</th></tr></thead>
+    <tbody>
+      <tr><td><b>P1</b></td><td>Prove what can be proven; infer only the unprovable</td><td>Computing theory / formal methods</td><td>Axioms 1–2, immutable skeleton, deterministic Cerebellum, no guessing at D0/D1, dual-track verification</td></tr>
+      <tr><td><b>P2</b></td><td>Intelligence and compute are scarce; allocate by deterministic benefit</td><td>Resource allocation / economics</td><td>Cerebellum-first, budget, arbitration, Explore→Exploit, rate limiting</td></tr>
+      <tr><td><b>P3</b></td><td>Decisions affecting the future must leave verifiable traces</td><td>Auditing / information theory</td><td>Axiom 6, attest, ledger, three log tiers, trace-id, no-provenance = contamination</td></tr>
+      <tr><td><b>P4</b></td><td>Final responsibility stays with the actor able to bear consequences</td><td>Responsibility ethics / governance</td><td>Axiom 5, tiered authorization, Dual-Fold, Main Brain never holds A, circuit breaker, human endorsement</td></tr>
+      <tr><td><b>P5</b></td><td>No feedback, no evolution; loop speed determines adaptability</td><td>Cybernetics / system dynamics</td><td>Flywheel, promotion, five steps, no overnight bad news, grey release, postmortems</td></tr>
+      <tr><td><b>P6</b></td><td>Under uncertainty fall back to a known safe state; safety before efficiency</td><td>Safety engineering / defense in depth</td><td>Stability first, UnknownSignal, degradation, one-way tightening, sandbox, circuit breaker</td></tr>
+      <tr><td><b>P7</b></td><td>Interfaces must decouple from current capability to admit stronger intelligence</td><td>Evolutionary architecture / open–closed</td><td>Brain as capability interface, stable roles with replaceable implementations, D-tier by risk</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout warn"><span class="lbl">Traceability duty</span>New clauses must record a P-number and derivation chain in the review record. <b>Conflict arbitration: P4 responsibility &gt; P6 safety &gt; P3 traceability &gt; P1 determinism</b>; efficiency may never override responsibility or safety. P1–P7 are adopted disciplinary foundations — ANE's originality is organizing them into executable engineering constraints. "Because the specification says so" is not a reason; "because P3 requires traceability" is.</div>
+  <h3>0.6 Evolutionary Compatibility: Grounded Today, Ready for AGI and Recursive Self-Improvement</h3>
+  <div class="callout quote"><span class="lbl">Forward boundary</span>ANE is not a usage manual for one model generation; it defines the <b>responsibility and evidence boundary that remains valid no matter how intelligent the system becomes</b>.</div>
+  <div class="tw"><table>
+    <thead><tr><th>Layer</th><th>Today</th><th>Compatibility with stronger AGI / recursive self-improvement</th><th>Provenance</th></tr></thead>
+    <tbody>
+      <tr><td>Interface</td><td>Brain via uniform capability interface; no model names in clauses</td><td>Carrier replacement does not change N-layer clauses; stronger capability plugs in</td><td>5.6 · P7</td></tr>
+      <tr><td>Authority</td><td>Authorization by D0–D3 risk, not by current model ability</td><td>Intelligence does not change permission boundaries; D0 stays untouchable</td><td>Ch.3 · P4</td></tr>
+      <tr><td>Improvement</td><td>Promotion and self-repair require immune verification, human signature, ledger</td><td>Recursive self-improvement recurses inside gates only; may not modify gates, axioms, or authorization</td><td>24.3 · 25.5 · P4/P6</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout warn"><span class="lbl">Four forward disciplines</span>① <b>Capability-independent</b>: define by risk and responsibility, never by model ceilings. ② <b>Conservative defaults</b>: relaxation requires explicit human authorization. ③ <b>Bounded recursion</b>: replayable, within D0, gates and axioms untouched, with resource/time convergence — otherwise an unauthorized mutation. ④ <b>Sovereignty does not decay</b>: as intelligence rises, veto, circuit breaking, and audit intensity <b>rise in step</b>; "remove human review because the system is reliable enough" violates P4 and is rejected.</div>
+  <div class="callout quote"><span class="lbl">In one sentence</span>This is not "how to use today's model" but <b>the responsibility and evidence boundary that does not expire when the Main Brain is replaced or becomes far stronger</b>.</div>
 </section>
 
 <!-- ================= CH1 ================= -->
@@ -284,7 +337,7 @@
   <p>This chapter is the highest law of the paradigm. All subsequent clauses are expansions of the axioms and must not conflict with them.</p>
   <div class="grid g2">
     <div class="card purple"><h4>Axiom 1 · The static is the foundation, the dynamic is the soul</h4><p>Underlying logic remains absolutely static and deterministic (strong typing, memory safety, state machines); AI acts only on surface logic, intent parsing, and code suggestions, never undermining the static foundation.</p></div>
-    <div class="card blue"><h4>Axiom 2 · Stillness within motion, motion within stillness</h4><p>Every AI generation must be constrained by static rules, with unverified output treated as contamination; the static foundation must self-repair, driving AI to hot-load optimization patches when the environment changes.</p></div>
+    <div class="card blue"><h4>Axiom 2 · Stillness within motion, motion within stillness</h4><p>Every AI generation must be constrained by static rules, with unverified output treated as contamination; the static foundation must self-repair, driving AI to online-load optimization patches when the environment changes.</p></div>
     <div class="card teal"><h4>Axiom 3 · Cerebellum first, Main Brain scarce</h4><p>High-frequency routine decisions must be completed in the Cerebellum without consuming the LLM; the Main Brain awakens only when local rules and memory cannot resolve an issue, with context compressed to the bare minimum.</p></div>
     <div class="card amber"><h4>Axiom 4 · Memory is the moat</h4><p>Every success, failure, and rollback is structured and consolidated; the system self-iterates through memory, while AI without memory is merely a stateless repeater.</p></div>
     <div class="card purple"><h4>Axiom 5 · Humans possess inalienable sovereignty</h4><p>Evolution touching the static foundation or production must be explicitly authorized by humans, with clear separation of human and machine; this cannot be bypassed for any efficiency rationale.</p></div>
@@ -307,9 +360,9 @@ flowchart TB
         HIPO["Hippocampus<br/>experience storage - retrieval augmentation"]
     end
     subgraph STA["Static Deterministic Side"]
-        CEREB["Cerebellum<br/>rules - state machine - cost model"]
+        CEREB["Cerebellum<br/>rules - state machine - deterministic cost model"]
         IMMU["Immune System<br/>quality gates - dual-track verification"]
-        BASE["Layered IR Foundation<br/>static skeleton - self-repair carrier"]
+        BASE["Layered semantic layer Foundation<br/>static skeleton - self-repair carrier"]
     end
     HUM -->|authorize veto| BRAIN
     HUM -->|adjudicate| IMMU
@@ -326,12 +379,12 @@ flowchart TB
   <div class="tw"><table>
     <thead><tr><th>Organ</th><th>Core responsibility</th><th>Latency</th><th>Token</th><th>Typical implementation</th></tr></thead>
     <tbody>
-      <tr><td><strong>Skeleton</strong></td><td>Deterministic foundation for types, memory, and semantic equivalence</td><td>Resident</td><td>No</td><td>Layered IR and compiler backend</td></tr>
-      <tr><td><strong>Cerebellum</strong></td><td>High-frequency scheduling, instruction prioritization, local adjudication</td><td>Microseconds to milliseconds</td><td>No</td><td>Local rule base + state machine + cost model</td></tr>
+      <tr><td><strong>Skeleton</strong></td><td>Deterministic foundation for types, memory, and semantic equivalence</td><td>Resident</td><td>No</td><td>Layered semantic foundation and implementation adaptation layer</td></tr>
+      <tr><td><strong>Cerebellum</strong></td><td>High-frequency scheduling, execution-strategy optimization, local adjudication</td><td>Microseconds to milliseconds</td><td>No</td><td>Local rule base + state machine + deterministic cost model</td></tr>
       <tr><td><strong>Main Brain</strong></td><td>Deep reasoning for unknown, complex problems</td><td>Seconds to minutes</td><td>Controlled</td><td>On-demand LLM agent</td></tr>
       <tr><td><strong>Hippocampus</strong></td><td>Experience consolidation and retrieval</td><td>Persistent</td><td>Small on retrieval</td><td>Experience vector store + retrieval augmentation</td></tr>
-      <tr><td><strong>Immune</strong></td><td>Gates, consistency checks, regression, anti-self-deception</td><td>Compile time / pre-merge</td><td>No</td><td>Multi-layer quality gates + full regression</td></tr>
-      <tr><td><strong>Self-Repair</strong></td><td>Runtime hot patches and in-place optimization</td><td>Runtime</td><td>Case-dependent</td><td>IR-layer minimal repair engine</td></tr>
+      <tr><td><strong>Immune</strong></td><td>Gates, consistency checks, regression, anti-self-deception</td><td>Build time / pre-merge</td><td>No</td><td>Multi-layer quality gates + full regression</td></tr>
+      <tr><td><strong>Self-Repair</strong></td><td>Runtime online repairs and in-place optimization</td><td>Runtime</td><td>Case-dependent</td><td>semantic-layer minimal repair engine</td></tr>
       <tr><td><strong>Sovereignty</strong></td><td>Authorization, veto, goal setting</td><td>On demand</td><td>No</td><td>Tiered authorization interface</td></tr>
     </tbody>
   </table></div>
@@ -340,14 +393,14 @@ flowchart TB
     <div class="mermaid">
 flowchart LR
     subgraph DF["Data Flow DFG"]
-        A["Source code AST"] --> B["High-level representation"] --> C["Unified IR"] --> D["Local scheduling optimization"] --> E["Target instructions"]
+        A["Source code AST"] --> B["High-level representation"] --> C["Unified semantic layer"] --> D["Local scheduling optimization"] --> E["Target instructions"]
     end
     subgraph CF["Control Flow CFG"]
         F["Exception signal"] --> G{"Cerebellum solvable"}
         G -->|yes| H["Local adjudication"]
         G -->|no| I["Wake Main Brain"]
         I --> J["Immune verification"]
-        J --> K{"IR layer hot-fixable"}
+        J --> K{"semantic layer hot-fixable"}
         K -->|yes| L["Minimal patch"]
         K -->|no| M["Escalate to human"]
     end
@@ -355,7 +408,7 @@ flowchart LR
     </div>
     <div class="cap">Figure 2 · Data flow (DFG) and control flow (CFG) dual-flow coupling</div>
   </div>
-  <div class="callout"><span class="lbl">Target-environment awareness (cf. 8.5)</span>The skeleton must be more than logically correct — it must sense its runtime carrier. When high-level representations are lowered to target instructions, and when runtime minimal patches are generated, adaptive prioritization must account for the physical characteristics of the environment (instruction-set capability, accelerator scale, memory bandwidth, etc.). The same IR should yield different optimal instruction sequences on different hardware. This is the architectural anchor for 8.5 "hardware-topology awareness".</div>
+  <div class="callout"><span class="lbl">Target-environment awareness (cf. 8.5)</span>The skeleton must be more than logically correct — it must sense its runtime carrier. When high-level representations are lowered to target executable code, and when runtime minimal patches are generated, adaptive prioritization must account for the physical characteristics of the environment (processor capability, accelerator scale, memory and storage characteristics, etc.). The same semantic layer should yield different optimal execution plans on different hardware. This is the architectural anchor for 8.5 "hardware-topology awareness".</div>
 </section>
 
 <!-- ================= CH3 ================= -->
@@ -363,8 +416,8 @@ flowchart LR
   <h2 class="sec"><span class="num">Chapter 3</span>Determinacy Grading: The D0–D3 Authority Spectrum</h2>
   <p>A core mechanism that lands the "static-dynamic duality" axiom into executable authority boundaries — each level has a clear statement of "what AI may do."</p>
   <div class="spectrum">
-    <div class="sp sp0"><div class="lv">D0 · Physical law</div><div class="nm">Forbidden to touch</div><div class="ds">Type systems, memory models, state machines, cryptographic primitives; read-only, immutable enforced at compile time</div></div>
-    <div class="sp sp1"><div class="lv">D1 · Skeleton logic</div><div class="nm">Propose + prove</div><div class="ds">Scheduling policies, IR transformation, optimization processes; requires formal equivalence proof + human review</div></div>
+    <div class="sp sp0"><div class="lv">D0 · Physical law</div><div class="nm">Forbidden to touch</div><div class="ds">Type systems, memory models, state machines, cryptographic primitives; read-only, immutable enforced at build time</div></div>
+    <div class="sp sp1"><div class="lv">D1 · Skeleton logic</div><div class="nm">Propose + prove</div><div class="ds">Scheduling policies, semantic layer transformation, optimization processes; requires formal equivalence proof + human review</div></div>
     <div class="sp sp2"><div class="lv">D2 · Surface logic</div><div class="nm">Generate + regress</div><div class="ds">Business code, glue code, configuration, interface adaptation; automatic gate release + audit after full regression</div></div>
     <div class="sp sp3"><div class="lv">D3 · Intent expression</div><div class="nm">AI-led</div><div class="ds">Requirement parsing, comments, test generation, documentation; no side effects, human may review but not block operation</div></div>
   </div>
@@ -376,12 +429,12 @@ flowchart LR
   <h2 class="sec"><span class="num">Chapter 4</span>Cerebellum Specification (Cerebellum)</h2>
   <div class="clause"><span class="badge">Clause 4</span><p><strong>Cerebellum First.</strong> Every core system must embed a local Cerebellum module responsible for high-frequency, fast, low-energy local scheduling and logic adjudication. Connecting all logic directly to the LLM is forbidden. 80% of routine decisions should terminate here.</p></div>
   <div class="grid g2">
-    <div class="card blue"><h4>Must have</h4><p>Local rule base and priority matching · state machines and deterministic transitions · cost models (e.g., instruction prioritization) · fast retrieval of experience vectors</p></div>
+    <div class="card blue"><h4>Must have</h4><p>Local rule base and priority matching · state machines and deterministic transitions · deterministic cost models (e.g., execution-strategy optimization) · fast retrieval of experience vectors</p></div>
     <div class="card amber"><h4>Strictly forbidden</h4><p>Generative free creation · unverified dynamic execution · direct modification of the D0 foundation · silently swallowing unhandleable exceptions (must escalate)</p></div>
   </div>
-  <p>The Cerebellum must still complete routine D0/D1 adjudication <strong>without network access and without an LLM</strong>, and its decisions must be explainable, replayable, and auditable. Typical implementation: local instruction scheduling and cost-model engines — across multiple target architectures, prioritization of hundreds or thousands of instructions is completed instantly by built-in cost models and state machines, burning no tokens and remaining precise and reproducible.</p>
+  <p>The Cerebellum must still complete routine D0/D1 adjudication <strong>without network access and without an LLM</strong>, and its decisions must be explainable, replayable, and auditable. Typical implementation: local execution scheduling and deterministic cost-model engines — across multiple target architectures, adaptive optimization of hundreds or thousands of low-level operations is completed instantly by built-in deterministic cost models and state machines, burning no tokens and remaining precise and reproducible.</p>
   <h3>4.4 Absolute determinism: three hard boundaries</h3>
-  <p>In engineering terms the Cerebellum must be defined as the <strong>absolute defender of determinism</strong>: "compressed historical experience" plus "cost models grounded in physical law". It recognizes only rules, state machines, and hardware profiles; it makes no value judgments and produces no form of creation.</p>
+  <p>In engineering terms the Cerebellum must be defined as the <strong>absolute defender of determinism</strong>: "compressed historical experience" plus "deterministic cost models grounded in physical law". It recognizes only rules, state machines, and hardware profiles; it makes no value judgments and produces no form of creation.</p>
   <div class="tw"><table>
     <thead><tr><th>Hard boundary</th><th>Requirement</th><th>How it is judged</th></tr></thead>
     <tbody>
@@ -400,16 +453,40 @@ flowchart LR
   <h3>5.2 Neurotransmitter Protocol NTP: base payload</h3>
   <p>Context transfer between the Cerebellum and the Main Brain must be structured; dumping the full code or logs into the LLM at once is forbidden:</p>
   <pre style="background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;overflow-x:auto;font-size:12.5px;color:var(--ink2)"><code>{
-  "ntp_version": "1.0",
-  "signal_type": "DEADLOCK | PERF_REGRESSION | UNKNOWN",
+  "ntp_version": "1.1",
+  "direction": "uplink",
+  "signal_type": "UNKNOWN",
   "error_code": "E-CORE-0427",
-  "feature_vector": [0.12, -0.88, 0.33, "...compressed high-dimensional features..."],
-  "context_digest": "sha256:9f3a... (digest, not full text)",
+  "feature_vector": [0.12, -0.88, 0.33, 0.57],
+  "context_digest": "sha256:afcd135cddc2ffc17db5c430579ff01cf7d0b648d43685d7b38066c51d1870a3",
   "tried_rules": ["rule_114", "rule_208"],
   "memory_hits": [],
-  "constraints": ["D0 immutable", "target architecture constraints"],
-  "budget_hint": { "max_tokens": 1200, "max_latency_ms": 8000 }
+  "constraints": ["D0_IMMUTABLE", "TARGET_ENV_LIMITED"],
+  "budget_hint": {
+    "max_tokens": 1200,
+    "max_latency_ms": 8000,
+    "priority": "D1"
+  }
 }</code></pre>
+  <p>The block above is <b>valid JSON</b>: values carry only real data — never enum catalogues, field descriptions, or glosses. All explanations live in the table below. The sample hashes were computed with SHA-256 from fixed sample strings and can be parsed directly.</p>
+  <h4 style="font-size:14.5px;margin:22px 0 10px">Field glossary (every value is traceable)</h4>
+  <div class="tw"><table>
+    <thead><tr><th>Field</th><th>Type</th><th>Plain-language meaning</th><th>Why it is mandatory</th><th>Values / source</th></tr></thead>
+    <tbody>
+      <tr><td><code>ntp_version</code></td><td>string</td><td>Protocol version</td><td>Sender and receiver must agree on field semantics</td><td><code>major.minor</code>, example <code>1.1</code>; defined in 5.2</td></tr>
+      <tr><td><code>direction</code></td><td>enum</td><td>Which way the message travels</td><td>One bidirectional channel; the receiver dispatches accordingly</td><td><code>uplink</code> / <code>downlink</code>; defined in 5.4</td></tr>
+      <tr><td><code>signal_type</code></td><td>enum</td><td>What kind of problem occurred</td><td>Lets the Main Brain select the relevant knowledge</td><td><code>UNKNOWN</code> / <code>DEADLOCK</code> / <code>PERF_REGRESSION</code> / <code>SEMANTIC_CONFLICT</code>; defined in 5.4</td></tr>
+      <tr><td><code>error_code</code></td><td>string</td><td>The fault's identity number</td><td>Pinpoints the fault and enables retrieval of past experience</td><td><code>E-&lt;domain&gt;-&lt;4 digits&gt;</code>, example <code>E-CORE-0427</code>; generated by the reporter</td></tr>
+      <tr><td><code>feature_vector</code></td><td>number[]</td><td>Compressed numeric features</td><td>Replaces full context with a few numbers, minimizing tokens</td><td>Each item normalized to <code>[-1, 1]</code>; dimensionality set by the protocol; produced by <code>digest</code></td></tr>
+      <tr><td><code>context_digest</code></td><td>string</td><td>A fingerprint of the original context, not the original</td><td>Verifies consistency without leaking full text</td><td><code>sha256:&lt;64 hex digits&gt;</code>; produced by <code>digest</code></td></tr>
+      <tr><td><code>tried_rules</code></td><td>string[]</td><td>Local rules already attempted</td><td>Prevents the Main Brain from repeating failed paths</td><td>Rule IDs; empty means none tried yet</td></tr>
+      <tr><td><code>memory_hits</code></td><td>string[]</td><td>Experience records retrieved from memory</td><td>Tells the Main Brain which experience is already in play</td><td>Experience record IDs; empty means no hit</td></tr>
+      <tr><td><code>constraints</code></td><td>enum[]</td><td>Boundaries that cannot be crossed</td><td>Any proposal violating them is rejected outright</td><td><code>D0_IMMUTABLE</code> (human sovereignty is non-delegable) / <code>TARGET_ENV_LIMITED</code>; Chapter 0, D0–D3</td></tr>
+      <tr><td><code>budget_hint.max_tokens</code></td><td>integer</td><td>Maximum tokens allowed for this request</td><td>Prevents one request from draining global cost</td><td>Positive integer, example <code>1200</code>; 5.3 cost-sensitivity clause</td></tr>
+      <tr><td><code>budget_hint.max_latency_ms</code></td><td>integer</td><td>Maximum wait before returning</td><td>Prevents the request from stalling the main flow</td><td>Positive integer (ms), example <code>8000</code>; same</td></tr>
+      <tr><td><code>budget_hint.priority</code></td><td>enum</td><td>Determinacy class of this request</td><td>Determines queuing and preemption order</td><td><code>D0</code>–<code>D3</code>, example <code>D1</code>; Chapter 0, D0–D3</td></tr>
+    </tbody>
+  </table></div>
   <div class="callout quote"><span class="lbl">Design Intent</span>Transmit only features, error codes, constraints, and budgets, minimizing token consumption — this is where "using subtraction to counter addition" lands.</div>
 
   <h3>5.3 Hard boundary between the two brains: neither may live the other's life</h3>
@@ -417,7 +494,7 @@ flowchart LR
   <div class="tw"><table>
     <thead><tr><th>Dimension</th><th>Cerebellum</th><th>Main Brain</th></tr></thead>
     <tbody>
-      <tr><td><b>Essence</b></td><td>Compressed historical experience + physical cost model</td><td>Engine of generalized reasoning and pattern recombination: a connector across domains of knowledge</td></tr>
+      <tr><td><b>Essence</b></td><td>Compressed historical experience + physical deterministic cost model</td><td>Engine of generalized reasoning and pattern recombination: a connector across domains of knowledge</td></tr>
       <tr><td><b>Physical carrier</b></td><td>Local / edge process</td><td>Remote inference service (an LLM is merely its carrier, not the thing itself)</td></tr>
       <tr><td><b>What it handles</b></td><td>Known, high-frequency, decidable</td><td>Long tail, unseen combinations, semantic conflict</td></tr>
       <tr><td><b>Unit cost</b></td><td>Near-zero tokens, microsecond scale</td><td>Expensive and scarce, second-scale latency</td></tr>
@@ -427,42 +504,79 @@ flowchart LR
     </tbody>
   </table></div>
   <div class="grid g3">
-    <div class="card amber"><h4>Never executes</h4><p>The Main Brain may only produce candidate strategies, pseudocode, or uncompiled patches. No channel that "directly modifies production" may exist (Axiom 5).</p></div>
+    <div class="card amber"><h4>Never executes</h4><p>The Main Brain may only produce candidate strategies, pseudocode, or unverified candidate patches. No channel that "directly modifies production" may exist (Axiom 5).</p></div>
     <div class="card amber"><h4>Cost-sensitive</h4><p>Every awakening carries and obeys <code>budget_hint</code> (token / latency / priority). Exceeding budget means abort plus a negative sample — not "try once more".</p></div>
     <div class="card amber"><h4>Accepts rejection</h4><p>Being vetoed by the Cerebellum or rejected by a gate is the norm, not an anomaly. Rejection rate is a quality metric, not a defect to hide.</p></div>
   </div>
   <div class="callout quote"><span class="lbl">Decision Mantra</span>If it can be decided, do not infer; if you must infer, you do not know; if you do not know, escalate — and non-escalation is contamination.</div>
 
   <h3>5.4 The NTP two-way channel: uplink distress and downlink proposal</h3>
-  <p>What passes between the two brains is not "textual conversation" but <b>compressed features and hypotheses awaiting verification</b>. The channel must be bidirectional, asynchronous, and sandbox-protected. Uplink triggers (any one): no local rule hit (<code>UnknownSignal</code>), three consecutive retry failures, or concurrent deadlock / instruction-level collapse.</p>
+  <p>What passes between the two brains is not "textual conversation" but <b>compressed features and hypotheses awaiting verification</b>. The channel must be bidirectional, asynchronous, and sandbox-protected. Uplink triggers (any one): no local rule hit (<code>UnknownSignal</code>), three consecutive retry failures, or concurrent deadlock / execution-level collapse.</p>
   <pre style="background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;overflow-x:auto;font-size:12.5px;color:var(--ink2)"><code>{
   "ntp_version": "1.1",
   "direction": "uplink",
-  "signal_type": "UNKNOWN | DEADLOCK | PERF_REGRESSION | SEMANTIC_CONFLICT",
+  "signal_type": "UNKNOWN",
   "error_code": "E-CORE-0427",
-  "feature_vector": [0.12, -0.88, 0.33, "...compressed high-dimensional features..."],
-  "context_digest": "sha256:9f3a... (AST summary tree / error stack digest, not full text)",
+  "feature_vector": [0.12, -0.88, 0.33, 0.57],
+  "context_digest": "sha256:afcd135cddc2ffc17db5c430579ff01cf7d0b648d43685d7b38066c51d1870a3",
   "tried_rules": ["rule_114", "rule_208"],
   "attempt_count": 3,
   "env_profile": {
-    "isa": "target instruction-set family",
-    "accelerators": "types and counts of available accelerator cores",
-    "memory_bandwidth": "memory-bandwidth tier",
-    "interconnect": "interconnect topology affinity"
+    "processor_capability": "GENERIC_CPU_V3",
+    "accelerator_count": 2,
+    "memory_tier": "HBM_2TIER",
+    "interconnect": "MESH_2D"
   },
-  "budget_hint": { "max_tokens": 1200, "max_latency_ms": 8000, "priority": "D1" }
+  "budget_hint": {
+    "max_tokens": 1200,
+    "max_latency_ms": 8000,
+    "priority": "D1"
+  }
 }</code></pre>
+  <h4 style="font-size:14.5px;margin:22px 0 10px">Uplink-only field glossary (shared fields carry the meanings given in 5.2)</h4>
+  <div class="tw"><table>
+    <thead><tr><th>Field</th><th>Type</th><th>Plain-language meaning</th><th>Why it is mandatory</th><th>Values / source</th></tr></thead>
+    <tbody>
+      <tr><td><code>attempt_count</code></td><td>integer</td><td>How many local retries have already failed</td><td>Escalation is allowed only after the threshold (default 3), preventing token burn on every small disturbance</td><td>Positive integer, example <code>3</code>; 5.4 trigger conditions</td></tr>
+      <tr><td><code>env_profile.processor_capability</code></td><td>enum</td><td>Target processor capability family</td><td>A proposal must fit the execution environment without binding to a specific product model</td><td>Abstract tier, example <code>GENERIC_CPU_V3</code>; Chapter 8, hardware awareness</td></tr>
+      <tr><td><code>env_profile.accelerator_count</code></td><td>integer</td><td>Number of available accelerator units</td><td>Determines whether parallel or specialized proposals are admissible</td><td>Non-negative integer, example <code>2</code>; Chapter 8</td></tr>
+      <tr><td><code>env_profile.memory_tier</code></td><td>enum</td><td>Memory and storage tier</td><td>Determines whether a proposal's memory assumptions hold</td><td>Abstract tier, example <code>HBM_2TIER</code>; Chapter 8</td></tr>
+      <tr><td><code>env_profile.interconnect</code></td><td>enum</td><td>Interconnect topology</td><td>Determines data-movement cost assumptions</td><td>Abstract tier, example <code>MESH_2D</code>; Chapter 8</td></tr>
+    </tbody>
+  </table></div>
   <pre style="background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;overflow-x:auto;font-size:12.5px;color:var(--ink2)"><code>{
   "ntp_version": "1.1",
   "direction": "downlink",
   "proposal_id": "p-7f3c",
-  "candidate": "(uncompiled IR patch or pseudocode; not a directly executable artefact)",
+  "candidate": {
+    "format": "SEMANTIC_PATCH",
+    "digest": "sha256:51ce14ac8674ef2c7c9a623d9f38160737652ff04fedba92d5fc9f991242676a"
+  },
   "confidence": 0.62,
-  "rationale_digest": "reasoning summary, key conclusions for human review",
-  "assumptions": ["unverified premises it depends on, listed one by one"],
-  "budget_spent": { "tokens": 980, "latency_ms": 5400 },
+  "rationale_digest": "sha256:c3c4c8e4a969b52d457a33f82caf95781519c7433ad6be072d74a3c89d02cb0d",
+  "assumptions": ["ENV_STABLE", "NO_CONCURRENT_WRITE"],
+  "budget_spent": {
+    "tokens": 980,
+    "latency_ms": 5400
+  },
   "status": "PENDING_VERIFICATION"
 }</code></pre>
+  <h4 style="font-size:14.5px;margin:22px 0 10px">Downlink field glossary (every value is traceable)</h4>
+  <div class="tw"><table>
+    <thead><tr><th>Field</th><th>Type</th><th>Plain-language meaning</th><th>Why it is mandatory</th><th>Values / source</th></tr></thead>
+    <tbody>
+      <tr><td><code>proposal_id</code></td><td>string</td><td>This proposal's identifier</td><td>Required for tracking, rejection, and citation</td><td><code>p-&lt;short hex&gt;</code>, example <code>p-7f3c</code>; generated by the Main Brain</td></tr>
+      <tr><td><code>candidate.format</code></td><td>enum</td><td>The representation form of the candidate</td><td>Makes explicit that it is <b>not</b> an executable artefact</td><td><code>SEMANTIC_PATCH</code> / <code>PSEUDOCODE</code>; 5.3</td></tr>
+      <tr><td><code>candidate.digest</code></td><td>string</td><td>A fingerprint of the candidate, not its body</td><td>The Main Brain never inlines content; the receiver must fetch by digest from the sandbox and re-verify before use</td><td><code>sha256:&lt;64 hex digits&gt;</code>; Chapter 8, sandbox build</td></tr>
+      <tr><td><code>confidence</code></td><td>number</td><td>The Main Brain's self-assessed confidence</td><td>Used for ranking and risk hints, <b>never for authorization</b></td><td>Float in <code>[0, 1]</code>, example <code>0.62</code>; 5.3</td></tr>
+      <tr><td><code>rationale_digest</code></td><td>string</td><td>A fingerprint of the reasoning summary</td><td>A human-readable summary may be attached to Fold 1; this field holds only a verifiable fingerprint</td><td><code>sha256:&lt;64 hex digits&gt;</code>; Chapter 13, Fold 1 cognitive summary</td></tr>
+      <tr><td><code>assumptions</code></td><td>string[]</td><td>Unverified premises the proposal relies on</td><td>Lets a reviewer see the proposal's weak points at a glance</td><td>Assumption IDs, examples <code>ENV_STABLE</code> / <code>NO_CONCURRENT_WRITE</code></td></tr>
+      <tr><td><code>budget_spent.tokens</code></td><td>integer</td><td>Tokens actually consumed by this request</td><td>Measures Main Brain cost for rate limiting</td><td>Non-negative integer, example <code>980</code>; 5.5</td></tr>
+      <tr><td><code>budget_spent.latency_ms</code></td><td>integer</td><td>Actual time consumed by this request</td><td>Measures Main Brain latency for rate limiting</td><td>Non-negative integer (ms), example <code>5400</code>; 5.5</td></tr>
+      <tr><td><code>status</code></td><td>enum</td><td>Always "pending verification"</td><td>Eliminates any state called "approved by the Main Brain" at the protocol layer</td><td>Fixed to <code>PENDING_VERIFICATION</code>; 5.4</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout quote"><span class="lbl">Why the candidate carries only a fingerprint</span>If the Main Brain inlined the patch body into the message, a receiver could use it without verification, opening a door for "hallucination straight into the trunk". Transmitting only <code>candidate.digest</code> forces the receiver to fetch it from the sandbox and re-verify — this is Axiom 3 ("prove what can be proved") landing in the protocol.</div>
   <div class="callout warn"><span class="lbl">Critical Semantics</span>The downlink payload <b>is not a command but a hypothesis awaiting verification</b>. <code>status</code> is always <code>PENDING_VERIFICATION</code>; there is no state called "approved by the Main Brain".</div>
   <h4 style="font-size:14.5px;margin:22px 0 10px">The four iron laws of the channel</h4>
   <div class="tw"><table>
@@ -470,7 +584,7 @@ flowchart LR
     <tbody>
       <tr><td><b>No full context</b></td><td>Never feed source code, logs, or raw sessions wholesale; compress via the <code>digest</code> primitive into feature vectors, AST summaries, or error-stack digests</td><td>Token explosion, uncontrollable latency, runaway cost</td></tr>
       <tr><td><b>Asynchronous, non-blocking</b></td><td>The task is suspended as <code>Pending</code> and the Cerebellum turns to other work; the callback wakes it as an interrupt</td><td>The system hangs, throughput collapses</td></tr>
-      <tr><td><b>Sandbox isolation</b></td><td>Downlink artefacts may only be compiled and dual-track verified in a sandbox or instruction-level simulated environment</td><td>Contamination enters the trunk, unrecoverable</td></tr>
+      <tr><td><b>Sandbox isolation</b></td><td>Downlink artefacts may only be built and dual-track verified in a sandbox or isolated verification environment</td><td>Contamination enters the trunk, unrecoverable</td></tr>
       <tr><td><b>Mandatory trace</b></td><td>Every uplink payload, downlink reply, and adoption decision is written in full to the ledger and memory store</td><td>No replay, no promotion, no retrospective</td></tr>
     </tbody>
   </table></div>
@@ -500,7 +614,7 @@ stateDiagram-v2
     <tbody>
       <tr><td><code>PENDING</code></td><td>Escalated, waiting; the task yields execution</td><td>Busy-waiting; duplicate uplinks for the same signal (must be deduplicated)</td></tr>
       <tr><td><code>PROPOSAL</code></td><td>Proposal received, not yet verified</td><td>Executing the candidate directly</td></tr>
-      <tr><td><code>VERIFYING</code></td><td>Compiling and dual-track verifying in the sandbox</td><td>Skipping regression and passing straight through</td></tr>
+      <tr><td><code>VERIFYING</code></td><td>Building and dual-track verifying in the sandbox</td><td>Skipping regression and passing straight through</td></tr>
       <tr><td><code>APPLIED</code></td><td>Verified and fully authorized</td><td>Writing without a credential</td></tr>
       <tr><td><code>ROLLBACK</code></td><td>Verification failed; revert and record a negative sample</td><td>Silently discarding the failed sample</td></tr>
       <tr><td><code>DEGRADED</code></td><td>Main Brain unavailable, Cerebellum-only mode</td><td>Accepting any mutation-class change during this period</td></tr>
@@ -601,13 +715,13 @@ stateDiagram-v2
 
 <!-- ================= CH8 ================= -->
 <section id="ch8">
-  <h2 class="sec"><span class="num">Chapter 8</span>Self-Repair Specification: The Instant Repair Law of the IR Layer</h2>
-  <div class="clause"><span class="badge">Clause 8</span><p><strong>Instant Repair Law.</strong> The foundation of the living software system must contain a unified IR layer. When any runtime exception, performance bottleneck, or logic disorder occurs, the IR layer must possess an "omniscient view" spanning high-level source and low-level instructions, able to perform instruction-level refactoring, hot-patch generation, or optimization directly at the lower level at any time, achieving self-repair with "no restart, no human intervention, and in-place repair at any time."</p></div>
+  <h2 class="sec"><span class="num">Chapter 8</span>Self-Repair Specification: The Instant Repair Law of the Semantic Layer</h2>
+  <div class="clause"><span class="badge">Clause 8</span><p><strong>Instant Repair Law.</strong> The foundation of the living software system must contain a unified semantic layer. When any runtime exception, performance bottleneck, or logic disorder occurs, the semantic layer must possess an "omniscient view" spanning high-level source and low-level operations, able to perform low-level execution-logic restructuring, hot-patch generation, or optimization directly at the lower level at any time, achieving self-repair with "no restart, no human intervention, and in-place repair at any time."</p></div>
   <div class="grid g2">
-    <div class="card amber"><h4>Traditional software: death cycle</h4><p>Error → crash → downtime → human digs through source → edit high-level language → recompile → redeploy. Extremely long cycle and extremely fragile.</p></div>
-    <div class="card teal"><h4>IR-driven: repair at any time</h4><p>All high-level representations and machine instructions ultimately flow through the unified IR layer, which has a god's-eye view and performs "keyhole surgery" directly at the IR layer without touching chaotic source code.</p></div>
+    <div class="card amber"><h4>Traditional software: death cycle</h4><p>Error → crash → downtime → human digs through source → edit high-level language → rebuild → redeploy. Extremely long cycle and extremely fragile.</p></div>
+    <div class="card teal"><h4>semantic-layer-driven: repair at any time</h4><p>All high-level representations and machine-level executable code ultimately flow through the unified semantic layer, which has a god's-eye view and performs "keyhole surgery" directly at the semantic layer without touching chaotic source code.</p></div>
   </div>
-  <div class="callout warn"><span class="lbl">Direct Response to a Key Risk · Threefold Insurance</span>AI generation + runtime hot repair = superposition of two uncertainties, requiring: 1 <b>rollbackable</b> — create a checkpoint before a hot patch, automatic rollback on failure; 2 <b>provable</b> — the patch must pass symbolic-track equivalence verification; 3 <b>auditable</b> — every hot repair is written to the ledger and experience store for later human review.</div>
+  <div class="callout warn"><span class="lbl">Direct Response to a Key Risk · Threefold Insurance</span>AI generation + runtime hot repair = superposition of two uncertainties, requiring: 1 <b>rollbackable</b> — create a checkpoint before a online repair, automatic rollback on failure; 2 <b>provable</b> — the patch must pass symbolic-track equivalence verification; 3 <b>auditable</b> — every hot repair is written to the ledger and experience store for later human review.</div>
   <div class="diagram">
     <div class="mermaid">
 flowchart TD
@@ -618,30 +732,30 @@ flowchart TD
     B --> V
     V -->|fail| RB["Rollback - record - escalate"]
     V -->|pass| CP["Create checkpoint snapshot"]
-    CP --> HP["IR-layer minimal hot patch + hot load"]
+    CP --> HP["semantic-layer online repair + hot load"]
     HP --> W["Write to experience store"]
     W --> OK["Self-repair complete - system stronger"]
     </div>
-    <div class="cap">Figure 4 · IR-layer self-repair decision control flow, including rollback and audit branches</div>
+    <div class="cap">Figure 4 · semantic-layer self-repair decision control flow, including rollback and audit branches</div>
   </div>
-  <h3>8.5 Hardware-Topology-Aware Compilation Prioritization</h3>
-  <div class="callout quote"><span class="lbl">Corresponding to 2.3</span>The same IR does not have the same "optimal" instruction sequence on different physical carriers — repairing without regard to hardware may fix the logic while crippling performance.</div>
+  <h3>8.5 Hardware-Topology-Aware Execution Optimization</h3>
+  <div class="callout quote"><span class="lbl">Corresponding to 2.3</span>The same semantic layer does not have the same "optimal" instruction sequence on different physical carriers — repairing without regard to hardware may fix the logic while crippling performance.</div>
   <div class="grid g2">
-    <div class="card amber"><h4>Mandatory requirement</h4><p>Minimal patches and compilation prioritization must adapt to the current runtime environment's physical characteristics: instruction-set and extensions, accelerator cores and type, memory hierarchy and bandwidth, interconnect and access affinity. A "one-size-fits-all" patch is forbidden.</p></div>
+    <div class="card amber"><h4>Mandatory requirement</h4><p>Minimal patches and adaptive optimization must adapt to the current runtime environment's physical characteristics: instruction-set and extensions, accelerator units and type, memory hierarchy and bandwidth, interconnect and access affinity. A "one-size-fits-all" patch is forbidden.</p></div>
     <div class="card blue"><h4>Profile acquisition</h4><p>Detect at startup, refresh on change, record in the observability ledger; on a missing profile degrade to a conservative baseline and alert (see Chapter 21) — never guess hardware capabilities.</p></div>
-    <div class="card teal"><h4>Cost-model linkage</h4><p>The prioritization cost model (Chapter 4 Cerebellum) must take the hardware profile as input for instruction scheduling, operator fusion, and parallelism; different profiles may yield different patch variants, each independently passing dual-track verification.</p></div>
+    <div class="card teal"><h4>Cost-model linkage</h4><p>The prioritization deterministic cost model (Chapter 4 Cerebellum) must take the hardware profile as input for execution scheduling, operation merging, and parallelism; different profiles may yield different patch variants, each independently passing dual-track verification.</p></div>
     <div class="card purple"><h4>Reproducibility</h4><p>Each variant must record "profile fingerprint → selected prioritization strategy" so that a repair in the same environment can be reproduced and replayed.</p></div>
   </div>
   <div class="tw"><table>
     <thead><tr><th>Physical characteristic</th><th>Prioritization impact</th><th>Degradation when missing</th></tr></thead>
     <tbody>
-      <tr><td>Instruction set / extensions</td><td>Instruction selection, vectorization path</td><td>Conservative baseline instruction set</td></tr>
+      <tr><td>Instruction set / extensions</td><td>Instruction selection, vectorization path</td><td>Conservative baseline processor capabilities</td></tr>
       <tr><td>Accelerator cores / type</td><td>Parallelism, operator offload</td><td>Disable offload, host path</td></tr>
       <tr><td>Memory hierarchy / bandwidth</td><td>Data layout, cache blocking</td><td>Default blocking parameters</td></tr>
       <tr><td>Interconnect / memory affinity</td><td>Thread binding, data placement</td><td>Ignore affinity constraints</td></tr>
     </tbody>
   </table></div>
-  <div class="callout"><span class="lbl">Generality statement</span>This clause specifies only the paradigm requirement to "sense and adapt to hardware physical characteristics"; it binds to no specific instruction set, accelerator architecture, or compiler implementation.</div>
+  <div class="callout"><span class="lbl">Generality statement</span>This clause specifies only the paradigm requirement to "sense and adapt to hardware physical characteristics"; it binds to no specific processor capabilities, accelerator architecture, or buildr implementation.</div>
 </section>
 
 <!-- ================= CH9 ================= -->
@@ -649,7 +763,7 @@ flowchart TD
   <h2 class="sec"><span class="num">Chapter 9</span>Human-Machine Collaboration: Human Sovereignty and Tiered Authorization</h2>
   <p>Humans are not removed, but elevated to the position of "legislator / adjudicator."</p>
   <div class="clause"><span class="badge">Clause 9</span><p><strong>Veto Power.</strong> No AI agent may directly modify main-branch code or issue instructions to production without explicit human authorization. Human and machine are separated, with clear authority and responsibility.</p></div>
-  <div class="clause"><span class="badge">Clause 10</span><p><strong>Full-Spectrum White Box.</strong> All low-level instruction mappings, compilation prioritization, and graph reconstruction must provide a global "god's-eye view" ledger. No black box may exist in the living system.</p></div>
+  <div class="clause"><span class="badge">Clause 10</span><p><strong>Full-Spectrum White Box.</strong> All low-level operation mappings, adaptive optimization, and graph reconstruction must provide a global "god's-eye view" ledger. No black box may exist in the living system.</p></div>
   <div class="callout quote"><span class="lbl">Numbering Note</span>Clause numbering = seven axioms + ten normative clauses, continuous with no duplicates.</div>
   <h3>Tiered Authorization Model (Breaking the "Human Bottleneck")</h3>
   <div class="tw"><table>
@@ -702,7 +816,7 @@ flowchart TB
     B --> C["3 Collaborate<br/>NTP wakes Main Brain - human authorization"]
     C --> D["4 Verify<br/>immune dual-track - anti-self-deception"]
     D --> E["5 Consolidate<br/>write experience to memory store"]
-    E --> F["6 Repair<br/>IR-layer minimal hot patch"]
+    E --> F["6 Repair<br/>semantic-layer online repair"]
     F --> A
     style A fill:#EEEDFE,stroke:#534AB7,color:#26215C
     style B fill:#E6F1FB,stroke:#185FA5,color:#042C53
@@ -726,9 +840,9 @@ flowchart TB
   <div class="tw"><table>
     <thead><tr><th>Step</th><th>Action</th><th>What it does</th><th>Completion criterion (verifiable)</th></tr></thead>
     <tbody>
-      <tr><td>1</td><td><b>Delete</b></td><td>Remove pseudo-requirements, dead code, and over-abstraction for an imagined future</td><td>Compile and full regression green, with net code volume negative</td></tr>
+      <tr><td>1</td><td><b>Delete</b></td><td>Remove pseudo-requirements, dead code, and over-abstraction for an imagined future</td><td>Build and full regression green, with net code volume negative</td></tr>
       <tr><td>2</td><td><b>Simplify</b></td><td>Reduce coupling, eliminate duplicate paths, narrow interfaces</td><td>Complexity and cross-module dependencies do not rise; interface parameters decrease</td></tr>
-      <tr><td>3</td><td><b>Optimize</b></td><td>Prioritize low-level instructions and tune the cost model on the simplified structure</td><td>Metrics improve with correctness unchanged; results reproducible (8.5)</td></tr>
+      <tr><td>3</td><td><b>Optimize</b></td><td>Prioritize low-level operations and tune the deterministic cost model on the simplified structure</td><td>Metrics improve with correctness unchanged; results reproducible (8.5)</td></tr>
       <tr><td>4</td><td><b>Accelerate</b></td><td>Raise concurrent throughput: batching, pipelining, caching, distribution by hardware topology</td><td>No new races or shared state; the stress curve is explainable</td></tr>
       <tr><td>5</td><td><b>Automate</b></td><td>Only at the end, freeze pipelines, gates, and inspection</td><td>Human intervention points can be enumerated</td></tr>
     </tbody>
@@ -761,7 +875,7 @@ flowchart TB
       <tr><td><strong>L1</strong></td><td>Tool-assisted</td><td>AI completes/suggests, humans review everything</td><td>AI assistance but no automatic loop</td></tr>
       <tr><td><strong>L2</strong></td><td>Cerebellum in place</td><td>Local rules intercept high-frequency decisions, zero tokens</td><td>Routine decisions bypass the LLM</td></tr>
       <tr><td><strong>L3</strong></td><td>Memory loop</td><td>Experience store + retrieval augmentation effective</td><td>Same problem is not re-asked of the Main Brain</td></tr>
-      <tr><td><strong>L4</strong></td><td>Self-repair running</td><td>IR-layer hot patches + flywheel turning</td><td>Runtime repair without restart</td></tr>
+      <tr><td><strong>L4</strong></td><td>Self-repair running</td><td>semantic-layer online repairs + flywheel turning</td><td>Runtime repair without restart</td></tr>
       <tr><td><strong>L5</strong></td><td>Living system</td><td>Unified development-maintenance, controlled self-iteration</td><td>Mutate–verify–consolidate fully automated, humans only strategic authorization</td></tr>
     </tbody>
   </table></div>
@@ -780,7 +894,7 @@ flowchart TB
       <tr><td>Memory hit rate</td><td>retrieval-augmented experience hits / Main Brain awakenings</td><td>↑</td></tr>
       <tr><td>Experience promotion rate</td><td>share of experience consolidated into Cerebellum rules</td><td>↑</td></tr>
       <tr><td>First-pass gate rate</td><td>share of proposals passing dual-track on the first try</td><td>↑</td></tr>
-      <tr><td>Self-repair success rate</td><td>successful hot patches / attempted hot patches</td><td>↑</td></tr>
+      <tr><td>Self-repair success rate</td><td>successful online repairs / attempted online repairs</td><td>↑</td></tr>
       <tr><td>Rollback rate</td><td>failed rollbacks / total changes</td><td>↓</td></tr>
       <tr><td>MTTR</td><td>mean time to repair</td><td>↓</td></tr>
       <tr><td>Silent-failure count</td><td>number of exceptions swallowed without reporting</td><td>= 0 (red line)</td></tr>
@@ -851,6 +965,63 @@ flowchart TB
     <div class="card teal"><h4>Summary needs evidence + binding must be precise</h4><p>A summary must give its evidence chain, never a bare conclusion; an intent binding must point to a specific candidate action (ID + parameters + target environment), preventing "approve A, execute B."</p></div>
   </div>
   <div class="callout"><span class="lbl">Full traceability</span>Every unfold, summary, binding, and denial is written to the ledger with an attest credential for replay. This pattern is the confluence of "full-spectrum white box" (Axiom 6) and "human sovereignty" (Axiom 5): Fold 1 ensures humans <b>understand</b>, Fold 2 ensures humans <b>decide</b>.</div>
+  <h3>13.5 Interaction Traceability: Log Form and Replay</h3>
+  <div class="callout warn"><span class="lbl">Do we need logs? Yes</span>Not raw chat transcripts, but a <b>structured interaction event log</b>: the minimum facts sufficient to reconstruct responsibility and decisions — replayable without leaking privacy or burning tokens.</div>
+  <div class="tw"><table>
+    <thead><tr><th>Tier</th><th>Records</th><th>Retention</th><th>Audience</th></tr></thead>
+    <tbody>
+      <tr><td><b>L1 Audit</b></td><td>Who, when, evidence, primitive, authorizer, outcome, clause applied</td><td>Immutable, guaranteed delivery, long-term</td><td>Auditors, governance, regulators</td></tr>
+      <tr><td><b>L2 Runtime</b></td><td>Latency, hit rate, tokens/cost, retries, environment profile</td><td>Sampled, short-term</td><td>Developers, operations</td></tr>
+      <tr><td><b>L3 Summary</b></td><td>One human sentence: what / why / who approved / how to undo</td><td>Same lifecycle as L1</td><td>Operators, business stakeholders</td></tr>
+    </tbody>
+  </table></div>
+  <div class="tw"><table>
+    <thead><tr><th>L1 field</th><th>Plain meaning</th><th>Why mandatory</th></tr></thead>
+    <tbody>
+      <tr><td><code>trace-id</code></td><td>Unique ID of this interaction</td><td>Links scattered records into one story (22.1)</td></tr>
+      <tr><td><code>seq</code> / <code>ts</code></td><td>Chain position / timestamp with timezone</td><td>Order and incident alignment</td></tr>
+      <tr><td><code>actor</code></td><td>Initiator: human / organ / agent (stable ID)</td><td>Establishes accountability</td></tr>
+      <tr><td><code>primitive</code></td><td>Which primitive was called (14.2)</td><td>Records the actual action</td></tr>
+      <tr><td><code>payload_digest</code></td><td>Digest/hash, never raw text</td><td>Verifiable, private, compact</td></tr>
+      <tr><td><code>evidence_ref</code></td><td>Experience / rule / clause ID relied upon</td><td><b>Answers "on what grounds"</b></td></tr>
+      <tr><td><code>authorization</code></td><td>Intent-binding credential from Fold 2</td><td>Proves explicit approval</td></tr>
+      <tr><td><code>result</code></td><td>Success / failure / rollback / degradation + reason</td><td>Bad news must be recorded (10.5)</td></tr>
+      <tr><td><code>prev_hash</code></td><td>Previous record's hash</td><td>Tampering breaks the chain</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout warn"><span class="lbl">Four disciplines</span>① <b>No bulk capture</b> — raw conversations/source/full logs never enter L1. ② <b>Provenance required</b> — no <code>evidence_ref</code> means "unfounded decision" = contamination. ③ <b>One-click replay</b> — a <code>trace-id</code> reconstructs observe→attest (28.1). ④ <b>Logs are not gates</b> — recording is not verification; gates still belong to the Immune System (Ch.7).</div>
+  <div class="callout quote"><span class="lbl">Logs are evidence</span>L1 supports compliance proof (20.2), postmortems (21.5), and promotion audits (24.3). <b>An interaction without logs has no evidence of ever having occurred.</b></div>
+  <h3>13.6 Visualization Stage List</h3>
+  <div class="callout warn"><span class="lbl">Principle</span>Every stage affecting "should a human approve, and can we question it later" must be visualized; everything visualized must drill down to a <code>trace-id</code>.</div>
+  <div class="tw"><table>
+    <thead><tr><th>Stage</th><th>Audience</th><th>Must show</th><th>Why</th><th>Ref</th></tr></thead>
+    <tbody>
+      <tr><td>① Observe</td><td>Ops/dev</td><td>State digest, anomalies, impact</td><td>Early detection</td><td>14.2 · 28.1</td></tr>
+      <tr><td>② Classify/Digest</td><td>Operator</td><td>Cognitive Summary (Fold 1): intent, candidates, evidence, risks</td><td>Understanding precedes approval</td><td>13.4 · 5.4</td></tr>
+      <tr><td>③ Authorize</td><td>Human</td><td>Intent Binding (Fold 2): action ID, params, target, undo</td><td>Prevents approve-A-execute-B</td><td>9.3 · 13.4</td></tr>
+      <tr><td>④ Uplink</td><td>Human / cost owner</td><td>Why escalate, tried rules, budget, profile</td><td>Cost transparency</td><td>5.4 · 5.5 · 18.1</td></tr>
+      <tr><td>⑤ Verify</td><td>Dev / auditor</td><td>Dual-track results, gate reasons, evidence chain</td><td>Trust from evidence</td><td>Ch.7 · 26.3</td></tr>
+      <tr><td>⑥ Apply/Rollback</td><td>Ops</td><td>Before/after diff, rollback point, active version</td><td>Reversibility</td><td>Ch.8 · 21.1</td></tr>
+      <tr><td>⑦ Repair/Postmortem</td><td>Stakeholders</td><td>Timeline, root cause, repair, review date</td><td>Incidents become experience</td><td>21.5</td></tr>
+      <tr><td>⑧ Promotion</td><td>Governance</td><td>Source, N reproductions, endorser, relevance</td><td>Anti-poisoning</td><td>24.3</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout warn"><span class="lbl">Three hard constraints</span>Conclusions and evidence on the same screen (else Axiom 6 violated); every item drills down to digests, evidence IDs, and <code>trace-id</code>; accessibility — no color/sound-only information, text alternatives, keyboard access.</div>
+  <h3>13.7 Interaction Friendliness Criteria</h3>
+  <div class="callout quote"><span class="lbl">Friendly ≠ pretty</span>It means <b>using the system safely without guessing</b>. Friendliness is a checkable clause, not an aesthetic preference.</div>
+  <div class="tw"><table>
+    <thead><tr><th>Criterion</th><th>Requirement</th><th>Evidence</th></tr></thead>
+    <tbody>
+      <tr><td>Understandable</td><td>Plain explanation on first use; no bare codenames; Appendix A searchable</td><td>100% glossary coverage</td></tr>
+      <tr><td>Predictable</td><td>State what will happen, scope, and authorization need</td><td>Fold 1 summary (13.4)</td></tr>
+      <tr><td>Reversible</td><td>Each side effect has a rollback point and undo entry</td><td>L1 rollback field (13.5)</td></tr>
+      <tr><td>Timely feedback</td><td>Pending / verifying / applied / rolled back visible; timeouts reported</td><td>State machine (5.5)</td></tr>
+      <tr><td>Not overwhelming</td><td>3–5 items at a time; details on drill-down; tiered alerts</td><td>23.2</td></tr>
+      <tr><td>Accessible</td><td>No single-sensory dependency; text alternatives; keyboard; zoom</td><td>13.6</td></tr>
+      <tr><td>Accurate wording</td><td>"AI proposes, you approve/deny" — never "AI has decided"</td><td>Axiom 5</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout quote"><span class="lbl">Beginner-usable</span>An interface meeting all seven needs no extra training for safe operation.</div>
 </section>
 
 <!-- ================= CH14 ================= -->
@@ -879,7 +1050,7 @@ flowchart TB
       <tr><td>Deliberate</td><td><code>plan</code></td><td>generate a multi-step action plan</td><td>D3</td></tr>
       <tr><td>Act</td><td><code>invoke</code></td><td>call an external tool (MCP contract)</td><td>D2</td></tr>
       <tr><td>Act</td><td><code>generate</code></td><td>generate code/text/patch draft</td><td>D3</td></tr>
-      <tr><td>Act</td><td><code>patch</code></td><td>land a minimal modification in the IR layer</td><td>D1</td></tr>
+      <tr><td>Act</td><td><code>patch</code></td><td>land a minimal modification in the semantic layer</td><td>D1</td></tr>
       <tr><td>Verify</td><td><code>prove</code></td><td>symbolic-track equivalence proof</td><td>D0</td></tr>
       <tr><td>Verify</td><td><code>regress</code></td><td>statistical-track regression verification</td><td>D0</td></tr>
       <tr><td>Verify</td><td><code>attest</code></td><td>generate an audit credential and write to ledger</td><td>D0</td></tr>
@@ -1131,7 +1302,7 @@ flowchart TB
       <tr><td>Main Brain</td><td>hallucination / timeout / unavailability</td><td>wrong candidates</td><td>gate pass rate drops sharply</td><td>reject output, fall back to local</td></tr>
       <tr><td>Hippocampus</td><td>memory pollution / retrieval failure</td><td>negative flywheel</td><td>abnormal hit rate</td><td>freeze writes, empty-memory mode</td></tr>
       <tr><td>Immune</td><td>gate bypass / missed detection</td><td>contamination enters mainline</td><td>ledger gap</td><td>reject changes, enter read-only</td></tr>
-      <tr><td>Self-Repair</td><td>hot patch failure</td><td>runtime corruption</td><td>rollback rate rises</td><td>automatic rollback + stop self-repair</td></tr>
+      <tr><td>Self-Repair</td><td>online repair failure</td><td>runtime corruption</td><td>rollback rate rises</td><td>automatic rollback + stop self-repair</td></tr>
       <tr><td>Sovereignty</td><td>authorization chain failure</td><td>unauthorized changes</td><td>side effects without credentials</td><td>reject side effects, human takeover</td></tr>
     </tbody>
   </table></div>
@@ -1311,7 +1482,7 @@ flowchart LR
     <thead><tr><th>Anti-pattern</th><th>Consequence</th><th>Correct practice</th></tr></thead>
     <tbody>
       <tr><td>Start with full automation</td><td>hallucination enters mainline, cost explosion</td><td>solidify foundation + Cerebellum first</td></tr>
-      <tr><td>Self-repair without foundation</td><td>hot patch without rollback = disaster</td><td>do steps 2, 3, 5 before step 6</td></tr>
+      <tr><td>Self-repair without foundation</td><td>online repair without rollback = disaster</td><td>do steps 2, 3, 5 before step 6</td></tr>
       <tr><td>Pollute store before governance</td><td>negative flywheel</td><td>write only after verification</td></tr>
       <tr><td>One-shot full migration</td><td>uncontrollable risk surface</td><td>shadow + canary gradual rollout</td></tr>
       <tr><td>Treat as tool purchase</td><td>buying a platform ≠ landing the paradigm</td><td>build organizational governance in parallel</td></tr>
@@ -1608,12 +1779,62 @@ flowchart LR
 <!-- ================= APPENDIX A ================= -->
 <section id="appa">
   <h2 class="sec"><span class="num">Appendix A</span>Glossary</h2>
+  <div class="callout quote"><span class="lbl">Three parts</span><b>A.0 plain-language core glossary</b> for first-time readers; <b>A.1 numbers and thresholds explained</b> for every figure; the table below is the <b>complete term index</b>. Each entry states source type: "original to this specification" or "adopted" from industry usage.</div>
+  <h3>A.0 Core glossary in plain language</h3>
+  <div class="tw"><table>
+    <thead><tr><th>Term</th><th>One sentence, plainly</th><th>Source type</th><th>Definition / first appearance</th><th>English</th></tr></thead>
+    <tbody>
+      <tr><td>ANE</td><td>AI-native engineering: software evolving while it runs</td><td>Original (acronym)</td><td>Exec summary · 0.2</td><td>AI Native Engineering</td></tr>
+      <tr><td>Living system</td><td>Software that senses, decides, remembers, self-repairs, and stays under human control</td><td>Original (paradigm)</td><td>Preface · 0.4</td><td>Living Software System</td></tr>
+      <tr><td>Skeleton</td><td>The part that must not change: foundations and hard rules</td><td>Original (role)</td><td>2.2 · Axiom 1</td><td>Skeleton</td></tr>
+      <tr><td>Cerebellum</td><td>Local fast reflex: check a rule, decide now, never ask the LLM</td><td>Original (role, metaphor)</td><td>4.1 · 4.4 · Axiom 3</td><td>Cerebellum</td></tr>
+      <tr><td>Main Brain</td><td>Reasoning engine woken only for unseen problems; proposes, never executes</td><td>Original (role, metaphor)</td><td>5.1 · 5.3 · Axiom 3</td><td>Main Brain</td></tr>
+      <tr><td>Hippocampus</td><td>Memory store: successes and failures are recorded so they are not repeated</td><td>Original (role, metaphor)</td><td>6.1 · 6.2</td><td>Hippocampus</td></tr>
+      <tr><td>Immune System</td><td>Gates and verification: unproven generation is not admitted</td><td>Original (role, metaphor)</td><td>7.1 · Axiom 6</td><td>Immune System</td></tr>
+      <tr><td>Self-Repair</td><td>Repair in place at runtime, leaving a rollback record</td><td>Original (role)</td><td>8.1 · 8.3</td><td>Self-Repair</td></tr>
+      <tr><td>Human Sovereignty</td><td>Humans authorize, veto, and stop everything at any time</td><td>Original (role)</td><td>9.1 · Axiom 5</td><td>Human Sovereignty</td></tr>
+      <tr><td>Unified Semantic Layer</td><td>Deterministic middle layer between design and execution; also the repair point</td><td>Original (generalized)</td><td>2.3 · 8.2</td><td>Unified Semantic Layer</td></tr>
+      <tr><td>D0–D3</td><td>Four risk tiers from "never touch" to "may generate"</td><td>Original (tiers)</td><td>Ch. 3 · A.1</td><td>Determinism Tiers</td></tr>
+      <tr><td>NTP</td><td>Structured distress/proposal packets, not chat</td><td>Original (protocol)</td><td>5.2 · 5.4</td><td>Neurotransmitter Protocol</td></tr>
+      <tr><td>Interaction primitive</td><td>Smallest action: observe, classify, invoke, verify...</td><td>Original (primitive set)</td><td>14.2</td><td>Interaction Primitive</td></tr>
+      <tr><td>Experience promotion</td><td>Successful experience becomes a local rule — no more LLM calls</td><td>Original (mechanism)</td><td>6.3 · 24.3</td><td>Experience Promotion</td></tr>
+      <tr><td>Dual-Fold Collaboration</td><td>Fold 1 shows evidence, Fold 2 authorizes; never merged</td><td>Original (pattern)</td><td>13.4</td><td>Dual-Fold Collaboration</td></tr>
+      <tr><td>Flywheel</td><td>Sense → decide → collaborate → verify → consolidate → repair</td><td>Original (mechanism)</td><td>10.1</td><td>Flywheel</td></tr>
+      <tr><td>Audit ledger</td><td>Structured chain of who / when / on what grounds / what happened</td><td>Adopted + specified here</td><td>13.5 · 28.1 · Axiom 6</td><td>Audit Ledger</td></tr>
+      <tr><td>trace-id</td><td>Unique ID of one interaction, linking all its records</td><td>Adopted + named here</td><td>22.1 · 13.5</td><td>Trace Identifier</td></tr>
+      <tr><td>RAG / MCP / A2A</td><td>Retrieval augmentation; standard tool and agent protocols</td><td>Adopted</td><td>0.3 · 6.1 · 15.1 · 16.1</td><td>RAG / MCP / A2A</td></tr>
+      <tr><td>NIST RMF / EU AI Act / ISO 42001 / FMEA / RACI</td><td>External frameworks internalized as engineering mechanisms</td><td>Adopted</td><td>20.1 · 20.2 · 21.2 · 20.3</td><td>(same)</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout quote"><span class="lbl">Source discipline</span>"Original" terms are defined authoritatively here — cite ANE when reusing. "Adopted" terms keep their industry meaning; this specification only assigns them a role.</div>
+  <h3>A.1 Numbers and thresholds explained</h3>
+  <div class="tw"><table>
+    <thead><tr><th>Value</th><th>Detailed meaning</th><th>Why</th><th>Source</th><th>Provenance</th><th>Adjustment</th></tr></thead>
+    <tbody>
+      <tr><td><b>7 axioms / 7 organs</b></td><td>Seven supreme laws; seven engineering roles mapped one-to-one</td><td>Covers structure, decision, memory, sovereignty, auditability, safety + mutation constraint</td><td>Original</td><td>Ch.1 · 2.2 · 25.5</td><td>Meta-spec revision only</td></tr>
+      <tr><td><b>D0–D3 (4)</b></td><td>Immutable / provably mutable / auditable mutable / generatable</td><td>Further tiers cost more authorization than they save</td><td>Original</td><td>Ch.3</td><td>Subdivide, never reduce</td></tr>
+      <tr><td><b>L0–L5 (6)</b></td><td>Six verifiable maturity levels</td><td>Each adds one capability and evidence gate</td><td>Original</td><td>Ch.11</td><td>No level skipping</td></tr>
+      <tr><td><b>G1–G7 (7)</b></td><td>Five release gates + structure + localization</td><td>Three inspection objects cannot substitute for one another</td><td>Original (idea adopted)</td><td>33.3 · 37.2 · 35.5</td><td>Add sub-items, keep numbering</td></tr>
+      <tr><td><b>≥80% interception / offline</b></td><td>8 in 10 decisions local; 8 in 10 transactions survive offline</td><td>Intersection of token saving, latency, offline capability</td><td>Original</td><td>4.4 · 12.1 · 21.3b</td><td>Per SLO, with rationale</td></tr>
+      <tr><td><b>N ≥ 3 reproductions</b></td><td>Three independent reproductions before promotion</td><td>Once is chance, twice same-source coincidence, three excludes inbreeding</td><td>Original</td><td>24.3 · 13.6⑧</td><td>Raise only, never lower to 1</td></tr>
+      <tr><td><b>99% grey release</b></td><td>Release at 99% certainty, not 100%</td><td>100% stops the feedback loop</td><td>Original</td><td>10.5 · 27.4</td><td>D0 never grey</td></tr>
+      <tr><td><b>1–3 uplinks</b></td><td>Max escalations per task in Exploit mode</td><td>Tolerates one retry, cannot mask missing rules</td><td>Original</td><td>5.5</td><td>D1 config + gate</td></tr>
+      <tr><td><b>D0 s / D1 tens of s / D2 min</b></td><td>Max wait by risk tier</td><td>Higher risk cannot wait</td><td>Original</td><td>5.5</td><td>Register within range</td></tr>
+      <tr><td><b>2 min/round · 60 min cycle</b></td><td>One topic per round; 30 rounds per cycle</td><td>Forces focus; yields reviewable unit</td><td>Original</td><td>App. C–H</td><td>Cadence changes; loop does not</td></tr>
+      <tr><td><b>Rounds 10/20/30</b></td><td>Minor version every 10 rounds; v1.0.0 at 30</td><td>Ten rounds form an acceptable stage</td><td>Original (semver adopted)</td><td>App. C–H · 22.2</td><td>Follow semver</td></tr>
+      <tr><td><b>5 steps / 6 stages / 4 iron laws</b></td><td>De-bloat chain, evolution loop, four two-brain failures</td><td>Complete coverage of each domain</td><td>Original</td><td>10.4 · 10.1 · 5.4</td><td>Order and count invariant</td></tr>
+      <tr><td><b>2 folds / 3 log tiers / 8 stages / 7 criteria</b></td><td>Understanding vs approval; three readers; all approval-affecting nodes; seven usability dimensions</td><td>Each dimension independently necessary</td><td>Original</td><td>13.4–13.7</td><td>May add, may not delete</td></tr>
+      <tr><td><b>3–5 items at a time</b></td><td>UI item upper bound</td><td>Beyond working memory, readers miss items</td><td>Adopted (cognitive load) + chosen here</td><td>13.7 · 23.2</td><td>Per user research</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout warn"><span class="lbl">Numerical discipline</span>Thresholds are defaults plus auditable adjustments, not physical constants. Every change records new value, rationale, approver, review date, and D-tier configuration (22.4). <b>A number without provenance may not enter a normative clause.</b></div>
+  <h3>Term definitions (complete index)</h3>
   <div class="tw"><table>
     <thead><tr><th>Term</th><th>Definition</th></tr></thead>
     <tbody>
       <tr><td>ANE</td><td>AI Native Engineering — AI-native software engineering</td></tr>
-      <tr><td>Unified IR layer</td><td>deterministic foundation connecting high-level semantics and low-level instructions, serving as both compilation hub and self-repair carrier</td></tr>
-      <tr><td>Cerebellum</td><td>local deterministic high-frequency adjudication layer: rule base + state machine + cost model</td></tr>
+      <tr><td>semantic layer</td><td>deterministic foundation connecting high-level semantics and low-level operations, serving as both semantic transformation hub and self-repair carrier</td></tr>
+      <tr><td>Cerebellum</td><td>local deterministic high-frequency adjudication layer: rule base + state machine + deterministic cost model</td></tr>
       <tr><td>Main Brain</td><td>on-demand LLM agent handling unknown, complex problems</td></tr>
       <tr><td>NTP</td><td>Neural Transmitter Protocol, the structured compressed-context format from Cerebellum to Main Brain</td></tr>
       <tr><td>Hippocampus</td><td>experience vector store + retrieval augmentation mechanism</td></tr>
@@ -1655,7 +1876,7 @@ flowchart LR
       <tr><td>Seed Rules</td><td>initial golden rule set injected by human experts during cold start, immune-verified</td></tr>
       <tr><td>Explore / Exploit modes</td><td>Explore (high-frequency Main Brain sampling) / Exploit (local-priority token saving), switched by coverage threshold</td></tr>
       <tr><td>Knowledge quenching</td><td>seed rules and Explore-phase samples quenched into stable rules after immune verification</td></tr>
-      <tr><td>Hardware-topology awareness</td><td>IR layer adaptively prioritizing compilation by runtime physical characteristics</td></tr>
+      <tr><td>Hardware-topology awareness</td><td>semantic layer adaptively optimizing execution strategies by runtime physical characteristics</td></tr>
       <tr><td>Dual-Fold Collaboration</td><td>Fold 1 judgment layer (Cognitive Summary) + Fold 2 authorization layer (Intent Binding)</td></tr>
       <tr><td>Cognitive Summary</td><td>Fold 1 output: intent, candidates, evidence, verification conclusions, risk warnings; not directly executable</td></tr>
       <tr><td>Intent Binding</td><td>Fold 2 output: credential binding human approval to a specific candidate action</td></tr>

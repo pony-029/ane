@@ -27,7 +27,7 @@
 - [Chapter 5: Main Brain Specification and the Neurotransmitter Protocol NTP](#chapter-5-main-brain-specification-and-the-neurotransmitter-protocol-ntp)
 - [Chapter 6: Memory Specification: Hippocampus and Experience Storage](#chapter-6-memory-specification-hippocampus-and-experience-storage)
 - [Chapter 7: Immune Specification: Dual-Track Verification and Anti-Self-Deception](#chapter-7-immune-specification-dual-track-verification-and-anti-self-deception)
-- [Chapter 8: Self-Repair Specification: The Instant Repair Law of the IR Layer](#chapter-8-self-repair-specification-the-instant-repair-law-of-the-ir-layer)
+- [Chapter 8: Self-Repair Specification: The Instant Repair Law of the Semantic Layer](#chapter-8-self-repair-specification-the-instant-repair-law-of-the-semantic-layer)
 - [Chapter 9: Human-Machine Collaboration: Human Sovereignty and Tiered Authorization](#chapter-9-human-machine-collaboration-human-sovereignty-and-tiered-authorization)
 - [Chapter 10: Evolution Theory: The Unified Development-Maintenance Flywheel](#chapter-10-evolution-theory-the-unified-development-maintenance-flywheel)
 - [Chapter 11: Adoption: The ANE Maturity Model L0–L5](#chapter-11-adoption-the-ane-maturity-model-l0l5)
@@ -69,13 +69,13 @@
 |---|---|
 | **What it is** | ANE is a software engineering paradigm for the age of AI agents, treating software as a "digital living organism" and constraining probabilistic intelligence with a deterministic skeleton. |
 | **Core contradiction** | Traditional engineering only knows determinism; AI wrappers only know probability. ANE draws a clear responsibility boundary between them: what can be proven goes to the static layer, what can only be inferred goes to intelligence, with gates isolating the two and humans making the final ruling. |
-| **Seven organs** | Skeleton (layered IR) · Cerebellum (local adjudication) · Main Brain (LLM) · Hippocampus (experience memory) · Immune System (dual-track verification) · Self-Repair (minimal repair) · Sovereignty (human authorization). |
+| **Seven organs** | Skeleton (layered semantic layer) · Cerebellum (local adjudication) · Main Brain (LLM) · Hippocampus (experience memory) · Immune System (dual-track verification) · Self-Repair (minimal repair) · Sovereignty (human authorization). |
 | **Three moats** | Cerebellum first (80% of decisions cost zero tokens) · memory promotion (a Main Brain insight becomes a Cerebellum instinct) · dual-track immunity (symbolic + statistical must both pass before release). |
 | **Unified development and maintenance** | Running is sensing, sensing is maintenance, maintenance is development, development is evolution — going live is not the end, it is the beginning of life. |
 | **Governance foundation** | Compliance alignment (NIST AI RMF / EU AI Act / ISO 42001) · fail-safe (circuit breaker + FMEA) · identity traceability (stable ID + AI-BOM) · human factors · memory boundaries · meta-governance. |
 | **Release engineering** | Artefact-based release: the specification derives external views from a single source of truth, with zero process-layer residue; three-tier information grading (N normative / E evidentiary / P process) + release gates make the specification itself "white-box, traceable, and anti-self-deception" first. |
 | **Internationalization and artefact governance** | Multi-language governance (source / authoritative translation / glossary / G7 translation fidelity) · artefact naming rules (formal without suffix / development with suffix / English edition) · structural integrity checks (G6: continuous numbering / appendix renumbering / valid anchors), fixing the broken appendix in the formal edition. |
-| **Cold start and memory governance** | Seed rules + explore/exploit adaptive switching (6.4) · hardware-topology awareness and adaptive compilation prioritization (2.3 / 8.5) · domestic regulatory alignment (20.2) · Dual-Fold Collaboration pattern (13.4 / 14.3) · Promotion Audit against memory poisoning (24.3). |
+| **Cold start and memory governance** | Seed rules + explore/exploit adaptive switching (6.4) · hardware-topology awareness and adaptive execution optimization (2.3 / 8.5) · domestic regulatory alignment (20.2) · Dual-Fold Collaboration pattern (13.4 / 14.3) · Promotion Audit against memory poisoning (24.3). |
 | **Evolution speed and dual-brain collaboration** | Five-step algorithm: delete → simplify → optimize → accelerate → automate, order inviolable (10.4) · execution discipline: three-sentence communication / no overnight bad news / integrated die-casting / 99% grey release (10.5) · three hard boundaries of the Cerebellum including no speculation (4.4) · hard boundary between the two brains and anti-crosstalk (5.3) · NTP two-way channel with four iron laws (5.4) · communication state machine and channel arbitration (5.5) · two-brain extreme states (21.3b). |
 | **Model carrier and engineering closure** | Model carrier governance: selection criteria / model card / upgrade-retirement / carrier replaceability (5.6) · prompt asset governance: template versioning + injection guard + frozen glossary interface (18.4) · incident response and blameless postmortem: linking "no overnight bad news" to promotion (21.5) · substantive ISO 42001 alignment (20.2) · NTP timeout and deduplication parameters (5.5) · three channel-arbitration observability metrics (12.1). |
 | **How to adopt** | Start with L2 Cerebellum + L3 memory (greatest benefit, lowest risk); add L4 self-repair only after immunity matures; L5 living systems are a long-term goal. |
@@ -91,12 +91,12 @@ We discard the traditional notion that "software is a static tool." In the AI er
 
 It is composed of seven organ types working in concert:
 
-- **The Skeleton (layered IR)** is the unshakeable law of physics, determining "what it is";
+- **The Skeleton (layered semantic layer)** is the unshakeable law of physics, determining "what it is";
 - **The Cerebellum (local deterministic scheduling layer)** provides high-frequency, zero-cost instinctive reflexes, determining "how it reacts quickly";
 - **The Main Brain (LLM agent)** awakens only when facing the unknown and complexity, determining "how it handles problems it has never seen";
 - **The Hippocampus (experience storage and retrieval augmentation)** makes every success and failure a permanent memory, determining "how it avoids repeating mistakes";
 - **The Immune System (multi-layer quality gates)** treats unproven generation as contamination, determining "how it stays pure";
-- **The self-repair engine (minimal IR-layer repair)** repairs itself in place during operation, determining "how it survives and heals while wounded";
+- **The self-repair engine (minimal semantic-layer repair)** repairs itself in place during operation, determining "how it survives and heals while wounded";
 - **Human sovereignty (tiered authorization interaction)** is the higher will it must submit to, determining "whether it should be allowed to evolve".
 
 In this organism, development and maintenance are no longer the two ends of a pipeline, but **the exhalation and inhalation of the same life process**: running is sensing, sensing is maintenance, maintenance is development, development is evolution.
@@ -133,6 +133,65 @@ ANE does not stand at either end of "traditional software engineering" or "AI-wr
 | Retrieval-augmented generation (RAG) | ANE elevates RAG from a "Q&A add-on" to a **memory organ of the living system**, a necessary capability for self-iteration |
 | Human-in-the-loop | ANE refines this into **tiered authorization**, balancing safety and efficiency while preventing humans from becoming a throughput bottleneck |
 
+### 0.4 Background, Reading Path, and the "Inspectability Contract"
+
+> For first-time readers. After this section you should be able to answer three questions: why biological metaphors are used, where to start reading, and where to verify any claim.
+
+**Why a "living system" and organs**: traditional software is treated as a machine — repair it after it breaks. AI-native systems behave more like living systems — sensing, adapting, and self-repairing while running. To make this complexity memorable, the specification uses seven organ names as **functional codenames**: Skeleton, Cerebellum, Main Brain, Hippocampus, Immune System, Self-Repair, and Human Sovereignty. They are **engineering roles, not biological assumptions**. Each has one unique responsibility, latency profile, and implementation anchor in Chapter 2, plus a plain-language entry with provenance in Appendix A.0. **No biological premise needs to be accepted** — treat the names as module labels.
+
+**Three background lines**: ① software engineering supplies the static foundation (version control, testing, gates, traceability) — inherited, not rejected; ② AI Agents supply generalized reasoning and natural-language interaction — constrained, not deified; ③ edge and heterogeneous environments supply physical constraints (compute, memory, interconnect) — the skeleton must sense its environment rather than assume unlimited resources. A new paradigm is needed exactly at their intersection.
+
+**Reading path for beginners (about ten minutes)**:
+
+1. Executive summary (one-page overview) — what the whole paradigm says;
+2. This section 0.4 + Appendix A.0 plain-language glossary — translate codenames into everyday words;
+3. Chapter 1, seven axioms — which red lines cannot be crossed;
+4. Chapter 2 organ table + Chapter 14 primitive table — what the system consists of and what actions it can take;
+5. Chapter 13 interaction specification — how humans collaborate, trace, and see;
+6. Only when implementing: Chapter 31 economics, Chapter 27 migration, Chapter 26 conformance.
+
+**Inspectability contract (a constraint the specification imposes on itself)**:
+
+| Reader's question | Where to look | Guarantee |
+|---|---|---|
+| "What does this term mean?" | Appendix A (plain explanation + first-appearance provenance + source type) | Exactly one authoritative definition per core term |
+| "What does this action do?" | Chapter 14 primitive table (determinism tier + side-effect flag) | Every primitive has name, semantics, D-tier, authorization flag |
+| "Can I see this step?" | 13.6 visualization stage list | Every key stage has content, audience, and provenance |
+| "What happened afterwards?" | 13.5 interaction logs + Chapter 22 `trace-id` | One `trace-id` links the whole interaction |
+| "What is this requirement based on?" | Clause IDs + Chapter 1 axioms + Appendix A.1 | Every normative requirement traces to an axiom or superior clause |
+
+> **If a reader cannot understand something, that is a defect of the specification, not of the reader.** Submit such cases as issues and fix them through the meta-specification process in Chapter 25. All numbers (80%, N ≥ 3, 99%, 1–3 uplinks, D0–D3, L0–L5, G1–G7) are explained in Appendix A.1 with meaning, rationale, source, and adjustment rules. **A number without provenance may not enter a normative clause.**
+
+### 0.5 First Principles: Where Every Design Comes From
+
+> This specification does not accept "the industry does it this way" as a reason. Every axiom, mechanism, term, and number must trace back to one of the following irreducible first principles; anything that cannot must not enter normative clauses.
+
+| ID | First principle | Disciplinary source | ANE designs derived from it |
+|---|---|---|---|
+| **P1** | What can be proven should be proven; only the unprovable is delegated to inference | Computing theory and formal methods (adopted) | Axioms 1–2, immutable skeleton, deterministic Cerebellum, no guessing at D0/D1, dual-track verification (4.4 / 7.x) |
+| **P2** | Intelligence and compute are scarce and must be allocated by deterministic benefit | Resource allocation and economics (adopted) | Cerebellum-first, `budget_hint`, arbitration queueing, Explore→Exploit, rate limiting (3 / 5.5 / 6.4 / 18.1) |
+| **P3** | Every decision affecting the future must leave verifiable traces | Auditing and information theory (adopted) | Axiom 6, `attest`, ledger, three log tiers, trace-id replay, no-provenance = contamination (10 / 13.5 / 22.1 / 28.x) |
+| **P4** | Final responsibility stays with the actor able to bear consequences — it does not transfer as intelligence rises | Responsibility ethics and governance (adopted) | Axiom 5, tiered authorization, Dual-Fold, Main Brain never holds A, global circuit breaker, human endorsement (5 / 9 / 13.4 / 20.3 / 24.3) |
+| **P5** | Without feedback there is no evolution; loop speed determines adaptability | Cybernetics and system dynamics (adopted) | Flywheel, experience promotion, five-step algorithm, no overnight bad news, 99% grey release, postmortems (10 / 6.3 / 21.5) |
+| **P6** | Under uncertainty, fall back to a known safe state; safety precedes efficiency | Safety engineering and defense in depth (adopted) | Stability first, `UnknownSignal`, degradation ladder, one-way tightening, sandbox isolation, circuit breaker (Axiom 7 / 4.4 / 5.4 / 21.x) |
+| **P7** | Interfaces must be decoupled from current capability to accommodate stronger intelligence | Evolutionary architecture and open–closed principle (adopted) | Main Brain as capability interface rather than a model, stable roles with replaceable implementations, D-tier by risk not model capability (5.6 / 0.6) |
+
+**Disciplines for using first principles**: ① **Traceability duty** — every new clause must record its P-number and derivation chain in the review record; unlabelled proposals may not enter the body. ② **Conflict arbitration** — P4 (responsibility) > P6 (safety) > P3 (traceability) > P1 (determinism); efficiency and cost may never override responsibility or safety. ③ **No invented principles** — P1–P7 combine established disciplinary foundations; ANE's originality lies in organizing them into executable engineering constraints. ④ **Relationship to appendices** — A.0 source types and A.1 numeric rationales both ultimately rest on these P-numbers. "Because the specification says so" is not a reason; "because P3 requires traceability" is.
+
+### 0.6 Evolutionary Compatibility: Grounded Today, Ready for AGI and Recursive Self-Improvement
+
+> A specification must solve today's problems without blocking tomorrow's paths. **ANE is not a usage manual for one generation of models; it defines the responsibility and evidence boundary that remains valid no matter how intelligent the system becomes.**
+
+| Layer | Current requirement | Compatibility with stronger general intelligence / recursive self-improvement | Provenance |
+|---|---|---|---|
+| **Interface** | The Main Brain connects through a uniform capability interface; clauses name no specific model | Carrier upgrades or replacements do not change N-layer clauses; stronger capability plugs in | 5.6 · P7 |
+| **Authority** | Authorization by D0–D3 risk tier, not by "what the model can currently do" | Higher intelligence does not change permission boundaries; D0 remains untouchable | Ch. 3 · P4 |
+| **Improvement** | The flywheel permits promotion and self-repair, subject to immune verification, human signature, and ledger | Recursive self-improvement may recurse only inside gates; it may not modify gates, axioms, or the authorization chain | 24.3 · 25.5 · P4/P6 |
+
+**Four forward-looking disciplines**: ① **Capability-independent** — roles, primitives, and permissions are defined by risk and responsibility, never by current model ceilings, so model upgrades do not rewrite the specification. ② **Conservative defaults** — defaults take the conservative end of ranges; relaxation requires explicit human authorization (the reverse of one-way tightening, see 21.3). ③ **Bounded recursion** — every self-improvement action must be replayable (P3), stay within D0 (P1/P6), leave gates and axioms untouched (P4), and have convergence criteria in resources and time (P2); otherwise it is an unauthorized mutation. ④ **Sovereignty does not decay** — as intelligence, autonomy, and self-improvement increase, human veto, global circuit breaking, and audit intensity increase **in step, never decrease**. Any proposal to "remove human review because the system is now reliable enough" violates P4 and is rejected outright.
+
+> **In one sentence**: this specification is not "how to use today's model" but "the responsibility and evidence boundary that does not expire when the Main Brain is replaced or becomes far stronger." Present feasibility determines how to land it; forward compatibility determines that it is not overturned by the future.
+
 ---
 
 ## Chapter 1: Core Axioms (Static-Dynamic Duality)
@@ -146,7 +205,7 @@ The underlying logic of software must remain **absolutely static and determinist
 ### Axiom 2: Stillness within motion, motion within stillness
 
 - **Stillness within motion**: every dynamic generation, refactoring, or execution by AI must be constrained by static rules (gates, consistency checks, regression). Unverified AI output is treated as "contamination."
-- **Motion within stillness**: the static foundation must possess adaptive self-repair. When the runtime environment changes, static code can drive AI to quickly find and hot-load new optimization patches.
+- **Motion within stillness**: the static foundation must possess adaptive self-repair. When the runtime environment changes, static code can drive AI to quickly find and online-load new optimization patches.
 
 ### Axiom 3: Cerebellum first, Main Brain scarce
 
@@ -184,9 +243,9 @@ flowchart TB
         HIPO["Hippocampus<br/>experience storage - retrieval augmentation"]
     end
     subgraph STATIC["Static Deterministic Side"]
-        CEREB["Cerebellum<br/>local rules / state machine / cost model"]
+        CEREB["Cerebellum<br/>local rules / state machine / deterministic cost model"]
         IMMU["Immune System<br/>quality gates - dual-track verification"]
-        BASE["Layered IR Foundation<br/>static skeleton - self-repair carrier"]
+        BASE["Layered semantic layer Foundation<br/>static skeleton - self-repair carrier"]
     end
     HUM -->|authorize veto| BRAIN
     HUM -->|adjudicate| IMMU
@@ -196,19 +255,19 @@ flowchart TB
     HIPO <-->|experience hit| CEREB
     IMMU -->|verification passed| BASE
     BASE -->|runtime exception report| CEREB
-    BASE -->|minimal hot patch| BASE
+    BASE -->|minimal online repair| BASE
 ```
 
 ### 2.2 Organ responsibilities at a glance
 
 | Organ | English | Core responsibility | Latency | Consumes tokens | Typical implementation |
 |---|---|---|---|---|---|
-| Skeleton | Skeleton | Deterministic foundation for types, memory, and semantic equivalence | Resident | No | Layered IR and compiler backend |
-| Cerebellum | Cerebellum | High-frequency scheduling, instruction prioritization, local adjudication | Microseconds to milliseconds | No | Local rule base + state machine + cost model |
+| Skeleton | Skeleton | Deterministic foundation for types, memory, and semantic equivalence | Resident | No | Layered semantic foundation and implementation adaptation layer |
+| Cerebellum | Cerebellum | High-frequency scheduling, execution-strategy optimization, local adjudication | Microseconds to milliseconds | No | Local rule base + state machine + deterministic cost model |
 | Main Brain | Main Brain | Deep reasoning for unknown, complex problems | Seconds to minutes | Yes (controlled) | On-demand LLM agent |
 | Hippocampus | Hippocampus | Experience consolidation and retrieval | Persistent | Small amount on retrieval | Experience vector store + retrieval augmentation |
-| Immune | Immune System | Gates, consistency checks, regression, anti-self-deception | Compile time / pre-merge | No | Multi-layer quality gates + full regression |
-| Self-Repair | Self-Repair | Runtime hot patches and in-place optimization | Runtime | Case-dependent | IR-layer minimal repair engine |
+| Immune | Immune System | Gates, consistency checks, regression, anti-self-deception | Build time / pre-merge | No | Multi-layer quality gates + full regression |
+| Self-Repair | Self-Repair | Runtime online repairs and in-place optimization | Runtime | Case-dependent | semantic-layer minimal repair engine |
 | Sovereignty | Human Sovereignty | Authorization, veto, goal setting | On demand | No | Tiered authorization interface |
 
 ### 2.3 Data and control dual flows
@@ -216,21 +275,21 @@ flowchart TB
 ```mermaid
 flowchart LR
     subgraph DF["Data Flow DFG"]
-        A[Source code / AST] --> B[High-level representation] --> C[Unified IR] --> D[Local scheduling optimization] --> E[Target instructions]
+        A[Source code / AST] --> B[High-level representation] --> C[Unified semantic layer] --> D[Local scheduling optimization] --> E[Target instructions]
     end
     subgraph CF["Control Flow CFG"]
         F[Exception signal] --> G{Cerebellum solvable}
         G -->|yes| H[Local adjudication]
         G -->|no| I[Wake Main Brain]
         I --> J[Immune verification]
-        J --> K{IR layer hot-fixable}
+        J --> K{semantic layer hot-fixable}
         K -->|yes| L[Minimal patch]
         K -->|no| M[Escalate to human]
     end
     E -.runtime feedback.-> F
 ```
 
-> **Target-environment awareness (cf. 8.5)**: The skeleton must be more than logically correct — it must sense its runtime carrier. When high-level representations are lowered to target instructions, and when runtime minimal patches are generated, adaptive prioritization must account for the physical characteristics of the environment (instruction-set capability, accelerator scale, memory bandwidth, etc.). The same IR should yield different optimal instruction sequences on different hardware. This is the architectural anchor for 8.5 "hardware-topology awareness".
+> **Target-environment awareness (cf. 8.5)**: The skeleton must be more than logically correct — it must sense its runtime carrier. When high-level representations are lowered to target executable code, and when runtime minimal patches are generated, adaptive prioritization must account for the physical characteristics of the environment (processor capability, accelerator scale, memory and storage characteristics, etc.). The same semantic layer should yield different optimal execution plans on different hardware. This is the architectural anchor for 8.5 "hardware-topology awareness".
 
 ---
 
@@ -240,8 +299,8 @@ flowchart LR
 
 | Level | Name | Content | AI authority | Change approval |
 |---|---|---|---|---|
-| **D0** | Physical-law layer | Type systems, memory models, concurrent state machines, cryptographic primitives | **Forbidden to touch**, read-only | Immutable (enforced at compile time) |
-| **D1** | Skeleton logic layer | Scheduling policies, IR transformation rules, optimization processes | May propose, requires formal equivalence proof | Gate + human review |
+| **D0** | Physical-law layer | Type systems, memory models, concurrent state machines, cryptographic primitives | **Forbidden to touch**, read-only | Immutable (enforced at build time) |
+| **D1** | Skeleton logic layer | Scheduling policies, semantic layer transformation rules, optimization processes | May propose, requires formal equivalence proof | Gate + human review |
 | **D2** | Surface logic layer | Business code, glue code, configuration, interface adaptation | May generate, requires full regression pass | Automatic gate release + audit |
 | **D3** | Intent and expression layer | Requirement parsing, comments, test case generation, documentation | AI-led, no side effects | Human may review, does not block operation |
 
@@ -265,16 +324,16 @@ flowchart LR
 |---|---|
 | Local rule base and priority matching | Generative free creation |
 | State machines and deterministic transitions | Unverified dynamic code execution |
-| Cost models (e.g., instruction prioritization) | Direct modification of the D0 foundation |
+| Deterministic cost models (e.g., execution-strategy optimization) | Direct modification of the D0 foundation |
 | Fast retrieval of experience vectors | Silently swallowing unhandleable exceptions (must escalate) |
 
 ### 4.3 Engineering anchors
 
-Local instruction scheduling and cost-model engines are a typical implementation of the Cerebellum: across multiple target architectures, prioritization of hundreds or thousands of instructions is completed instantly by built-in cost models and state machines, burning no tokens and remaining precise and reproducible.
+Local execution scheduling and deterministic cost-model engines are a typical implementation of the Cerebellum: across multiple target architectures, adaptive optimization of hundreds or thousands of low-level operations is completed instantly by built-in deterministic cost models and state machines, burning no tokens and remaining precise and reproducible.
 
 ### 4.4 Absolute determinism of the Cerebellum: three hard boundaries
 
-In engineering terms the Cerebellum must be defined as the **absolute defender of determinism**: it is "compressed historical experience" plus "cost models grounded in physical law". It recognizes only rules, state machines, and hardware profiles; it makes no value judgments and produces no form of creation.
+In engineering terms the Cerebellum must be defined as the **absolute defender of determinism**: it is "compressed historical experience" plus "deterministic cost models grounded in physical law". It recognizes only rules, state machines, and hardware profiles; it makes no value judgments and produces no form of creation.
 
 | Hard boundary | Requirement | How it is judged |
 |---|---|---|
@@ -301,17 +360,41 @@ Context transfer between the Cerebellum and the Main Brain must be structured; d
 
 ```json
 {
-  "ntp_version": "1.0",
-  "signal_type": "UNKNOWN | DEADLOCK | PERF_REGRESSION | SEMANTIC_CONFLICT",
+  "ntp_version": "1.1",
+  "direction": "uplink",
+  "signal_type": "UNKNOWN",
   "error_code": "E-CORE-0427",
-  "feature_vector": [0.12, -0.88, 0.33, "...compressed high-dimensional features..."],
-  "context_digest": "sha256:9f3a... (context digest, not full text)",
+  "feature_vector": [0.12, -0.88, 0.33, 0.57],
+  "context_digest": "sha256:afcd135cddc2ffc17db5c430579ff01cf7d0b648d43685d7b38066c51d1870a3",
   "tried_rules": ["rule_114", "rule_208"],
   "memory_hits": [],
-  "constraints": ["D0 immutable", "target architecture constraints"],
-  "budget_hint": { "max_tokens": 1200, "max_latency_ms": 8000 }
+  "constraints": ["D0_IMMUTABLE", "TARGET_ENV_LIMITED"],
+  "budget_hint": {
+    "max_tokens": 1200,
+    "max_latency_ms": 8000,
+    "priority": "D1"
+  }
 }
 ```
+
+The block above is **valid JSON**: values carry only real data — never enum catalogues, field descriptions, or Chinese/English glosses. All explanations live in the table below. The sample hashes were computed with SHA-256 from fixed sample strings and can be parsed directly.
+
+**Field glossary (every value is traceable)**
+
+| Field | Type | Plain-language meaning | Why it is mandatory | Values / source |
+|---|---|---|---|---|
+| `ntp_version` | string | Protocol version | Sender and receiver must agree on field semantics | `major.minor`, example `1.1`; defined in 5.2 |
+| `direction` | enum | Which way the message travels | One bidirectional channel; the receiver dispatches accordingly | `uplink` / `downlink`; defined in 5.4 |
+| `signal_type` | enum | What kind of problem occurred | Lets the Main Brain select the relevant knowledge | `UNKNOWN` / `DEADLOCK` / `PERF_REGRESSION` / `SEMANTIC_CONFLICT`; defined in 5.4 |
+| `error_code` | string | The fault's identity number | Pinpoints the fault and enables retrieval of past experience | `E-<domain>-<4 digits>`, example `E-CORE-0427`; generated by the reporter |
+| `feature_vector` | number[] | Compressed numeric features | Replaces full context with a few numbers, minimizing tokens | Each item normalized to `[-1, 1]`; dimensionality set by the protocol; produced by the `digest` primitive |
+| `context_digest` | string | A fingerprint of the original context, not the original | Verifies consistency without leaking full text | `sha256:<64 hex digits>`; produced by `digest` |
+| `tried_rules` | string[] | Local rules already attempted | Prevents the Main Brain from repeating failed paths | Rule IDs; empty means none tried yet |
+| `memory_hits` | string[] | Experience records retrieved from memory | Tells the Main Brain which experience is already in play | Experience record IDs; empty means no hit |
+| `constraints` | enum[] | Boundaries that cannot be crossed | Any proposal violating them is rejected outright | `D0_IMMUTABLE` (human sovereignty is non-delegable) / `TARGET_ENV_LIMITED`; Chapter 0, D0–D3 |
+| `budget_hint.max_tokens` | integer | Maximum tokens allowed for this request | Prevents one request from draining global cost | Positive integer, example `1200`; 5.3 cost-sensitivity clause |
+| `budget_hint.max_latency_ms` | integer | Maximum wait before returning | Prevents the request from stalling the main flow | Positive integer (ms), example `8000`; same |
+| `budget_hint.priority` | enum | Determinacy class of this request | Determines queuing and preemption order | `D0`–`D3`, example `D1`; Chapter 0, D0–D3 |
 
 **Design intent**: transmit only features, error codes, constraints, and budgets, minimizing token consumption — this is where "using subtraction to counter addition" lands.
 
@@ -321,7 +404,7 @@ If the line between Cerebellum and Main Brain is not nailed down, the system ine
 
 | Dimension | Cerebellum | Main Brain |
 |---|---|---|
-| **Essence** | Compressed historical experience + physical cost model | Engine of generalized reasoning and pattern recombination: a connector across domains of knowledge |
+| **Essence** | Compressed historical experience + physical deterministic cost model | Engine of generalized reasoning and pattern recombination: a connector across domains of knowledge |
 | **Physical carrier** | Local / edge process | Remote inference service (an LLM is merely its carrier, not the thing itself) |
 | **What it handles** | Known, high-frequency, decidable | Long tail, unseen combinations, semantic conflict |
 | **Unit cost** | Near-zero tokens, microsecond scale | Expensive and scarce, second-scale latency |
@@ -331,7 +414,7 @@ If the line between Cerebellum and Main Brain is not nailed down, the system ine
 
 **Three constraints on the Main Brain**:
 
-1. **Never responsible for execution**: it may only produce candidate strategies, pseudocode, or uncompiled patches. Any channel that "directly modifies production" must not exist (aligned with Axiom 5).
+1. **Never responsible for execution**: it may only produce candidate strategies, pseudocode, or unverified candidate patches. Any channel that "directly modifies production" must not exist (aligned with Axiom 5).
 2. **Cost-sensitive**: every awakening must carry and obey `budget_hint` (token ceiling, latency ceiling, priority). Exceeding budget means abort plus a negative sample — not "let's try once more".
 3. **Accepts rejection**: having its proposal vetoed by the Cerebellum or rejected by an immune gate is the norm, not an anomaly. Rejection rate is a quality metric, not a defect to be hidden.
 
@@ -343,27 +426,41 @@ What passes between the two brains is not "textual conversation" but **compresse
 
 **Uplink (Cerebellum → Main Brain): distress and compressed context**
 
-Trigger conditions (any one of three): no local rule hit (`UnknownSignal`), three consecutive retry failures, or concurrent deadlock / instruction-level collapse.
+Trigger conditions (any one of three): no local rule hit (`UnknownSignal`), three consecutive retry failures, or concurrent deadlock / execution-level collapse.
 
 ```json
 {
   "ntp_version": "1.1",
   "direction": "uplink",
-  "signal_type": "UNKNOWN | DEADLOCK | PERF_REGRESSION | SEMANTIC_CONFLICT",
+  "signal_type": "UNKNOWN",
   "error_code": "E-CORE-0427",
-  "feature_vector": [0.12, -0.88, 0.33, "...compressed high-dimensional features..."],
-  "context_digest": "sha256:9f3a... (AST summary tree / error stack digest, not full text)",
+  "feature_vector": [0.12, -0.88, 0.33, 0.57],
+  "context_digest": "sha256:afcd135cddc2ffc17db5c430579ff01cf7d0b648d43685d7b38066c51d1870a3",
   "tried_rules": ["rule_114", "rule_208"],
   "attempt_count": 3,
   "env_profile": {
-    "isa": "target instruction-set family",
-    "accelerators": "types and counts of available accelerator cores",
-    "memory_bandwidth": "memory-bandwidth tier",
-    "interconnect": "interconnect topology affinity"
+    "processor_capability": "GENERIC_CPU_V3",
+    "accelerator_count": 2,
+    "memory_tier": "HBM_2TIER",
+    "interconnect": "MESH_2D"
   },
-  "budget_hint": { "max_tokens": 1200, "max_latency_ms": 8000, "priority": "D1" }
+  "budget_hint": {
+    "max_tokens": 1200,
+    "max_latency_ms": 8000,
+    "priority": "D1"
+  }
 }
 ```
+
+**Uplink-only field glossary** (shared fields carry the meanings given in 5.2)
+
+| Field | Type | Plain-language meaning | Why it is mandatory | Values / source |
+|---|---|---|---|---|
+| `attempt_count` | integer | How many local retries have already failed | Escalation is allowed only after the threshold (default 3), preventing token burn on every small disturbance | Positive integer, example `3`; 5.4 trigger conditions |
+| `env_profile.processor_capability` | enum | Target processor capability family | A proposal must fit the execution environment without binding to a specific product model | Abstract tier, example `GENERIC_CPU_V3`; Chapter 8, hardware awareness |
+| `env_profile.accelerator_count` | integer | Number of available accelerator units | Determines whether parallel or specialized proposals are admissible | Non-negative integer, example `2`; Chapter 8 |
+| `env_profile.memory_tier` | enum | Memory and storage tier | Determines whether a proposal's memory assumptions hold | Abstract tier, example `HBM_2TIER`; Chapter 8 |
+| `env_profile.interconnect` | enum | Interconnect topology | Determines data-movement cost assumptions | Abstract tier, example `MESH_2D`; Chapter 8 |
 
 **Downlink (Main Brain → Cerebellum): proposal and intent binding**
 
@@ -372,14 +469,36 @@ Trigger conditions (any one of three): no local rule hit (`UnknownSignal`), thre
   "ntp_version": "1.1",
   "direction": "downlink",
   "proposal_id": "p-7f3c",
-  "candidate": "(uncompiled IR patch or pseudocode; not a directly executable artefact)",
+  "candidate": {
+    "format": "SEMANTIC_PATCH",
+    "digest": "sha256:51ce14ac8674ef2c7c9a623d9f38160737652ff04fedba92d5fc9f991242676a"
+  },
   "confidence": 0.62,
-  "rationale_digest": "reasoning summary, key conclusions for human review",
-  "assumptions": ["unverified premises it depends on, listed one by one"],
-  "budget_spent": { "tokens": 980, "latency_ms": 5400 },
+  "rationale_digest": "sha256:c3c4c8e4a969b52d457a33f82caf95781519c7433ad6be072d74a3c89d02cb0d",
+  "assumptions": ["ENV_STABLE", "NO_CONCURRENT_WRITE"],
+  "budget_spent": {
+    "tokens": 980,
+    "latency_ms": 5400
+  },
   "status": "PENDING_VERIFICATION"
 }
 ```
+
+**Downlink field glossary (every value is traceable)**
+
+| Field | Type | Plain-language meaning | Why it is mandatory | Values / source |
+|---|---|---|---|---|
+| `proposal_id` | string | This proposal's identifier | Required for tracking, rejection, and citation | `p-<short hex>`, example `p-7f3c`; generated by the Main Brain |
+| `candidate.format` | enum | The representation form of the candidate | Makes explicit that it is **not** an executable artefact | `SEMANTIC_PATCH` / `PSEUDOCODE`; 5.3 |
+| `candidate.digest` | string | A fingerprint of the candidate, not its body | The Main Brain never inlines content; the receiver must fetch by digest from the sandbox and re-verify before use | `sha256:<64 hex digits>`; Chapter 8, sandbox build |
+| `confidence` | number | The Main Brain's self-assessed confidence | Used for ranking and risk hints, **never for authorization** | Float in `[0, 1]`, example `0.62`; 5.3 |
+| `rationale_digest` | string | A fingerprint of the reasoning summary | A human-readable summary may be attached to Fold 1; this field holds only a verifiable fingerprint | `sha256:<64 hex digits>`; Chapter 13, Fold 1 cognitive summary |
+| `assumptions` | string[] | Unverified premises the proposal relies on | Lets a reviewer see the proposal's weak points at a glance | Assumption IDs, examples `ENV_STABLE` / `NO_CONCURRENT_WRITE` |
+| `budget_spent.tokens` | integer | Tokens actually consumed by this request | Measures Main Brain cost for rate limiting | Non-negative integer, example `980`; 5.5 |
+| `budget_spent.latency_ms` | integer | Actual time consumed by this request | Measures Main Brain latency for rate limiting | Non-negative integer (ms), example `5400`; 5.5 |
+| `status` | enum | Always "pending verification" | Eliminates any state called "approved by the Main Brain" at the protocol layer | Fixed to `PENDING_VERIFICATION`; 5.4 |
+
+> **Why the candidate carries only a fingerprint**: if the Main Brain inlined the patch body into the message, a receiver could use it without verification, opening a door for "hallucination straight into the trunk". Transmitting only `candidate.digest` forces the receiver to fetch it from the sandbox and re-verify — this is Axiom 3 ("prove what can be proved") landing in the protocol.
 
 > Critical semantics: the downlink payload **is not a command but a hypothesis awaiting verification**. `status` is always `PENDING_VERIFICATION`; there is no such state as "approved by the Main Brain".
 
@@ -389,7 +508,7 @@ Trigger conditions (any one of three): no local rule hit (`UnknownSignal`), thre
 |---|---|---|
 | **No full context** | Never feed source code, logs, or raw sessions wholesale; they must be compressed by the `digest` primitive into feature vectors, AST summaries, or error-stack digests | Token explosion, uncontrollable latency, runaway cost |
 | **Asynchronous, non-blocking** | After an uplink is sent the current task is suspended as `Pending` and the Cerebellum turns to other work; the Main Brain's callback wakes it as an interrupt | The system hangs, throughput collapses to zero |
-| **Sandbox isolation** | Downlink artefacts may only be compiled and dual-track verified in a sandbox or instruction-level simulated environment; never executed directly in production | Contamination enters the trunk, unrecoverable |
+| **Sandbox isolation** | Downlink artefacts may only be built and dual-track verified in a sandbox or isolated verification environment; never executed directly in production | Contamination enters the trunk, unrecoverable |
 | **Mandatory trace** | Every uplink payload, every downlink reply, and whether it was adopted must be written in full to the ledger and memory store | No replay, no promotion, no retrospective |
 
 ### 5.5 Communication state machine, channel arbitration, and rate limiting
@@ -416,7 +535,7 @@ stateDiagram-v2
 |---|---|---|
 | `PENDING` | Escalated, waiting; the task yields execution | Busy-waiting; duplicate uplinks for the same signal (must be deduplicated and merged) |
 | `PROPOSAL` | Proposal received, not yet verified | Executing the candidate directly |
-| `VERIFYING` | Compiling and dual-track verifying in the sandbox | Skipping regression and passing straight through |
+| `VERIFYING` | Building and dual-track verifying in the sandbox | Skipping regression and passing straight through |
 | `APPLIED` | Verified and fully authorized | Writing without a credential |
 | `ROLLBACK` | Verification failed; revert and record a negative sample | Silently discarding the failed sample |
 | `DEGRADED` | Main Brain unavailable, Cerebellum-only mode | Accepting any mutation-class change during this period |
@@ -548,19 +667,19 @@ AI candidate proposal
 
 ---
 
-## Chapter 8: Self-Repair Specification: The Instant Repair Law of the IR Layer
+## Chapter 8: Self-Repair Specification: The Instant Repair Law of the Semantic Layer
 
 > Corresponds to the latter half of Axiom 2. This is the most distinctive capability of the "living software system."
 
 ### 8.1 Mandatory clauses
 
-- **Clause 8 (Instant Repair Law)**: the foundation of the living software system must contain a unified IR layer. When any runtime exception, performance bottleneck, or logic disorder occurs, the IR layer must possess an "omniscient view" spanning high-level source and low-level instructions, able to perform instruction-level refactoring, hot-patch generation, or optimization directly at the lower level at any time, achieving self-repair with "no restart, no human intervention, and in-place repair at any time."
+- **Clause 8 (Instant Repair Law)**: the foundation of the living software system must contain a unified semantic layer. When any runtime exception, performance bottleneck, or logic disorder occurs, the semantic layer must possess an "omniscient view" spanning high-level source and low-level operations, able to perform low-level execution-logic restructuring, hot-patch generation, or optimization directly at the lower level at any time, achieving self-repair with "no restart, no human intervention, and in-place repair at any time."
 
-### 8.2 Why the IR layer can "repair at any time"
+### 8.2 Why the semantic layer can "repair at any time"
 
-Traditional software: error → crash → downtime → human digs through source → edit high-level language → recompile → redeploy (extremely long cycle).
+Traditional software: error → crash → downtime → human digs through source → edit high-level language → rebuild → redeploy (extremely long cycle).
 
-IR-driven: all high-level representations and machine instructions ultimately flow through the unified IR layer, which has a "god's-eye view" and can perform "keyhole surgery" directly at the IR layer — generating repair patches, reordering instructions, and hot-loading optimizations without touching chaotic source code.
+semantic-layer-driven: all high-level representations and machine-level executable code ultimately flow through the unified semantic layer, which has a "god's-eye view" and can perform "keyhole surgery" directly at the semantic layer — generating repair patches, adjusting execution paths, and online loading optimizations without touching chaotic source code.
 
 ### 8.3 Safety preconditions for self-repair (a direct response to a key risk)
 
@@ -568,7 +687,7 @@ IR-driven: all high-level representations and machine instructions ultimately fl
 
 | Insurance | Mechanism |
 |---|---|
-| **Rollbackable** | Establish a checkpoint snapshot before a hot patch; automatic rollback on failure |
+| **Rollbackable** | Establish a checkpoint snapshot before a online repair; automatic rollback on failure |
 | **Provable** | The patch must pass symbolic-track equivalence verification |
 | **Auditable** | Every hot repair is written to the ledger and experience store for later human review |
 
@@ -583,28 +702,28 @@ flowchart TD
     B --> V
     V -->|fail| RB[Rollback + record + escalate]
     V -->|pass| CP[Create checkpoint snapshot]
-    CP --> HP[IR-layer minimal hot patch + hot load]
+    CP --> HP[semantic-layer online repair + hot load]
     HP --> W[Write to experience store]
     W --> OK[Self-repair complete - system stronger]
 ```
 
-### 8.5 Hardware-Topology-Aware Compilation Prioritization
+### 8.5 Hardware-Topology-Aware Execution Optimization
 
-> Corresponds to 2.3. The same IR does not have the same "optimal" instruction sequence on different physical carriers — repairing without regard to hardware may fix the logic while crippling performance.
+> Corresponds to 2.3. The same semantic layer does not have the same "optimal" instruction sequence on different physical carriers — repairing without regard to hardware may fix the logic while crippling performance.
 
-- **Mandatory requirement (hardware-topology awareness)**: when generating minimal hot patches or performing compilation prioritization, the IR layer **must** make adaptive decisions based on the physical characteristics of the current runtime environment, including at minimum: instruction-set and extension capabilities, accelerator core count and type, memory hierarchy and bandwidth, and interconnect / memory-access affinity. A "one-size-fits-all" patch sequence on any hardware is forbidden.
+- **Mandatory requirement (hardware-topology awareness)**: when generating minimal online repairs or performing adaptive optimization, the semantic layer **must** make adaptive decisions based on the physical characteristics of the current runtime environment, including at minimum: processor capabilities, accelerator core count and type, memory hierarchy and bandwidth, and interconnect and data-access affinity. A "one-size-fits-all" patch sequence on any hardware is forbidden.
 - **Profile acquisition**: hardware characteristics must be detected at startup and refreshed on change, and recorded in the observability ledger; when the profile is missing, degrade to a conservative baseline and raise an alert (see Chapter 21 graceful degradation) — never guess hardware capabilities.
-- **Cost-model linkage**: the prioritization cost model (see Chapter 4 Cerebellum) must take the hardware profile as input when choosing instruction scheduling, operator fusion, and parallelism strategies; the same patch may yield different variants under different profiles, and each variant must independently pass dual-track verification (Chapter 7).
+- **Cost-model linkage**: the deterministic cost model used for optimization (see Chapter 4 Cerebellum) must take the hardware profile as input when choosing execution scheduling, operation merging, and parallelism strategies; the same patch may yield different variants under different profiles, and each variant must independently pass dual-track verification (Chapter 7).
 - **Reproducibility**: each patch variant must record "profile fingerprint → selected prioritization strategy" so that a repair in the same environment can be reproduced and replayed.
 
 | Physical characteristic | Prioritization impact | Degradation when profile missing |
 |---|---|---|
-| Instruction set / extensions | Instruction selection, vectorization path | Conservative baseline instruction set |
+| Processor capabilities | Execution-path selection, parallelization path | Conservative baseline capabilities |
 | Accelerator core count / type | Parallelism, operator offload decision | Disable offload, host path |
 | Memory hierarchy / bandwidth | Data layout, cache blocking | Default blocking parameters |
 | Interconnect / memory affinity | Thread binding, data placement | Ignore affinity constraints |
 
-> **Generality statement**: this clause specifies only the paradigm requirement to "sense and adapt to hardware physical characteristics"; it binds to no specific instruction set, accelerator architecture, or compiler implementation, and applies to heterogeneous environments from edge devices to data centers.
+> **Generality statement**: this clause specifies only the paradigm requirement to "sense and adapt to hardware physical characteristics"; it binds to no specific processor capabilities, accelerator architecture, or buildr implementation, and applies to heterogeneous environments from edge devices to data centers.
 
 ---
 
@@ -615,7 +734,7 @@ flowchart TD
 ### 9.1 Mandatory clauses
 
 - **Clause 9 (Veto Power)**: no AI agent may directly modify main-branch code or issue instructions to production without explicit human authorization. Human and machine are separated, with clear authority and responsibility.
-- **Clause 10 (Full-Spectrum White Box)**: all low-level instruction mappings, compilation prioritization, and graph reconstruction must provide a global "god's-eye view" ledger. No black box may exist in the living system.
+- **Clause 10 (Full-Spectrum White Box)**: all low-level operation mappings, adaptive optimization, and graph reconstruction must provide a global "god's-eye view" ledger. No black box may exist in the living system.
 
 > Note: clause numbering = seven axioms + ten normative clauses, continuous with no duplicates.
 
@@ -668,7 +787,7 @@ flowchart TB
     B --> C[3 Collaborate<br/>NTP wakes Main Brain - human authorization]
     C --> D[4 Verify<br/>immune dual-track - anti-self-deception]
     D --> E[5 Consolidate<br/>write experience to memory store]
-    E --> F[6 Repair<br/>IR-layer minimal hot patch]
+    E --> F[6 Repair<br/>semantic-layer online repair]
     F --> A
 ```
 
@@ -692,9 +811,9 @@ When refactoring, optimizing, or generating any code block, a living system **mu
 
 | Step | Action | What it does | Completion criterion (verifiable) |
 |---|---|---|---|
-| 1 | **Delete** | Remove pseudo-requirements, dead code, and over-abstraction reserved for an imagined future | Compile and full regression green afterwards, with net code volume negative |
+| 1 | **Delete** | Remove pseudo-requirements, dead code, and over-abstraction reserved for an imagined future | Build and full regression green afterwards, with net code volume negative |
 | 2 | **Simplify** | Reduce coupling, eliminate duplicate paths, narrow interfaces | Cyclomatic complexity and cross-module dependencies do not rise; interface parameters decrease |
-| 3 | **Optimize** | On the simplified structure, prioritize low-level instructions and tune the cost model | Metrics improve with correctness unchanged, and results are reproducible (8.5) |
+| 3 | **Optimize** | On the simplified structure, prioritize low-level operations and tune the deterministic cost model | Metrics improve with correctness unchanged, and results are reproducible (8.5) |
 | 4 | **Accelerate** | Raise concurrent throughput: batching, pipelining, caching, distribution by hardware topology | No new races or shared state; the stress curve is explainable |
 | 5 | **Automate** | Only at the end, freeze pipelines, gates, and inspection | Human intervention points can be enumerated one by one |
 
@@ -738,7 +857,7 @@ When confidence reaches **99%**, enter grey release rather than waiting for 100%
 | **L1** | Tool-assisted | AI completes/suggests, humans review everything | AI assistance but no automatic loop |
 | **L2** | Cerebellum in place | Local rules intercept high-frequency decisions, zero tokens | Routine decisions bypass the LLM |
 | **L3** | Memory loop | Experience store + retrieval augmentation effective | Same class of problem is not re-asked of the Main Brain |
-| **L4** | Self-repair running | IR-layer hot patches + flywheel turning | Runtime repair without restart |
+| **L4** | Self-repair running | semantic-layer online repairs + flywheel turning | Runtime repair without restart |
 | **L5** | Living system | Unified development-maintenance, controlled self-iteration | Mutate–verify–consolidate fully automated, humans only strategic authorization |
 
 **Adoption path**: starting with L2 (Cerebellum) and L3 (memory) yields the greatest benefit at the lowest risk; L4 (self-repair) may be enabled only after L2/L3 and the immune system are mature.
@@ -756,7 +875,7 @@ When confidence reaches **99%**, enter grey release rather than waiting for 100%
 | Memory hit rate | retrieval-augmented experience hits / Main Brain awakenings | ↑ |
 | Experience promotion rate | share of experience consolidated into Cerebellum rules | ↑ |
 | First-pass gate rate | share of proposals passing dual-track on the first try | ↑ (reflects Main Brain quality) |
-| Self-repair success rate | successful hot patches / attempted hot patches | ↑ |
+| Self-repair success rate | successful online repairs / attempted online repairs | ↑ |
 | Rollback rate | failed rollbacks / total changes | ↓ |
 | MTTR | mean time to repair | ↓ |
 | Silent-failure count | number of exceptions swallowed without reporting | = 0 (red line) |
@@ -839,6 +958,69 @@ The human-machine collaboration interface **must** present two semantically isol
 
 > This pattern is the confluence of "full-spectrum white box" (Axiom 6) and "human sovereignty" (Axiom 5) at the interaction layer: Fold 1 ensures humans **understand**, Fold 2 ensures humans **decide**.
 
+### 13.5 Interaction Traceability: Log Form and Replay
+
+> **Do we need logs? Yes — but not raw chat transcripts.** What interaction traceability needs is a **structured interaction event log**: the minimum facts sufficient to reconstruct responsibility and decisions — replayable without leaking privacy or burning tokens.
+
+**Three log tiers (distinct duties; never mixed)**
+
+| Tier | Records | Retention | Audience |
+|---|---|---|---|
+| **L1 Audit log** | Who, when, on what evidence, which primitive was requested, who authorized, the outcome, and which clause was applied | Immutable, guaranteed delivery, long-term | Auditors, governance committee, regulators |
+| **L2 Runtime log** | Latency, hit rate, tokens/cost, failures and retries, environment profile | Sampled, short-term | Developers, operations |
+| **L3 Decision summary** | One human sentence: "what happened, why, who approved, how to undo" | Same lifecycle as L1 | Human operators, business stakeholders |
+
+**Minimum L1 fields (one record per event)**
+
+| Field | Plain meaning | Why mandatory |
+|---|---|---|
+| `trace-id` | Unique identifier of this interaction | Links scattered records into one complete story (22.1) |
+| `seq`, `ts` | Position in the primitive chain; timestamp with timezone | Reconstructs order; aligns with incident timelines |
+| `actor` | Initiator: human / organ / agent (stable ID) | Establishes accountability |
+| `primitive` | Which interaction primitive was called (14.2) | Records the actual action |
+| `payload_digest` | Digest/hash of the payload, never the raw text | Verifiable, private, compact |
+| `evidence_ref` | Experience ID / rule ID / clause ID relied upon | **Answers "on what grounds"** — the core of traceability |
+| `authorization` | Intent-binding credential from Fold 2 | Proves the side effect was explicitly approved |
+| `result` | Success / failure / rollback / degradation + reason code | Bad news must be recorded (10.5) |
+| `prev_hash` | Hash of the previous record | Chains records so tampering breaks the chain |
+
+**Four traceability disciplines**: ① **No bulk capture** — raw conversations, source code, and full logs never enter L1; store digests and references (5.4 / 18.2). ② **Provenance required** — a record without `evidence_ref` is an "unfounded decision" and counts as contamination. ③ **One-click replay** — given a `trace-id`, reconstruct the full chain from `observe` to `attest` with input digests, evidence, and authorizations (28.1). ④ **Logs are not gates** — writing a log does not mean the action was correct; verification still belongs to the Immune System (Chapter 7). Treating "recorded" as "verified" is a classic false green tick.
+
+> **Logs are evidence** (28.2): L1 directly supports compliance proof (20.2), incident postmortems (21.5), and promotion audits (24.3). **An interaction without logs has no evidence of ever having occurred.**
+
+### 13.6 Visualization Stage List: What Must Be Visible
+
+> Visualization is not decoration; it is the entry point for sovereignty. Rule: **every stage that affects "should a human approve this, and can we question it later" must be visualized; everything visualized must drill down to a `trace-id`.**
+
+| Stage | Audience | What must be shown | Why | Provenance |
+|---|---|---|---|---|
+| ① Observe | Operations / developers | Current state digest, anomaly signals, impact scope | Early detection; no silent failures | 14.2 · 28.1 |
+| ② Classify / Digest | Human operator | Cognitive Summary (Fold 1): intent, candidates, evidence, conclusions, risks | Understanding precedes approval | 13.4 · 5.4 |
+| ③ Authorize | Human sovereignty | Intent Binding (Fold 2): action ID, parameters, target, impact, undo entry | Prevents "approve A, execute B" | 9.3 · 13.4 |
+| ④ Uplink | Human / cost owner | Why escalation occurred, tried rules, budget, environment digest | Cost transparency; detects masking of rule gaps | 5.4 · 5.5 · 18.1 |
+| ⑤ Verify | Developers / auditors | Dual-track results item by item, gate pass/fail reasons, evidence chain | Trust comes from evidence | Ch. 7 · 26.3 |
+| ⑥ Apply / Rollback | Operations | Before/after diff, rollback point, active version | Every side effect is reversible | Ch. 8 · 21.1 |
+| ⑦ Repair / Postmortem | All stakeholders | Event timeline, root cause, repair action, review date | Incidents become experience | 21.5 |
+| ⑧ Promotion | Governance committee | Experience source, N independent reproductions, endorser signature, relevance check | Prevents poisoning and inbreeding | 24.3 |
+
+**Three hard constraints on visualization**: conclusions and evidence on the same screen (otherwise Axiom 6 is violated); every item drills down to digests, evidence IDs, and `trace-id` (otherwise it is a promotional chart, not observable evidence); accessibility — no information conveyed by color or sound alone, with text alternatives and keyboard access (extending 23.2).
+
+### 13.7 Interaction Friendliness Criteria
+
+> Friendliness is not "pretty UI" but **the ability to use the system safely without guessing**. ANE turns friendliness into checkable clauses rather than aesthetic preferences.
+
+| Criterion | Requirement | Checkable evidence |
+|---|---|---|
+| **Understandable** | Plain explanation on first use of a term; no bare internal codenames in UI; every term searchable in Appendix A | 100% glossary coverage (A.0) |
+| **Predictable** | State what will happen, its scope, and whether authorization is needed before execution | Fold 1 cognitive summary (13.4) |
+| **Reversible** | Every side effect has a rollback point and a human-triggered undo entry | Rollback-point field in L1 (13.5) |
+| **Timely feedback** | Visible states: pending / verifying / applied / rolled back; timeouts reported, never silent | Communication state machine (5.5) |
+| **Not overwhelming** | Show only 3–5 key items at a time; details on drill-down; tiered alerts | 23.2 alert governance |
+| **Accessible** | No single-sensory dependency; text alternatives; keyboard access; zoomable | 13.6 visualization constraints |
+| **Accurate wording** | No "AI has decided"; consistently "AI proposes, you approve/deny" | Axiom 5 human sovereignty |
+
+> **Definition of beginner-usable**: an interface satisfying all seven criteria needs no extra training for safe operation.
+
 ---
 
 ## Chapter 14: Interaction Primitives: Composable Minimal Interaction Units
@@ -871,7 +1053,7 @@ flowchart TB
 | Deliberate | `plan` | generate a multi-step action plan | D3 | Yes |
 | Act | `invoke` | call an external tool (under MCP contract) | D2 | Yes |
 | Act | `generate` | generate code/text/patch draft | D3 | Yes |
-| Act | `patch` | land a minimal modification in the IR layer | D1 | No (verification prerequisite) |
+| Act | `patch` | land a minimal modification in the semantic layer | D1 | No (verification prerequisite) |
 | Verify | `prove` | symbolic-track equivalence proof | D0 | Yes |
 | Verify | `regress` | statistical-track regression verification | D0 | Yes |
 | Verify | `attest` | generate an auditable credential and write to ledger | D0 | Yes |
@@ -1172,7 +1354,7 @@ Every ANE system must maintain a living risk register with at least these fields
 | Main Brain | hallucination / timeout / unavailability | wrong candidate proposals | first-pass gate rate drops sharply | reject its output, fall back to local adjudication |
 | Hippocampus | memory pollution / retrieval failure | negative flywheel | abnormal hit rate, missing lineage | freeze writes, switch to empty-memory mode |
 | Immune | gate bypass / missed detection | contamination enters mainline | ledger gap, abnormal two-person spot check | reject all changes, enter read-only |
-| Self-Repair | hot patch failure | runtime corruption | rollback rate rises, checkpoint anomaly | automatic rollback + stop self-repair |
+| Self-Repair | online repair failure | runtime corruption | rollback rate rises, checkpoint anomaly | automatic rollback + stop self-repair |
 | Sovereignty | authorization chain failure | unauthorized changes | side-effect calls without credentials | reject all side effects, human takeover |
 
 ### 21.3 Graceful degradation ladder
@@ -1437,14 +1619,14 @@ flowchart LR
 | 3 Build Cerebellum | sink high-frequency rules from the LLM into local rules/state machines | foundation stable | interception rate ≥80% | L1→L2 |
 | 4 Build memory loop | connect experience store, read-only retrieval first then verified writes | Cerebellum in place | same problem no longer asked of Main Brain | L2→L3 |
 | 5 Install immune and circuit breaker | dual-track verification gates + global circuit breaker + FMEA drill | memory effective | circuit-breaker drill passed | L3→L4 prerequisite |
-| 6 Enable self-repair and flywheel | IR-layer minimal hot patches, fully automated flywheel loop | immunity mature | self-repair success rate met | L4→L5 |
+| 6 Enable self-repair and flywheel | semantic-layer online repaires, fully automated flywheel loop | immunity mature | self-repair success rate met | L4→L5 |
 
 ### 27.3 Anti-migration patterns (pitfalls)
 
 | Anti-pattern | Consequence | Correct practice |
 |---|---|---|
 | Start with fully automatic LLM | hallucination enters mainline, cost explosion | solidify foundation + Cerebellum first |
-| Self-repair without a foundation | hot patch without rollback point = disaster | do steps 2, 3, 5 before step 6 |
+| Self-repair without a foundation | online repair without rollback point = disaster | do steps 2, 3, 5 before step 6 |
 | Pollute experience store before governance | negative flywheel, increasingly wrong | write only after verification (Axiom 4) |
 | One-shot full migration | uncontrollable risk surface | canary-style small-step gradual rollout (see 27.4) |
 | Treat ANE as a tool purchase | buying a platform ≠ landing the paradigm | build organizational governance in parallel (Chapter 20) |
@@ -1867,11 +2049,65 @@ G6 should not be checked by human eyes, but executed automatically by projection
 
 ## Appendix A · Glossary
 
+> This appendix has three parts: **A.0 core glossary in plain language** for first-time readers; **A.1 numbers and thresholds explained**, covering every figure in the document; the table below is the **complete term index**. Every entry states its source type — "original to this specification" means the term or definition is first proposed here; "adopted" means an established industry concept is used with an ANE-specific role.
+
+### A.0 Core glossary in plain language
+
+| Term | One sentence, plainly | Source type | Authoritative definition / first appearance | English |
+|---|---|---|---|---|
+| ANE | AI-native engineering: software that evolves while it runs | Original (acronym) | Executive summary · 0.2 | AI Native Engineering |
+| Living system | Software that senses, decides, remembers, self-repairs, and remains under human control | Original (paradigm definition) | Preface · 0.4 | Living Software System |
+| Skeleton | The part of the system that must not be changed: foundations and hard rules | Original (engineering role) | 2.2 · Axiom 1 | Skeleton |
+| Cerebellum | Local fast reflex: consult a rule, decide immediately, never call the LLM | Original (role, biological metaphor) | 4.1 · 4.4 · Axiom 3 | Cerebellum |
+| Main Brain | A reasoning engine awakened only for unseen problems; proposes but never executes | Original (role, biological metaphor) | 5.1 · 5.3 · Axiom 3 | Main Brain |
+| Hippocampus | The memory store: successes and failures are recorded so they are not repeated | Original (role, biological metaphor) | 6.1 · 6.2 | Hippocampus |
+| Immune System | Gates and verification: unproven generation is not admitted | Original (role, biological metaphor) | 7.1 · Axiom 6 | Immune System |
+| Self-Repair | Detect a problem at runtime and repair in place, leaving a rollback record | Original (engineering role) | 8.1 · 8.3 | Self-Repair |
+| Human Sovereignty | Humans decide: authorize, veto, and stop everything at any time | Original (engineering role) | 9.1 · Axiom 5 | Human Sovereignty |
+| Unified Semantic Layer | The deterministic middle layer connecting high-level design and low-level execution; also the repair point | Original (generalized term) | 2.3 · 8.2 | Unified Semantic Layer |
+| D0–D3 | Four risk tiers from "never touch" to "may generate" | Original (tier definition) | Chapter 3 · A.1 | Determinism Tiers |
+| NTP | Structured distress/proposal packets between Cerebellum and Main Brain — not chat | Original (protocol name) | 5.2 · 5.4 | Neurotransmitter Protocol |
+| Interaction primitive | The smallest action of human–AI interaction: observe, classify, invoke, verify, etc. | Original (primitive set) | 14.2 | Interaction Primitive |
+| Experience promotion | Turning a successful experience into a local rule so the LLM need not be asked again | Original (mechanism) | 6.3 · 24.3 | Experience Promotion |
+| Dual-Fold Collaboration | Fold 1 shows evidence; Fold 2 records human authorization; they cannot be merged | Original (interaction pattern) | 13.4 | Dual-Fold Collaboration |
+| Flywheel | The sense → decide → collaborate → verify → consolidate → repair loop | Original (mechanism) | 10.1 | Flywheel |
+| Audit ledger | A structured chain of who, when, on what grounds, and what happened | Adopted (audit-log idea) + specified here | 13.5 · 28.1 · Axiom 6 | Audit Ledger |
+| trace-id | A globally unique identifier for one interaction, linking all its records | Adopted (distributed tracing) + named here | 22.1 · 13.5 | Trace Identifier |
+| RAG | Retrieve past experience on demand rather than stuffing all material into the prompt | Adopted | 0.3 · 6.1 | Retrieval-Augmented Generation |
+| MCP / A2A | Standard protocols for tool and agent integration | Adopted (industry protocols) | 15.1 · 16.1 | Model Context Protocol / Agent-to-Agent |
+| NIST RMF / EU AI Act / ISO 42001 | External governance and compliance frameworks internalized as engineering mechanisms | Adopted (standards and law) | 20.1 · 20.2 | NIST AI RMF / EU AI Act / ISO/IEC 42001 |
+| FMEA / RACI | Failure-mode analysis and responsibility matrices, used directly | Adopted (engineering methods) | 21.2 · 20.3 | FMEA / RACI |
+
+> **Source discipline**: terms marked "original" are defined authoritatively by this specification — cite ANE when reusing them. "Adopted" terms retain their industry meaning; this specification only assigns them a role inside the living system.
+
+### A.1 Numbers and thresholds explained (every figure has provenance and rationale)
+
+| Value | Detailed meaning | Why this value | Source type | Provenance | How to adjust |
+|---|---|---|---|---|---|
+| **7 axioms / 7 organs** | Seven supreme laws; seven engineering roles (Skeleton, Cerebellum, Main Brain, Hippocampus, Immune, Self-Repair, Sovereignty) | Covers structure, decision, memory, sovereignty, auditability, safety, plus one law constraining mutation; roles map one-to-one to axioms | Original | Ch. 1 · 2.2 · 25.5 | Meta-specification revision only; no merging |
+| **D0–D3 (4 tiers)** | Immutable / provably mutable / auditable mutable / generatable | Further subdivision costs more authorization effort than it saves | Original | Chapter 3 | Subdivide within tiers; never reduce the count |
+| **L0–L5 (6 levels)** | Uncontrolled / visible / Cerebellum / memory / self-repair / living system | Each level adds exactly one verifiable capability and evidence gate, supporting gradual adoption | Original | Chapter 11 | Assessment in 26.2; no level skipping |
+| **G1–G7 (7 gates)** | First five protect release purity; G6 protects structure; G7 protects translations | Three distinct objects of inspection cannot substitute for one another | Original (gate idea adopted) | 33.3 · 37.2 · 35.5 | Add sub-items; never break numbering |
+| **≥80% interception / offline availability** | Eight in ten routine decisions are local; eight in ten transactions survive without the Main Brain | The intersection of token saving, low latency, and offline capability; below it, grow rules rather than raise budget | Original (threshold) | 4.4 · 12.1 · 21.3b | Adjust per SLO with recorded rationale |
+| **N ≥ 3 reproductions** | At least three independent reproductions before promotion | Once may be chance, twice may be same-source coincidence, three begins to exclude inbreeding | Original (threshold) | 24.3 · 13.6 ⑧ | Raise by risk; never lower to 1 |
+| **99% grey release** | Release at 99% certainty rather than waiting for 100% | 100% means the feedback loop has stopped; grey release buys real feedback | Original (threshold) | 10.5 · 27.4 | Tighten by D-tier; D0 never grey |
+| **1–3 uplinks** | Maximum Main Brain escalations per task in Exploit mode | Tolerates one retry but cannot mask missing rules | Original (threshold) | 5.5 parameter table | D1 config; gate required to change |
+| **D0 seconds / D1 tens of seconds / D2 minutes** | Maximum wait for the Main Brain by risk tier | Higher risk cannot wait; documentation may wait minutes | Original (default range) | 5.5 parameter table | Register within range; absent config uses conservative end |
+| **2 min/round · 60 min cycle** | One topic per round; one cycle forms an auditable evolution unit | Two minutes forces focus; thirty rounds yield a reviewable unit | Original (cadence) | Appendices C–H | Cadence may change; the modify→verify→record loop may not |
+| **Minor version every 10 rounds** | Minor version every ten rounds; formal release at cycle end | Ten rounds make an acceptable stage without version fragmentation | Original (semver discipline adopted) | Appendices C–H · 22.2 | Follow semantic versioning |
+| **Five steps / six stages / four iron laws** | Delete→Simplify→Optimize→Accelerate→Automate; flywheel stages; NTP iron laws | Cover the full de-bloating chain, the evolution loop, and four common two-brain failures | Original | 10.4 · 10.1 · 5.4 | Order and count are invariant |
+| **Two folds / three log tiers / eight visualization stages / seven friendliness criteria** | Judgment vs authorization; L1/L2/L3; eight must-see stages; seven usability criteria | Correspond respectively to understanding vs approval, three audiences, all nodes affecting approval or later questioning, and seven dimensions of cognition/trust/safety/feedback/load/inclusion/accountability | Original | 13.4 · 13.5 · 13.6 · 13.7 | May add; may not delete |
+| **3–5 items at a time** | Upper bound on items shown at once in an interface | Beyond working-memory capacity, readers miss items; details move to drill-down | Adopted (cognitive load theory) + chosen here | 13.7 · 23.2 | Adjust per user research |
+
+> **Numerical discipline**: thresholds are defaults plus auditable adjustments, not physical constants. Every adjustment records the new value, rationale, approver, review date, and D-tier configuration (22.4). **A number without provenance may not enter a normative clause.**
+
+### Term definitions (complete index)
+
 | Term | Definition |
 |---|---|
 | ANE | AI Native Engineering — AI-native software engineering |
-| Unified IR layer | deterministic foundation connecting high-level semantics and low-level instructions, serving as both compilation hub and self-repair carrier |
-| Cerebellum | local deterministic high-frequency adjudication layer: rule base + state machine + cost model |
+| semantic layer | deterministic foundation connecting high-level semantics and low-level operations, serving as both semantic transformation hub and self-repair carrier |
+| Cerebellum | local deterministic high-frequency adjudication layer: rule base + state machine + deterministic cost model |
 | Main Brain | on-demand LLM agent handling unknown, complex problems |
 | NTP | Neural Transmitter Protocol, the structured compressed-context format from Cerebellum to Main Brain |
 | Hippocampus | experience vector store + retrieval augmentation mechanism |
@@ -1921,7 +2157,7 @@ G6 should not be checked by human eyes, but executed automatically by projection
 | Seed Rules | initial golden rule set injected by human experts during cold start, immune-verified |
 | Explore / Exploit modes | two memory-usage modes: Explore (high-frequency Main Brain sampling) / Exploit (local-priority token saving), switched by coverage threshold |
 | Knowledge quenching | process by which seed rules and Explore-phase samples are quenched into stable rules after immune verification |
-| Hardware-topology awareness | IR layer adaptively prioritizing compilation by runtime physical characteristics (instruction set / accelerator cores / memory bandwidth / interconnect affinity) |
+| Hardware-topology awareness | semantic layer adaptively optimizing execution strategies by runtime physical characteristics (processor capabilities / accelerator units / memory and storage characteristics / interconnect affinity) |
 | Dual-Fold Collaboration | mandatory human-machine pattern: Fold 1 judgment layer (Cognitive Summary) + Fold 2 authorization layer (Intent Binding) |
 | Cognitive Summary | Fold 1 output: AI intent, candidates, evidence, verification conclusions, and risk warnings, not directly executable |
 | Intent Binding | Fold 2 output: a deterministic credential binding human approval to a specific candidate action |
