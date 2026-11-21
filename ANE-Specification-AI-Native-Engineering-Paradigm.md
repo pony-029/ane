@@ -1,4 +1,4 @@
-# "ANE Specification: AI-Native Engineering Paradigm for Living Software Systems" v0.5.0 · Formal Release
+# "ANE Specification: AI-Native Engineering Paradigm for Living Software Systems" v0.6.0 · Formal Release
 
 > **ANE Specification — AI-Native Engineering Paradigm for Living Software Systems**
 >
@@ -8,7 +8,7 @@
 >
 > ANE = **AI Native Engineering** · static-dynamic integration · dual-brain collaboration · Memory Moat · unified development and maintenance · governance and resilience · verifiable and adoptable
 >
-> Version: **v0.5.0**　|　Date: 2026-11-20　|　Form: Formal Release
+> Version: **v0.6.0**　|　Date: 2026-11-21　|　Form: Formal Release
 >
 > This specification is expressed in a **general paradigm language**, not bound to any specific product, framework, or engineering implementation, and applies to all teams building AI-native software systems.
 >
@@ -76,6 +76,7 @@
 | **Release engineering** | Artefact-based release: the specification derives external views from a single source of truth, with zero process-layer residue; three-tier information grading (N normative / E evidentiary / P process) + release gates make the specification itself "white-box, traceable, and anti-self-deception" first. |
 | **Internationalization and artefact governance** | Multi-language governance (source / authoritative translation / glossary / G7 translation fidelity) · artefact naming rules (formal without suffix / development with suffix / English edition) · structural integrity checks (G6: continuous numbering / appendix renumbering / valid anchors), fixing the broken appendix in the formal edition. |
 | **Cold start and memory governance** | Seed rules + explore/exploit adaptive switching (6.4) · hardware-topology awareness and adaptive compilation prioritization (2.3 / 8.5) · domestic regulatory alignment (20.2) · Dual-Fold Collaboration pattern (13.4 / 14.3) · Promotion Audit against memory poisoning (17.2 / 24.3). |
+| **Evolution speed and dual-brain collaboration** | Five-step algorithm: delete → simplify → optimize → accelerate → automate, order inviolable (10.4) · execution discipline: three-sentence communication / no overnight bad news / integrated die-casting / 99% grey release (10.5) · three hard boundaries of the Cerebellum including no speculation (4.4) · hard boundary between the two brains and anti-crosstalk (5.3) · NTP two-way channel with four iron laws (5.4) · communication state machine and channel arbitration (5.5) · two-brain extreme states (21.3). |
 | **How to adopt** | Start with L2 Cerebellum + L3 memory (greatest benefit, lowest risk); add L4 self-repair only after immunity matures; L5 living systems are a long-term goal. |
 | **Inviolable red lines** | Human sovereignty (Axiom 5) · anti-self-deception (silent failures = 0) · the global circuit breaker can stop everything at any time — no efficiency rationale may bypass these. |
 
@@ -270,6 +271,18 @@ flowchart LR
 
 Local instruction scheduling and cost-model engines are a typical implementation of the Cerebellum: across multiple target architectures, prioritization of hundreds or thousands of instructions is completed instantly by built-in cost models and state machines, burning no tokens and remaining precise and reproducible.
 
+### 4.4 Absolute determinism of the Cerebellum: three hard boundaries
+
+In engineering terms the Cerebellum must be defined as the **absolute defender of determinism**: it is "compressed historical experience" plus "cost models grounded in physical law". It recognizes only rules, state machines, and hardware profiles; it makes no value judgments and produces no form of creation.
+
+| Hard boundary | Requirement | How it is judged |
+|---|---|---|
+| **Offline capability** | With the network cut and the Main Brain entirely unreachable, local rules plus promoted memory must still sustain no less than **80%** of routine transactions | Periodic "disconnection drills": block remote calls, run the full routine suite; the pass rate is the metric |
+| **Growable** | Rules are not hard-coded constants; new "muscle memory" may only grow through the Hippocampus's **experience promotion** | Every rule must trace back to its experience source and promotion-audit record (24.3) |
+| **No speculation** | When no local rule matches, the Cerebellum **must raise its hand immediately** and throw `UnknownSignal`; guessing, approximate substitution, or "let's just try it" is forbidden | The ledger may contain no record of "a judgment produced with no rule hit"; if one appears, it is contamination |
+
+> **Anti-crosstalk**: the Cerebellum's ceiling is "deterministically handling the known", not "reasonably handling the unknown". Writing the Cerebellum as a "miniature LLM" burns tokens and loses determinism at the same time — the most expensive form of regression there is.
+
 ---
 
 ## Chapter 5: Main Brain Specification and the Neurotransmitter Protocol NTP
@@ -281,7 +294,7 @@ Local instruction scheduling and cost-model engines are a typical implementation
 - **Clause 5 (Strategic Awakening)**: the LLM API may be awakened if and only if the Cerebellum encounters a difficulty that neither its local rule base nor its memory store can resolve. Context must be compressed to the bare minimum, transmitting only **feature vectors and error codes**, exchanging extremely low token consumption for advanced intelligence assistance.
 - Main Brain output is a **proposal**, not a **command**. It may not bypass the Immune System to land directly.
 
-### 5.2 Neurotransmitter Protocol NTP (Neural Transmitter Protocol)
+### 5.2 Neurotransmitter Protocol NTP: base payload
 
 Context transfer between the Cerebellum and the Main Brain must be structured; dumping the full code or logs into the LLM at once is forbidden.
 
@@ -300,6 +313,129 @@ Context transfer between the Cerebellum and the Main Brain must be structured; d
 ```
 
 **Design intent**: transmit only features, error codes, constraints, and budgets, minimizing token consumption — this is where "using subtraction to counter addition" lands.
+
+### 5.3 Hard boundary between the two brains: neither may live the other's life
+
+If the line between Cerebellum and Main Brain is not nailed down, the system inevitably falls into one of two abysses: **the Main Brain steals the Cerebellum's work** (high-frequency transactions escalated upward — token leakage, exploding latency), or **the Cerebellum forces itself to do the Main Brain's work** (inferring when rules are missing — hallucination straight into the trunk, concurrent deadlock).
+
+| Dimension | Cerebellum | Main Brain |
+|---|---|---|
+| **Essence** | Compressed historical experience + physical cost model | Engine of generalized reasoning and pattern recombination: a connector across domains of knowledge |
+| **Physical carrier** | Local / edge process | Remote inference service (an LLM is merely its carrier, not the thing itself) |
+| **What it handles** | Known, high-frequency, decidable | Long tail, unseen combinations, semantic conflict |
+| **Unit cost** | Near-zero tokens, microsecond scale | Expensive and scarce, second-scale latency |
+| **Output form** | Deterministic judgment (may land directly) | Candidate proposal / pseudocode (may not land directly) |
+| **Primitive authority** | May invoke deterministic primitives and a restricted `patch` (only after immunity) | **Forbidden** to touch side-effecting primitives such as `invoke` / `patch` |
+| **Failure mode** | Throws `UnknownSignal` upward | Rejected, timed out, or judged unavailable |
+
+**Three constraints on the Main Brain**:
+
+1. **Never responsible for execution**: it may only produce candidate strategies, pseudocode, or uncompiled patches. Any channel that "directly modifies production" must not exist (aligned with Axiom 5).
+2. **Cost-sensitive**: every awakening must carry and obey `budget_hint` (token ceiling, latency ceiling, priority). Exceeding budget means abort plus a negative sample — not "let's try once more".
+3. **Accepts rejection**: having its proposal vetoed by the Cerebellum or rejected by an immune gate is the norm, not an anomaly. Rejection rate is a quality metric, not a defect to be hidden.
+
+> **Decision mantra**: if it can be decided, do not infer; if you must infer, you do not know; if you do not know, escalate — and non-escalation is contamination.
+
+### 5.4 The NTP two-way channel: uplink distress and downlink proposal
+
+What passes between the two brains is not "textual conversation" but **compressed features and hypotheses awaiting verification**. The channel must be bidirectional, asynchronous, and sandbox-protected.
+
+**Uplink (Cerebellum → Main Brain): distress and compressed context**
+
+Trigger conditions (any one of three): no local rule hit (`UnknownSignal`), three consecutive retry failures, or concurrent deadlock / instruction-level collapse.
+
+```json
+{
+  "ntp_version": "1.1",
+  "direction": "uplink",
+  "signal_type": "UNKNOWN | DEADLOCK | PERF_REGRESSION | SEMANTIC_CONFLICT",
+  "error_code": "E-CORE-0427",
+  "feature_vector": [0.12, -0.88, 0.33, "...compressed high-dimensional features..."],
+  "context_digest": "sha256:9f3a... (AST summary tree / error stack digest, not full text)",
+  "tried_rules": ["rule_114", "rule_208"],
+  "attempt_count": 3,
+  "env_profile": {
+    "isa": "target instruction-set family",
+    "accelerators": "types and counts of available accelerator cores",
+    "memory_bandwidth": "memory-bandwidth tier",
+    "interconnect": "interconnect topology affinity"
+  },
+  "budget_hint": { "max_tokens": 1200, "max_latency_ms": 8000, "priority": "D1" }
+}
+```
+
+**Downlink (Main Brain → Cerebellum): proposal and intent binding**
+
+```json
+{
+  "ntp_version": "1.1",
+  "direction": "downlink",
+  "proposal_id": "p-7f3c",
+  "candidate": "(uncompiled IR patch or pseudocode; not a directly executable artefact)",
+  "confidence": 0.62,
+  "rationale_digest": "reasoning summary, key conclusions for human review",
+  "assumptions": ["unverified premises it depends on, listed one by one"],
+  "budget_spent": { "tokens": 980, "latency_ms": 5400 },
+  "status": "PENDING_VERIFICATION"
+}
+```
+
+> Critical semantics: the downlink payload **is not a command but a hypothesis awaiting verification**. `status` is always `PENDING_VERIFICATION`; there is no such state as "approved by the Main Brain".
+
+**The four iron laws of the channel**
+
+| Iron law | Requirement | Consequence of violation |
+|---|---|---|
+| **No full context** | Never feed source code, logs, or raw sessions wholesale; they must be compressed by the `digest` primitive into feature vectors, AST summaries, or error-stack digests | Token explosion, uncontrollable latency, runaway cost |
+| **Asynchronous, non-blocking** | After an uplink is sent the current task is suspended as `Pending` and the Cerebellum turns to other work; the Main Brain's callback wakes it as an interrupt | The system hangs, throughput collapses to zero |
+| **Sandbox isolation** | Downlink artefacts may only be compiled and dual-track verified in a sandbox or instruction-level simulated environment; never executed directly in production | Contamination enters the trunk, unrecoverable |
+| **Mandatory trace** | Every uplink payload, every downlink reply, and whether it was adopted must be written in full to the ledger and memory store | No replay, no promotion, no retrospective |
+
+### 5.5 Communication state machine, channel arbitration, and rate limiting
+
+A controlled two-brain link must traverse the full state machine; no state may be skipped:
+
+```mermaid
+stateDiagram-v2
+    [*] --> IDLE
+    IDLE --> PENDING: uplink distress (suspend task)
+    PENDING --> PROPOSAL: downlink proposal received
+    PENDING --> UNAVAILABLE: timeout / unreachable
+    PROPOSAL --> VERIFYING: sandbox dual-track verification
+    VERIFYING --> APPLIED: verified + authorization chain complete
+    VERIFYING --> ROLLBACK: verification failed
+    APPLIED --> LEDGER: write to ledger and memory
+    ROLLBACK --> LEDGER: record negative sample
+    UNAVAILABLE --> DEGRADED: cut escalate, fall back to Cerebellum-only
+    LEDGER --> IDLE
+    DEGRADED --> IDLE
+```
+
+| State | Semantics | Forbidden |
+|---|---|---|
+| `PENDING` | Escalated, waiting; the task yields execution | Busy-waiting; duplicate uplinks for the same signal (must be deduplicated and merged) |
+| `PROPOSAL` | Proposal received, not yet verified | Executing the candidate directly |
+| `VERIFYING` | Compiling and dual-track verifying in the sandbox | Skipping regression and passing straight through |
+| `APPLIED` | Verified and fully authorized | Writing without a credential |
+| `ROLLBACK` | Verification failed; revert and record a negative sample | Silently discarding the failed sample |
+| `DEGRADED` | Main Brain unavailable, Cerebellum-only mode | Accepting any mutation-class change during this period |
+
+**Channel arbitration (multiple living systems competing for Main Brain quota)**
+
+When several subsystems or agents raise uplink requests simultaneously, a unified scheduling unit must queue them; none may connect to the remote service on its own:
+
+1. **Urgency first**: D0/D1 anomalies (damage to the skeleton or skeleton logic) outrank D2 business anomalies; D3 generation requests rank lowest.
+2. **Budget first**: at equal urgency, order by remaining token quota and latency ceiling; as the quota nears exhaustion only D0/D1 are admitted.
+3. **Overflow degrades**: when quota is exhausted, excess requests are forced back to the Cerebellum for conservative rule handling and recorded in the ledger (no queuing, no retry).
+
+**Rate limiting (coupled with cold start in 6.4)**
+
+| Phase | Uplink frequency policy | Purpose |
+|---|---|---|
+| Explore mode | High-frequency uplink permitted until sample coverage reaches the threshold | Collect long-tail samples quickly and avoid a rule base that idles for long |
+| Exploit mode | Strict limiting: per-unit-time quota + cooling window + deduplication of same-source signals | Cut cost; prevent "high-frequency distress" from masking a missing rule base |
+
+> Rate-limit parameters are D1-level configuration and must pass a gate to change; "temporarily relaxing the limit" may not be used as a way around the budget.
 
 ---
 
@@ -524,6 +660,48 @@ flowchart TB
 - ANE: like a tree, growing (development) while self-repairing (maintenance), in the same rhythm.
 - **Running is sensing, sensing is maintenance, maintenance is development, development is evolution.**
 
+### 10.4 Evolution speed: the five-step algorithm (order may not be inverted)
+
+> **Law 1**: the rotational speed of the feedback loop decides the living system's right to survive. Speed is not an efficiency metric but the highest form of moat — for the same insight, whoever closes the loop of sensing → deliberation → verification → consolidation first gets the next round of samples.
+
+When refactoring, optimizing, or generating any code block, a living system **must** follow this order. The order itself is part of the specification:
+
+| Step | Action | What it does | Completion criterion (verifiable) |
+|---|---|---|---|
+| 1 | **Delete** | Remove pseudo-requirements, dead code, and over-abstraction reserved for an imagined future | Compile and full regression green afterwards, with net code volume negative |
+| 2 | **Simplify** | Reduce coupling, eliminate duplicate paths, narrow interfaces | Cyclomatic complexity and cross-module dependencies do not rise; interface parameters decrease |
+| 3 | **Optimize** | On the simplified structure, prioritize low-level instructions and tune the cost model | Metrics improve with correctness unchanged, and results are reproducible (8.5) |
+| 4 | **Accelerate** | Raise concurrent throughput: batching, pipelining, caching, distribution by hardware topology | No new races or shared state; the stress curve is explainable |
+| 5 | **Automate** | Only at the end, freeze pipelines, gates, and inspection | Human intervention points can be enumerated one by one |
+
+**Why the order cannot be inverted**:
+
+- **Automating before deleting** = pipelining a rubbish heap. The faster it produces, the thicker the technical debt — and the debt is masked by a "green pipeline".
+- **Optimizing before simplifying** = fine-tuning the most complex structure. Optimization gains are eaten by complexity, and equivalence becomes hard to prove.
+- **Automating before accelerating** = freezing a serial bottleneck into the pipeline; every later speed-up requires tearing the pipeline apart.
+
+> Relation to the axioms: the five-step algorithm is Axiom 1 (static–dynamic duality) projected onto "evolution actions" — deleting and simplifying contract the static skeleton, optimizing and accelerating expand dynamic capability, and automation only freezes already-verified paths; **it produces no new correctness**.
+
+### 10.5 Execution discipline: flat channels, no overnight bad news, grey release
+
+**1. Flat communication (the three-sentence rule)**
+
+When escalating — to the Main Brain or to a human — only three sentences are allowed: **what the problem is · what has been tried · what is needed next**. Long preamble, emotional narrative, and irrelevant context are stripped. This is both the human-readable form of the NTP uplink (5.4) and the organizational governance of information entropy.
+
+**2. No overnight bad news**
+
+False green ticks, silent failures, unauthorized mutations, and gate bypasses must be reported to the ledger **in the same round they occur**. A system that hides bad news should be judged **contaminated** by its own Immune System and degraded — because an unrecorded failure re-contaminates the memory store in the form of "experience".
+
+**3. Integrated die-casting (high-cohesion fusion)**
+
+A call chain that can be fused at the base layer into a high-cohesion module must not be split into a long cross-process microservice chain — every boundary crossing pays serialization, network, and observability overhead three times over. But fusion has hard limits: **D0 skeleton logic may not be smeared into business modules**, and replaceability may not be sacrificed merely to reduce calls.
+
+**4. High-frequency grey release (Autopilot mode)**
+
+When confidence reaches **99%**, enter grey release rather than waiting for 100%. Waiting for perfection is indistinguishable from shutting down the feedback loop. Grey release must simultaneously have: a rollback checkpoint, a monotonically tightening degradation path (21.3), and observable success criteria.
+
+> Gates and grey release are not opposites: **the gate decides "may it ship"; grey release decides "how much, to whom"**. If the gate has not passed, grey release is meaningless.
+
 ---
 
 ## Chapter 11: Adoption: The ANE Maturity Model L0–L5
@@ -558,6 +736,8 @@ flowchart TB
 | Rollback rate | failed rollbacks / total changes | ↓ |
 | MTTR | mean time to repair | ↓ |
 | Silent-failure count | number of exceptions swallowed without reporting | = 0 (red line) |
+| Feedback-loop duration | time from signal generation to completed consolidation | ↓ (core metric of the speed law) |
+| Net code-volume change | deleted minus added lines per evolution round | should be negative or near zero |
 
 ### 12.2 Anti-pattern list (explicit "don'ts")
 
@@ -571,6 +751,9 @@ flowchart TB
 | Omni-LLM (no Cerebellum) | Stalls, burns money, unreliable | Cerebellum first |
 | Unexplainable black box | Uncontrollable, untrustworthy | Full-spectrum white-box ledger |
 | Unlimited rule-base growth | Cerebellum degenerates into a new monolith | Experience promotion + decay archiving |
+| Automating before simplifying | Pipelines technical debt; green ticks mask decay | Five-step algorithm order (10.4) |
+| Masking a missing rule base with high-frequency distress | Hollow Cerebellum; cost rises linearly with traffic | Rate limiting + attributing misses to rule gaps (5.5) |
+| Cerebellum forcing a guess (answering without a rule) | Hallucination into the trunk, unreplayable | Throw `UnknownSignal`; no approximate substitution (4.4) |
 
 ---
 
@@ -766,6 +949,7 @@ Before any new tool is integrated, it must pass:
 2. **Observable communication**: all inter-agent messages must pass through an observable bus; untraceable peer-to-peer is forbidden.
 3. **Human sovereignty penetration**: cross-agent task delegation may not bypass tiered authorization; delegation touching D0/D1 or production must return to human adjudication.
 4. **Conflicts adjudicable**: when multi-agent conclusions conflict, gate verification results and human judgment are the final arbitration; "majority vote" does not replace truth.
+5. **Scarce resources must queue**: when multiple agents share the same Main Brain quota, a unified scheduling unit must arbitrate (urgency + budget); connecting to the remote service independently and bypassing quota is forbidden (see 5.5).
 
 ---
 
@@ -952,6 +1136,15 @@ flowchart TB
 ```
 
 **Iron law**: degradation is **one-way tightening**, **automatically triggered**, and **manually accelerated by humans**; upgrading back to a higher level must re-run immune verification and authorization and may not automatically rise.
+
+**Two standard actions at the two-brain extreme states**:
+
+| Extreme state | Detection signal | Mandatory action | Still guaranteed |
+|---|---|---|---|
+| **Main Brain unreachable** (network cut / timeout / quota exhausted) | consecutive uplink timeouts, failed health probes | Cut every escalate path, fall back to L2 "Cerebellum + static skeleton only", reject all mutation-class changes | Core business survives; routine transactions ≥80% available (4.4) |
+| **Memory store contaminated** (poisoning / broken lineage / retrieval anomalies) | abnormal hit rate, source verification failure, failed promotion audit | Freeze all **experience-promotion** writes, degrade to "memoryless state", use local hard rules only | Read-only availability; already-promoted rules must be re-traced to source, suspicious ones demoted |
+
+> Neither extreme state permits "escalating while sick" — when the Main Brain is unreachable, repeated uplinks only drag latency into an avalanche; when memory is contaminated, still reading it only spreads the contamination into the judgment layer.
 
 ### 21.4 Circuit breaker drills
 
@@ -1674,6 +1867,15 @@ G6 should not be checked by human eyes, but executed automatically by projection
 | Inbreeding | rule corruption caused by promotion evidence depending heavily on homologous / self-referential samples; must be checked and rejected |
 | Appendix renumbering R5 | after projection deletes P-layer appendices, retained N-layer appendices are renumbered continuously with anchors synchronized |
 | Form-suffix contract | naming rule: formal release has no suffix, development view carries the `<development form identifier>` suffix |
+| Five-Step Algorithm | mandatory evolution order — delete → simplify → optimize → accelerate → automate; inverting it is forbidden |
+| Feedback-loop duration | time from signal generation to completed consolidation; the core metric of the speed law |
+| Integrated die-casting | fusing a long call chain into a high-cohesion module at the base layer to cut cross-boundary communication loss |
+| No Speculation | the Cerebellum must throw `UnknownSignal` when no rule matches; guessing or approximate substitution is forbidden |
+| Offline capability | requirement that the Cerebellum sustain ≥80% of routine transactions while the Main Brain is unreachable |
+| Uplink | Cerebellum → Main Brain distress payload: feature vector, error code, tried rules, environment profile, budget |
+| Downlink | Main Brain → Cerebellum proposal payload: candidate patch, confidence, reasoning summary; status always pending verification |
+| Communication state machine | the two-brain link sequence Pending → Proposal → Verifying → Applied/Rollback → Ledger |
+| Channel arbitration | unified queuing of competing requests for Main Brain quota by urgency and budget |
 
 ---
 

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ANE Specification: AI-Native Engineering Paradigm for Living Software Systems v0.5.0 · White Paper (Formal Release)</title>
+<title>ANE Specification: AI-Native Engineering Paradigm for Living Software Systems v0.6.0 · White Paper (Formal Release)</title>
 <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
 <style>
   :root{
@@ -130,7 +130,7 @@
 <div class="layout">
 <aside>
   <div class="brand">AI Native Engineering</div>
-  <h1>ANE Specification v0.5.0</h1>
+  <h1>ANE Specification v0.6.0</h1>
   <div class="ver">AI-Native Engineering Paradigm for Living Software Systems · Created by Feng Lei · Formal Release</div>
   <nav>
     <div class="grp">Overview</div>
@@ -190,7 +190,7 @@
 <main>
 <header class="hero">
   <div class="tagrow">
-    <span class="tag t-purple">ANE v0.5.0</span>
+    <span class="tag t-purple">ANE v0.6.0</span>
     <span class="tag t-blue">Static-Dynamic Integration</span>
     <span class="tag t-teal">Dual-Brain Collaboration</span>
     <span class="tag t-purple">Memory Moat</span>
@@ -203,8 +203,8 @@
   <p class="subtitle">ANE = <b>AI Native Engineering</b>. A general paradigm fusing classical cybernetics (static / Cerebellum) with modern artificial intelligence (dynamic / Main Brain). It turns AI from something "used" into something "harnessed," and applies to all systems and teams building AI-native software without binding to any specific product or framework.</p>
   <div class="meta">
     <span><b>Created by</b> Feng Lei (冯磊) · original paradigm and chief architecture design</span>
-    <span><b>Version</b> v0.5.0 · Formal Release</span>
-    <span><b>Date</b> 2026-11-20</span>
+    <span><b>Version</b> v0.6.0 · Formal Release</span>
+    <span><b>Date</b> 2026-11-21</span>
     <span><b>Status</b> Formal Release</span>
   </div>
 </header>
@@ -225,6 +225,7 @@
       <tr><td><b>Release engineering</b></td><td>Artefact-based release: the specification derives external views from a single source of truth with zero process-layer residue; three-tier information grading (N/E/P) + release gates make the specification itself white-box, traceable, and anti-self-deception.</td></tr>
       <tr><td><b>Internationalization and artefact governance</b></td><td>Multi-language governance (source / authoritative translation / frozen glossary / G7) · artefact naming rules (formal without suffix / development with suffix / English edition) · structural integrity checks (G6: continuous numbering / appendix renumbering / valid anchors), fixing the broken appendix in the formal edition.</td></tr>
       <tr><td><b>Cold start and memory governance</b></td><td>Seed rules + explore/exploit adaptive switching (6.4) · hardware-topology awareness and adaptive prioritization (2.3 / 8.5) · domestic regulatory alignment (20.2) · Dual-Fold Collaboration pattern (13.4 / 14.3) · Promotion Audit against memory poisoning (17.2 / 24.3).</td></tr>
+      <tr><td><b>Evolution speed and dual-brain collaboration</b></td><td>Five-step algorithm: delete → simplify → optimize → accelerate → automate, order inviolable (10.4) · execution discipline: three-sentence communication / no overnight bad news / integrated die-casting / 99% grey release (10.5) · three hard boundaries of the Cerebellum including no speculation (4.4) · hard boundary between the two brains and anti-crosstalk (5.3) · NTP two-way channel with four iron laws (5.4) · communication state machine and channel arbitration (5.5) · two-brain extreme states (21.3).</td></tr>
       <tr><td><b>How to adopt</b></td><td>Start with L2 Cerebellum + L3 memory; add L4 self-repair only after immunity matures.</td></tr>
       <tr><td><b>Inviolable red lines</b></td><td>Human sovereignty · anti-self-deception (silent failures = 0) · the global circuit breaker can stop everything at any time.</td></tr>
     </tbody>
@@ -378,13 +379,24 @@ flowchart LR
     <div class="card amber"><h4>Strictly forbidden</h4><p>Generative free creation · unverified dynamic execution · direct modification of the D0 foundation · silently swallowing unhandleable exceptions (must escalate)</p></div>
   </div>
   <p>The Cerebellum must still complete routine D0/D1 adjudication <strong>without network access and without an LLM</strong>, and its decisions must be explainable, replayable, and auditable. Typical implementation: local instruction scheduling and cost-model engines — across multiple target architectures, prioritization of hundreds or thousands of instructions is completed instantly by built-in cost models and state machines, burning no tokens and remaining precise and reproducible.</p>
+  <h3>4.4 Absolute determinism: three hard boundaries</h3>
+  <p>In engineering terms the Cerebellum must be defined as the <strong>absolute defender of determinism</strong>: "compressed historical experience" plus "cost models grounded in physical law". It recognizes only rules, state machines, and hardware profiles; it makes no value judgments and produces no form of creation.</p>
+  <div class="tw"><table>
+    <thead><tr><th>Hard boundary</th><th>Requirement</th><th>How it is judged</th></tr></thead>
+    <tbody>
+      <tr><td><b>Offline capability</b></td><td>With the network cut and the Main Brain entirely unreachable, local rules plus promoted memory must still sustain no less than <b>80%</b> of routine transactions</td><td>Periodic "disconnection drills": block remote calls, run the full routine suite; the pass rate is the metric</td></tr>
+      <tr><td><b>Growable</b></td><td>Rules are not hard-coded constants; new "muscle memory" may only grow through the Hippocampus's <b>experience promotion</b></td><td>Every rule must trace back to its experience source and promotion-audit record (24.3)</td></tr>
+      <tr><td><b>No speculation</b></td><td>When no local rule matches, <b>raise a hand immediately</b> and throw <code>UnknownSignal</code>; guessing, approximate substitution, or "let's just try it" is forbidden</td><td>The ledger may contain no record of "a judgment produced with no rule hit"; if one appears, it is contamination</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout warn"><span class="lbl">Anti-crosstalk</span>The Cerebellum's ceiling is "deterministically handling the known", not "reasonably handling the unknown". Writing the Cerebellum as a "miniature LLM" burns tokens and loses determinism at the same time — the most expensive form of regression there is.</div>
 </section>
 
 <!-- ================= CH5 ================= -->
 <section id="ch5">
   <h2 class="sec"><span class="num">Chapter 5</span>Main Brain Specification and the Neurotransmitter Protocol NTP</h2>
   <div class="clause"><span class="badge">Clause 5</span><p><strong>Strategic Awakening.</strong> The LLM API may be awakened if and only if the Cerebellum encounters a difficulty that neither its local rule base nor its memory store can resolve. Context must be compressed to the bare minimum, transmitting only <strong>feature vectors and error codes</strong>, exchanging extremely low token consumption for advanced intelligence assistance. Main Brain output is a "proposal," not a "command."</p></div>
-  <h3>Neurotransmitter Protocol NTP (Neural Transmitter Protocol)</h3>
+  <h3>5.2 Neurotransmitter Protocol NTP: base payload</h3>
   <p>Context transfer between the Cerebellum and the Main Brain must be structured; dumping the full code or logs into the LLM at once is forbidden:</p>
   <pre style="background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;overflow-x:auto;font-size:12.5px;color:var(--ink2)"><code>{
   "ntp_version": "1.0",
@@ -398,6 +410,113 @@ flowchart LR
   "budget_hint": { "max_tokens": 1200, "max_latency_ms": 8000 }
 }</code></pre>
   <div class="callout quote"><span class="lbl">Design Intent</span>Transmit only features, error codes, constraints, and budgets, minimizing token consumption — this is where "using subtraction to counter addition" lands.</div>
+
+  <h3>5.3 Hard boundary between the two brains: neither may live the other's life</h3>
+  <p>If the line is not nailed down, the system falls into one of two abysses: <b>the Main Brain steals the Cerebellum's work</b> (high-frequency transactions escalated upward — token leakage, exploding latency), or <b>the Cerebellum forces itself to do the Main Brain's work</b> (inferring when rules are missing — hallucination straight into the trunk, concurrent deadlock).</p>
+  <div class="tw"><table>
+    <thead><tr><th>Dimension</th><th>Cerebellum</th><th>Main Brain</th></tr></thead>
+    <tbody>
+      <tr><td><b>Essence</b></td><td>Compressed historical experience + physical cost model</td><td>Engine of generalized reasoning and pattern recombination: a connector across domains of knowledge</td></tr>
+      <tr><td><b>Physical carrier</b></td><td>Local / edge process</td><td>Remote inference service (an LLM is merely its carrier, not the thing itself)</td></tr>
+      <tr><td><b>What it handles</b></td><td>Known, high-frequency, decidable</td><td>Long tail, unseen combinations, semantic conflict</td></tr>
+      <tr><td><b>Unit cost</b></td><td>Near-zero tokens, microsecond scale</td><td>Expensive and scarce, second-scale latency</td></tr>
+      <tr><td><b>Output form</b></td><td>Deterministic judgment (may land directly)</td><td>Candidate proposal / pseudocode (may not land directly)</td></tr>
+      <tr><td><b>Primitive authority</b></td><td>Deterministic primitives and a restricted <code>patch</code> (only after immunity)</td><td><b>Forbidden</b> to touch <code>invoke</code> / <code>patch</code> and other side-effecting primitives</td></tr>
+      <tr><td><b>Failure mode</b></td><td>Throws <code>UnknownSignal</code> upward</td><td>Rejected, timed out, or judged unavailable</td></tr>
+    </tbody>
+  </table></div>
+  <div class="grid g3">
+    <div class="card amber"><h4>Never executes</h4><p>The Main Brain may only produce candidate strategies, pseudocode, or uncompiled patches. No channel that "directly modifies production" may exist (Axiom 5).</p></div>
+    <div class="card amber"><h4>Cost-sensitive</h4><p>Every awakening carries and obeys <code>budget_hint</code> (token / latency / priority). Exceeding budget means abort plus a negative sample — not "try once more".</p></div>
+    <div class="card amber"><h4>Accepts rejection</h4><p>Being vetoed by the Cerebellum or rejected by a gate is the norm, not an anomaly. Rejection rate is a quality metric, not a defect to hide.</p></div>
+  </div>
+  <div class="callout quote"><span class="lbl">Decision Mantra</span>If it can be decided, do not infer; if you must infer, you do not know; if you do not know, escalate — and non-escalation is contamination.</div>
+
+  <h3>5.4 The NTP two-way channel: uplink distress and downlink proposal</h3>
+  <p>What passes between the two brains is not "textual conversation" but <b>compressed features and hypotheses awaiting verification</b>. The channel must be bidirectional, asynchronous, and sandbox-protected. Uplink triggers (any one): no local rule hit (<code>UnknownSignal</code>), three consecutive retry failures, or concurrent deadlock / instruction-level collapse.</p>
+  <pre style="background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;overflow-x:auto;font-size:12.5px;color:var(--ink2)"><code>{
+  "ntp_version": "1.1",
+  "direction": "uplink",
+  "signal_type": "UNKNOWN | DEADLOCK | PERF_REGRESSION | SEMANTIC_CONFLICT",
+  "error_code": "E-CORE-0427",
+  "feature_vector": [0.12, -0.88, 0.33, "...compressed high-dimensional features..."],
+  "context_digest": "sha256:9f3a... (AST summary tree / error stack digest, not full text)",
+  "tried_rules": ["rule_114", "rule_208"],
+  "attempt_count": 3,
+  "env_profile": {
+    "isa": "target instruction-set family",
+    "accelerators": "types and counts of available accelerator cores",
+    "memory_bandwidth": "memory-bandwidth tier",
+    "interconnect": "interconnect topology affinity"
+  },
+  "budget_hint": { "max_tokens": 1200, "max_latency_ms": 8000, "priority": "D1" }
+}</code></pre>
+  <pre style="background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;overflow-x:auto;font-size:12.5px;color:var(--ink2)"><code>{
+  "ntp_version": "1.1",
+  "direction": "downlink",
+  "proposal_id": "p-7f3c",
+  "candidate": "(uncompiled IR patch or pseudocode; not a directly executable artefact)",
+  "confidence": 0.62,
+  "rationale_digest": "reasoning summary, key conclusions for human review",
+  "assumptions": ["unverified premises it depends on, listed one by one"],
+  "budget_spent": { "tokens": 980, "latency_ms": 5400 },
+  "status": "PENDING_VERIFICATION"
+}</code></pre>
+  <div class="callout warn"><span class="lbl">Critical Semantics</span>The downlink payload <b>is not a command but a hypothesis awaiting verification</b>. <code>status</code> is always <code>PENDING_VERIFICATION</code>; there is no state called "approved by the Main Brain".</div>
+  <h4 style="font-size:14.5px;margin:22px 0 10px">The four iron laws of the channel</h4>
+  <div class="tw"><table>
+    <thead><tr><th>Iron law</th><th>Requirement</th><th>Consequence of violation</th></tr></thead>
+    <tbody>
+      <tr><td><b>No full context</b></td><td>Never feed source code, logs, or raw sessions wholesale; compress via the <code>digest</code> primitive into feature vectors, AST summaries, or error-stack digests</td><td>Token explosion, uncontrollable latency, runaway cost</td></tr>
+      <tr><td><b>Asynchronous, non-blocking</b></td><td>The task is suspended as <code>Pending</code> and the Cerebellum turns to other work; the callback wakes it as an interrupt</td><td>The system hangs, throughput collapses</td></tr>
+      <tr><td><b>Sandbox isolation</b></td><td>Downlink artefacts may only be compiled and dual-track verified in a sandbox or instruction-level simulated environment</td><td>Contamination enters the trunk, unrecoverable</td></tr>
+      <tr><td><b>Mandatory trace</b></td><td>Every uplink payload, downlink reply, and adoption decision is written in full to the ledger and memory store</td><td>No replay, no promotion, no retrospective</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>5.5 Communication state machine, channel arbitration, and rate limiting</h3>
+  <p>A controlled two-brain link must traverse the full state machine; no state may be skipped:</p>
+  <div class="diagram">
+    <div class="mermaid">
+stateDiagram-v2
+    [*] --> IDLE
+    IDLE --> PENDING: uplink distress (suspend task)
+    PENDING --> PROPOSAL: downlink proposal received
+    PENDING --> UNAVAILABLE: timeout / unreachable
+    PROPOSAL --> VERIFYING: sandbox dual-track verification
+    VERIFYING --> APPLIED: verified + authorization chain complete
+    VERIFYING --> ROLLBACK: verification failed
+    APPLIED --> LEDGER: write to ledger and memory
+    ROLLBACK --> LEDGER: record negative sample
+    UNAVAILABLE --> DEGRADED: cut escalate, fall back to Cerebellum-only
+    LEDGER --> IDLE
+    DEGRADED --> IDLE
+    </div>
+    <div class="cap">Figure · Two-brain communication state machine — suspension, verification, rollback and degradation must all be traced</div>
+  </div>
+  <div class="tw"><table>
+    <thead><tr><th>State</th><th>Semantics</th><th>Forbidden</th></tr></thead>
+    <tbody>
+      <tr><td><code>PENDING</code></td><td>Escalated, waiting; the task yields execution</td><td>Busy-waiting; duplicate uplinks for the same signal (must be deduplicated)</td></tr>
+      <tr><td><code>PROPOSAL</code></td><td>Proposal received, not yet verified</td><td>Executing the candidate directly</td></tr>
+      <tr><td><code>VERIFYING</code></td><td>Compiling and dual-track verifying in the sandbox</td><td>Skipping regression and passing straight through</td></tr>
+      <tr><td><code>APPLIED</code></td><td>Verified and fully authorized</td><td>Writing without a credential</td></tr>
+      <tr><td><code>ROLLBACK</code></td><td>Verification failed; revert and record a negative sample</td><td>Silently discarding the failed sample</td></tr>
+      <tr><td><code>DEGRADED</code></td><td>Main Brain unavailable, Cerebellum-only mode</td><td>Accepting any mutation-class change during this period</td></tr>
+    </tbody>
+  </table></div>
+  <div class="grid g2">
+    <div class="card blue"><h4>Arbitration: urgency first</h4><p>D0/D1 anomalies (damage to the skeleton or skeleton logic) outrank D2 business anomalies; D3 generation requests rank lowest.</p></div>
+    <div class="card blue"><h4>Arbitration: budget first</h4><p>At equal urgency, order by remaining token quota and latency ceiling; near exhaustion only D0/D1 are admitted; when quota is gone, excess requests fall back to conservative rules and are logged (no queuing, no retry).</p></div>
+  </div>
+  <div class="tw"><table>
+    <thead><tr><th>Phase</th><th>Uplink frequency policy</th><th>Purpose</th></tr></thead>
+    <tbody>
+      <tr><td>Explore mode</td><td>High-frequency uplink permitted until sample coverage reaches the threshold</td><td>Collect long-tail samples quickly; avoid an idle rule base</td></tr>
+      <tr><td>Exploit mode</td><td>Strict limiting: per-unit-time quota + cooling window + same-source deduplication</td><td>Cut cost; prevent "high-frequency distress" from masking a missing rule base</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout quote"><span class="lbl">Constraint</span>Rate-limit parameters are D1-level configuration and must pass a gate to change; "temporarily relaxing the limit" may not be used as a way around the budget.</div>
 </section>
 
 <!-- ================= CH6 ================= -->
@@ -580,6 +699,34 @@ flowchart TB
     <div class="card teal"><div class="ic ic-teal">3</div><h4>Safety compounding</h4><p>Gates and experience reinforce each other → false positives decline, false negatives approach zero → the system becomes more trustworthy.</p></div>
   </div>
   <div class="callout quote"><span class="lbl">Development Is Maintenance, Maintenance Is Development</span>Traditional is "build a building, repair it when broken" — disconnected, decaying; ANE is like a tree, growing while self-repairing, in the same rhythm. <b>Running is sensing, sensing is maintenance, maintenance is development, development is evolution.</b></div>
+
+  <h3>10.4 Evolution speed: the five-step algorithm (order may not be inverted)</h3>
+  <div class="callout warn"><span class="lbl">Law 1</span>The rotational speed of the feedback loop decides the living system's right to survive. Speed is not an efficiency metric but the highest form of moat — for the same insight, whoever closes the loop of sensing → deliberation → verification → consolidation first gets the next round of samples.</div>
+  <div class="tw"><table>
+    <thead><tr><th>Step</th><th>Action</th><th>What it does</th><th>Completion criterion (verifiable)</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td><b>Delete</b></td><td>Remove pseudo-requirements, dead code, and over-abstraction for an imagined future</td><td>Compile and full regression green, with net code volume negative</td></tr>
+      <tr><td>2</td><td><b>Simplify</b></td><td>Reduce coupling, eliminate duplicate paths, narrow interfaces</td><td>Complexity and cross-module dependencies do not rise; interface parameters decrease</td></tr>
+      <tr><td>3</td><td><b>Optimize</b></td><td>Prioritize low-level instructions and tune the cost model on the simplified structure</td><td>Metrics improve with correctness unchanged; results reproducible (8.5)</td></tr>
+      <tr><td>4</td><td><b>Accelerate</b></td><td>Raise concurrent throughput: batching, pipelining, caching, distribution by hardware topology</td><td>No new races or shared state; the stress curve is explainable</td></tr>
+      <tr><td>5</td><td><b>Automate</b></td><td>Only at the end, freeze pipelines, gates, and inspection</td><td>Human intervention points can be enumerated</td></tr>
+    </tbody>
+  </table></div>
+  <div class="grid g3">
+    <div class="card amber"><h4>Automating before deleting</h4><p>Pipelining a rubbish heap: the faster it produces, the thicker the debt — and the debt hides behind a green pipeline.</p></div>
+    <div class="card amber"><h4>Optimizing before simplifying</h4><p>Fine-tuning the most complex structure: gains are eaten by complexity, and equivalence becomes hard to prove.</p></div>
+    <div class="card amber"><h4>Automating before accelerating</h4><p>Freezing a serial bottleneck into the pipeline: every later speed-up requires tearing it apart.</p></div>
+  </div>
+  <div class="callout quote"><span class="lbl">Relation to the Axioms</span>The five-step algorithm is Axiom 1 (static–dynamic duality) projected onto evolution actions — deleting and simplifying contract the static skeleton, optimizing and accelerating expand dynamic capability, automation only freezes already-verified paths and <b>produces no new correctness</b>.</div>
+
+  <h3>10.5 Execution discipline: flat channels, no overnight bad news, grey release</h3>
+  <div class="grid g2">
+    <div class="card blue"><h4>1 · Flat communication (three sentences)</h4><p>Escalate with only: <b>what the problem is · what has been tried · what is needed next</b>. Preamble, emotional narrative, and irrelevant context are stripped — the human-readable form of the NTP uplink (5.4) and organizational governance of information entropy.</p></div>
+    <div class="card amber"><h4>2 · No overnight bad news</h4><p>False green ticks, silent failures, unauthorized mutations, and gate bypasses must be reported <b>in the same round</b>. A system that hides bad news should be judged <b>contaminated</b> and degraded — an unrecorded failure re-contaminates memory as "experience".</p></div>
+    <div class="card teal"><h4>3 · Integrated die-casting</h4><p>A chain that can be fused into a high-cohesion module must not be split into a long microservice chain — every boundary crossing pays serialization, network, and observability three times over. Hard limit: <b>D0 skeleton logic may not be smeared into business modules</b>, and replaceability may not be sacrificed.</p></div>
+    <div class="card purple"><h4>4 · High-frequency grey release</h4><p>At <b>99%</b> confidence, enter grey release rather than waiting for 100% — waiting for perfection is shutting the feedback loop. Requires: rollback checkpoint, one-way tightening degradation path (21.3), observable success criteria.</p></div>
+  </div>
+  <div class="callout warn"><span class="lbl">Boundary</span>Gates and grey release are not opposites: <b>the gate decides "may it ship", grey release decides "how much, to whom"</b>. If the gate has not passed, grey release is meaningless.</div>
 </section>
 
 <!-- ================= CH11 ================= -->
@@ -616,6 +763,8 @@ flowchart TB
       <tr><td>Rollback rate</td><td>failed rollbacks / total changes</td><td>↓</td></tr>
       <tr><td>MTTR</td><td>mean time to repair</td><td>↓</td></tr>
       <tr><td>Silent-failure count</td><td>number of exceptions swallowed without reporting</td><td>= 0 (red line)</td></tr>
+      <tr><td>Feedback-loop duration</td><td>time from signal generation to completed consolidation</td><td>↓ (core metric of the speed law)</td></tr>
+      <tr><td>Net code-volume change</td><td>deleted minus added lines per evolution round</td><td>should be negative or near zero</td></tr>
     </tbody>
   </table></div>
   <h3>Anti-Pattern List (Explicit "Don'ts")</h3>
@@ -630,6 +779,9 @@ flowchart TB
       <tr><td>Omni-LLM (no Cerebellum)</td><td>Stalls, burns money, unreliable</td><td>Cerebellum first</td></tr>
       <tr><td>Unexplainable black box</td><td>Uncontrollable, untrustworthy</td><td>Full-spectrum white-box ledger</td></tr>
       <tr><td>Unlimited rule-base growth</td><td>Cerebellum degenerates into a new monolith</td><td>Experience promotion + decay archiving</td></tr>
+      <tr><td>Automating before simplifying</td><td>Pipelines technical debt; green ticks mask decay</td><td>Five-step algorithm order (10.4)</td></tr>
+      <tr><td>Masking a missing rule base with high-frequency distress</td><td>Hollow Cerebellum; cost rises linearly with traffic</td><td>Rate limiting + attributing misses to rule gaps (5.5)</td></tr>
+      <tr><td>Cerebellum forcing a guess</td><td>Hallucination into the trunk, unreplayable</td><td>Throw <code>UnknownSignal</code>; no approximate substitution (4.4)</td></tr>
     </tbody>
   </table></div>
 </section>
@@ -781,7 +933,7 @@ flowchart TB
     <div class="card amber"><h4>Interaction tenses</h4><p>Fast synchronous calls, long-task streaming subscriptions, and fully asynchronous notifications coexist.</p></div>
   </div>
   <p><strong>Opaque execution</strong>: collaborators need not expose internal thoughts, plans, or tools, exchanging only context, state, instructions, and data — protecting implementation privacy, while task metadata must remain auditable.</p>
-  <div class="callout warn"><span class="lbl">Collaboration Discipline</span>1 Single, replaceable responsibility; 2 all inter-agent messages pass through an observable bus; 3 cross-agent delegation may not bypass tiered authorization, and delegation touching D0/D1 or production returns to human adjudication; 4 conflicts are arbitrated by gate verification results and human judgment, not "majority vote."</div>
+  <div class="callout warn"><span class="lbl">Collaboration Discipline</span>1 Single, replaceable responsibility; 2 all inter-agent messages pass through an observable bus; 3 cross-agent delegation may not bypass tiered authorization, and delegation touching D0/D1 or production returns to human adjudication; 4 conflicts are arbitrated by gate verification results and human judgment, not "majority vote"; 5 shared Main Brain quota must be arbitrated by a unified scheduling unit (urgency + budget) — connecting to the remote service independently and bypassing quota is forbidden (5.5).</div>
 </section>
 
 <!-- ================= CH17 ================= -->
@@ -950,6 +1102,15 @@ flowchart TB
     <div class="cap">Figure: Graceful degradation ladder — one-way tightening, automatic triggering, human acceleration</div>
   </div>
   <div class="callout warn"><span class="lbl">Iron Law</span>Degradation is one-way tightening, automatically triggered, manually accelerated by humans; upgrading back requires re-running immune verification and authorization and may not automatically rise. Circuit breakers must be drilled regularly; one never drilled is considered nonexistent.</div>
+  <h3>21.3b Two standard actions at the two-brain extreme states</h3>
+  <div class="tw"><table>
+    <thead><tr><th>Extreme state</th><th>Detection signal</th><th>Mandatory action</th><th>Still guaranteed</th></tr></thead>
+    <tbody>
+      <tr><td><b>Main Brain unreachable</b> (network cut / timeout / quota exhausted)</td><td>Consecutive uplink timeouts, failed health probes</td><td>Cut every escalate path, fall back to L2 "Cerebellum + static skeleton only", reject all mutation-class changes</td><td>Core business survives; routine transactions ≥80% available (4.4)</td></tr>
+      <tr><td><b>Memory store contaminated</b> (poisoning / broken lineage / retrieval anomalies)</td><td>Abnormal hit rate, source verification failure, failed promotion audit</td><td>Freeze all <b>experience-promotion</b> writes, degrade to "memoryless state", use local hard rules only</td><td>Read-only availability; promoted rules re-traced to source, suspicious ones demoted</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout quote"><span class="lbl">Why</span>Neither extreme state permits "escalating while sick" — when the Main Brain is unreachable, repeated uplinks drag latency into an avalanche; when memory is contaminated, still reading it spreads contamination into the judgment layer.</div>
 </section>
 
 <!-- ================= CH22 ================= -->
@@ -1445,13 +1606,22 @@ flowchart LR
       <tr><td>Inbreeding</td><td>rule corruption from promotion evidence depending on homologous / self-referential samples; must be rejected</td></tr>
       <tr><td>Appendix renumbering R5</td><td>after projection deletes P-layer appendices, retained N-layer appendices are renumbered continuously with anchors synchronized</td></tr>
       <tr><td>Form-suffix contract</td><td>naming rule: formal release has no suffix, development view carries the <code>&lt;development form identifier&gt;</code> suffix</td></tr>
+      <tr><td>Five-Step Algorithm</td><td>mandatory evolution order — delete → simplify → optimize → accelerate → automate; inverting it is forbidden</td></tr>
+      <tr><td>Feedback-loop duration</td><td>time from signal generation to completed consolidation; the core metric of the speed law</td></tr>
+      <tr><td>Integrated die-casting</td><td>fusing a long call chain into a high-cohesion module at the base layer to cut cross-boundary loss</td></tr>
+      <tr><td>No Speculation</td><td>the Cerebellum must throw <code>UnknownSignal</code> when no rule matches; guessing or approximate substitution is forbidden</td></tr>
+      <tr><td>Offline capability</td><td>requirement that the Cerebellum sustain ≥80% of routine transactions while the Main Brain is unreachable</td></tr>
+      <tr><td>Uplink</td><td>Cerebellum → Main Brain distress payload: feature vector, error code, tried rules, environment profile, budget</td></tr>
+      <tr><td>Downlink</td><td>Main Brain → Cerebellum proposal payload: candidate patch, confidence, reasoning summary; status always pending verification</td></tr>
+      <tr><td>Communication state machine</td><td>the two-brain link sequence Pending → Proposal → Verifying → Applied/Rollback → Ledger</td></tr>
+      <tr><td>Channel arbitration</td><td>unified queuing of competing requests for Main Brain quota by urgency and budget</td></tr>
     </tbody>
   </table></div>
   <div class="callout quote" style="margin-top:24px"><span class="lbl">Conclusion</span>While an organization is still doing "addition" — piling up compute, models, and tokens — ANE is doing "subtraction and multiplication": setting rules for the Cerebellum, drawing boundaries for the Main Brain, building a moat for memory, and installing an immune system for evolution. <b>Even this specification obeys the rules it defines — projecting a clean formal release from a single source of truth and proving its own purity with gates. Only a specification that can govern itself is qualified to govern living systems.</b></div>
 </section>
 
 <footer>
-  <div>ANE Specification: AI-Native Engineering Paradigm for Living Software Systems v0.5.0 · Created by Feng Lei · Formal Release</div>
+  <div>ANE Specification: AI-Native Engineering Paradigm for Living Software Systems v0.6.0 · Created by Feng Lei · Formal Release</div>
   <div style="margin-top:8px">ANE = AI Native Engineering · MD and HTML versions carry identical content</div>
 </footer>
 </main>

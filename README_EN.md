@@ -18,7 +18,7 @@ Three moats: **Cerebellum first** (high-frequency decisions cost zero tokens) ·
 
 ## Current version
 
-**v0.5.0** (2026-11-20) — cold start, hardware awareness, domestic compliance, dual-fold interaction, and promotion audit.
+**v0.6.0** (2026-11-21) — evolution-speed dynamics and the dual-brain collaboration channel layer.
 
 The full version evolution and revision discipline are specified in Chapters 34–37 of the specification.
 
@@ -48,7 +48,14 @@ The specification has **37 chapters + a glossary (Appendix A)**, organized in la
 | Governance | 25–31 | Meta-specification, conformance assessment (ANE-CONF), migration and adoption, observability, evolution-system testing, applicability boundaries, economics |
 | Release | 32–37 | Release forms, information grading and gates, single source of truth and deterministic projection, multi-language governance, artefact naming, structural integrity checks |
 
-### Five enhancements in v0.5.0
+### Four groups of enhancements in v0.6.0
+
+1. **Five-Step Evolution Algorithm (10.4)** — delete → simplify → optimize → accelerate → automate; the order may not be inverted, and skipping a step pipelines debt.
+2. **Execution Discipline (10.5)** — three-sentence communication (problem / tried / needed) · no overnight bad news · integrated die-casting · grey release at 99%.
+3. **Two-Brain Hard Boundary and High-Order NTP Channel (4.4 / 5.3 / 5.4 / 5.5)** — three hard boundaries of the Cerebellum (offline capability / growable / no speculation) · uplink distress and downlink proposal schemas · four iron laws · communication state machine, channel arbitration, and explore/exploit rate limiting.
+4. **Two-Brain Extreme States (21.3b)** — Main Brain unreachable falls back to Cerebellum-only L2; memory contamination freezes promotion and degrades to a memoryless state; neither permits "escalating while sick."
+
+### Five enhancements in v0.5.0 (archived)
 
 1. **Cold Start and Knowledge Quenching (6.4)** — seed-rule injection + explore/exploit adaptive switching, solving "burning money on an empty memory from day one."
 2. **Hardware-Topology Awareness (2.3 / 8.5)** — the IR layer adaptively prioritizes compilation by instruction set, accelerator core count, and memory bandwidth.
