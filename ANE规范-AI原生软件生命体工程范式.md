@@ -1,4 +1,4 @@
-# 《ANE 规范：AI 原生软件生命体工程范式》v0.9.0 · 正式发布版
+# 《ANE 规范：AI 原生软件生命体工程范式》v0.10.0 · 正式发布版
 
 > **ANE Specification — AI-Native Engineering Paradigm for Living Software Systems**
 >
@@ -8,7 +8,7 @@
 >
 > ANE = **AI Native Engineering** · 动静结合 · 双脑协同 · 记忆护城河 · 开发维护一体 · 治理与韧性 · 可验证可采纳
 >
-> 版本：**v0.9.0**　|　日期：2026-11-21　|　形态：正式发布版
+> 版本：**v0.10.0**　|　日期：2026-11-21　|　形态：正式发布版
 >
 > 本规范以**通用范式语言**表述，不绑定任何具体产品、框架或工程实现，适用于一切构建 AI 原生软件系统的团队。
 >
@@ -2650,6 +2650,55 @@ flowchart LR
 | 闭源核心经 IOP 接入 | 【可选】 | 视存量结构取舍 |
 | 对外转换报告 | 【可选】 | 生态协作增强 |
 
+### 43.9 转换台账（机器可读样例）
+
+**【本文原创】** 43.2 要求"分级结论写入转换台账"，本节给出台账的机器可读样例与字段释义，使分级、退出验证、灰度决策与完成判据可被程序校验。契约定义见 `schemas/conversion-1.0.schema.json`，由 `tools/validate_ntp.py` 按载荷特征自动路由校验。
+
+**【必须】** 转换台账必须通过转换台账 Schema 校验，且 `conversion_digest` 必须可按 ANS-1 规范化重算，否则不得作为符合性评估（ANE-CONF）的输入。
+
+```json
+{
+  "conversion_version": "1.0",
+  "conversion_id": "conv-legacy-core-01",
+  "organism_id": "org-legacy-7a31",
+  "fitness_tier": "T2",
+  "target_tier": "L4",
+  "stages": [
+    { "stage_id": "OBSERVE", "state": "EXIT_VERIFIED", "exit_verified": true, "evidence_ref": "trace:2026-11-20/core-path" },
+    { "stage_id": "BASE", "state": "EXIT_VERIFIED", "exit_verified": true, "evidence_ref": "test:suite-d0-invariants" },
+    { "stage_id": "CEREBELLUM", "state": "EXIT_VERIFIED", "exit_verified": true, "evidence_ref": "metric:local-intercept-92pct" },
+    { "stage_id": "MEMORY", "state": "IN_PROGRESS", "exit_verified": false, "evidence_ref": "review:memory-readonly-2026-11-21" },
+    { "stage_id": "SOVEREIGNTY", "state": "NOT_STARTED", "exit_verified": false, "evidence_ref": "pending:sovereignty-cutover" }
+  ],
+  "gray_release": { "mode": "SHADOW", "current_step": "SHADOW", "diff_ratio": 0.012, "rollback_ready": true, "daily_readout": true },
+  "data_migration": [
+    { "temperature": "HOT", "strategy": "rebuild-in-cerebellum", "forbidden": false },
+    { "temperature": "WARM", "strategy": "verified-digest-only", "forbidden": false },
+    { "temperature": "COLD", "strategy": "archive-append-only", "forbidden": false },
+    { "temperature": "FROZEN", "strategy": "register-reference-only", "forbidden": false }
+  ],
+  "non_convertible": [
+    { "component": "hard-real-time-loop", "disposition": "keep-in-deterministic-layer", "declared_external": false }
+  ],
+  "completion": { "conformity_passed": false, "old_retired_or_declared": false, "ledger_archived": false, "human_signoff": false, "observation_cycle_done": false },
+  "conversion_digest": "sha256:be5665230dccdff22f251cbb51f59cbc68e6f1e78aa25dc8442c891e07906434"
+}
+```
+
+| 字段 | 类型 | 白话解释 | 为什么必须有 | 取值来源 |
+|---|---|---|---|---|
+| `conversion_version` | 字符串 | 台账格式版本，固定 `1.0` | 契约演进时可判读旧台账 | Schema `const` |
+| `conversion_id` | 字符串 | 本次转换的稳定编号 | 多次转换不可混淆 | `conv-` + 小写标识 |
+| `organism_id` | 字符串 | 被改造生命体的身份 | 责任链连续（41.3） | 41 章身份登记 |
+| `fitness_tier` | 枚举 | 存量适配分级 T1–T4 | 一刀切改造风险失控 | 43.2 分级结论 |
+| `target_tier` | 枚举 | 目标成熟度 L0–L5 或保持原状 | 完成判据需可判定目标 | 26 章成熟度模型 |
+| `stages` | 数组 | 五阶段改造状态与退出验证证据 | 阶段 ⑤ 未过禁止开 ⑥ | 43.3 退出验证 |
+| `gray_release` | 对象 | 绞杀灰度当前台阶与差异率 | 差异超阈须停止放量 | 43.4 双轨纪律 |
+| `data_migration` | 数组 | 热/温/冷/冻结四层策略与禁止项 | 防止运行时内存态被直接迁移 | 43.5 + 41.1 |
+| `non_convertible` | 数组 | 不可转换成分与对外声明状态 | T3/T4 不得伪装为已改造 | 43.6 |
+| `completion` | 对象 | 五项完成判据布尔值 | 宣布完成需全部可核对 | 43.7 |
+| `conversion_digest` | 字符串 | 全记录的 ANS-1 摘要 | 台账被篡改可被发现 | ANS-1 重算 |
+
 ---
 
 ## 附录 A　术语表
@@ -2692,6 +2741,9 @@ flowchart LR
 | 规范性等级 | 【必须】/【应当】/【可选】/【禁止】四级，用来判定符合性 | 引用（RFC 2119/8174）+ 本文中文适配 | 第四十二章 42.1 | MUST / SHOULD / MAY |
 | 存量适配分级 T1–T4 | 传统软件能否改造、怎么改造的四类判断 | 本文原创（分级定义） | 第四十三章 43.2 | Legacy Fitness Tiers |
 | 绞杀双轨替换 | 新旧系统并行、只记录不生效、小比例灰度直至旧系统退役 | 引用（绞杀者模式）+ 本文适配 | 43.4 | Strangler Dual-Track Replacement |
+| 转换台账 | 记录适配分级、阶段退出验证、灰度决策与完成判据的机器可读契约 | 本文原创（契约定义） | 第四十三章 43.9 · `schemas/conversion-1.0.schema.json` | Conversion Ledger |
+| 术语白名单 | 规范性条款中允许出现的技术标识清单，防止未经定义的新黑话 | 本文原创（门禁机制） | `schemas/term-whitelist.json` | Term Whitelist |
+| 一键门禁 | 把载荷、措辞、双格式、术语白名单四类校验收敛为单一命令与退出码 | 本文原创（工程实践） | `tools/check_all.py` | Unified Gate Entry |
 
 > **来源纪律**：标为"本文原创"的术语，其定义以本规范为准，引用时请注明 ANE；标为"引用"的术语保留业界原义，本规范只规定它在生命体中的角色，不改写其外部定义。
 

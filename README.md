@@ -18,11 +18,11 @@ ANE（AI Native Engineering，AI 原生工程）是一套面向 AI Agent 时代�
 
 ## 当前版本
 
-**v0.9.0**（2026-11-21）— 门禁工程化与存量转换层。
+**v0.10.0**（2026-11-21）— 门禁闭环与 CI 阻断层。
 
-第十一轮新增：第 43 章传统软件向软件生命体的转换（适配分级 T1–T4 / 五阶段改造手术 / 绞杀者双轨替换 / 状态分层迁移 / 不可转换成分）· 40.3b A4 启用前十项准入检查表。闭环上轮四条建议：① 术语禁令清单（`schemas/banned-terms.json`）与全轨措辞门禁；② G8 双格式一致性门禁（`tools/check_dual_format.py`），修复 MD/HTML 条款漂移；③ IOP 四类载荷 Schema（`schemas/iop-1.0.schema.json`），42/42 载荷合法、18 摘要可重算；④ A4 准入表。四类门禁统一由 `tools/validate_ntp.py` 提供（validate / terms / canonicalize）。
+第十二轮新增：§43.9 机器可读转换台账（`schemas/conversion-1.0.schema.json`，含 ANS-1 摘要与逐字段释义）；术语白名单（`schemas/term-whitelist.json` + `tools/check_term_whitelist.py`）；一键门禁 `tools/check_all.py`（载荷 / 措辞 / 双格式 / 白名单四类，统一退出码，支持 `--only` 与 `--json`）；GitHub Actions CI 阻断（`.github/workflows/ane-gates.yml`，push/PR 自动跑同一入口）；G8 补齐中文正式对并对缺轨优雅跳过。闭环上轮四条建议：① 一键门禁 ② 转换台账 Schema ③ 术语白名单 ④ CI 阻断，均真实实现并通过端到端负向测试。本地与 CI 统一命令：`python tools/check_all.py`。
 
-完整的版本演进与修订纪律见规范第三十四～三十七章；第八轮 30 轮计划（逐轮级）见 DEBUG 开发版附录 J。
+完整的版本演进与修订纪律见规范第三十四～三十七章；第九轮 30 轮计划（逐轮级）见 DEBUG 开发版附录 K。
 
 ## 文件清单
 
@@ -37,6 +37,11 @@ ANE（AI Native Engineering，AI 原生工程）是一套面向 AI Agent 时代�
 | `schemas/iop-1.0.schema.json` | IOP 四类载荷机器契约（名片 / 信封 / 套件 / 演进凭证） |
 | `schemas/banned-terms.json` | 措辞禁令清单（口号 / 产品名 / 项目专名 / 过程痕迹） |
 | `tools/check_dual_format.py` | G8 门禁：MD/HTML 条款级逐字一致性校验 |
+| `schemas/conversion-1.0.schema.json` | 第 43 章转换台账机器契约（分级 / 五阶段 / 灰度 / 迁移 / 完成判据） |
+| `schemas/term-whitelist.json` | 术语白名单：规范性条款允许出现的技术标识清单 |
+| `tools/check_term_whitelist.py` | 白名单门禁：阻止未定义技术标识进入规范性条款 |
+| `tools/check_all.py` | 一键门禁：四类门禁统一入口与退出码（CI 单一入口） |
+| `.github/workflows/ane-gates.yml` | GitHub Actions：push/PR 自动执行 check_all |
 | `README.md` / `README_EN.md` | 中 / 英文项目说明 |
 | `LICENSE` / `LICENSE-zh.md` | CC BY 4.0 许可协议（英文法律文本 / 中文对照译文） |
 

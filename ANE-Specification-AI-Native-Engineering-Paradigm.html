@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ANE Specification: AI-Native Engineering Paradigm for Living Software Systems v0.9.0 · White Paper (Formal Release)</title>
+<title>ANE Specification: AI-Native Engineering Paradigm for Living Software Systems v0.10.0 · White Paper (Formal Release)</title>
 <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
 <style>
   :root{
@@ -130,7 +130,7 @@
 <div class="layout">
 <aside>
   <div class="brand">AI Native Engineering</div>
-  <h1>ANE Specification v0.9.0</h1>
+  <h1>ANE Specification v0.10.0</h1>
   <div class="ver">AI-Native Engineering Paradigm for Living Software Systems · Created by Feng Lei · Formal Release</div>
   <nav>
     <div class="grp">Overview</div>
@@ -191,7 +191,7 @@
 <main>
 <header class="hero">
   <div class="tagrow">
-    <span class="tag t-purple">ANE v0.9.0</span>
+    <span class="tag t-purple">ANE v0.10.0</span>
     <span class="tag t-blue">Static-Dynamic Integration</span>
     <span class="tag t-teal">Dual-Brain Collaboration</span>
     <span class="tag t-purple">Memory Moat</span>
@@ -204,7 +204,7 @@
   <p class="subtitle">ANE = <b>AI Native Engineering</b>. A general paradigm fusing classical cybernetics (static / Cerebellum) with modern artificial intelligence (dynamic / Main Brain). It turns AI from something "used" into something "harnessed," and applies to all systems and teams building AI-native software without binding to any specific product or framework.</p>
   <div class="meta">
     <span><b>Created by</b> Feng Lei (冯磊) · original paradigm and chief architecture design</span>
-    <span><b>Version</b> v0.9.0 · Formal Release</span>
+    <span><b>Version</b> v0.10.0 · Formal Release</span>
     <span><b>Date</b> 2026-11-21</span>
     <span><b>Status</b> Formal Release</span>
   </div>
@@ -2498,7 +2498,7 @@ flowchart LR
 </tr>
 </tbody></table></div>
 <h3>42.2 Syntax and scope</h3>
-<ul><li><b>【MUST】</b> Every normative clause carries exactly one level label.</li><li><b>【MUST】</b> The label sits next to the clause, not collected at chapter end.</li><li><b>【SHOULD】</b> Mixed-level clauses label each item separately.</li><li><b>【MAY】</b> The DEBUG view adds origin labels (original/referenced); the formal release keeps normative levels.</li></ul>
+<ul><li><b>【MUST】</b> Every normative clause carries exactly one level label.</li><li><b>【MUST】</b> The label sits next to the clause, not collected at chapter end.</li><li><b>【SHOULD】</b> Mixed-level clauses label each item separately.</li><li><b>【MAY】</b> The development view adds origin labels (original/referenced); the formal release keeps normative levels.</li></ul>
 <h3>42.3 Mandatory quick reference</h3>
 <div class="tw"><table><thead><tr>
 <th>Chapters</th>
@@ -2580,6 +2580,36 @@ flowchart LR
 <p><b>【MUST】</b> Declare conversion complete only when: ① target modules pass conformance checks at their declared tier (Ch.26); ② legacy system retired or explicitly labeled T3/T4 external/immutable core; ③ conversion ledger, evidence and rollback records fully archived; ④ human sovereignty layer confirms in writing. <b>【SHOULD】</b> Run a full observation period with no major degradation before closing the conversion ledger. <b>【MAY】</b> Publish an externally verifiable conversion report so ecosystem partners can check capability boundaries (Ch.38).</p>
 <p>### 43.8 Chapter mandatory/optional checklist</p>
 <div class="tw"><table><tbody><tr><td>Item</td><td>Level</td><td>Rationale</td></tr><tr><td>No wholesale rewrite, observe before change</td><td>【MUST】</td><td>Control risk surface</td></tr><tr><td>Legacy fitness tiers (T1–T4)</td><td>【MUST】</td><td>Avoid one-size-fits-all</td></tr><tr><td>Five-stage surgery ①–⑤</td><td>【MUST】</td><td>Skeleton and sovereignty baseline</td></tr><tr><td>Strangler dual-track + grey release + rollback</td><td>【MUST】</td><td>Switch safety</td></tr><tr><td>Tiered state migration, continuous responsibility chain</td><td>【MUST】</td><td>Memory moat and compliance</td></tr><tr><td>Self-heal flywheel stage ⑥</td><td>【MAY】</td><td>High risk, needs mature immunity</td></tr><tr><td>Closed-source core via IOP</td><td>【MAY】</td><td>Depends on legacy structure</td></tr><tr><td>External conversion report</td><td>【MAY】</td><td>Ecosystem collaboration enhancement</td></tr></tbody></table></div>
+<h3>43.9 Machine-readable conversion ledger</h3>
+<p><b>【Original to this specification】</b> Clause 43.2 requires that the fitness-tier conclusion be written into a conversion ledger. This section gives a machine-readable sample and field glossary so that tiering, stage exit verification, grey-release decisions and completion criteria can be checked by a program. The contract is defined in <code>schemas/conversion-1.0.schema.json</code> and routed automatically by <code>tools/validate_ntp.py</code> on payload markers.</p>
+<p><b>【MUST】</b> A conversion ledger MUST pass the conversion Schema validation and its <code>conversion_digest</code> MUST be reproducible by ANS-1 canonicalization; otherwise it MUST NOT be used as input to conformance assessment (ANE-CONF).</p>
+<pre style="background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;overflow-x:auto;font-size:12.5px;color:var(--ink2)"><code>{
+  "conversion_version": "1.0",
+  "conversion_id": "conv-legacy-core-01",
+  "organism_id": "org-legacy-7a31",
+  "fitness_tier": "T2",
+  "target_tier": "L4",
+  "stages": [
+    { "stage_id": "OBSERVE", "state": "EXIT_VERIFIED", "exit_verified": true, "evidence_ref": "trace:2026-11-20/core-path" },
+    { "stage_id": "BASE", "state": "EXIT_VERIFIED", "exit_verified": true, "evidence_ref": "test:suite-d0-invariants" },
+    { "stage_id": "CEREBELLUM", "state": "EXIT_VERIFIED", "exit_verified": true, "evidence_ref": "metric:local-intercept-92pct" },
+    { "stage_id": "MEMORY", "state": "IN_PROGRESS", "exit_verified": false, "evidence_ref": "review:memory-readonly-2026-11-21" },
+    { "stage_id": "SOVEREIGNTY", "state": "NOT_STARTED", "exit_verified": false, "evidence_ref": "pending:sovereignty-cutover" }
+  ],
+  "gray_release": { "mode": "SHADOW", "current_step": "SHADOW", "diff_ratio": 0.012, "rollback_ready": true, "daily_readout": true },
+  "data_migration": [
+    { "temperature": "HOT", "strategy": "rebuild-in-cerebellum", "forbidden": false },
+    { "temperature": "WARM", "strategy": "verified-digest-only", "forbidden": false },
+    { "temperature": "COLD", "strategy": "archive-append-only", "forbidden": false },
+    { "temperature": "FROZEN", "strategy": "register-reference-only", "forbidden": false }
+  ],
+  "non_convertible": [
+    { "component": "hard-real-time-loop", "disposition": "keep-in-deterministic-layer", "declared_external": false }
+  ],
+  "completion": { "conformity_passed": false, "old_retired_or_declared": false, "ledger_archived": false, "human_signoff": false, "observation_cycle_done": false },
+  "conversion_digest": "sha256:be5665230dccdff22f251cbb51f59cbc68e6f1e78aa25dc8442c891e07906434"
+}</code></pre>
+<div class="tw"><table><tbody><tr><td>Field</td><td>Type</td><td>Plain meaning</td><td>Why needed</td><td>Source of value</td></tr><tr><td><code>conversion_version</code></td><td>string</td><td>Ledger format version, fixed <code>1.0</code></td><td>Old ledgers stay readable as the contract evolves</td><td>Schema <code>const</code></td></tr><tr><td><code>conversion_id</code></td><td>string</td><td>Stable number for this conversion</td><td>Multiple conversions cannot be confused</td><td><code>conv-</code> + lowercase id</td></tr><tr><td><code>organism_id</code></td><td>string</td><td>Identity of the system being converted</td><td>Responsibility chain stays continuous (41.3)</td><td>Ch.41 identity registry</td></tr><tr><td><code>fitness_tier</code></td><td>enum</td><td>Legacy fitness tier T1–T4</td><td>One-size-fits-all conversion is unsafe</td><td>43.2 tiering</td></tr><tr><td><code>target_tier</code></td><td>enum</td><td>Target maturity L0–L5, or unchanged</td><td>Completion criteria need a decidable target</td><td>Ch.26 maturity model</td></tr><tr><td><code>stages</code></td><td>array</td><td>Five surgery stages with exit-verification evidence</td><td>Stage ⑤ must pass before ⑥ may open</td><td>43.3 exit verification</td></tr><tr><td><code>gray_release</code></td><td>object</td><td>Current grey-release step and diff ratio</td><td>Release must stop when diff exceeds threshold</td><td>43.4 dual-track discipline</td></tr><tr><td><code>data_migration</code></td><td>array</td><td>Four temperature layers with strategies and forbidden flags</td><td>Prevents direct copy of runtime memory state</td><td>43.5 + 41.1</td></tr><tr><td><code>non_convertible</code></td><td>array</td><td>Non-convertible components and external-declaration state</td><td>T3/T4 must not pose as converted</td><td>43.6</td></tr><tr><td><code>completion</code></td><td>object</td><td>Five boolean completion criteria</td><td>Completion must be checkable item by item</td><td>43.7</td></tr><tr><td><code>conversion_digest</code></td><td>string</td><td>ANS-1 digest of the whole record</td><td>Ledger tampering becomes detectable</td><td>ANS-1 recomputation</td></tr></tbody></table></div>
 </section>
 <!-- ================= APPENDIX A ================= -->
 <section id="appa">
@@ -2608,7 +2638,7 @@ flowchart LR
       <tr><td>Audit ledger</td><td>Structured chain of who / when / on what grounds / what happened</td><td>Adopted + specified here</td><td>13.5 · 28.1 · Axiom 6</td><td>Audit Ledger</td></tr>
       <tr><td>trace-id</td><td>Unique ID of one interaction, linking all its records</td><td>Adopted + named here</td><td>22.1 · 13.5</td><td>Trace Identifier</td></tr>
       <tr><td>RAG / MCP / A2A</td><td>Retrieval augmentation; standard tool and agent protocols</td><td>Adopted</td><td>0.3 · 6.1 · 15.1 · 16.1</td><td>RAG / MCP / A2A</td></tr>
-      <tr><td>NIST RMF / EU AI Act / ISO 42001 / FMEA / RACI</td><td>External frameworks internalized as engineering mechanisms</td><td>Adopted</td><td>20.1 · 20.2 · 21.2 · 20.3</td><td>(same)</td></tr>
+      <tr><td>NIST RMF / EU AI Act / ISO 42001 / FMEA / RACI</td><td>External frameworks internalized as engineering mechanisms</td><td>Adopted</td><td>20.1 · 20.2 · 21.2 · 20.3</td><td>(same)</td></tr><tr><td>Conversion ledger</td><td>Machine-readable contract recording fitness tier, stage exit verification, grey-release decisions and completion criteria</td><td>Original (contract definition)</td><td>Ch.43 §43.9 · <code>schemas/conversion-1.0.schema.json</code></td><td>Conversion Ledger</td></tr><tr><td>Term whitelist</td><td>List of technical identifiers permitted in normative clauses, preventing undefined new jargon</td><td>Original (gate mechanism)</td><td><code>schemas/term-whitelist.json</code></td><td>Term Whitelist</td></tr><tr><td>Unified gate entry</td><td>Payload, wording, dual-format and term-whitelist checks collapsed into one command and one exit code</td><td>Original (engineering practice)</td><td><code>tools/check_all.py</code></td><td>Unified Gate Entry</td></tr>
     </tbody>
   </table></div>
   <div class="callout quote"><span class="lbl">Source discipline</span>"Original" terms are defined authoritatively here — cite ANE when reusing. "Adopted" terms keep their industry meaning; this specification only assigns them a role.</div>
@@ -2711,7 +2741,7 @@ flowchart LR
 </section>
 
 <footer>
-  <div>ANE Specification: AI-Native Engineering Paradigm for Living Software Systems v0.9.0 · Created by Feng Lei · Formal Release</div>
+  <div>ANE Specification: AI-Native Engineering Paradigm for Living Software Systems v0.10.0 · Created by Feng Lei · Formal Release</div>
   <div style="margin-top:8px">ANE = AI Native Engineering · MD and HTML versions carry identical content</div>
 </footer>
 </main>

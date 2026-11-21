@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ane-spec.example/schemas/conversion-1.0.schema.json",
+  "title": "ANE Conversion Ledger 1.0",
+  "description": "第 43 章：传统软件向软件生命体转换的机器可读台账契约。记录存量适配分级、五阶段改造退出验证、绞杀双轨灰度决策、状态温度迁移与完成判据。由 tools/validate_ntp.py 校验，摘要按 ANS-1 规范化重算。",
+  "type": "object",
+  "required": [
+    "conversion_version", "conversion_id", "organism_id", "fitness_tier",
+    "target_tier", "stages", "gray_release", "data_migration",
+    "non_convertible", "completion", "conversion_digest"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "conversion_version": { "const": "1.0", "description": "台账格式版本，固定 1.0。" },
+    "conversion_id": { "type": "string", "minLength": 4, "pattern": "^conv-[a-z0-9-]+$", "description": "转换台账稳定标识，小写字母/数字/连字符。" },
+    "organism_id": { "type": "string", "minLength": 4, "pattern": "^org-[a-z0-9-]+$", "description": "目标生命体标识，须与 41.3 责任链连续。" },
+    "fitness_tier": { "$ref": "#/$defs/tier", "description": "存量适配分级 T1–T4（43.2）。" },
+    "target_tier": { "$ref": "#/$defs/maturity", "description": "目标 ANE 成熟度档（26 章 L0–L5）。" },
+    "stages": {
+      "type": "array", "minItems": 5, "maxItems": 6,
+      "items": { "$ref": "#/$defs/stage" },
+      "description": "五阶段改造手术 ①–⑤，可选阶段 ⑥（43.3）。"
+    },
+    "gray_release": { "$ref": "#/$defs/gray", "description": "绞杀者双轨灰度决策（43.4）。" },
+    "data_migration": {
+      "type": "array", "minItems": 4, "maxItems": 4,
+      "items": { "$ref": "#/$defs/dataLayer" },
+      "description": "状态温度分层迁移：热/温/冷/冻结各一条（43.5）。"
+    },
+    "non_convertible": {
+      "type": "array", "minItems": 1,
+      "items": { "$ref": "#/$defs/nonConvertible" },
+      "description": "不可转换成分与处置（43.6）。"
+    },
+    "completion": { "$ref": "#/$defs/completion", "description": "转换完成判据（43.7）。" },
+    "conversion_digest": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$", "description": "ANS-1 规范化摘要：对除本字段外的对象计算。" }
+  },
+  "$defs": {
+    "tier": {
+      "type": "string", "enum": ["T1", "T2", "T3", "T4"],
+      "description": "T1 易改造 / T2 需隔离 / T3 宜封装 / T4 不建议。"
+    },
+    "maturity": {
+      "type": "string", "enum": ["L0", "L1", "L2", "L3", "L4", "L5", "AS_IS"],
+      "description": "ANE 成熟度档；AS_IS 表示保持原状（T3/T4）。"
+    },
+    "stageId": {
+      "type": "string",
+      "enum": ["OBSERVE", "BASE", "CEREBELLUM", "MEMORY", "SOVEREIGNTY", "SELF_HEAL"],
+      "description": "①观测 ②底座 ③小脑 ④记忆 ⑤主权免疫 ⑥自愈。"
+    },
+    "stageState": {
+      "type": "string",
+      "enum": ["NOT_STARTED", "IN_PROGRESS", "EXIT_VERIFIED", "BLOCKED", "SKIPPED"],
+      "description": "阶段状态；EXIT_VERIFIED 表示退出验证通过。"
+    },
+    "stage": {
+      "type": "object",
+      "required": ["stage_id", "state", "exit_verified", "evidence_ref"],
+      "additionalProperties": false,
+      "properties": {
+        "stage_id": { "$ref": "#/$defs/stageId" },
+        "state": { "$ref": "#/$defs/stageState" },
+        "exit_verified": { "type": "boolean", "description": "退出验证是否已通过；仅 EXIT_VERIFIED 状态可为 true。" },
+        "evidence_ref": { "type": "string", "minLength": 1, "description": "退出验证证据引用（只追加台账中的定位符）。" }
+      }
+    },
+    "gray": {
+      "type": "object",
+      "required": ["mode", "current_step", "diff_ratio", "rollback_ready", "daily_readout"],
+      "additionalProperties": false,
+      "properties": {
+        "mode": { "type": "string", "enum": ["SHADOW", "DUAL_TRACK", "CANARY", "FULL", "RETIRED"], "description": "当前替换模式。" },
+        "current_step": { "type": "string", "enum": ["SHADOW", "PCT_1", "PCT_5", "PCT_25", "PCT_100", "RETIRED"], "description": "灰度台阶 1%→5%→25%→100%。" },
+        "diff_ratio": { "type": "number", "minimum": 0, "maximum": 1, "description": "新旧输出差异率，超阈即停止放量。" },
+        "rollback_ready": { "type": "boolean", "description": "回退点是否就绪；false 禁止放量。" },
+        "daily_readout": { "type": "boolean", "description": "影子/双轨期是否逐日出具差异小结。" }
+      }
+    },
+    "dataLayer": {
+      "type": "object",
+      "required": ["temperature", "strategy", "forbidden"],
+      "additionalProperties": false,
+      "properties": {
+        "temperature": { "type": "string", "enum": ["HOT", "WARM", "COLD", "FROZEN"], "description": "41.1 数据温度分级。" },
+        "strategy": { "type": "string", "minLength": 1, "description": "该层迁移策略摘要。" },
+        "forbidden": { "type": "boolean", "description": "是否命中禁止项；true 表示该层存在违规迁移。" }
+      }
+    },
+    "nonConvertible": {
+      "type": "object",
+      "required": ["component", "disposition", "declared_external"],
+      "additionalProperties": false,
+      "properties": {
+        "component": { "type": "string", "minLength": 1 },
+        "disposition": { "type": "string", "minLength": 1 },
+        "declared_external": { "type": "boolean", "description": "T3/T4 成分是否已按 43.6 对外声明，不得伪装为已改造。" }
+      }
+    },
+    "completion": {
+      "type": "object",
+      "required": ["conformity_passed", "old_retired_or_declared", "ledger_archived", "human_signoff", "observation_cycle_done"],
+      "additionalProperties": false,
+      "properties": {
+        "conformity_passed": { "type": "boolean", "description": "目标模块通过 26 章符合性检查。" },
+        "old_retired_or_declared": { "type": "boolean", "description": "旧系统退役或按 T3/T4 明确标注。" },
+        "ledger_archived": { "type": "boolean", "description": "台账、证据与回退记录完整归档。" },
+        "human_signoff": { "type": "boolean", "description": "人类主权层书面确认。" },
+        "observation_cycle_done": { "type": "boolean", "description": "【应当】完整观察周期无重大降级。" }
+      }
+    }
+  }
+}

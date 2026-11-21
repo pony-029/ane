@@ -1,4 +1,4 @@
-# "ANE Specification: AI-Native Engineering Paradigm for Living Software Systems" v0.9.0 · Formal Release
+# "ANE Specification: AI-Native Engineering Paradigm for Living Software Systems" v0.10.0 · Formal Release
 
 > **ANE Specification — AI-Native Engineering Paradigm for Living Software Systems**
 >
@@ -8,7 +8,7 @@
 >
 > ANE = **AI Native Engineering** · static-dynamic integration · dual-brain collaboration · Memory Moat · unified development and maintenance · governance and resilience · verifiable and adoptable
 >
-> Version: **v0.9.0**　|　Date: 2026-11-21　|　Form: Formal Release
+> Version: **v0.10.0**　|　Date: 2026-11-21　|　Form: Formal Release
 >
 > This specification is expressed in a **general paradigm language**, not bound to any specific product, framework, or engineering implementation, and applies to all teams building AI-native software systems.
 >
@@ -2427,7 +2427,7 @@ Suites are temporary. **【MUST】** Invalidate the manifest and recompute `suit
 - **【MUST】** Every normative clause carries exactly one level label.
 - **【MUST】** The label sits next to the clause, not collected at chapter end.
 - **【SHOULD】** Mixed-level clauses label each item separately.
-- **【MAY】** The DEBUG view adds origin labels (original/referenced); the formal release keeps normative levels.
+- **【MAY】** The development view adds origin labels (original/referenced); the formal release keeps normative levels.
 
 ### 42.3 Mandatory quick reference
 
@@ -2551,6 +2551,55 @@ flowchart LR
 | Closed-source core via IOP | 【MAY】 | Depends on legacy structure |
 | External conversion report | 【MAY】 | Ecosystem collaboration enhancement |
 
+### 43.9 Machine-readable conversion ledger
+
+**【Original to this specification】** Clause 43.2 requires that the fitness-tier conclusion be written into a conversion ledger. This section gives a machine-readable sample and field glossary so that tiering, stage exit verification, grey-release decisions and completion criteria can be checked by a program. The contract is defined in `schemas/conversion-1.0.schema.json` and routed automatically by `tools/validate_ntp.py` on payload markers.
+
+**【MUST】** A conversion ledger MUST pass the conversion Schema validation and its `conversion_digest` MUST be reproducible by ANS-1 canonicalization; otherwise it MUST NOT be used as input to conformance assessment (ANE-CONF).
+
+```json
+{
+  "conversion_version": "1.0",
+  "conversion_id": "conv-legacy-core-01",
+  "organism_id": "org-legacy-7a31",
+  "fitness_tier": "T2",
+  "target_tier": "L4",
+  "stages": [
+    { "stage_id": "OBSERVE", "state": "EXIT_VERIFIED", "exit_verified": true, "evidence_ref": "trace:2026-11-20/core-path" },
+    { "stage_id": "BASE", "state": "EXIT_VERIFIED", "exit_verified": true, "evidence_ref": "test:suite-d0-invariants" },
+    { "stage_id": "CEREBELLUM", "state": "EXIT_VERIFIED", "exit_verified": true, "evidence_ref": "metric:local-intercept-92pct" },
+    { "stage_id": "MEMORY", "state": "IN_PROGRESS", "exit_verified": false, "evidence_ref": "review:memory-readonly-2026-11-21" },
+    { "stage_id": "SOVEREIGNTY", "state": "NOT_STARTED", "exit_verified": false, "evidence_ref": "pending:sovereignty-cutover" }
+  ],
+  "gray_release": { "mode": "SHADOW", "current_step": "SHADOW", "diff_ratio": 0.012, "rollback_ready": true, "daily_readout": true },
+  "data_migration": [
+    { "temperature": "HOT", "strategy": "rebuild-in-cerebellum", "forbidden": false },
+    { "temperature": "WARM", "strategy": "verified-digest-only", "forbidden": false },
+    { "temperature": "COLD", "strategy": "archive-append-only", "forbidden": false },
+    { "temperature": "FROZEN", "strategy": "register-reference-only", "forbidden": false }
+  ],
+  "non_convertible": [
+    { "component": "hard-real-time-loop", "disposition": "keep-in-deterministic-layer", "declared_external": false }
+  ],
+  "completion": { "conformity_passed": false, "old_retired_or_declared": false, "ledger_archived": false, "human_signoff": false, "observation_cycle_done": false },
+  "conversion_digest": "sha256:be5665230dccdff22f251cbb51f59cbc68e6f1e78aa25dc8442c891e07906434"
+}
+```
+
+| Field | Type | Plain meaning | Why needed | Source of value |
+|---|---|---|---|---|
+| `conversion_version` | string | Ledger format version, fixed `1.0` | Old ledgers stay readable as the contract evolves | Schema `const` |
+| `conversion_id` | string | Stable number for this conversion | Multiple conversions cannot be confused | `conv-` + lowercase id |
+| `organism_id` | string | Identity of the system being converted | Responsibility chain stays continuous (41.3) | Ch.41 identity registry |
+| `fitness_tier` | enum | Legacy fitness tier T1–T4 | One-size-fits-all conversion is unsafe | 43.2 tiering |
+| `target_tier` | enum | Target maturity L0–L5, or unchanged | Completion criteria need a decidable target | Ch.26 maturity model |
+| `stages` | array | Five surgery stages with exit-verification evidence | Stage ⑤ must pass before ⑥ may open | 43.3 exit verification |
+| `gray_release` | array/object | Current grey-release step and diff ratio | Release must stop when diff exceeds threshold | 43.4 dual-track discipline |
+| `data_migration` | array | Four temperature layers with strategies and forbidden flags | Prevents direct copy of runtime memory state | 43.5 + 41.1 |
+| `non_convertible` | array | Non-convertible components and external-declaration state | T3/T4 must not pose as converted | 43.6 |
+| `completion` | object | Five boolean completion criteria | Completion must be checkable item by item | 43.7 |
+| `conversion_digest` | string | ANS-1 digest of the whole record | Ledger tampering becomes detectable | ANS-1 recomputation |
+
 ## Appendix A · Glossary
 
 > This appendix has three parts: **A.0 core glossary in plain language** for first-time readers; **A.1 numbers and thresholds explained**, covering every figure in the document; the table below is the **complete term index**. Every entry states its source type — "original to this specification" means the term or definition is first proposed here; "adopted" means an established industry concept is used with an ANE-specific role.
@@ -2581,6 +2630,9 @@ flowchart LR
 | MCP / A2A | Standard protocols for tool and agent integration | Adopted (industry protocols) | 15.1 · 16.1 | Model Context Protocol / Agent-to-Agent |
 | NIST RMF / EU AI Act / ISO 42001 | External governance and compliance frameworks internalized as engineering mechanisms | Adopted (standards and law) | 20.1 · 20.2 | NIST AI RMF / EU AI Act / ISO/IEC 42001 |
 | FMEA / RACI | Failure-mode analysis and responsibility matrices, used directly | Adopted (engineering methods) | 21.2 · 20.3 | FMEA / RACI |
+| Conversion ledger | Machine-readable contract recording fitness tier, stage exit verification, grey-release decisions and completion criteria | Original (contract definition) | Ch.43 §43.9 · `schemas/conversion-1.0.schema.json` | Conversion Ledger |
+| Term whitelist | List of technical identifiers permitted in normative clauses, preventing undefined new jargon | Original (gate mechanism) | `schemas/term-whitelist.json` | Term Whitelist |
+| Unified gate entry | Payload, wording, dual-format and term-whitelist checks collapsed into one command and one exit code | Original (engineering practice) | `tools/check_all.py` | Unified Gate Entry |
 
 > **Source discipline**: terms marked "original" are defined authoritatively by this specification — cite ANE when reusing them. "Adopted" terms retain their industry meaning; this specification only assigns them a role inside the living system.
 

@@ -23,6 +23,7 @@ import sys
 
 DEFAULT_SCHEMA = pathlib.Path(__file__).resolve().parent.parent / "schemas" / "ntp-1.1.schema.json"
 DEFAULT_IOP_SCHEMA = pathlib.Path(__file__).resolve().parent.parent / "schemas" / "iop-1.0.schema.json"
+DEFAULT_CONVERSION_SCHEMA = pathlib.Path(__file__).resolve().parent.parent / "schemas" / "conversion-1.0.schema.json"
 DEFAULT_BANNED = pathlib.Path(__file__).resolve().parent.parent / "schemas" / "banned-terms.json"
 DEFAULT_DOCS = [
     "ANE规范-AI原生软件生命体工程范式-DEBUG开发版.md",
@@ -149,10 +150,16 @@ IOP_MARKERS = [(kind, marker) for kind, marker, _ in IOP_KINDS]
 IOP_DIGESTS = {kind: digest for kind, _, digest in IOP_KINDS if digest}
 
 
+CONVERSION_MARKER = "conversion_version"
+CONVERSION_DIGEST = "conversion_digest"
+
+
 def classify(inst):
-    """Route a JSON object to the right schema: NTP or one of four IOP kinds."""
+    """Route a JSON object to the right schema: NTP, IOP kind, or conversion ledger."""
     if "ntp_version" in inst:
         return "ntp", None
+    if CONVERSION_MARKER in inst:
+        return "conversion", None
     for kind, marker in IOP_MARKERS:
         if marker in inst:
             return "iop", kind
@@ -281,6 +288,7 @@ def main():
         kind: Validator({"$defs": iop_root["$defs"], "$ref": "#/$defs/" + kind})
         for kind, _, _ in IOP_KINDS
     }
+    conversion_validator = Validator(json.loads(DEFAULT_CONVERSION_SCHEMA.read_text(encoding="utf-8")))
     failures = 0
     total = 0
     digests = 0
@@ -300,7 +308,8 @@ def main():
             try:
                 inst = json.loads(raw)
             except json.JSONDecodeError as e:
-                if "ntp_version" in raw or any(m in raw for _, m in IOP_MARKERS):
+                if ("ntp_version" in raw or CONVERSION_MARKER in raw
+                        or any(m in raw for _, m in IOP_MARKERS)):
                     failures += 1
                     print(f"[FAIL] {p.name} block#{i}: invalid JSON: {e}")
                 continue
@@ -309,7 +318,12 @@ def main():
                 continue
             total += 1
             kinds[kind] = kinds.get(kind, 0) + 1
-            target = validator if kind == "ntp" else iop_validators[sub]
+            if kind == "ntp":
+                target = validator
+            elif kind == "conversion":
+                target = conversion_validator
+            else:
+                target = iop_validators[sub]
             errors = target.validate(inst)
             if errors:
                 failures += 1
@@ -317,8 +331,9 @@ def main():
                 for e in errors:
                     print("       - " + e)
                 continue
-            if kind == "iop" and sub in IOP_DIGESTS:
-                digest_key = IOP_DIGESTS[sub]
+            digest_key = IOP_DIGESTS.get(sub) if kind == "iop" else (
+                CONVERSION_DIGEST if kind == "conversion" else None)
+            if digest_key:
                 ok = check_digest(inst, digest_key)
                 if ok is False:
                     failures += 1

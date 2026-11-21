@@ -18,9 +18,9 @@ Three moats: **Cerebellum first** (high-frequency decisions cost zero tokens) ·
 
 ## Current version
 
-**v0.9.0** (2026-11-21) — gate engineering and legacy conversion layer.
+**v0.10.0** (2026-11-21) — gate closure and CI blocking layer.
 
-Eleventh round: Ch.43 converting legacy software into a living system (fitness tiers T1–T4 / five-stage surgery / strangler dual-track replacement / tiered state migration / non-convertible components) · 40.3b ten-item admission checklist before enabling A4. All four previous recommendations closed: (1) banned-term manifest (`schemas/banned-terms.json`) and full-track wording gate; (2) G8 dual-format consistency gate (`tools/check_dual_format.py`) fixing MD/HTML clause drift; (3) IOP four-payload Schema (`schemas/iop-1.0.schema.json`), 42/42 payloads valid and 18 digests reproducible; (4) A4 admission table. All four gates are exposed by `tools/validate_ntp.py` (validate / terms / canonicalize).
+Twelfth round: §43.9 machine-readable conversion ledger (`schemas/conversion-1.0.schema.json`, ANS-1 digest and per-field glossary); term whitelist (`schemas/term-whitelist.json` + `tools/check_term_whitelist.py`); unified one-click gate `tools/check_all.py` (payload / wording / dual-format / whitelist, one exit code, `--only` and `--json`); GitHub Actions CI blocking (`.github/workflows/ane-gates.yml`, push/PR run the same entry point); G8 now covers the Chinese formal pair and skips absent tracks gracefully. All four previous recommendations closed with real implementations and end-to-end negative tests. Local and CI share one command: `python tools/check_all.py`.
 
 The full version evolution and revision discipline are specified in Chapters 34–37 of the specification; the eighth 30-round plan (round-level) is in Appendix J of the DEBUG edition.
 
@@ -35,6 +35,11 @@ The full version evolution and revision discipline are specified in Chapters 34�
 | `schemas/iop-1.0.schema.json` | IOP four-payload machine contract (card / envelope / suite / attestation) |
 | `schemas/banned-terms.json` | Banned-term manifest (slogans / product names / project names / process traces) |
 | `tools/check_dual_format.py` | G8 gate: clause-level MD/HTML verbatim consistency |
+| `schemas/conversion-1.0.schema.json` | Ch.43 conversion ledger contract (tiers / stages / grey release / migration / completion) |
+| `schemas/term-whitelist.json` | Term whitelist: technical identifiers permitted in normative clauses |
+| `tools/check_term_whitelist.py` | Whitelist gate: blocks undefined technical identifiers in normative clauses |
+| `tools/check_all.py` | Unified gate: one entry point and exit code for all four gates (CI entry point) |
+| `.github/workflows/ane-gates.yml` | GitHub Actions: runs check_all on push/PR |
 | `README.md` / `README_EN.md` | Chinese / English project notes |
 | `LICENSE` / `LICENSE-zh.md` | CC BY 4.0 licence (English legal text / Chinese translation) |
 

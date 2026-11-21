@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "title": "ANE Term Whitelist",
+  "description": "术语白名单（禁令清单的反向复用）：规范性条款中出现的每一个技术标识（反引号术语、全大写缩写、驼峰标识）都必须是本清单中的已知术语，或该条款带有来源类型标注（本文原创/引用）。作用是阻止下一轮引入未经定义的新黑话。由 tools/check_term_whitelist.py 消费。",
+  "matching": {
+    "case_insensitive": false,
+    "explanation": "标识按字面精确匹配；反引号中含空格的表达式视为自然语言片段，不按术语检查。",
+    "source_tags": ["本文原创", "引用", "Original to this specification", "Cited", "Adopted"],
+    "extraction": {
+      "backticked": true,
+      "uppercase_acronym": true,
+      "camel_case": true,
+      "pascal_case": true,
+      "skip_backticked_with_space": true
+    }
+  },
+  "level_tokens": ["MUST", "SHOULD", "MAY", "NOT", "必须", "应当", "可选", "禁止"],
+  "known_tokens": [
+    "ANE", "ANE-CONF", "ANS-1", "AGI", "RSI", "IOP", "NTP", "MCP", "RFC", "W3C", "TTL", "UTC",
+    "JSON", "DEBUG", "D0", "D1", "D2", "D3", "A0", "A4", "L0", "L1", "L2", "L3", "L4", "L5",
+    "G1", "G7", "SLO", "SLA", "VETO", "REQUIRED", "RECOMMENDED", "OPTIONAL", "DEGRADED",
+    "CAPABILITY_QUERY", "CAPABILITY_ADVERTISE", "TASK_DELEGATE", "RESULT_REPORT",
+    "UnknownSignal", "sha256:", "schemas/ntp-1.1.schema.json",
+    "schemas/iop-1.0.schema.json", "schemas/conversion-1.0.schema.json",
+    "tools/validate_ntp.py", "tools/check_all.py",
+    "organism_id", "card_version", "determinacy", "msg_id", "traceparent", "auth_ref",
+    "suite_digest", "evidence_refs", "attestation_digest", "ttl_ms", "payload_ref", "summary_ref",
+    "translation_of", "binding_digest", "canonicalize", "validate", "proposal_id",
+    "rationale_digest", "capabilities", "owner", "card_digest", "iop_version", "from", "to",
+    "type", "payload_format", "ts", "determinacy_ceiling", "digest", "suite_id", "members",
+    "binding", "declarative", "max_recursion_depth", "level", "budget_hint", "conversion_digest",
+    "conversion_version", "conversion_id", "fitness_tier", "target_tier", "stages",
+    "gray_release", "data_migration", "non_convertible", "completion", "state", "strategy",
+    "temperature", "forbidden", "disposition", "declared_external", "conformity_passed",
+    "old_retired_or_declared", "ledger_archived", "human_signoff", "observation_cycle_done"
+  ],
+  "scopes": {
+    "all_tracks": [
+      "ANE规范-AI原生软件生命体工程范式-DEBUG开发版.md",
+      "ANE规范-AI原生软件生命体工程范式-DEBUG开发版.html",
+      "ANE规范-AI原生软件生命体工程范式.md",
+      "ANE规范-AI原生软件生命体工程范式.html",
+      "ANE-Specification-AI-Native-Engineering-Paradigm.md",
+      "ANE-Specification-AI-Native-Engineering-Paradigm.html"
+    ]
+  }
+}

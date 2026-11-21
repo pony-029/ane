@@ -24,8 +24,12 @@ import sys
 
 BASE = pathlib.Path(__file__).resolve().parent.parent
 PAIRS = [
+    # DEBUG pair is gitignored: skipped locally-day-one but graceful in CI clone.
     ("ANE规范-AI原生软件生命体工程范式-DEBUG开发版.md",
      "ANE规范-AI原生软件生命体工程范式-DEBUG开发版.html"),
+    # Chinese formal pair IS tracked — the meaningful CI gate.
+    ("ANE规范-AI原生软件生命体工程范式.md",
+     "ANE规范-AI原生软件生命体工程范式.html"),
     ("ANE-Specification-AI-Native-Engineering-Paradigm.md",
      "ANE-Specification-AI-Native-Engineering-Paradigm.html"),
 ]
@@ -112,8 +116,13 @@ def compare(md_items, html_items):
 
 
 def check_pair(md_path, html_path, verbose):
-    md_text = pathlib.Path(md_path).read_text(encoding="utf-8")
-    html_text = pathlib.Path(html_path).read_text(encoding="utf-8")
+    mdp, htmlp = pathlib.Path(md_path), pathlib.Path(html_path)
+    if not mdp.exists() or not htmlp.exists():
+        missing = mdp.name if not mdp.exists() else htmlp.name
+        print(f"\n=== {pathlib.Path(md_path).name} ===\n  [SKIP] {missing} not present (untracked debug track)")
+        return 0
+    md_text = mdp.read_text(encoding="utf-8")
+    html_text = htmlp.read_text(encoding="utf-8")
     md_items = extract_md(md_text)
     html_items = extract_html(html_text)
     pairs, md_only, html_only = compare(md_items, html_items)
