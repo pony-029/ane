@@ -18,7 +18,9 @@ Three moats: **Cerebellum first** (high-frequency decisions cost zero tokens) ·
 
 ## Current version
 
-**v0.7.0** (2026-11-21) — model carrier, prompt asset, incident response, and substantive compliance layer.
+**v0.8.0** (2026-11-21) — living-system ecosystem, evolution ladder, and normative levels layer.
+
+Tenth round: Ch.38 IOP (card / envelope / four layers / no shared memory) · Ch.39 declarative suite composition and weakest-link protection · Ch.40 A0–A4 ladder toward AGI (non-decaying authority / bounded recursion) · Ch.41 data temperature tiers and connectivity tri-state (offline mandatory, online optional) · Ch.42 MUST/SHOULD/MAY checklist. Previous three recommendations closed with a real JSON Schema gate, ANS-1 canonicalization, and a Fold 1 binding credential.
 
 The full version evolution and revision discipline are specified in Chapters 34–37 of the specification.
 
@@ -48,7 +50,7 @@ The specification has **37 chapters + a glossary (Appendix A)**, organized in la
 | Governance | 25–31 | Meta-specification, conformance assessment (ANE-CONF), migration and adoption, observability, evolution-system testing, applicability boundaries, economics |
 | Release | 32–37 | Release forms, information grading and gates, single source of truth and deterministic projection, multi-language governance, artefact naming, structural integrity checks |
 
-### Six enhancements and four fixes in v0.7.0
+### Five additions and four fixes in v0.8.0 (v0.7.0 archived below)
 
 1. **Model Carrier Governance (5.6)** — six selection criteria · mandatory model card · upgrade/retirement gate · replaceable carrier that never becomes an architectural dependency.
 2. **Prompt Asset Governance (18.4)** — versioned templates with stable IDs · frozen-glossary interface · injection guard · change evaluation and rollback.

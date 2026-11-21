@@ -1,0 +1,138 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pony-029/ane/schemas/ntp-1.1.schema.json",
+  "title": "ANE Neurotransmitter Protocol v1.1 payload",
+  "description": "Machine-readable contract for the two-brain NTP channel defined in ANE Specification 5.2 and 5.4. Enum catalogues and field glossaries live in the specification; values here carry real data only.",
+  "type": "object",
+  "required": ["ntp_version", "direction"],
+  "properties": {
+    "ntp_version": { "const": "1.1" },
+    "direction": { "enum": ["uplink", "downlink"] }
+  },
+  "oneOf": [
+    { "$ref": "#/$defs/uplink" },
+    { "$ref": "#/$defs/downlink" }
+  ],
+  "$defs": {
+    "sha256Digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "description": "Lowercase SHA-256 hex digest, prefixed with sha256:."
+    },
+    "featureVector": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 64,
+      "items": {
+        "type": "number",
+        "minimum": -1,
+        "maximum": 1
+      },
+      "description": "Normalized numeric features; no strings or glosses may appear inside the array."
+    },
+    "ruleId": {
+      "type": "string",
+      "pattern": "^rule_[0-9]+$"
+    },
+    "budgetHint": {
+      "type": "object",
+      "required": ["max_tokens", "max_latency_ms", "priority"],
+      "properties": {
+        "max_tokens": { "type": "integer", "minimum": 1, "maximum": 200000 },
+        "max_latency_ms": { "type": "integer", "minimum": 1, "maximum": 3600000 },
+        "priority": { "enum": ["D0", "D1", "D2", "D3"] }
+      },
+      "additionalProperties": false
+    },
+    "envProfile": {
+      "type": "object",
+      "required": ["processor_capability", "accelerator_count", "memory_tier", "interconnect"],
+      "properties": {
+        "processor_capability": { "type": "string", "minLength": 1 },
+        "accelerator_count": { "type": "integer", "minimum": 0, "maximum": 1024 },
+        "memory_tier": { "type": "string", "minLength": 1 },
+        "interconnect": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false,
+      "description": "Abstract capability tiers only. Product model names are forbidden."
+    },
+    "uplink": {
+      "type": "object",
+      "required": ["ntp_version", "direction", "signal_type", "error_code", "feature_vector", "context_digest", "budget_hint"],
+      "properties": {
+        "ntp_version": { "const": "1.1" },
+        "direction": { "const": "uplink" },
+        "signal_type": { "enum": ["UNKNOWN", "DEADLOCK", "PERF_REGRESSION", "SEMANTIC_CONFLICT"] },
+        "error_code": { "type": "string", "pattern": "^E-[A-Z]{2,8}-[0-9]{4,6}$" },
+        "feature_vector": { "$ref": "#/$defs/featureVector" },
+        "context_digest": { "$ref": "#/$defs/sha256Digest" },
+        "tried_rules": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/ruleId" }
+        },
+        "memory_hits": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "constraints": {
+          "type": "array",
+          "items": { "enum": ["D0_IMMUTABLE", "TARGET_ENV_LIMITED"] }
+        },
+        "attempt_count": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "env_profile": { "$ref": "#/$defs/envProfile" },
+        "budget_hint": { "$ref": "#/$defs/budgetHint" }
+      },
+      "additionalProperties": false
+    },
+    "candidate": {
+      "type": "object",
+      "required": ["format", "digest"],
+      "properties": {
+        "format": { "enum": ["SEMANTIC_PATCH", "PSEUDOCODE"] },
+        "digest": { "$ref": "#/$defs/sha256Digest" }
+      },
+      "additionalProperties": false,
+      "description": "A verifiable reference only. Inlining the candidate body is forbidden."
+    },
+    "budgetSpent": {
+      "type": "object",
+      "required": ["tokens", "latency_ms"],
+      "properties": {
+        "tokens": { "type": "integer", "minimum": 0 },
+        "latency_ms": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "rationaleBinding": {
+      "type": "object",
+      "required": ["algorithm", "summary_ref", "digest"],
+      "properties": {
+        "algorithm": { "const": "ANS-1+SHA-256" },
+        "summary_ref": { "type": "string", "pattern": "^sum-[0-9a-f]{4}$" },
+        "digest": { "$ref": "#/$defs/sha256Digest" }
+      },
+      "additionalProperties": false,
+      "description": "Binds the human-readable Fold 1 summary to this proposal. See ANE 5.4 / 13.4."
+    },
+    "downlink": {
+      "type": "object",
+      "required": ["ntp_version", "direction", "proposal_id", "candidate", "confidence", "rationale_digest", "assumptions", "budget_spent", "status"],
+      "properties": {
+        "ntp_version": { "const": "1.1" },
+        "direction": { "const": "downlink" },
+        "proposal_id": { "type": "string", "pattern": "^p-[0-9a-f]{4}$" },
+        "candidate": { "$ref": "#/$defs/candidate" },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "rationale_digest": { "$ref": "#/$defs/sha256Digest" },
+        "assumptions": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "budget_spent": { "$ref": "#/$defs/budgetSpent" },
+        "status": { "const": "PENDING_VERIFICATION" },
+        "rationale_binding": { "$ref": "#/$defs/rationaleBinding" }
+      },
+      "additionalProperties": false
+    }
+  }
+}

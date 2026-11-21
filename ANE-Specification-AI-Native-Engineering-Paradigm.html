@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ANE Specification: AI-Native Engineering Paradigm for Living Software Systems v0.7.0 · White Paper (Formal Release)</title>
+<title>ANE Specification: AI-Native Engineering Paradigm for Living Software Systems v0.8.0 · White Paper (Formal Release)</title>
 <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
 <style>
   :root{
@@ -130,7 +130,7 @@
 <div class="layout">
 <aside>
   <div class="brand">AI Native Engineering</div>
-  <h1>ANE Specification v0.7.0</h1>
+  <h1>ANE Specification v0.8.0</h1>
   <div class="ver">AI-Native Engineering Paradigm for Living Software Systems · Created by Feng Lei · Formal Release</div>
   <nav>
     <div class="grp">Overview</div>
@@ -190,7 +190,7 @@
 <main>
 <header class="hero">
   <div class="tagrow">
-    <span class="tag t-purple">ANE v0.7.0</span>
+    <span class="tag t-purple">ANE v0.8.0</span>
     <span class="tag t-blue">Static-Dynamic Integration</span>
     <span class="tag t-teal">Dual-Brain Collaboration</span>
     <span class="tag t-purple">Memory Moat</span>
@@ -203,7 +203,7 @@
   <p class="subtitle">ANE = <b>AI Native Engineering</b>. A general paradigm fusing classical cybernetics (static / Cerebellum) with modern artificial intelligence (dynamic / Main Brain). It turns AI from something "used" into something "harnessed," and applies to all systems and teams building AI-native software without binding to any specific product or framework.</p>
   <div class="meta">
     <span><b>Created by</b> Feng Lei (冯磊) · original paradigm and chief architecture design</span>
-    <span><b>Version</b> v0.7.0 · Formal Release</span>
+    <span><b>Version</b> v0.8.0 · Formal Release</span>
     <span><b>Date</b> 2026-11-21</span>
     <span><b>Status</b> Formal Release</span>
   </div>
@@ -559,7 +559,12 @@ flowchart LR
     "tokens": 980,
     "latency_ms": 5400
   },
-  "status": "PENDING_VERIFICATION"
+  "status": "PENDING_VERIFICATION",
+  "rationale_binding": {
+    "algorithm": "ANS-1+SHA-256",
+    "summary_ref": "sum-9a1e",
+    "digest": "sha256:f535948ab4faff07fe8828a6dd2d99040fb0fdd55c06a9cfd7736448b0f38c76"
+  }
 }</code></pre>
   <h4 style="font-size:14.5px;margin:22px 0 10px">Downlink field glossary (every value is traceable)</h4>
   <div class="tw"><table>
@@ -574,9 +579,16 @@ flowchart LR
       <tr><td><code>budget_spent.tokens</code></td><td>integer</td><td>Tokens actually consumed by this request</td><td>Measures Main Brain cost for rate limiting</td><td>Non-negative integer, example <code>980</code>; 5.5</td></tr>
       <tr><td><code>budget_spent.latency_ms</code></td><td>integer</td><td>Actual time consumed by this request</td><td>Measures Main Brain latency for rate limiting</td><td>Non-negative integer (ms), example <code>5400</code>; 5.5</td></tr>
       <tr><td><code>status</code></td><td>enum</td><td>Always "pending verification"</td><td>Eliminates any state called "approved by the Main Brain" at the protocol layer</td><td>Fixed to <code>PENDING_VERIFICATION</code>; 5.4</td></tr>
+      <tr><td><code>rationale_binding</code></td><td>object</td><td>Welding credential between the human-readable summary and this proposal</td><td>Prevents "approve A, show B" summary swap</td><td>See ANS-1 subsection below</td></tr>
     </tbody>
   </table></div>
   <div class="callout quote"><span class="lbl">Why the candidate carries only a fingerprint</span>If the Main Brain inlined the patch body into the message, a receiver could use it without verification, opening a door for "hallucination straight into the trunk". Transmitting only <code>candidate.digest</code> forces the receiver to fetch it from the sandbox and re-verify — this is Axiom 3 ("prove what can be proved") landing in the protocol.</div>
+
+  <h4 style="font-size:14.5px;margin:22px 0 10px">ANS-1 canonical serialization and digest binding (normative)</h4>
+  <p>The same object serializes to different bytes across languages (key order, whitespace, Unicode escaping, number format), producing different digests for the same data. Every <code>*_digest</code> and <code>rationale_binding</code> hash must be computed after <b>ANS-1</b> canonicalization:</p>
+  <ol><li><b>Key order</b>: object members sorted by UTF-16 code units (RFC 8785 JCS, <b>referenced</b>);</li><li><b>No whitespace</b>: no spaces, indentation, or newlines;</li><li><b>Strings</b>: only JSON control characters escaped; non-ASCII emitted as UTF-8;</li><li><b>Numbers</b>: integers in decimal; fixed significant digits for floats; non-finite forbidden;</li><li><b>Arrays</b>: original order preserved.</li></ol>
+  <p>Binding input is fixed to five fields: <code>ANS-1({algorithm, proposal_id, rationale_digest, summary_ref, summary_text_canonical})</code>, written to <code>rationale_binding.digest</code>. <b>The authoritative text is the canonical English text</b>; translations carry <code>translation_of: summary_ref</code> and are excluded from binding.</p>
+  <div class="callout warn"><span class="lbl">Normative levels</span><b>【MUST】</b> all <code>sha256:</code> digests generated through ANS-1; <b>【MUST】</b> Fold 1 summary carries <code>summary_ref</code> and a recomputable binding digest; <b>【MAY】</b> translations declare <code>translation_of</code>. Contract: <code>schemas/ntp-1.1.schema.json</code>; tool: <code>tools/validate_ntp.py</code>.</div>
   <div class="callout warn"><span class="lbl">Critical Semantics</span>The downlink payload <b>is not a command but a hypothesis awaiting verification</b>. <code>status</code> is always <code>PENDING_VERIFICATION</code>; there is no state called "approved by the Main Brain".</div>
   <h4 style="font-size:14.5px;margin:22px 0 10px">The four iron laws of the channel</h4>
   <div class="tw"><table>
@@ -964,6 +976,20 @@ flowchart TB
     <div class="card amber"><h4>Folds cannot be merged</h4><p>Fold 1 only presents and explains, no side effects; Fold 2 only carries human deterministic intent, never auto-generated by AI. Bypassing Fold 2 violates Axiom 5.</p></div>
     <div class="card teal"><h4>Summary needs evidence + binding must be precise</h4><p>A summary must give its evidence chain, never a bare conclusion; an intent binding must point to a specific candidate action (ID + parameters + target environment), preventing "approve A, execute B."</p></div>
   </div>
+  <h4 style="font-size:14.5px;margin:22px 0 10px">Machine-readable binding of the Cognitive Summary (linked to 5.4)</h4>
+  <p>A Fold 1 summary is not merely human prose; it is simultaneously a verifiable credential. Minimal structure:</p>
+  <pre style="background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;overflow-x:auto;font-size:12.5px;color:var(--ink2)"><code>{
+  "summary_ref": "sum-9a1e",
+  "proposal_id": "p-7f3c",
+  "rationale_digest": "sha256:c3c4c8e4a969b52d457a33f82caf95781519c7433ad6be072d74a3c89d02cb0d",
+  "summary_text_canonical": "Local rules did not hit; apply the semantic-layer patch in the sandbox and decide after dual-track verification.",
+  "evidence_refs": ["exp_077", "run_2048"],
+  "risk_codes": ["D1_ENV_UNVERIFIED", "MEMORY_HIT_LOW"],
+  "binding_digest": "sha256:f535948ab4faff07fe8828a6dd2d99040fb0fdd55c06a9cfd7736448b0f38c76",
+  "translation_of": null
+}</code></pre>
+  <div class="callout warn"><span class="lbl">Binding discipline</span><b>【MUST】</b> <code>binding_digest</code> recomputed per 5.4 ANS-1 rules; mismatch means refuse to display. <b>【MUST】</b> <code>proposal_id</code> and <code>rationale_digest</code> match the downlink payload verbatim. <b>【MAY】</b> translations declare <code>translation_of: "sum-9a1e"</code>. The text a human reads is exactly the text the machine signed.</div>
+
   <div class="callout"><span class="lbl">Full traceability</span>Every unfold, summary, binding, and denial is written to the ledger with an attest credential for replay. This pattern is the confluence of "full-spectrum white box" (Axiom 6) and "human sovereignty" (Axiom 5): Fold 1 ensures humans <b>understand</b>, Fold 2 ensures humans <b>decide</b>.</div>
   <h3>13.5 Interaction Traceability: Log Form and Replay</h3>
   <div class="callout warn"><span class="lbl">Do we need logs? Yes</span>Not raw chat transcripts, but a <b>structured interaction event log</b>: the minimum facts sufficient to reconstruct responsibility and decisions — replayable without leaking privacy or burning tokens.</div>
@@ -1776,6 +1802,747 @@ flowchart LR
   <p>G6 should not be checked by human eyes, but executed automatically by projection/verification scripts (<code>ane_release_projector.py</code> and the accompanying G1–G6 checker). <b>The ultimate form of "anti-self-deception" is: the structural correctness of the specification is proven by machines, not claimed by humans.</b> This is in one lineage with Chapter 34's "specification as artefact" and Chapter 25's "using ANE to govern ANE."</p>
 </section>
 
+<section id="ch38">
+<h2 class="sec"><span class="num">Chapter 38</span>Inter-Organism Protocol (IOP)</h2>
+<div class="callout quote"><b>【Original to this specification】</b> IOP = Inter-Organism Protocol. This chapter extends ANE from a single living system to an ecosystem of living systems. NTP (Chapter 5) handles distress inside one organism; IOP handles identification, delegation, and verification <b>between independent organisms</b>.</div>
+<h3>38.1 Why a single-organism protocol is not enough</h3>
+<div class="tw"><table><thead><tr>
+<th>Dimension</th>
+<th>NTP (Ch. 5)</th>
+<th>IOP (this chapter)</th>
+</tr></thead><tbody>
+<tr>
+<td>Parties</td>
+<td>Cerebellum ↔ Main Brain inside one organism</td>
+<td>Organism ↔ organism</td>
+</tr>
+<tr>
+<td>Trust premise</td>
+<td>One sovereignty domain, shared ledger</td>
+<td>Separate domains, zero trust by default</td>
+</tr>
+<tr>
+<td>Payload</td>
+<td>Compressed features + error code + budget</td>
+<td>Capability claim + task digest + credential</td>
+</tr>
+<tr>
+<td>Memory</td>
+<td>Shared hippocampus</td>
+<td><b>Not shared by default</b> (38.5)</td>
+</tr>
+<tr>
+<td>Failure</td>
+<td>Route to <code>DEGRADED</code></td>
+<td>Refuse collaboration, keep running independently</td>
+</tr>
+</tbody></table></div>
+<p><b>【MUST】</b> Every cross-organism call goes through IOP. Never expose the internal NTP channel to an external organism's brain.</p>
+<h3>38.2 Four-layer IOP model</h3>
+<div class="tw"><table><thead><tr>
+<th>Layer</th>
+<th>Name</th>
+<th>Solves</th>
+<th>Artefact</th>
+<th>Level</th>
+</tr></thead><tbody>
+<tr>
+<td>L1</td>
+<td>Identity</td>
+<td>Who are you, who answers for you</td>
+<td>Organism Card</td>
+<td>【MUST】</td>
+</tr>
+<tr>
+<td>L2</td>
+<td>Capability</td>
+<td>What can you do, at which tier</td>
+<td>Capability Set</td>
+<td>【MUST】</td>
+</tr>
+<tr>
+<td>L3</td>
+<td>Messaging</td>
+<td>What is this request, where is the evidence</td>
+<td>Envelope</td>
+<td>【MUST】</td>
+</tr>
+<tr>
+<td>L4</td>
+<td>Trust</td>
+<td>Why should I believe you, who is liable</td>
+<td>Credential + ledger ref</td>
+<td>【MUST】</td>
+</tr>
+</tbody></table></div>
+<p>Layers cannot be skipped: identity before capability, capability before task, credential before execution.</p>
+<h3>38.3 Organism Card</h3>
+<p>An Organism Card is the minimal, stable, verifiable self-description of an organism. It exposes identity and boundaries, never internals.</p>
+<pre style="background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;overflow-x:auto;font-size:12.5px;color:var(--ink2)"><code>{
+  "organism_id": "org-7a31",
+  "card_version": "1.0",
+  "capabilities": ["classify", "digest"],
+  "determinacy": "D1",
+  "owner": "human:finlei",
+  "card_digest": "sha256:309c06e49be85fc3b26eb8c6f2d1b355678aedef027c5521dba6a8e3b5932821"
+}</code></pre>
+<div class="tw"><table><thead><tr>
+<th>Field</th>
+<th>Type</th>
+<th>Plain meaning</th>
+<th>Why needed</th>
+<th>Level</th>
+</tr></thead><tbody>
+<tr>
+<td><code>organism_id</code></td>
+<td>string</td>
+<td>Stable identity</td>
+<td>Recognize the same organism across sessions</td>
+<td>【MUST】</td>
+</tr>
+<tr>
+<td><code>card_version</code></td>
+<td>string</td>
+<td>Card format version</td>
+<td>Capability evolves; card must be versioned</td>
+<td>【MUST】</td>
+</tr>
+<tr>
+<td><code>capabilities</code></td>
+<td>string[]</td>
+<td>Promised capability names</td>
+<td>Undeclared capability may not be invoked</td>
+<td>【MUST】</td>
+</tr>
+<tr>
+<td><code>determinacy</code></td>
+<td>enum D0–D3</td>
+<td>Highest determinacy tier accepted</td>
+<td>Prevents delegating D0 work to a D2-only peer</td>
+<td>【MUST】</td>
+</tr>
+<tr>
+<td><code>owner</code></td>
+<td>string</td>
+<td>Ultimately responsible human</td>
+<td>Axiom 5: liability must land on an accountable subject</td>
+<td>【MUST】</td>
+</tr>
+<tr>
+<td><code>card_digest</code></td>
+<td>string</td>
+<td>Card fingerprint</td>
+<td>Anti-tampering during handshake</td>
+<td>【MUST】</td>
+</tr>
+</tbody></table></div>
+<p><b>【MUST】</b> A card must not contain implementation details, model vendors, or secrets. <b>【MUST】</b> Card changes require a new <code>card_version</code> and a recomputed digest.</p>
+<h3>38.4 Envelope</h3>
+<p>The envelope carries "who to whom, what, where the evidence is". <b>The payload body is never inlined</b> — the same discipline as <code>candidate.digest</code> in 5.4.</p>
+<pre style="background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;overflow-x:auto;font-size:12.5px;color:var(--ink2)"><code>{
+  "iop_version": "1.0",
+  "msg_id": "m-4c81",
+  "from": "org-7a31",
+  "to": "org-9b42",
+  "type": "TASK_DELEGATE",
+  "payload_ref": "sha256:74490ea0feecf6e8246f97cc81c12544f136f596eb596cbd4ccbeed2c7ec6cbe",
+  "payload_format": "ANS-1",
+  "traceparent": "00-0af7651916cd43dd8448eb211c80319c-b7ad6b7169203331-01",
+  "auth_ref": "cred-9d02",
+  "ts": "2026-11-21T04:00:00Z",
+  "ttl_ms": 30000,
+  "determinacy_ceiling": "D1"
+}</code></pre>
+<div class="tw"><table><thead><tr>
+<th>Field</th>
+<th>Plain meaning</th>
+<th>Level</th>
+</tr></thead><tbody>
+<tr>
+<td><code>iop_version</code></td>
+<td>Protocol version</td>
+<td>【MUST】</td>
+</tr>
+<tr>
+<td><code>msg_id</code></td>
+<td>Unique message ID for dedup and replay</td>
+<td>【MUST】</td>
+</tr>
+<tr>
+<td><code>from</code> / <code>to</code></td>
+<td>Parties, checked against cards</td>
+<td>【MUST】</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>CAPABILITY_QUERY</code> / <code>CAPABILITY_ADVERTISE</code> / <code>TASK_DELEGATE</code> / <code>RESULT_REPORT</code> / <code>VETO</code></td>
+<td>【MUST】</td>
+</tr>
+<tr>
+<td><code>payload_ref</code></td>
+<td>Digest instead of body</td>
+<td>【MUST】</td>
+</tr>
+<tr>
+<td><code>payload_format</code></td>
+<td>Fixed to <code>ANS-1</code> so digests can be recomputed</td>
+<td>【MUST】</td>
+</tr>
+<tr>
+<td><code>traceparent</code></td>
+<td>Distributed trace ID (<b>referenced</b> from W3C Trace Context)</td>
+<td>【SHOULD】</td>
+</tr>
+<tr>
+<td><code>auth_ref</code></td>
+<td>Credential reference; requests without one are rejected</td>
+<td>【MUST】</td>
+</tr>
+<tr>
+<td><code>ts</code> / <code>ttl_ms</code></td>
+<td>Timestamp and expiry to stop replay</td>
+<td>【MUST】</td>
+</tr>
+<tr>
+<td><code>determinacy_ceiling</code></td>
+<td>Highest determinacy this message may exercise</td>
+<td>【MUST】</td>
+</tr>
+</tbody></table></div>
+<p><b>【MUST】</b> Verify card digest, credential, and <code>ttl_ms</code> before accepting; discard and log on any failure. <b>【MAY】</b> Batch envelopes in high-throughput settings, but each keeps its own <code>auth_ref</code>.</p>
+<h3>38.5 Trust boundaries</h3>
+<div class="tw"><table><thead><tr>
+<th>Principle</th>
+<th>Meaning</th>
+<th>Level</th>
+</tr></thead><tbody>
+<tr>
+<td><b>No shared memory</b></td>
+<td>A peer never opens its hippocampus; only <code>digest</code>-compressed evidence crosses</td>
+<td>【MUST】</td>
+</tr>
+<tr>
+<td><b>No inherited capability</b></td>
+<td>Calling a capability grants no permission; credentials are not forwarded</td>
+<td>【MUST】</td>
+</tr>
+<tr>
+<td><b>No transferred liability</b></td>
+<td>The delegator remains responsible</td>
+<td>【MUST】</td>
+</tr>
+<tr>
+<td><b>Veto retained</b></td>
+<td>Either side may issue <code>VETO</code> at any time</td>
+<td>【MUST】</td>
+</tr>
+</tbody></table></div>
+<h3>38.6 Mandatory and optional</h3>
+<div class="tw"><table><thead><tr>
+<th>Item</th>
+<th>Level</th>
+</tr></thead><tbody>
+<tr>
+<td>Card identity + digest, capability + determinacy declaration</td>
+<td>【MUST】</td>
+</tr>
+<tr>
+<td>Six mandatory envelope fields, digest-only payload, credential + TTL</td>
+<td>【MUST】</td>
+</tr>
+<tr>
+<td><code>traceparent</code></td>
+<td>【SHOULD】</td>
+</tr>
+<tr>
+<td>Batched envelopes</td>
+<td>【MAY】</td>
+</tr>
+</tbody></table></div>
+</section>
+<section id="ch39">
+<h2 class="sec"><span class="num">Chapter 39</span>Suite Composition</h2>
+<div class="callout quote"><b>【Original to this specification】</b> A suite is a temporary capability unit composed of independent organisms under a declarative contract. Composition is not fusion: members keep their own lifecycle, owner, and memory boundary.</div>
+<h3>39.1 Declarative contracts, not implicit fusion</h3>
+<div class="tw"><table><thead><tr>
+<th>Approach</th>
+<th>Risk</th>
+<th>Level</th>
+</tr></thead><tbody>
+<tr>
+<td><b>Declarative contract</b> (suite manifest)</td>
+<td>Configuration overhead</td>
+<td>【MUST】</td>
+</tr>
+<tr>
+<td>Implicit shared memory</td>
+<td>Memory poisoning, unclear liability</td>
+<td>【MUST NOT】</td>
+</tr>
+<tr>
+<td>Hard-coded call chain</td>
+<td>One upgrade breaks the whole chain</td>
+<td>【MUST NOT】</td>
+</tr>
+</tbody></table></div>
+<h3>39.2 Suite Manifest</h3>
+<pre style="background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;overflow-x:auto;font-size:12.5px;color:var(--ink2)"><code>{
+  "suite_id": "suite-1f2e",
+  "members": ["org-7a31", "org-9b42"],
+  "binding": "declarative",
+  "suite_digest": "sha256:41cc1149e9108d1d286063a04c38143bee03aefdce7148ade900ef3c400065a5"
+}</code></pre>
+<div class="tw"><table><thead><tr>
+<th>Field</th>
+<th>Plain meaning</th>
+<th>Level</th>
+</tr></thead><tbody>
+<tr>
+<td><code>suite_id</code></td>
+<td>Stable suite identity</td>
+<td>【MUST】</td>
+</tr>
+<tr>
+<td><code>members</code></td>
+<td>Member organism IDs</td>
+<td>【MUST】</td>
+</tr>
+<tr>
+<td><code>binding</code></td>
+<td>Fixed to <code>declarative</code>, banning implicit fusion at protocol level</td>
+<td>【MUST】</td>
+</tr>
+<tr>
+<td><code>suite_digest</code></td>
+<td>Manifest fingerprint against silent member swapping</td>
+<td>【MUST】</td>
+</tr>
+</tbody></table></div>
+<p><b>【MUST】</b> A suite may not lower any member's determinacy floor nor exceed the highest <code>determinacy</code> among members.</p>
+<h3>39.3 Three composition modes</h3>
+<div class="tw"><table><thead><tr>
+<th>Mode</th>
+<th>Structure</th>
+<th>Use case</th>
+<th>Level</th>
+</tr></thead><tbody>
+<tr>
+<td>Parallel</td>
+<td>Same task, cross-verified results</td>
+<td>High-assurance judgment</td>
+<td>【SHOULD】</td>
+</tr>
+<tr>
+<td>Pipeline</td>
+<td>A's digest feeds B</td>
+<td>Staged processing</td>
+<td>【SHOULD】</td>
+</tr>
+<tr>
+<td>Federation</td>
+<td>Independent runs, conclusions only</td>
+<td>Privacy-sensitive cross-domain work</td>
+<td>【MAY】</td>
+</tr>
+</tbody></table></div>
+<h3>39.4 Weakest-link protection</h3>
+<ul><li><b>【MUST】</b> Verify each member's card digest and promotion audit (24.3) before admission.</li><li><b>【MUST】</b> If any member trips a circuit breaker (21.4), the whole suite degrades — no "sick assembly".</li><li><b>【MUST】</b> D0 affairs are never delegated into a suite; only the human sovereignty layer may handle them.</li><li><b>【MAY】</b> Run member-replacement drills for resilience.</li></ul>
+<h3>39.5 Retirement</h3>
+<p>Suites are temporary. <b>【MUST】</b> Invalidate the manifest and recompute <code>suite_digest</code> when the task ends or a member changes. <b>【MUST】</b> Retain all evidence and ledger entries: a suite may dissolve, liability may not.</p>
+<h3>39.6 Mandatory and optional</h3>
+<div class="tw"><table><thead><tr>
+<th>Item</th>
+<th>Level</th>
+</tr></thead><tbody>
+<tr>
+<td>Declarative manifest + digest, admission check, D0 non-delegation, breaker linkage</td>
+<td>【MUST】</td>
+</tr>
+<tr>
+<td>Parallel / pipeline modes</td>
+<td>【SHOULD】</td>
+</tr>
+<tr>
+<td>Federation, replacement drills</td>
+<td>【MAY】</td>
+</tr>
+</tbody></table></div>
+</section>
+<section id="ch40">
+<h2 class="sec"><span class="num">Chapter 40</span>Evolution Ladder toward an AGI Organism</h2>
+<div class="callout quote"><b>【Original to this specification】</b> This chapter does not predict when AGI arrives; it defines how a software organism grades its capability boundary while sovereignty never decays.</div>
+<h3>40.1 Evolution is boundary expansion, not permission inflation</h3>
+<div class="tw"><table><thead><tr>
+<th>Misconception</th>
+<th>Correct reading</th>
+<th>Level</th>
+</tr></thead><tbody>
+<tr>
+<td>"Stronger AGI automatically earns more authority"</td>
+<td>Authority is granted explicitly by humans only</td>
+<td>【MUST】</td>
+</tr>
+<tr>
+<td>"Self-improvement may recurse without limit"</td>
+<td>Recursion is bounded and every step leaves a verifiable credential</td>
+<td>【MUST】</td>
+</tr>
+<tr>
+<td>"Stronger intelligence replaces sovereignty"</td>
+<td>Sovereignty is non-delegable (25.5)</td>
+<td>【MUST】</td>
+</tr>
+</tbody></table></div>
+<h3>40.2 Five capability tiers A0–A4</h3>
+<div class="tw"><table><thead><tr>
+<th>Tier</th>
+<th>Name</th>
+<th>Boundary</th>
+<th>Authorization</th>
+<th>Level</th>
+</tr></thead><tbody>
+<tr>
+<td>A0</td>
+<td>Reflex</td>
+<td>Deterministic rules only; <code>UnknownSignal</code> on miss</td>
+<td>No per-action approval</td>
+<td>【MUST】 start</td>
+</tr>
+<tr>
+<td>A1</td>
+<td>Memory</td>
+<td>Rules + promoted experience</td>
+<td>Promotion needs human endorsement</td>
+<td>【MUST】</td>
+</tr>
+<tr>
+<td>A2</td>
+<td>Coordinator</td>
+<td>A1 + external capability calls</td>
+<td>Tool gates (15.6)</td>
+<td>【SHOULD】</td>
+</tr>
+<tr>
+<td>A3</td>
+<td>Reasoner</td>
+<td>A2 + generalization; proposals only</td>
+<td>Dual-track + human review per adoption</td>
+<td>【SHOULD】</td>
+</tr>
+<tr>
+<td>A4</td>
+<td>Evolver</td>
+<td>A3 + controlled self-improvement proposals</td>
+<td>Full promotion audit + human signature</td>
+<td>【MAY】</td>
+</tr>
+</tbody></table></div>
+<p><b>【MUST】</b> A4 and above never receive D0 authority. <b>【MUST】</b> No direct jump from A3 execution to A4.</p>
+<h3>40.3 Non-decaying authority and bounded recursion</h3>
+<div class="tw"><table><thead><tr>
+<th>Constraint</th>
+<th>Meaning</th>
+<th>Level</th>
+</tr></thead><tbody>
+<tr>
+<td>Non-decaying authority</td>
+<td>Human veto, breaker, and audit rights never shrink</td>
+<td>【MUST】</td>
+</tr>
+<tr>
+<td>Bounded recursion</td>
+<td>Improvement depth capped; over the cap returns to human approval</td>
+<td>【MUST】</td>
+</tr>
+<tr>
+<td>Reversible capability</td>
+<td>Every tier can fall back to a lower tier, drilled in advance</td>
+<td>【MUST】</td>
+</tr>
+<tr>
+<td>Credential per step</td>
+<td>Every upgrade leaves a verifiable credential in the ledger</td>
+<td>【MUST】</td>
+</tr>
+</tbody></table></div>
+<h3>40.4 Evolution Attestation</h3>
+<pre style="background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;overflow-x:auto;font-size:12.5px;color:var(--ink2)"><code>{
+  "organism_id": "org-7a31",
+  "level": "A3",
+  "evidence_refs": ["exp_077", "run_2048"],
+  "attestation_digest": "sha256:7326a58cd20787f5dd97e8cb551354360aff2abe48e351c01ce14c1d28068f58"
+}</code></pre>
+<div class="tw"><table><thead><tr>
+<th>Field</th>
+<th>Plain meaning</th>
+<th>Level</th>
+</tr></thead><tbody>
+<tr>
+<td><code>organism_id</code></td>
+<td>Which organism upgraded</td>
+<td>【MUST】</td>
+</tr>
+<tr>
+<td><code>level</code></td>
+<td>Target tier A0–A4</td>
+<td>【MUST】</td>
+</tr>
+<tr>
+<td><code>evidence_refs</code></td>
+<td>Evidence IDs — upgrades rely on evidence, not claims</td>
+<td>【MUST】</td>
+</tr>
+<tr>
+<td><code>attestation_digest</code></td>
+<td>Anti-forgery, replayable fingerprint</td>
+<td>【MUST】</td>
+</tr>
+</tbody></table></div>
+<h3>40.5 RSI compatibility floor</h3>
+<p><b>【Referenced】</b> RSI is an upper-bound reference, not a promise. <b>【MUST】</b> Three floors hold for any RSI form: human breaker, replayable decisions, traceable liability. <b>【MAY】</b> Reserve interfaces for A4; reservation is not activation.</p>
+<h3>40.6 Mandatory and optional</h3>
+<div class="tw"><table><thead><tr>
+<th>Item</th>
+<th>Level</th>
+</tr></thead><tbody>
+<tr>
+<td>A0/A1 baseline, non-decaying authority, bounded recursion, reversibility, attestation</td>
+<td>【MUST】</td>
+</tr>
+<tr>
+<td>A2/A3</td>
+<td>【SHOULD】</td>
+</tr>
+<tr>
+<td>A4, RSI interface reservation</td>
+<td>【MAY】</td>
+</tr>
+</tbody></table></div>
+</section>
+<section id="ch41">
+<h2 class="sec"><span class="num">Chapter 41</span>Communication Data Format, Storage, and Connectivity</h2>
+<h3>41.1 Data temperature tiers</h3>
+<div class="tw"><table><thead><tr>
+<th>Tier</th>
+<th>Holds</th>
+<th>Retention</th>
+<th>Level</th>
+</tr></thead><tbody>
+<tr>
+<td>Hot</td>
+<td>Rules, state machine, current context</td>
+<td>Process lifetime</td>
+<td>【MUST】</td>
+</tr>
+<tr>
+<td>Warm</td>
+<td>Experience records, promotion audits, recent ledger</td>
+<td>Migratable, rebuildable</td>
+<td>【MUST】</td>
+</tr>
+<tr>
+<td>Cold</td>
+<td>Audit logs, evidence packs</td>
+<td>Append-only, searchable</td>
+<td>【SHOULD】</td>
+</tr>
+<tr>
+<td>Frozen</td>
+<td>Legal retention, liability credentials</td>
+<td>Write-once</td>
+<td>【MAY】</td>
+</tr>
+</tbody></table></div>
+<p><b>【MUST】</b> Hot data is never persisted to an external service. <b>【MUST】</b> Migrating warm data across organisms transfers digests only, never raw memory.</p>
+<h3>41.2 Three format classes</h3>
+<div class="tw"><table><thead><tr>
+<th>Class</th>
+<th>Format</th>
+<th>Prohibited</th>
+<th>Level</th>
+</tr></thead><tbody>
+<tr>
+<td>Envelope</td>
+<td>ANS-1 JSON (38.4)</td>
+<td>Inlined body, glosses inside values</td>
+<td>【MUST】</td>
+</tr>
+<tr>
+<td>Digest</td>
+<td><code>sha256:&lt;64 lowercase hex&gt;</code></td>
+<td>Truncated or non-hex digests</td>
+<td>【MUST】</td>
+</tr>
+<tr>
+<td>Credential</td>
+<td>Unforgeable signature/token ref bound to <code>msg_id</code> + <code>ttl_ms</code></td>
+<td>Plaintext secrets, replayable tokens</td>
+<td>【MUST】</td>
+</tr>
+</tbody></table></div>
+<h3>41.3 Storage: local-first, layered, migratable</h3>
+<ul><li><b>【MUST】</b> Local-first: routine transactions never depend on remote storage.</li><li><b>【MUST】</b> Rebuildable: warm data can be reconstructed from the ledger and evidence packs.</li><li><b>【SHOULD】</b> Decouple tiers so one backend failure cannot take down all layers.</li><li><b>【MAY】</b> Cross-device migration preserving <code>organism_id</code> and experience lineage.</li></ul>
+<h3>41.4 Connectivity tri-state</h3>
+<div class="tw"><table><thead><tr>
+<th>State</th>
+<th>Trigger</th>
+<th>Allowed</th>
+<th>Level</th>
+</tr></thead><tbody>
+<tr>
+<td>OFFLINE_FIRST</td>
+<td>Default</td>
+<td>Local rules + promoted experience handle all routine work</td>
+<td>【MUST】</td>
+</tr>
+<tr>
+<td>ON_DEMAND</td>
+<td>Local miss + authorization</td>
+<td>IOP request or Main Brain call under <code>budget_hint</code></td>
+<td>【SHOULD】</td>
+</tr>
+<tr>
+<td>DEGRADED</td>
+<td>Timeout / unreachable / budget exhausted</td>
+<td>Fall back to Cerebellum-only L2 (21.3b); no guessing</td>
+<td>【MUST】</td>
+</tr>
+</tbody></table></div>
+<div class="callout quote">Must a living organism be online? <b>It may work offline, but must not only work online.</b> Connectivity is an enhancement 【SHOULD】; offline capability is a survival floor 【MUST】.</div>
+<div class="tw"><table><thead><tr>
+<th>Risk</th>
+<th>Countermeasure</th>
+<th>Level</th>
+</tr></thead><tbody>
+<tr>
+<td>Data leakage</td>
+<td>Transmit digests/features only</td>
+<td>【MUST】</td>
+</tr>
+<tr>
+<td>Supply-chain attack</td>
+<td>Gate every carrier and tool (5.6 / 15.6)</td>
+<td>【MUST】</td>
+</tr>
+<tr>
+<td>Availability dependency</td>
+<td>Timeout always degrades</td>
+<td>【MUST】</td>
+</tr>
+<tr>
+<td>Cross-sovereignty flow</td>
+<td>Align with 20.2; block unlawful transfer</td>
+<td>【MUST】</td>
+</tr>
+</tbody></table></div>
+<h3>41.5 Privacy across organisms</h3>
+<p><b>【MUST】</b> When an organism executes forgetting (24.4), it notifies peers that received related digests. <b>【MUST】</b> Frozen personal data needs a legal basis, not merely audit convenience. <b>【MAY】</b> Keep a privacy budget ledger of cumulative outbound volume.</p>
+<h3>41.6 Mandatory and optional</h3>
+<div class="tw"><table><thead><tr>
+<th>Item</th>
+<th>Level</th>
+</tr></thead><tbody>
+<tr>
+<td>Hot layer never externalized, ANS-1 digests, offline-first + degraded</td>
+<td>【MUST】</td>
+</tr>
+<tr>
+<td>On-demand connectivity; cold/frozen tiers</td>
+<td>【SHOULD】/【MAY】</td>
+</tr>
+<tr>
+<td>Privacy budget ledger</td>
+<td>【MAY】</td>
+</tr>
+</tbody></table></div>
+</section>
+<section id="ch42">
+<h2 class="sec"><span class="num">Chapter 42</span>Normative Levels and Mandatory Checklist</h2>
+<div class="callout quote"><b>【Referenced】</b> MUST / SHOULD / MAY follow RFC 2119 and RFC 8174 conventions (<b>referenced</b>), adapted into ANE's Chinese labels.</div>
+<h3>42.1 Four labels</h3>
+<div class="tw"><table><thead><tr>
+<th>Label</th>
+<th>English</th>
+<th>Meaning</th>
+<th>Consequence</th>
+</tr></thead><tbody>
+<tr>
+<td>【MUST】</td>
+<td>MUST / REQUIRED</td>
+<td>Mandatory</td>
+<td>ANE-CONF fails if unmet</td>
+</tr>
+<tr>
+<td>【SHOULD】</td>
+<td>SHOULD / RECOMMENDED</td>
+<td>Default expectation</td>
+<td>Allowed with written rationale</td>
+</tr>
+<tr>
+<td>【MAY】</td>
+<td>MAY / OPTIONAL</td>
+<td>Discretionary</td>
+<td>No impact</td>
+</tr>
+<tr>
+<td>【MUST NOT】</td>
+<td>MUST NOT</td>
+<td>Absolutely forbidden</td>
+<td>Violates constitutional red line (25.5)</td>
+</tr>
+</tbody></table></div>
+<h3>42.2 Syntax and scope</h3>
+<ul><li><b>【MUST】</b> Every normative clause carries exactly one level label.</li><li><b>【MUST】</b> The label sits next to the clause, not collected at chapter end.</li><li><b>【SHOULD】</b> Mixed-level clauses label each item separately.</li><li><b>【MAY】</b> The DEBUG view adds origin labels (original/referenced); the formal release keeps normative levels.</li></ul>
+<h3>42.3 Mandatory quick reference</h3>
+<div class="tw"><table><thead><tr>
+<th>Chapters</th>
+<th>Mandatory items</th>
+</tr></thead><tbody>
+<tr>
+<td>0–3</td>
+<td>Seven axioms, seven-organ model, D0–D3</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Cerebellum hard boundaries: offline / growable / no speculation</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Proposal-only brain, NTP iron laws, ANS-1, binding credential</td>
+</tr>
+<tr>
+<td>6–9</td>
+<td>Promotion audit, dual-track verification, sovereignty, two folds</td>
+</tr>
+<tr>
+<td>10–21</td>
+<td>Flywheel, five-step order, compliance, fail-safe</td>
+</tr>
+<tr>
+<td>22–37</td>
+<td>Stable IDs, AI-BOM, memory isolation, single source, projection, G7</td>
+</tr>
+<tr>
+<td>38</td>
+<td>Card, capability, envelope fields, credential, no shared memory</td>
+</tr>
+<tr>
+<td>39</td>
+<td>Declarative suite, admission, D0 non-delegation, breaker linkage</td>
+</tr>
+<tr>
+<td>40</td>
+<td>Non-decaying authority, bounded recursion, reversibility, attestation</td>
+</tr>
+<tr>
+<td>41</td>
+<td>Local-first, ANS-1, offline-first and degraded</td>
+</tr>
+</tbody></table></div>
+<h3>42.4 Conformance and exceptions</h3>
+<p><b>【MUST】</b> ANE-CONF passes only when all 【MUST】 items pass and no 【MUST NOT】 is violated. <b>【MUST】</b> Conclusions state deviations with rationale — no bare pass/fail. <b>【MUST】</b> Any exception to a 【MUST】 requires written human approval with scope, expiry, and recovery plan. <b>【MUST】</b> Exceptions never touch constitutional red lines. <b>【MAY】</b> Exceptions auto-expire.</p>
+</section>
+
 <!-- ================= APPENDIX A ================= -->
 <section id="appa">
   <h2 class="sec"><span class="num">Appendix A</span>Glossary</h2>
@@ -1906,7 +2673,7 @@ flowchart LR
 </section>
 
 <footer>
-  <div>ANE Specification: AI-Native Engineering Paradigm for Living Software Systems v0.7.0 · Created by Feng Lei · Formal Release</div>
+  <div>ANE Specification: AI-Native Engineering Paradigm for Living Software Systems v0.8.0 · Created by Feng Lei · Formal Release</div>
   <div style="margin-top:8px">ANE = AI Native Engineering · MD and HTML versions carry identical content</div>
 </footer>
 </main>
