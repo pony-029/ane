@@ -18,7 +18,7 @@ Three moats: **Cerebellum first** (high-frequency decisions cost zero tokens) ·
 
 ## Current version
 
-**v0.6.0** (2026-11-21) — evolution-speed dynamics and the dual-brain collaboration channel layer.
+**v0.7.0** (2026-11-21) — model carrier, prompt asset, incident response, and substantive compliance layer.
 
 The full version evolution and revision discipline are specified in Chapters 34–37 of the specification.
 
@@ -48,7 +48,18 @@ The specification has **37 chapters + a glossary (Appendix A)**, organized in la
 | Governance | 25–31 | Meta-specification, conformance assessment (ANE-CONF), migration and adoption, observability, evolution-system testing, applicability boundaries, economics |
 | Release | 32–37 | Release forms, information grading and gates, single source of truth and deterministic projection, multi-language governance, artefact naming, structural integrity checks |
 
-### Four groups of enhancements in v0.6.0
+### Six enhancements and three fixes in v0.7.0
+
+1. **Model Carrier Governance (5.6)** — six selection criteria · mandatory model card · upgrade/retirement gate · replaceable carrier that never becomes an architectural dependency.
+2. **Prompt Asset Governance (18.4)** — versioned templates with stable IDs · frozen-glossary interface · injection guard · change evaluation and rollback.
+3. **Incident Response and Blameless Postmortem (21.5)** — turns "no overnight bad news" into a detect → contain → root-cause → recover → postmortem → promotion loop; concealment and ledger tampering are the real red lines.
+4. **Substantive ISO 42001 Alignment (20.2)** — adds the seven-element management-system mapping previously claimed in the summary but absent from the body.
+5. **NTP Timeout and Deduplication Parameters (5.5)** — D-tier timeout ranges, same-source merge windows, uplink caps, and cooling windows; timeouts always route to DEGRADED.
+6. **Three Arbitration Observability Metrics (12.1)** — quota exhaustion rate / rejection rate / D0-D1 preemption rate, making arbitration fairness auditable.
+
+Also fixes three misplaced cross-references (Promotion Audit → 24.3, two-brain extreme states → 21.3b), one name–reality mismatch, and three stale "new this round" labels.
+
+### Four groups of enhancements in v0.6.0 (archived)
 
 1. **Five-Step Evolution Algorithm (10.4)** — delete → simplify → optimize → accelerate → automate; the order may not be inverted, and skipping a step pipelines debt.
 2. **Execution Discipline (10.5)** — three-sentence communication (problem / tried / needed) · no overnight bad news · integrated die-casting · grey release at 99%.
@@ -61,7 +72,7 @@ The specification has **37 chapters + a glossary (Appendix A)**, organized in la
 2. **Hardware-Topology Awareness (2.3 / 8.5)** — the IR layer adaptively prioritizes compilation by instruction set, accelerator core count, and memory bandwidth.
 3. **Domestic Regulatory Alignment (20.2)** — alignment with China's Data Security Law, Personal Information Protection Law, and MLPS 2.0 Level 3, explaining how human sovereignty and anti-self-deception satisfy "traceability and controllability."
 4. **Dual-Fold Collaboration (13.4 / 14.3)** — a mandatory human-machine pattern (Fold 1 judgment / Cognitive Summary + Fold 2 authorization / Intent Binding) and its primitive encoding.
-5. **Promotion Audit (17.2 / 24.3)** — N consecutive independent reproductions + human signature endorsement + anti-inbreeding check before experience promotion, guarding against memory-promotion poisoning.
+5. **Promotion Audit (24.3)** — N consecutive independent reproductions + human signature endorsement + anti-inbreeding check before experience promotion, guarding against memory-promotion poisoning.
 
 ## Core ideas
 

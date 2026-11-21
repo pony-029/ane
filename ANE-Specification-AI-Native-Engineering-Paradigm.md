@@ -1,4 +1,4 @@
-# "ANE Specification: AI-Native Engineering Paradigm for Living Software Systems" v0.6.0 · Formal Release
+# "ANE Specification: AI-Native Engineering Paradigm for Living Software Systems" v0.7.0 · Formal Release
 
 > **ANE Specification — AI-Native Engineering Paradigm for Living Software Systems**
 >
@@ -8,7 +8,7 @@
 >
 > ANE = **AI Native Engineering** · static-dynamic integration · dual-brain collaboration · Memory Moat · unified development and maintenance · governance and resilience · verifiable and adoptable
 >
-> Version: **v0.6.0**　|　Date: 2026-11-21　|　Form: Formal Release
+> Version: **v0.7.0**　|　Date: 2026-11-21　|　Form: Formal Release
 >
 > This specification is expressed in a **general paradigm language**, not bound to any specific product, framework, or engineering implementation, and applies to all teams building AI-native software systems.
 >
@@ -75,8 +75,9 @@
 | **Governance foundation** | Compliance alignment (NIST AI RMF / EU AI Act / ISO 42001) · fail-safe (circuit breaker + FMEA) · identity traceability (stable ID + AI-BOM) · human factors · memory boundaries · meta-governance. |
 | **Release engineering** | Artefact-based release: the specification derives external views from a single source of truth, with zero process-layer residue; three-tier information grading (N normative / E evidentiary / P process) + release gates make the specification itself "white-box, traceable, and anti-self-deception" first. |
 | **Internationalization and artefact governance** | Multi-language governance (source / authoritative translation / glossary / G7 translation fidelity) · artefact naming rules (formal without suffix / development with suffix / English edition) · structural integrity checks (G6: continuous numbering / appendix renumbering / valid anchors), fixing the broken appendix in the formal edition. |
-| **Cold start and memory governance** | Seed rules + explore/exploit adaptive switching (6.4) · hardware-topology awareness and adaptive compilation prioritization (2.3 / 8.5) · domestic regulatory alignment (20.2) · Dual-Fold Collaboration pattern (13.4 / 14.3) · Promotion Audit against memory poisoning (17.2 / 24.3). |
-| **Evolution speed and dual-brain collaboration** | Five-step algorithm: delete → simplify → optimize → accelerate → automate, order inviolable (10.4) · execution discipline: three-sentence communication / no overnight bad news / integrated die-casting / 99% grey release (10.5) · three hard boundaries of the Cerebellum including no speculation (4.4) · hard boundary between the two brains and anti-crosstalk (5.3) · NTP two-way channel with four iron laws (5.4) · communication state machine and channel arbitration (5.5) · two-brain extreme states (21.3). |
+| **Cold start and memory governance** | Seed rules + explore/exploit adaptive switching (6.4) · hardware-topology awareness and adaptive compilation prioritization (2.3 / 8.5) · domestic regulatory alignment (20.2) · Dual-Fold Collaboration pattern (13.4 / 14.3) · Promotion Audit against memory poisoning (24.3). |
+| **Evolution speed and dual-brain collaboration** | Five-step algorithm: delete → simplify → optimize → accelerate → automate, order inviolable (10.4) · execution discipline: three-sentence communication / no overnight bad news / integrated die-casting / 99% grey release (10.5) · three hard boundaries of the Cerebellum including no speculation (4.4) · hard boundary between the two brains and anti-crosstalk (5.3) · NTP two-way channel with four iron laws (5.4) · communication state machine and channel arbitration (5.5) · two-brain extreme states (21.3b). |
+| **Model carrier and engineering closure** | Model carrier governance: selection criteria / model card / upgrade-retirement / carrier replaceability (5.6) · prompt asset governance: template versioning + injection guard + frozen glossary interface (18.4) · incident response and blameless postmortem: linking "no overnight bad news" to promotion (21.5) · substantive ISO 42001 alignment (20.2) · NTP timeout and deduplication parameters (5.5) · three channel-arbitration observability metrics (12.1). |
 | **How to adopt** | Start with L2 Cerebellum + L3 memory (greatest benefit, lowest risk); add L4 self-repair only after immunity matures; L5 living systems are a long-term goal. |
 | **Inviolable red lines** | Human sovereignty (Axiom 5) · anti-self-deception (silent failures = 0) · the global circuit breaker can stop everything at any time — no efficiency rationale may bypass these. |
 
@@ -437,6 +438,29 @@ When several subsystems or agents raise uplink requests simultaneously, a unifie
 
 > Rate-limit parameters are D1-level configuration and must pass a gate to change; "temporarily relaxing the limit" may not be used as a way around the budget.
 
+**Timeout and deduplication parameters (default ranges; implementations must choose within them and register the choice)**
+
+| Parameter | Default range | Disposition |
+|---|---|---|
+| Uplink `PENDING` timeout | By D-tier: D0 seconds, D1 tens of seconds, D2 minutes, D3 no real-time wait | Timeout always routes to `DEGRADED` (21.3b); it must **not** be recorded as "Main Brain refused," nor silently retried |
+| Same-source merge window | Default: signals sharing error code + environment profile + rule gap are merged | Merging compresses duplicate uplinks only, never discards differing samples; the first sample in the window must be recorded |
+| Max uplinks per task | Explore mode relaxed within budget; Exploit mode defaults to 1–3 | Exceeding the cap forces the request back to conservative Cerebellum rules; classify as a "rule gap," not "Main Brain incapable," and count in the rejection rate (12.1) |
+| Cooling window | A configurable window between two uplinks from the same source | Prevents high-frequency distress from masking a missing rule base (5.5 / 12.2) |
+
+> Parameter values are E-layer evidence (observable, adjustable), not hard-coded N-layer clauses; but **a missing parameter may never justify skipping timeout disposition** — absent configuration, use the conservative end of the range.
+
+### 5.6 Model Carrier Governance
+
+> The Main Brain is an "engine of generalized reasoning and pattern recombination"; **the specific model is only its physical carrier** (5.3). Since the carrier is replaceable, it must be governed like any dependency — otherwise "replaceable" is mere rhetoric.
+
+- **The carrier may not become an architectural dependency**: no normative clause, primitive chain, or rule may name a specific model; the Main Brain connects through a uniform capability interface, and replacing the carrier may not change N-layer clauses.
+- **Six selection criteria (each introduction or replacement must record all six)**: ① task capability coverage (long-tail and unseen combinations); ② latency and throughput (D-tier deadlines); ③ unit cost (within `budget_hint`); ④ reproducibility (deviation band for identical inputs and summaries); ⑤ security and data boundary (auditable output, no cross-tenant leakage); ⑥ exitability (an alternative carrier and a rollback path exist).
+- **A model card is mandatory**: record carrier version, training/knowledge cutoff, known biases, supported and prohibited scenarios, evaluation results, and the accountable owner; the card enters version control with the AI-BOM (22.3), and its absence fails the onboarding gate.
+- **Upgrades and retirements pass the same gate**: a new carrier must first pass evaluator discipline (29.3) and dual-track verification (Chapter 7), then replace via grey release; the old carrier remains rollback-ready for one cycle before retirement, with reasons and replacement relations recorded.
+- **Carrier differences are observable**: record carrier identifier, version, and confidence for every call; when results across carriers disagree, enter the ledger and handle as a conflict (16.3) — never silently pick one.
+
+> Carrier governance (who reasons) and prompt asset governance (how the question is asked, 18.4) are two sides of the same coin; together they determine the credibility and cost of Main Brain output.
+
 ---
 
 ## Chapter 6: Memory Specification: Hippocampus and Experience Storage
@@ -738,6 +762,9 @@ When confidence reaches **99%**, enter grey release rather than waiting for 100%
 | Silent-failure count | number of exceptions swallowed without reporting | = 0 (red line) |
 | Feedback-loop duration | time from signal generation to completed consolidation | ↓ (core metric of the speed law) |
 | Net code-volume change | deleted minus added lines per evolution round | should be negative or near zero |
+| Quota exhaustion rate | denied uplinks due to budget exhaustion / all uplink requests | observation item; a spike triggers a rate-limit review |
+| Rejection rate | requests forced back to conservative Cerebellum rules / all uplink requests | ↓ a high value indicates a rule gap, not Main Brain incapacity |
+| D0/D1 preemption rate | high-priority preemptions / total arbitrations | observation item; audits arbitration fairness (5.5) |
 
 ### 12.2 Anti-pattern list (explicit "don'ts")
 
@@ -1014,6 +1041,16 @@ Before any new tool is integrated, it must pass:
 - Use "Cerebellum interception rate," "memory hit rate," and "token-per-decision ratio" as first-class operational metrics (see Chapter 12).
 - Cost anomalies (denial-of-service-style consumption / wallet attacks) are incorporated into alerts and circuit breaking.
 
+### 18.4 Prompt Asset Governance
+
+> Prompts are the Main Brain's "operating surface" and the primary injection attack vector. They must be treated like code: versioned, owned, evaluated, and reversible.
+
+- **Prompts are artefacts**: templates enter version control with a stable ID, version, owner, applicable scenarios, expected output format, and prohibited items; generating critical prompts by runtime string concatenation is forbidden.
+- **Layering and freezing**: system prompts, task templates, and context fragments are managed separately; factual prefixes reference the frozen glossary (35.3) and verified Cerebellum rules and **may not be freely rewritten by the model**.
+- **Injection guard**: content from external documents, tool returns, and memory retrieval is marked "untrusted data" and enters only as data, never elevated to instructions; detected override attempts are rejected and recorded (17.2).
+- **Change evaluation**: template changes pass the same dual-track verification and regression sampling as code; pre/post output differences enter the ledger, and any security or cost regression triggers a rollback.
+- **Cost linkage**: template token occupancy counts against the budget gate (18.1); redundant prefixes go to cache and repeated conclusions are promoted into Cerebellum rules (18.2).
+
 ---
 
 ## Chapter 19: Sublation of Traditional Software Engineering
@@ -1084,6 +1121,20 @@ NIST AI RMF 1.0 proposes four functions — GOVERN / MAP / MEASURE / MANAGE — 
 
 > **Why "Human Sovereignty + Anti-Self-Deception" satisfies domestic regulatory hard requirements**: the core domestic demand on generative AI is "traceable and controllable." **Axiom 5 (Human Sovereignty)** ensures every dynamic mutation requires explicit human authorization, is subject to veto and a global circuit breaker — corresponding to "controllable"; **Axiom 6 (Anti-Self-Deception)** ensures the whole process is white-box and logged, silent failures are zero, and conclusions are replayable — corresponding to "traceable." These are not documents added after launch but execution disciplines built into the primitive chain and gates, making regulatory evidence a natural byproduct of the system.
 
+**ISO/IEC 42001 AI Management System alignment**
+
+| Management-system element | ANE's corresponding mechanism | Evidence |
+|---|---|---|
+| AI policy and objectives | Axiom system + one-page summary + maturity L0–L5 | Charter, objective ledger, maturity assessment |
+| AI risk and impact assessment | 20.4 risk register + 20.2 tiered alignment + FMEA (21.2) | Risk register, FMEA table, tiering ledger |
+| AI lifecycle process control | Flywheel six stages (10.1) + five-step algorithm (10.4) + G1–G7 | Primitive-chain trace, gate records, projection consistency report |
+| Data and model supply-chain governance | Carrier governance (5.6) + AI-BOM (22.3) + Promotion Audit (24.3) | Model cards, AI-BOM, promotion endorsement signatures |
+| Monitoring, measurement, evaluation | Metrics (12.1) + observability (28.x) + conformance assessment (26.x) | KPI dashboards, event ledger, ANE-CONF records |
+| Management review and continual improvement | Meta-specification flywheel (25.2) + design review records + evolution planning | Review records, audit conclusions, iteration traces |
+| Incident and nonconformity handling | Incident response and blameless postmortem (21.5) + global circuit breaker (21.1) | Incident reports, postmortems, circuit-breaker drill records |
+
+> **The substance of alignment**: ISO 42001 requires "a system, evidence, and improvement." ANE writes the system into primitive chains and gates, makes evidence a natural byproduct of projection, and entrusts improvement to the flywheel — alignment is not an added manual but the system's native way of operating.
+
 > **Temporal facts** (per the 2026-08 Digital Omnibus revision): EU AI Act obligations for GPAI have applied since 2025-08; core obligations such as Art.14 human oversight and transparency since 2026-08; Annex III high-risk obligations from 2027-12 and Annex I from 2028-08. **ANE front-loads these obligations as built-in engineering capabilities rather than adding documentation after launch.**
 
 ### 20.3 Responsibility matrix (RACI)
@@ -1137,7 +1188,7 @@ flowchart TB
 
 **Iron law**: degradation is **one-way tightening**, **automatically triggered**, and **manually accelerated by humans**; upgrading back to a higher level must re-run immune verification and authorization and may not automatically rise.
 
-**Two standard actions at the two-brain extreme states**:
+### 21.3b Two-brain extreme states
 
 | Extreme state | Detection signal | Mandatory action | Still guaranteed |
 |---|---|---|---|
@@ -1149,6 +1200,17 @@ flowchart TB
 ### 21.4 Circuit breaker drills
 
 The global circuit breaker must be drilled regularly like a fire drill, recording trigger latency, correctness of the locked steady state, and recovery procedure. A circuit breaker never drilled is considered nonexistent.
+
+### 21.5 Incident Response and Blameless Postmortem
+
+> "No overnight bad news" (10.5) is a reporting discipline; this section covers what happens after the report — how an incident becomes an evolution. Honest reporting without postmortem only creates ledger noise.
+
+- **Severity and clocks**: classify by D0–D3 and business impact; each tier defines deadlines for detection, confirmation, containment, and recovery. Exceeding a deadline automatically escalates to human sovereignty; "still investigating" is not grounds for silent delay.
+- **Five response steps (order inviolable)**: detect (observability alerts) → contain (circuit breaker / degradation; stop the bleeding before diagnosing) → root cause (replay the primitive-chain trace, never guess) → recover (return to the latest verified steady state) → postmortem (blameless, time-boxed, with deliverables).
+- **Blameless principle**: postmortems target mechanisms, not individuals; timely reporting with complete traces is not grounds for blame. **Concealment, delayed reporting, and ledger tampering are red lines** — judged as "contamination" under 10.5.
+- **Mandatory outputs**: timeline, root cause, why the gate failed to intercept, corrective action, accountable owner, review date. Corrective action must be one of a new rule (promotion), a new gate, or a new parameter — "be more careful" is not an acceptable, verifiable output.
+- **Flywheel integration**: postmortem records enter the experience store (Chapter 6) and trigger the Promotion Audit (24.3); recurrence of the same root cause is a flywheel failure and forces a review of promotion thresholds and gate effectiveness.
+- **Drill linkage**: circuit-breaker drills (21.4) must yield at least one postmortem in the prescribed format per quarter; a drill without one counts as incomplete.
 
 ---
 
@@ -1876,6 +1938,13 @@ G6 should not be checked by human eyes, but executed automatically by projection
 | Downlink | Main Brain → Cerebellum proposal payload: candidate patch, confidence, reasoning summary; status always pending verification |
 | Communication state machine | the two-brain link sequence Pending → Proposal → Verifying → Applied/Rollback → Ledger |
 | Channel arbitration | unified queuing of competing requests for Main Brain quota by urgency and budget |
+| Model carrier | the physical implementation of the Main Brain, replaceable through a uniform capability interface and never an architectural dependency |
+| Model card | mandatory carrier record of version, boundaries, biases, evaluation, and accountable owner, entered into the AI-BOM |
+| Prompt asset | an artefact under version control with a stable ID, owner, evaluation, and rollback path |
+| Injection guard | mandatory boundary under which external content is data only and may never be elevated to instructions |
+| Blameless postmortem | mechanism-focused incident review; concealment and ledger tampering are the real red lines |
+| Arbitration observability | three metrics — quota exhaustion rate / rejection rate / D0-D1 preemption rate — for auditing arbitration fairness |
+| Timeout disposition | an uplink timeout always routes to DEGRADED, never to "Main Brain refused" or a silent retry |
 
 ---
 
