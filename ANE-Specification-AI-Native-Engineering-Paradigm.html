@@ -225,7 +225,7 @@
       <tr><td><b>Release engineering</b></td><td>Artefact-based release: the specification derives external views from a single source of truth with zero process-layer residue; three-tier information grading (N/E/P) + release gates make the specification itself white-box, traceable, and anti-self-deception.</td></tr>
       <tr><td><b>Internationalization and artefact governance</b></td><td>Multi-language governance (source / authoritative translation / frozen glossary / G7) · artefact naming rules (formal without suffix / development with suffix / English edition) · structural integrity checks (G6: continuous numbering / appendix renumbering / valid anchors), fixing the broken appendix in the formal edition.</td></tr>
       <tr><td><b>Cold start and memory governance</b></td><td>Seed rules + explore/exploit adaptive switching (6.4) · hardware-topology awareness and adaptive prioritization (2.3 / 8.5) · domestic regulatory alignment (20.2) · Dual-Fold Collaboration pattern (13.4 / 14.3) · Promotion Audit against memory poisoning (24.3).</td></tr>
-      <tr><td><b>Evolution speed and dual-brain collaboration</b></td><td>Five-step algorithm: delete → simplify → optimize → accelerate → automate, order inviolable (10.4) · execution discipline: three-sentence communication / no overnight bad news / integrated die-casting / 99% grey release (10.5) · three hard boundaries of the Cerebellum including no speculation (4.4) · hard boundary between the two brains and anti-crosstalk (5.3) · NTP two-way channel with four iron laws (5.4) · communication state machine and channel arbitration (5.5) · two-brain extreme states (21.3b).</td></tr>
+      <tr><td><b>Evolution speed and dual-brain collaboration</b></td><td>Five-step algorithm: delete → simplify → optimize → accelerate → automate, order inviolable (10.4) · execution discipline: structured escalation / same-round failure reporting / high-cohesion fusion / 99% grey release (10.5) · three hard boundaries of the Cerebellum including no speculation (4.4) · hard boundary between the two brains and role-inversion guard (5.3) · NTP two-way channel with four iron laws (5.4) · communication state machine and channel arbitration (5.5) · two-brain extreme states (21.3b).</td></tr>
       <tr><td><b>Model carrier and engineering closure</b></td><td>Model carrier governance: selection criteria / model card / upgrade-retirement / carrier replaceability (5.6) · prompt asset governance: template versioning + injection guard + frozen glossary interface (18.4) · incident response and blameless postmortem (21.5) · substantive ISO 42001 alignment (20.2) · NTP timeout and deduplication parameters (5.5) · three arbitration observability metrics (12.1).</td></tr>
       <tr><td><b>How to adopt</b></td><td>Start with L2 Cerebellum + L3 memory; add L4 self-repair only after immunity matures.</td></tr>
       <tr><td><b>Inviolable red lines</b></td><td>Human sovereignty · anti-self-deception (silent failures = 0) · the global circuit breaker can stop everything at any time.</td></tr>
@@ -311,7 +311,7 @@
       <tr><td><b>P2</b></td><td>Intelligence and compute are scarce; allocate by deterministic benefit</td><td>Resource allocation / economics</td><td>Cerebellum-first, budget, arbitration, Explore→Exploit, rate limiting</td></tr>
       <tr><td><b>P3</b></td><td>Decisions affecting the future must leave verifiable traces</td><td>Auditing / information theory</td><td>Axiom 6, attest, ledger, three log tiers, trace-id, no-provenance = contamination</td></tr>
       <tr><td><b>P4</b></td><td>Final responsibility stays with the actor able to bear consequences</td><td>Responsibility ethics / governance</td><td>Axiom 5, tiered authorization, Dual-Fold, Main Brain never holds A, circuit breaker, human endorsement</td></tr>
-      <tr><td><b>P5</b></td><td>No feedback, no evolution; loop speed determines adaptability</td><td>Cybernetics / system dynamics</td><td>Flywheel, promotion, five steps, no overnight bad news, grey release, postmortems</td></tr>
+      <tr><td><b>P5</b></td><td>No feedback, no evolution; loop speed determines adaptability</td><td>Cybernetics / system dynamics</td><td>Flywheel, promotion, five steps, same-round failure reporting, grey release, postmortems</td></tr>
       <tr><td><b>P6</b></td><td>Under uncertainty fall back to a known safe state; safety before efficiency</td><td>Safety engineering / defense in depth</td><td>Stability first, UnknownSignal, degradation, one-way tightening, sandbox, circuit breaker</td></tr>
       <tr><td><b>P7</b></td><td>Interfaces must decouple from current capability to admit stronger intelligence</td><td>Evolutionary architecture / open–closed</td><td>Brain as capability interface, stable roles with replaceable implementations, D-tier by risk</td></tr>
     </tbody>
@@ -432,7 +432,7 @@ flowchart LR
     <div class="card blue"><h4>Must have</h4><p>Local rule base and priority matching · state machines and deterministic transitions · deterministic cost models (e.g., execution-strategy optimization) · fast retrieval of experience vectors</p></div>
     <div class="card amber"><h4>Strictly forbidden</h4><p>Generative free creation · unverified dynamic execution · direct modification of the D0 foundation · silently swallowing unhandleable exceptions (must escalate)</p></div>
   </div>
-  <p>The Cerebellum must still complete routine D0/D1 adjudication <strong>without network access and without an LLM</strong>, and its decisions must be explainable, replayable, and auditable. Typical implementation: local execution scheduling and deterministic cost-model engines — across multiple target architectures, adaptive optimization of hundreds or thousands of low-level operations is completed instantly by built-in deterministic cost models and state machines, burning no tokens and remaining precise and reproducible.</p>
+  <p>The Cerebellum must still complete routine D0/D1 adjudication <strong>without network access and without an LLM</strong>, and its decisions must be explainable, replayable, and auditable. Typical implementation: local execution scheduling and deterministic cost-model engines — across multiple target architectures, adaptive optimization of hundreds or thousands of low-level operations is completed instantly by built-in deterministic cost models and state machines, consuming zero tokens and remaining precise and reproducible.</p>
   <h3>4.4 Absolute determinism: three hard boundaries</h3>
   <p>In engineering terms the Cerebellum must be defined as the <strong>absolute defender of determinism</strong>: "compressed historical experience" plus "deterministic cost models grounded in physical law". It recognizes only rules, state machines, and hardware profiles; it makes no value judgments and produces no form of creation.</p>
   <div class="tw"><table>
@@ -443,7 +443,7 @@ flowchart LR
       <tr><td><b>No speculation</b></td><td>When no local rule matches, <b>raise a hand immediately</b> and throw <code>UnknownSignal</code>; guessing, approximate substitution, or "let's just try it" is forbidden</td><td>The ledger may contain no record of "a judgment produced with no rule hit"; if one appears, it is contamination</td></tr>
     </tbody>
   </table></div>
-  <div class="callout warn"><span class="lbl">Anti-crosstalk</span>The Cerebellum's ceiling is "deterministically handling the known", not "reasonably handling the unknown". Writing the Cerebellum as a "miniature LLM" burns tokens and loses determinism at the same time — the most expensive form of regression there is.</div>
+  <div class="callout warn"><span class="lbl">Role inversion guard</span>The Cerebellum's ceiling is "deterministically handling the known", not "reasonably handling the unknown". Writing the Cerebellum as a "miniature LLM" consumes tokens and loses determinism at the same time — the most expensive form of regression there is.</div>
 </section>
 
 <!-- ================= CH5 ================= -->
@@ -866,11 +866,11 @@ flowchart TB
   </div>
   <div class="callout quote"><span class="lbl">Relation to the Axioms</span>The five-step algorithm is Axiom 1 (static–dynamic duality) projected onto evolution actions — deleting and simplifying contract the static skeleton, optimizing and accelerating expand dynamic capability, automation only freezes already-verified paths and <b>produces no new correctness</b>.</div>
 
-  <h3>10.5 Execution discipline: flat channels, no overnight bad news, grey release</h3>
+  <h3>10.5 Execution discipline: structured escalation, same-round reporting, grey release</h3>
   <div class="grid g2">
-    <div class="card blue"><h4>1 · Flat communication (three sentences)</h4><p>Escalate with only: <b>what the problem is · what has been tried · what is needed next</b>. Preamble, emotional narrative, and irrelevant context are stripped — the human-readable form of the NTP uplink (5.4) and organizational governance of information entropy.</p></div>
-    <div class="card amber"><h4>2 · No overnight bad news</h4><p>False green ticks, silent failures, unauthorized mutations, and gate bypasses must be reported <b>in the same round</b>. A system that hides bad news should be judged <b>contaminated</b> and degraded — an unrecorded failure re-contaminates memory as "experience".</p></div>
-    <div class="card teal"><h4>3 · Integrated die-casting</h4><p>A chain that can be fused into a high-cohesion module must not be split into a long microservice chain — every boundary crossing pays serialization, network, and observability three times over. Hard limit: <b>D0 skeleton logic may not be smeared into business modules</b>, and replaceability may not be sacrificed.</p></div>
+    <div class="card blue"><h4>1 · Flat communication (three items)</h4><p>Escalate with only: <b>what the problem is · what has been tried · what is needed next</b>. Preamble, emotional narrative, and irrelevant context are stripped — the human-readable form of the NTP uplink (5.4) and organizational governance of information entropy.</p></div>
+    <div class="card amber"><h4>2 · Same-round reporting of failures</h4><p>False green ticks, silent failures, unauthorized mutations, and gate bypasses must be reported <b>in the same round</b>. A system that hides bad news should be judged <b>contaminated</b> and degraded — an unrecorded failure re-contaminates memory as "experience".</p></div>
+    <div class="card teal"><h4>3 · Integrated high-cohesion fusion</h4><p>A chain that can be fused into a high-cohesion module must not be split into a long microservice chain — every boundary crossing pays serialization, network, and observability three times over. Hard limit: <b>D0 skeleton logic may not be smeared into business modules</b>, and replaceability may not be sacrificed.</p></div>
     <div class="card purple"><h4>4 · High-frequency grey release</h4><p>At <b>99%</b> confidence, enter grey release rather than waiting for 100% — waiting for perfection is shutting the feedback loop. Requires: rollback checkpoint, one-way tightening degradation path (21.3), observable success criteria.</p></div>
   </div>
   <div class="callout warn"><span class="lbl">Boundary</span>Gates and grey release are not opposites: <b>the gate decides "may it ship", grey release decides "how much, to whom"</b>. If the gate has not passed, grey release is meaningless.</div>
@@ -992,7 +992,7 @@ flowchart TB
 
   <div class="callout"><span class="lbl">Full traceability</span>Every unfold, summary, binding, and denial is written to the ledger with an attest credential for replay. This pattern is the confluence of "full-spectrum white box" (Axiom 6) and "human sovereignty" (Axiom 5): Fold 1 ensures humans <b>understand</b>, Fold 2 ensures humans <b>decide</b>.</div>
   <h3>13.5 Interaction Traceability: Log Form and Replay</h3>
-  <div class="callout warn"><span class="lbl">Do we need logs? Yes</span>Not raw chat transcripts, but a <b>structured interaction event log</b>: the minimum facts sufficient to reconstruct responsibility and decisions — replayable without leaking privacy or burning tokens.</div>
+  <div class="callout warn"><span class="lbl">Do we need logs? Yes</span>Not raw chat transcripts, but a <b>structured interaction event log</b>: the minimum facts sufficient to reconstruct responsibility and decisions — replayable without leaking privacy or token overhead.</div>
   <div class="tw"><table>
     <thead><tr><th>Tier</th><th>Records</th><th>Retention</th><th>Audience</th></tr></thead>
     <tbody>
@@ -1356,7 +1356,7 @@ flowchart TB
   </table></div>
   <div class="callout quote"><span class="lbl">Why</span>Neither extreme state permits "escalating while sick" — when the Main Brain is unreachable, repeated uplinks drag latency into an avalanche; when memory is contaminated, still reading it spreads contamination into the judgment layer.</div>
   <h3>21.5 Incident Response and Blameless Postmortem</h3>
-  <div class="callout warn"><span class="lbl">From 10.5</span>"No overnight bad news" is a reporting discipline; this section covers the step after reporting — turning an incident into an evolution. <b>Honest reporting without a postmortem only creates ledger noise.</b></div>
+  <div class="callout warn"><span class="lbl">From 10.5</span>"Same-round reporting of failures" is a reporting discipline; this section covers the step after reporting — turning an incident into an evolution. <b>Honest reporting without a postmortem only creates ledger noise.</b></div>
   <ul>
     <li><b>Severity and clocks</b>: classify by D0–D3 and business impact; each tier defines detection, confirmation, containment, and recovery deadlines. Exceeding a deadline escalates to human sovereignty automatically; "still investigating" is not grounds for silent delay.</li>
     <li><b>Five response steps (order inviolable)</b>: detect → contain (circuit breaker / degradation; stop the bleeding before diagnosing) → root cause (replay the primitive-chain trace, never guess) → recover (latest verified steady state) → postmortem (blameless, time-boxed, with deliverables).</li>
@@ -2653,7 +2653,7 @@ flowchart LR
       <tr><td>Form-suffix contract</td><td>naming rule: formal release has no suffix, development view carries the <code>&lt;development form identifier&gt;</code> suffix</td></tr>
       <tr><td>Five-Step Algorithm</td><td>mandatory evolution order — delete → simplify → optimize → accelerate → automate; inverting it is forbidden</td></tr>
       <tr><td>Feedback-loop duration</td><td>time from signal generation to completed consolidation; the core metric of the speed law</td></tr>
-      <tr><td>Integrated die-casting</td><td>fusing a long call chain into a high-cohesion module at the base layer to cut cross-boundary loss</td></tr>
+      <tr><td>Integrated high-cohesion fusion</td><td>fusing a long call chain into a high-cohesion module at the base layer to cut cross-boundary loss</td></tr>
       <tr><td>No Speculation</td><td>the Cerebellum must throw <code>UnknownSignal</code> when no rule matches; guessing or approximate substitution is forbidden</td></tr>
       <tr><td>Offline capability</td><td>requirement that the Cerebellum sustain ≥80% of routine transactions while the Main Brain is unreachable</td></tr>
       <tr><td>Uplink</td><td>Cerebellum → Main Brain distress payload: feature vector, error code, tried rules, environment profile, budget</td></tr>

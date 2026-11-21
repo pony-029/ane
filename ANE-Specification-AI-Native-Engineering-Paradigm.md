@@ -76,8 +76,8 @@
 | **Release engineering** | Artefact-based release: the specification derives external views from a single source of truth, with zero process-layer residue; three-tier information grading (N normative / E evidentiary / P process) + release gates make the specification itself "white-box, traceable, and anti-self-deception" first. |
 | **Internationalization and artefact governance** | Multi-language governance (source / authoritative translation / glossary / G7 translation fidelity) · artefact naming rules (formal without suffix / development with suffix / English edition) · structural integrity checks (G6: continuous numbering / appendix renumbering / valid anchors), fixing the broken appendix in the formal edition. |
 | **Cold start and memory governance** | Seed rules + explore/exploit adaptive switching (6.4) · hardware-topology awareness and adaptive execution optimization (2.3 / 8.5) · domestic regulatory alignment (20.2) · Dual-Fold Collaboration pattern (13.4 / 14.3) · Promotion Audit against memory poisoning (24.3). |
-| **Evolution speed and dual-brain collaboration** | Five-step algorithm: delete → simplify → optimize → accelerate → automate, order inviolable (10.4) · execution discipline: three-sentence communication / no overnight bad news / integrated die-casting / 99% grey release (10.5) · three hard boundaries of the Cerebellum including no speculation (4.4) · hard boundary between the two brains and anti-crosstalk (5.3) · NTP two-way channel with four iron laws (5.4) · communication state machine and channel arbitration (5.5) · two-brain extreme states (21.3b). |
-| **Model carrier and engineering closure** | Model carrier governance: selection criteria / model card / upgrade-retirement / carrier replaceability (5.6) · prompt asset governance: template versioning + injection guard + frozen glossary interface (18.4) · incident response and blameless postmortem: linking "no overnight bad news" to promotion (21.5) · substantive ISO 42001 alignment (20.2) · NTP timeout and deduplication parameters (5.5) · three channel-arbitration observability metrics (12.1). |
+| **Evolution speed and dual-brain collaboration** | Five-step algorithm: delete → simplify → optimize → accelerate → automate, order inviolable (10.4) · execution discipline: structured escalation / same-round failure reporting / high-cohesion fusion / 99% grey release (10.5) · three hard boundaries of the Cerebellum including no speculation (4.4) · hard boundary between the two brains and role-inversion guard (5.3) · NTP two-way channel with four iron laws (5.4) · communication state machine and channel arbitration (5.5) · two-brain extreme states (21.3b). |
+| **Model carrier and engineering closure** | Model carrier governance: selection criteria / model card / upgrade-retirement / carrier replaceability (5.6) · prompt asset governance: template versioning + injection guard + frozen glossary interface (18.4) · incident response and blameless postmortem: linking "same-round failure reporting" to promotion (21.5) · substantive ISO 42001 alignment (20.2) · NTP timeout and deduplication parameters (5.5) · three channel-arbitration observability metrics (12.1). |
 | **How to adopt** | Start with L2 Cerebellum + L3 memory (greatest benefit, lowest risk); add L4 self-repair only after immunity matures; L5 living systems are a long-term goal. |
 | **Inviolable red lines** | Human sovereignty (Axiom 5) · anti-self-deception (silent failures = 0) · the global circuit breaker can stop everything at any time — no efficiency rationale may bypass these. |
 
@@ -172,7 +172,7 @@ ANE does not stand at either end of "traditional software engineering" or "AI-wr
 | **P2** | Intelligence and compute are scarce and must be allocated by deterministic benefit | Resource allocation and economics (adopted) | Cerebellum-first, `budget_hint`, arbitration queueing, Explore→Exploit, rate limiting (3 / 5.5 / 6.4 / 18.1) |
 | **P3** | Every decision affecting the future must leave verifiable traces | Auditing and information theory (adopted) | Axiom 6, `attest`, ledger, three log tiers, trace-id replay, no-provenance = contamination (10 / 13.5 / 22.1 / 28.x) |
 | **P4** | Final responsibility stays with the actor able to bear consequences — it does not transfer as intelligence rises | Responsibility ethics and governance (adopted) | Axiom 5, tiered authorization, Dual-Fold, Main Brain never holds A, global circuit breaker, human endorsement (5 / 9 / 13.4 / 20.3 / 24.3) |
-| **P5** | Without feedback there is no evolution; loop speed determines adaptability | Cybernetics and system dynamics (adopted) | Flywheel, experience promotion, five-step algorithm, no overnight bad news, 99% grey release, postmortems (10 / 6.3 / 21.5) |
+| **P5** | Without feedback there is no evolution; loop speed determines adaptability | Cybernetics and system dynamics (adopted) | Flywheel, experience promotion, five-step algorithm, same-round failure reporting, 99% grey release, postmortems (10 / 6.3 / 21.5) |
 | **P6** | Under uncertainty, fall back to a known safe state; safety precedes efficiency | Safety engineering and defense in depth (adopted) | Stability first, `UnknownSignal`, degradation ladder, one-way tightening, sandbox isolation, circuit breaker (Axiom 7 / 4.4 / 5.4 / 21.x) |
 | **P7** | Interfaces must be decoupled from current capability to accommodate stronger intelligence | Evolutionary architecture and open–closed principle (adopted) | Main Brain as capability interface rather than a model, stable roles with replaceable implementations, D-tier by risk not model capability (5.6 / 0.6) |
 
@@ -329,7 +329,7 @@ flowchart LR
 
 ### 4.3 Engineering anchors
 
-Local execution scheduling and deterministic cost-model engines are a typical implementation of the Cerebellum: across multiple target architectures, adaptive optimization of hundreds or thousands of low-level operations is completed instantly by built-in deterministic cost models and state machines, burning no tokens and remaining precise and reproducible.
+Local execution scheduling and deterministic cost-model engines are a typical implementation of the Cerebellum: across multiple target architectures, adaptive optimization of hundreds or thousands of low-level operations is completed instantly by built-in deterministic cost models and state machines, consuming zero tokens and remaining precise and reproducible.
 
 ### 4.4 Absolute determinism of the Cerebellum: three hard boundaries
 
@@ -341,7 +341,7 @@ In engineering terms the Cerebellum must be defined as the **absolute defender o
 | **Growable** | Rules are not hard-coded constants; new "muscle memory" may only grow through the Hippocampus's **experience promotion** | Every rule must trace back to its experience source and promotion-audit record (24.3) |
 | **No speculation** | When no local rule matches, the Cerebellum **must raise its hand immediately** and throw `UnknownSignal`; guessing, approximate substitution, or "let's just try it" is forbidden | The ledger may contain no record of "a judgment produced with no rule hit"; if one appears, it is contamination |
 
-> **Anti-crosstalk**: the Cerebellum's ceiling is "deterministically handling the known", not "reasonably handling the unknown". Writing the Cerebellum as a "miniature LLM" burns tokens and loses determinism at the same time — the most expensive form of regression there is.
+> **Role inversion guard**: the Cerebellum's ceiling is "deterministically handling the known", not "reasonably handling the unknown". Writing the Cerebellum as a "miniature LLM" consumes tokens and loses determinism at the same time — the most expensive form of regression there is.
 
 ---
 
@@ -845,21 +845,21 @@ When refactoring, optimizing, or generating any code block, a living system **mu
 
 > Relation to the axioms: the five-step algorithm is Axiom 1 (static–dynamic duality) projected onto "evolution actions" — deleting and simplifying contract the static skeleton, optimizing and accelerating expand dynamic capability, and automation only freezes already-verified paths; **it produces no new correctness**.
 
-### 10.5 Execution discipline: flat channels, no overnight bad news, grey release
+### 10.5 Execution discipline: structured escalation, same-round reporting, grey release
 
-**1. Flat communication (the three-sentence rule)**
+**1. Structured escalation**
 
-When escalating — to the Main Brain or to a human — only three sentences are allowed: **what the problem is · what has been tried · what is needed next**. Long preamble, emotional narrative, and irrelevant context are stripped. This is both the human-readable form of the NTP uplink (5.4) and the organizational governance of information entropy.
+When escalating — to the Main Brain or to a human — the report carries exactly three items: **what the problem is · what has been tried · what is needed next**. Long preamble, emotional narrative, and irrelevant context are stripped. This is both the human-readable form of the NTP uplink (5.4) and the organizational governance of information entropy.
 
-**2. No overnight bad news**
+**2. Same-round reporting of failures**
 
 False green ticks, silent failures, unauthorized mutations, and gate bypasses must be reported to the ledger **in the same round they occur**. A system that hides bad news should be judged **contaminated** by its own Immune System and degraded — because an unrecorded failure re-contaminates the memory store in the form of "experience".
 
-**3. Integrated die-casting (high-cohesion fusion)**
+**3. High-cohesion fusion**
 
 A call chain that can be fused at the base layer into a high-cohesion module must not be split into a long cross-process microservice chain — every boundary crossing pays serialization, network, and observability overhead three times over. But fusion has hard limits: **D0 skeleton logic may not be smeared into business modules**, and replaceability may not be sacrificed merely to reduce calls.
 
-**4. High-frequency grey release (Autopilot mode)**
+**4. Automatic grey release**
 
 When confidence reaches **99%**, enter grey release rather than waiting for 100%. Waiting for perfection is indistinguishable from shutting down the feedback loop. Grey release must simultaneously have: a rollback checkpoint, a monotonically tightening degradation path (21.3), and observable success criteria.
 
@@ -1003,7 +1003,7 @@ Thus "understandable" and "not swapped" are guaranteed by one credential — the
 
 ### 13.5 Interaction Traceability: Log Form and Replay
 
-> **Do we need logs? Yes — but not raw chat transcripts.** What interaction traceability needs is a **structured interaction event log**: the minimum facts sufficient to reconstruct responsibility and decisions — replayable without leaking privacy or burning tokens.
+> **Do we need logs? Yes — but not raw chat transcripts.** What interaction traceability needs is a **structured interaction event log**: the minimum facts sufficient to reconstruct responsibility and decisions — replayable without leaking privacy or token overhead.
 
 **Three log tiers (distinct duties; never mixed)**
 
@@ -1428,7 +1428,7 @@ The global circuit breaker must be drilled regularly like a fire drill, recordin
 
 ### 21.5 Incident Response and Blameless Postmortem
 
-> "No overnight bad news" (10.5) is a reporting discipline; this section covers what happens after the report — how an incident becomes an evolution. Honest reporting without postmortem only creates ledger noise.
+> "Same-round reporting of failures" (10.5) is a reporting discipline; this section covers what happens after the report — how an incident becomes an evolution. Honest reporting without postmortem only creates ledger noise.
 
 - **Severity and clocks**: classify by D0–D3 and business impact; each tier defines deadlines for detection, confirmation, containment, and recovery. Exceeding a deadline automatically escalates to human sovereignty; "still investigating" is not grounds for silent delay.
 - **Five response steps (order inviolable)**: detect (observability alerts) → contain (circuit breaker / degradation; stop the bleeding before diagnosing) → root cause (replay the primitive-chain trace, never guess) → recover (return to the latest verified steady state) → postmortem (blameless, time-boxed, with deliverables).
@@ -2543,7 +2543,7 @@ Suites are temporary. **【MUST】** Invalidate the manifest and recompute `suit
 | Form-suffix contract | naming rule: formal release has no suffix, development view carries the `<development form identifier>` suffix |
 | Five-Step Algorithm | mandatory evolution order — delete → simplify → optimize → accelerate → automate; inverting it is forbidden |
 | Feedback-loop duration | time from signal generation to completed consolidation; the core metric of the speed law |
-| Integrated die-casting | fusing a long call chain into a high-cohesion module at the base layer to cut cross-boundary communication loss |
+| Integrated high-cohesion fusion | fusing a long call chain into a high-cohesion module at the base layer to cut cross-boundary communication loss |
 | No Speculation | the Cerebellum must throw `UnknownSignal` when no rule matches; guessing or approximate substitution is forbidden |
 | Offline capability | requirement that the Cerebellum sustain ≥80% of routine transactions while the Main Brain is unreachable |
 | Uplink | Cerebellum → Main Brain distress payload: feature vector, error code, tried rules, environment profile, budget |
