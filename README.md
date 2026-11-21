@@ -18,11 +18,11 @@ ANE（AI Native Engineering，AI 原生工程）是一套面向 AI Agent 时代�
 
 ## 当前版本
 
-**v0.8.0**（2026-11-21）— 生命体生态、演进阶梯与规范性等级层。
+**v0.9.0**（2026-11-21）— 门禁工程化与存量转换层。
 
-第十轮新增：第 38 章 IOP 生命体间通信协议（名片 / 信封 / 四层模型 / 记忆不共享）· 第 39 章套件声明式组合与最弱环节防护 · 第 40 章向 AGI 演进 A0–A4 阶梯（权限不衰减 / 递归有界）· 第 41 章数据温度分级与联网三态（离线必选、联网可选）· 第 42 章 MUST/SHOULD/MAY 必选清单。同时闭环上轮三条建议：真实 JSON Schema 门禁（schemas/ntp-1.1.schema.json + tools/validate_ntp.py）、ANS-1 规范化摘要、折一认知摘要绑定凭证。
+第十一轮新增：第 43 章传统软件向软件生命体的转换（适配分级 T1–T4 / 五阶段改造手术 / 绞杀者双轨替换 / 状态分层迁移 / 不可转换成分）· 40.3b A4 启用前十项准入检查表。闭环上轮四条建议：① 术语禁令清单（`schemas/banned-terms.json`）与全轨措辞门禁；② G8 双格式一致性门禁（`tools/check_dual_format.py`），修复 MD/HTML 条款漂移；③ IOP 四类载荷 Schema（`schemas/iop-1.0.schema.json`），42/42 载荷合法、18 摘要可重算；④ A4 准入表。四类门禁统一由 `tools/validate_ntp.py` 提供（validate / terms / canonicalize）。
 
-完整的版本演进与修订纪律见规范第三十四～三十七章；第七轮 30 轮计划（逐轮级）见 DEBUG 开发版附录 I。
+完整的版本演进与修订纪律见规范第三十四～三十七章；第八轮 30 轮计划（逐轮级）见 DEBUG 开发版附录 J。
 
 ## 文件清单
 
@@ -34,6 +34,9 @@ ANE（AI Native Engineering，AI 原生工程）是一套面向 AI Agent 时代�
 | `ANE-Specification-AI-Native-Engineering-Paradigm.html` | 英文权威译本（HTML） |
 | `schemas/ntp-1.1.schema.json` | NTP 载荷机器可读契约（JSON Schema 2020-12） |
 | `tools/validate_ntp.py` | 零依赖门禁：六轨载荷校验 + ANS-1 规范化/摘要 |
+| `schemas/iop-1.0.schema.json` | IOP 四类载荷机器契约（名片 / 信封 / 套件 / 演进凭证） |
+| `schemas/banned-terms.json` | 措辞禁令清单（口号 / 产品名 / 项目专名 / 过程痕迹） |
+| `tools/check_dual_format.py` | G8 门禁：MD/HTML 条款级逐字一致性校验 |
 | `README.md` / `README_EN.md` | 中 / 英文项目说明 |
 | `LICENSE` / `LICENSE-zh.md` | CC BY 4.0 许可协议（英文法律文本 / 中文对照译文） |
 
@@ -41,7 +44,7 @@ ANE（AI Native Engineering，AI 原生工程）是一套面向 AI Agent 时代�
 
 ## 规范结构
 
-规范正文共 **42 章 + 术语表（附录 A）**，主要分层：
+规范正文共 **43 章 + 术语表（附录 A）**，主要分层：
 
 | 层 | 章节 | 主题 |
 |---|---|---|
@@ -52,6 +55,7 @@ ANE（AI Native Engineering，AI 原生工程）是一套面向 AI Agent 时代�
 | 治理 | 第 25–31 章 | 元规范、符合性评估（ANE-CONF）、迁移采纳、可观测性、演化系统测试、适用边界、经济性 |
 | 发布 | 第 32–37 章 | 发布形态、信息分级与门禁、单一真源与确定性投影、多语言治理、制品命名、结构完整性校验 |
 | 生态 | 第 38–42 章 | 生命体间通信 IOP、套件组合、AGI 演进阶梯、数据/联网策略、规范性等级与必选清单 |
+| 转换 | 第 43 章 | 传统软件向生命体转换：适配分级、五阶段手术、绞杀双轨、状态迁移、完成判据 |
 
 ### v0.8.0 五项新增与四项修复（v0.7.0 归档见下）
 

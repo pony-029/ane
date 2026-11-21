@@ -1,4 +1,4 @@
-# "ANE Specification: AI-Native Engineering Paradigm for Living Software Systems" v0.8.0 · Formal Release
+# "ANE Specification: AI-Native Engineering Paradigm for Living Software Systems" v0.9.0 · Formal Release
 
 > **ANE Specification — AI-Native Engineering Paradigm for Living Software Systems**
 >
@@ -8,7 +8,7 @@
 >
 > ANE = **AI Native Engineering** · static-dynamic integration · dual-brain collaboration · Memory Moat · unified development and maintenance · governance and resilience · verifiable and adoptable
 >
-> Version: **v0.8.0**　|　Date: 2026-11-21　|　Form: Formal Release
+> Version: **v0.9.0**　|　Date: 2026-11-21　|　Form: Formal Release
 >
 > This specification is expressed in a **general paradigm language**, not bound to any specific product, framework, or engineering implementation, and applies to all teams building AI-native software systems.
 >
@@ -57,6 +57,12 @@
 - [Chapter 35: Multi-Language and Localization Governance](#chapter-35-multi-language-and-localization-governance)
 - [Chapter 36: Artefact Naming and Identification Specification](#chapter-36-artefact-naming-and-identification-specification)
 - [Chapter 37: Structural Integrity and Post-Projection Verification](#chapter-37-structural-integrity-and-post-projection-verification)
+- [Chapter 38: Inter-Organism Protocol (IOP)](#chapter-38--inter-organism-protocol-iop)
+- [Chapter 39: Living-System Suites and Composition](#chapter-39--living-system-suites-and-composition)
+- [Chapter 40: Evolution Ladder toward AGI Living Systems](#chapter-40--evolution-ladder-toward-agi-living-systems)
+- [Chapter 41: Communication Data, Storage and Connectivity](#chapter-41--communication-data-storage-and-connectivity)
+- [Chapter 42: Normative Levels and Mandatory Checklist](#chapter-42-normative-levels-and-mandatory-checklist)
+- [Chapter 43: Converting Legacy Software into a Living System](#chapter-43--converting-legacy-software-into-a-living-system)
 - [Appendix A · Glossary](#appendix-a--glossary)
 
 ---
@@ -2293,6 +2299,25 @@ Suites are temporary. **【MUST】** Invalidate the manifest and recompute `suit
 | Reversible capability | Every tier can fall back to a lower tier, drilled in advance | 【MUST】 |
 | Credential per step | Every upgrade leaves a verifiable credential in the ledger | 【MUST】 |
 
+### 40.3b Admission checklist before enabling A4
+
+> A4【MAY】does not mean "enable at will". The following is the **precondition gate** for A4; every item is 【MUST】. Failure of any item keeps the system at A3 — no "enable first, fix later".
+
+| # | Admission condition | Verifiable evidence | Level |
+|---|---|---|---|
+| 1 | Written human-sovereignty authorization | Signature + scope + validity + recovery plan complete (42.5) | 【MUST】 |
+| 2 | Promotion audit passed | Promotion record (24.3) contains N independent reproductions and anti-inbreeding check | 【MUST】 |
+| 3 | No D0 authority | Permission list explicitly denies D0 to A4, not merely "unconfigured" | 【MUST】 |
+| 4 | Recursion cap configured | `max_recursion_depth` is a finite integer; over the cap returns to human approval | 【MUST】 |
+| 5 | Dual-track verification passed | Improvement Proposal accepted only after deterministic and intelligent verification agree (Ch.7) | 【MUST】 |
+| 6 | Kill-switch drill executed | Human breaker can cut A4's improvement capability within a bounded time; drill in ledger | 【MUST】 |
+| 7 | Fallback path drilled | A4→A3 fall-back steps, data and credential retention verified (40.3) | 【MUST】 |
+| 8 | Full-chain replay | Proposal, evidence, signature and adoption decision replayable from the ledger | 【MUST】 |
+| 9 | Validity and auto-review | A4 authorization has a review date; lapse degrades automatically (42.5) | 【SHOULD】 |
+| 10 | Independent third-party audit | In high-regulation contexts an external auditor confirms the above | 【MAY】 |
+
+> **【MUST】** The admission result is written into `evidence_refs` of the evolution attestation (40.4) and bound to `attestation_digest`; **【MUST】** on expiry or failure of any condition, automatically fall back to A3 with no manual "temporary waiver" (42.5).
+
 ### 40.4 Evolution Attestation
 
 ```json
@@ -2416,12 +2441,115 @@ Suites are temporary. **【MUST】** Invalidate the manifest and recompute `suit
 | 22–37 | Stable IDs, AI-BOM, memory isolation, single source, projection, G7 |
 | 38 | Card, capability, envelope fields, credential, no shared memory |
 | 39 | Declarative suite, admission, D0 non-delegation, breaker linkage |
-| 40 | Non-decaying authority, bounded recursion, reversibility, attestation |
+| 40 | Non-decaying authority, bounded recursion, reversibility, attestation, A4 ten-item admission checklist (40.3b) |
 | 41 | Local-first, ANS-1, offline-first and degraded |
+| 42 | Four-level labels, per-clause labeling, written exceptions |
+| 43 | Legacy fitness tiers, five-stage surgery, strangler dual-run, state migration, non-convertible isolation |
 
 ### 42.4 Conformance and exceptions
 
 **【MUST】** ANE-CONF passes only when all 【MUST】 items pass and no 【MUST NOT】 is violated. **【MUST】** Conclusions state deviations with rationale — no bare pass/fail. **【MUST】** Any exception to a 【MUST】 requires written human approval with scope, expiry, and recovery plan. **【MUST】** Exceptions never touch constitutional red lines. **【MAY】** Exceptions auto-expire.
+
+## Chapter 43 · Converting Legacy Software into a Living System
+
+> **【Original to this specification】** This chapter answers a practical question: **how does an already-running legacy system become a living system conforming to this specification, step by step?** Chapter 27 gives the organization-level "six adoption steps" (macro path); this chapter gives the "surgical procedure" for a single system (micro tactics). They complement each other: Ch.27 decides whether and how far to go; Ch.43 decides where to make the incision.
+
+### 43.1 Stance: no rewrite, progressive replacement
+
+> Traces to Axiom 3 (prove what can be proved) and the adoption principles (27.1). Conversion is not a teardown — it is **block-by-block replacement of a running system, fully reversible throughout**.
+
+| Stance | Meaning | Failure if violated | Level |
+|---|---|---|---|
+| **No wholesale rewrite** | Cut in at a local high-value module; no one-shot full rewrite | Uncontrolled risk, no rollback | 【MUST】 |
+| **Observe before change** | Do not alter decision logic before interaction tracing (13.5) exists | Change without knowing right/wrong | 【MUST】 |
+| **Static first** | Fix the deterministic base (types/state machine/invariants) before adding intelligence | Building on quicksand | 【MUST】 |
+| **Dual-track reversible** | New and old coexist each stage; switch only after verification | Switching equals incident | 【MUST】 |
+
+### 43.2 Legacy fitness tiers
+
+**【Original to this specification】** Not every system suits the same degree of conversion. Classify before cutting to avoid "one size fits all".
+
+| Tier | Legacy traits | Conversion strategy | Target tier | Level |
+|---|---|---|---|---|
+| **T1 easy** | Clear state machine, enumerable rules, defined boundaries | Apply the five-stage surgery (43.3) directly | L4–L5 | 【SHOULD】 |
+| **T2 isolate** | Mixed logic, no state machine, stable interfaces | Add anti-corruption layer + observation, then strangler-replace module by module | L2–L4 | 【SHOULD】 |
+| **T3 wrap** | Legacy closed-source / unmodifiable core | Connect as external capability via IOP (Ch.38); do not convert internals | As-is | 【MAY】 |
+| **T4 avoid** | Hard real-time deadlines, legally immutable flows | Add observation + sovereignty layer around it; core untouched | L0–L1 | 【MUST】 preserve |
+
+> **【MUST】** T3/T4 components must not be declared as converted living systems; **【MUST】** the tier decision is written to the conversion ledger as input to conformance assessment (ANE-CONF).
+
+### 43.3 Five-stage conversion surgery
+
+| Stage | Action (organ mapping) | Entry condition | Exit verification | Level |
+|---|---|---|---|---|
+| ① Observation implant (immunity pre) | Add L1/L2/L3 trace logs with trace-id (13.5), record only | Grey-deployable | Key paths fully traced and replayable | 【MUST】 |
+| ② Base fixation (skeleton) | Extract D0 immutable core, add types/state machine/invariants/contract tests | Observation in place | Provable base with rollback point | 【MUST】 |
+| ③ Cerebellum implant (cerebellum) | Sink high-frequency if-else rules into local deterministic layer; throw `UnknownSignal` on miss | Base stable | Local interception rate met | 【MUST】 |
+| ④ Memory loop (hippocampus) | Attach experience records, read-only retrieval first, write only after validation (Ch.6) | Cerebellum ready | Similar questions no longer reach the brain | 【SHOULD】 |
+| ⑤ Sovereignty + immunity (sovereignty + immunity) | Add dual-fold authorization (13.4), dual-track verification (Ch.7), breaker (21.4) | Memory active | Breaker drill passed, human can cut off | 【MUST】 |
+| ⑥ Self-heal + flywheel (self-heal) | Enable automatic repair and sense→consolidate flywheel (Ch.8/11) | Immunity mature | Self-heal success rate met | 【MAY】 |
+
+> Stage ⑥ matches step ⑥ of Ch.27 as a high-risk option; **【MUST】** enabling ⑥ before passing ⑤ is forbidden.
+
+### 43.4 Strangler replacement and dual-track running
+
+**【Adopted】** The Strangler Fig Pattern is an established industry practice for progressive replacement (**adopted**), adapted here to living-system conversion.
+
+```mermaid
+flowchart LR
+    A["Legacy system<br/>all traffic"] --> B["Front router<br/>shadow mode"]
+    B --> C["Dual-track<br/>record only"]
+    C --> D["Small grey release<br/>1%→5%→25%"]
+    D --> E["New living system<br/>full traffic"]
+    E --> F["Legacy retired<br/>evidence archived"]
+```
+
+| Mechanism | Practice | Key discipline | Level |
+|---|---|---|---|
+| Shadow mode | New and old process same input; new produces output without effect | Compare diffs, no side effects | 【MUST】 |
+| Dual-track consistency | Compare new/old output by digest; stop rollout if diff exceeds threshold | Visible diffs before scaling | 【MUST】 |
+| Small grey release | Scale 1%→5%→25%→100%, SLO each step | Auto-rollback on breach (27.4) | 【MUST】 |
+| Front router | Split traffic at a stable entry, avoid changing callers | Router itself observable and reversible | 【SHOULD】 |
+| Legacy retirement | Retire after stable full traffic; archive evidence and ledger | Retireable but responsibility persists (39.5) | 【MUST】 |
+
+### 43.5 State and data migration
+
+| Data tier | Migration strategy (per 41.1 temperature tiers) | Forbidden | Level |
+|---|---|---|---|
+| Hot (rules/state/context) | Rebuild in new cerebellum, do not copy runtime memory from legacy | Direct memory-state copy | 【MUST】 |
+| Warm (experience/audit/recent ledger) | Migrate only promoted experience digests and evidence refs, write after validation | Migrate raw unverified experience | 【MUST】 |
+| Cold (audit logs/evidence) | Archive as-is, keep append-only and searchable | Clear history during conversion | 【MUST】 |
+| Frozen (legal retention) | Do not migrate or rewrite; register reference in new system | Rewrite legal credentials | 【MUST】 |
+
+> **【MUST】** Keep `organism_id` and experience lineage continuous during conversion so the responsibility chain holds (41.3); **【MUST】** cross-sovereign data migration follows 20.2 compliance alignment.
+
+### 43.6 Non-convertible components and failure modes
+
+| Component / failure mode | Handling | Level |
+|---|---|---|
+| Hard real-time deadline logic | Keep in deterministic layer, never delegate to intelligence (P1) | 【MUST】 |
+| Legally immutable flows | Keep as-is, add sovereignty observation only | 【MUST】 |
+| Closed-source unmodifiable core | Connect via IOP as external capability (T3) | 【MAY】 |
+| "Two truths" coexisting too long | Set a conversion deadline; force convergence or rollback | 【MUST】 |
+| Experience store polluted before governance | Insist on write-after-validation (Axiom 4) | 【MUST】 |
+| Skip observation, go straight to self-heal | Forbidden (43.1) | 【MUST NOT】 |
+
+### 43.7 Conversion completion criteria
+
+**【MUST】** Declare conversion complete only when: ① target modules pass conformance checks at their declared tier (Ch.26); ② legacy system retired or explicitly labeled T3/T4 external/immutable core; ③ conversion ledger, evidence and rollback records fully archived; ④ human sovereignty layer confirms in writing. **【SHOULD】** Run a full observation period with no major degradation before closing the conversion ledger. **【MAY】** Publish an externally verifiable conversion report so ecosystem partners can check capability boundaries (Ch.38).
+
+### 43.8 Chapter mandatory/optional checklist
+
+| Item | Level | Rationale |
+|---|---|---|
+| No wholesale rewrite, observe before change | 【MUST】 | Control risk surface |
+| Legacy fitness tiers (T1–T4) | 【MUST】 | Avoid one-size-fits-all |
+| Five-stage surgery ①–⑤ | 【MUST】 | Skeleton and sovereignty baseline |
+| Strangler dual-track + grey release + rollback | 【MUST】 | Switch safety |
+| Tiered state migration, continuous responsibility chain | 【MUST】 | Memory moat and compliance |
+| Self-heal flywheel stage ⑥ | 【MAY】 | High risk, needs mature immunity |
+| Closed-source core via IOP | 【MAY】 | Depends on legacy structure |
+| External conversion report | 【MAY】 | Ecosystem collaboration enhancement |
 
 ## Appendix A · Glossary
 

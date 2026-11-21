@@ -1,0 +1,82 @@
+{
+  "schema_version": "1.0",
+  "title": "ANE IOP Contracts",
+  "description": "生命体生态四类载荷的机器可读契约：名片 / 信封 / 套件清单 / 演进凭证。配套规范第 38–40 章；摘要按 ANS-1 规范化后计算。",
+  "$defs": {
+    "digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "determinacy": {
+      "type": "string",
+      "enum": ["D0", "D1", "D2", "D3"]
+    },
+    "level": {
+      "type": "string",
+      "enum": ["A0", "A1", "A2", "A3", "A4"]
+    },
+    "card": {
+      "type": "object",
+      "required": ["organism_id", "card_version", "capabilities", "determinacy", "owner", "card_digest"],
+      "additionalProperties": false,
+      "properties": {
+        "organism_id": { "type": "string", "minLength": 3, "pattern": "^org-[A-Za-z0-9_-]+$" },
+        "card_version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+$" },
+        "capabilities": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+        "determinacy": { "$ref": "#/$defs/determinacy" },
+        "owner": { "type": "string", "minLength": 3, "pattern": "^[A-Za-z]+:[A-Za-z0-9_-]+$" },
+        "card_digest": { "$ref": "#/$defs/digest" }
+      }
+    },
+    "envelope": {
+      "type": "object",
+      "required": ["iop_version", "msg_id", "from", "to", "type", "payload_ref", "payload_format", "auth_ref", "ts", "ttl_ms", "determinacy_ceiling"],
+      "additionalProperties": false,
+      "properties": {
+        "iop_version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+$" },
+        "msg_id": { "type": "string", "minLength": 3, "pattern": "^m-[A-Za-z0-9_-]+$" },
+        "from": { "type": "string", "minLength": 3 },
+        "to": { "type": "string", "minLength": 3 },
+        "type": {
+          "type": "string",
+          "enum": ["CAPABILITY_QUERY", "CAPABILITY_ADVERTISE", "TASK_DELEGATE", "RESULT_REPORT", "VETO"]
+        },
+        "payload_ref": { "$ref": "#/$defs/digest" },
+        "payload_format": { "type": "string", "const": "ANS-1" },
+        "traceparent": { "type": "string", "minLength": 10 },
+        "auth_ref": { "type": "string", "minLength": 3 },
+        "ts": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$" },
+        "ttl_ms": { "type": "integer", "minimum": 1, "maximum": 600000 },
+        "determinacy_ceiling": { "$ref": "#/$defs/determinacy" }
+      }
+    },
+    "suite": {
+      "type": "object",
+      "required": ["suite_id", "members", "binding", "suite_digest"],
+      "additionalProperties": false,
+      "properties": {
+        "suite_id": { "type": "string", "minLength": 3, "pattern": "^suite-[A-Za-z0-9_-]+$" },
+        "members": { "type": "array", "minItems": 2, "items": { "type": "string", "minLength": 3 } },
+        "binding": { "type": "string", "const": "declarative" },
+        "suite_digest": { "$ref": "#/$defs/digest" }
+      }
+    },
+    "attestation": {
+      "type": "object",
+      "required": ["organism_id", "level", "evidence_refs", "attestation_digest"],
+      "additionalProperties": false,
+      "properties": {
+        "organism_id": { "type": "string", "minLength": 3, "pattern": "^org-[A-Za-z0-9_-]+$" },
+        "level": { "$ref": "#/$defs/level" },
+        "evidence_refs": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+        "attestation_digest": { "$ref": "#/$defs/digest" }
+      }
+    }
+  },
+  "oneOf": [
+    { "$ref": "#/$defs/card" },
+    { "$ref": "#/$defs/envelope" },
+    { "$ref": "#/$defs/suite" },
+    { "$ref": "#/$defs/attestation" }
+  ]
+}

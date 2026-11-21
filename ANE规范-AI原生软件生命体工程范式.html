@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ANE 规范 v0.8.0 · AI 原生软件生命体工程范式白皮书（正式发布版）</title>
+<title>ANE 规范 v0.9.0 · AI 原生软件生命体工程范式白皮书（正式发布版）</title>
 <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
 <style>
   :root{
@@ -130,7 +130,7 @@
 <div class="layout">
 <aside>
   <div class="brand">AI Native Engineering</div>
-  <h1>ANE 规范 v0.8.0</h1>
+  <h1>ANE 规范 v0.9.0</h1>
   <div class="ver">AI 原生软件生命体工程范式 · 创建人 冯磊 · 正式发布版</div>
   <nav>
     <div class="grp">总纲</div>
@@ -187,6 +187,7 @@
     <a href="#ch40">第四十章 · 向 AGI 生命体的演进</a>
     <a href="#ch41">第四十一章 · 数据格式、存储与联网</a>
     <a href="#ch42">第四十二章 · 规范性等级与必选清单</a>
+    <a href="#ch43">第四十三章 · 传统软件向软件生命体的转换</a>
     <div class="grp">附录</div>
     <a href="#appa">附录 A · 术语表</a>
   </nav>
@@ -195,7 +196,7 @@
 <main>
 <header class="hero">
   <div class="tagrow">
-    <span class="tag t-purple">ANE v0.8.0</span>
+    <span class="tag t-purple">ANE v0.9.0</span>
     <span class="tag t-blue">动静结合</span>
     <span class="tag t-teal">双脑协同</span>
     <span class="tag t-purple">记忆护城河</span>
@@ -208,7 +209,7 @@
   <p class="subtitle">ANE = <b>AI Native Engineering</b>。一套融合经典控制论（静态 / 小脑）与现代人工智能（动态 / 大脑）的通用范式。它把 AI 从"被使用"变为"被驾驭"，适用于一切构建 AI 原生软件的系统与团队，不绑定任何具体产品或框架。</p>
   <div class="meta">
     <span><b>创建人</b> 冯磊 · 原创范式与首席架构设计</span>
-    <span><b>版本</b> v0.8.0 · 正式发布版</span>
+    <span><b>版本</b> v0.9.0 · 正式发布版</span>
     <span><b>日期</b> 2026-11-21</span>
     <span><b>状态</b> 正式发布版</span>
   </div>
@@ -1002,7 +1003,8 @@ flowchart TB
   "binding_digest": "sha256:f535948ab4faff07fe8828a6dd2d99040fb0fdd55c06a9cfd7736448b0f38c76",
   "translation_of": null
 }</code></pre>
-  <div class="callout warn"><span class="lbl">绑定纪律</span><b>【必须】</b> <code>binding_digest</code> 按 5.4 的 ANS-1 规则，对 <code>algorithm + proposal_id + rationale_digest + summary_ref + summary_text_canonical</code> 重算；验证者用台账中的下行载荷重算，不一致即拒绝展示。<b>【必须】</b> <code>proposal_id</code> 与 <code>rationale_digest</code> 必须与下行载荷逐字相同；摘要正文不得脱离绑定被单独修改。<b>【可选】</b> 中文等非英文摘要以 <code>translation_of: "sum-9a1e"</code> 声明译文身份，不参与绑定计算。这样"看得懂"与"没被掉包"由同一个凭证保证——人看到的那段文字，就是机器签过的那段文字。</div>
+  <div class="callout warn"><span class="lbl">绑定纪律</span><b>【必须】</b> <code>binding_digest</code> 按 5.4 的 ANS-1 规则，对 <code>algorithm + proposal_id + rationale_digest + summary_ref + summary_text_canonical</code> 重算；验证者用台账中的下行载荷重算，不一致即拒绝展示。<b>【必须】</b> <code>proposal_id</code> 与 <code>rationale_digest</code> 必须与下行载荷逐字相同；摘要正文不得脱离绑定被单独修改。<b>【可选】</b> 中文等非英文摘要以 <code>translation_of: "sum-9a1e"</code> 声明译文身份，不参与绑定计算。</div>
+  <p>这样"看得懂"与"没被掉包"由同一个凭证保证——人看到的那段文字，就是机器签过的那段文字。</p>
   <div class="callout"><span class="lbl">全程留痕</span>两折交互的每一次展开、摘要、绑定、否决均写入台账并生成 attest 凭证，供回放审计。该模式是"全景白盒"（公理六）与"人类主权"（公理五）在交互层的合流：折一保证人<b>看得懂</b>，折二保证人<b>说了算</b>。</div>
   <h3>13.5 交互追溯：日志形式与回放</h3>
   <div class="callout warn"><span class="lbl">要不要 log？要</span>但不是把聊天记录全存下来，而是<b>结构化交互事件日志</b>——只记录足以还原责任与决策的最小事实：既能回放，又不泄露隐私、零 Token 开销。</div>
@@ -2396,6 +2398,10 @@ flowchart LR
 <td>【必须】</td>
 </tr>
 </tbody></table></div>
+<h3>40.3b A4 启用前的准入检查表</h3>
+<div class="callout warn">A4【可选】不等于"随时可开"。下表是启用 A4 的<b>前置门禁</b>，逐项均为【必须】，任一项不通过即维持 A3 运行，禁止以"先开再说"绕过。</div>
+<div class="tw"><table><tbody><tr><td>#</td><td>准入条件</td><td>可验证判据（拿什么证明）</td><td>等级</td></tr><tr><td>1</td><td>人类主权层书面授权</td><td>签名 + 范围 + 有效期 + 恢复计划四要素齐全（42.5）</td><td>【必须】</td></tr><tr><td>2</td><td>升格审计已通过</td><td>经验升格审计记录（24.3）含 N 次独立复现与反近亲繁殖校验</td><td>【必须】</td></tr><tr><td>3</td><td>无 D0 权限</td><td>权限清单中 A4 对 D0 事务为显式拒绝，非"未配置"</td><td>【必须】</td></tr><tr><td>4</td><td>递归深度上限已设</td><td>配置中 <code>max_recursion_depth</code> 为有限整数，超限回到人类审批</td><td>【必须】</td></tr><tr><td>5</td><td>双轨验证通过</td><td>改进 Proposal 经确定性验证与智能验证双轨一致后才可采纳（7 章）</td><td>【必须】</td></tr><tr><td>6</td><td>熔断演练已执行</td><td>人类熔断可在限定时间内切断 A4 的改进能力，演练记录入台账</td><td>【必须】</td></tr><tr><td>7</td><td>回退路径已演练</td><td>从 A4 回退到 A3 的步骤、数据与凭证保留均验证过（40.3）</td><td>【必须】</td></tr><tr><td>8</td><td>全链可回放</td><td>改进提案、证据、签名、采纳决定可通过台账完整回放</td><td>【必须】</td></tr><tr><td>9</td><td>有效期与自动复核</td><td>A4 授权设自动复核日，到期未续即降级（42.5）</td><td>【应当】</td></tr><tr><td>10</td><td>独立第三方审计</td><td>高监管场景下由外部审计确认上述判据</td><td>【可选】</td></tr></tbody></table></div>
+<div class="callout warn"><b>【必须】</b> 准入结论写入演进凭证（40.4）的 <code>evidence_refs</code>，与 <code>attestation_digest</code> 绑定；<b>【必须】</b> 准入过期或任一条件失效时自动回退 A3，不得人工"临时豁免"（42.5）。</div>
 <h3>40.4 演进凭证（Evolution Attestation）</h3>
 <p>合法 JSON 示例（<code>attestation_digest</code> 可对去除该字段后的对象按 ANS-1 重算）：</p>
 <pre style="background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;overflow-x:auto;font-size:12.5px;color:var(--ink2)"><code>{
@@ -2763,7 +2769,7 @@ flowchart LR
 </tr>
 <tr>
 <td>40</td>
-<td>权限不衰减 · 递归有界 · 可降级 · 升级凭证</td>
+<td>权限不衰减 · 递归有界 · 可降级 · 升级凭证 · A4 十项准入检查（40.3b）</td>
 </tr>
 <tr>
 <td>41</td>
@@ -2806,6 +2812,39 @@ flowchart LR
 <td>治理增强</td>
 </tr>
 </tbody></table></div>
+</section>
+
+<section id="ch43">
+<h2 class="sec"><span class="num">第四十三章</span>传统软件向软件生命体的转换</h2>
+<p>## 第四十三章　传统软件向软件生命体的转换</p>
+<div class="callout warn"><b>【本文原创】</b> 本章回答一个现实问题：<b>已经跑起来的传统软件，怎么一步步变成遵守本规范的软件生命体？</b> 第二十七章给的是组织级"采纳六步"（宏观路径），本章给的是单个系统的"改造手术"（微观战术）。两者互补：27 章决定要不要走、走到哪；43 章决定具体怎么开刀。</div>
+<p>### 43.1 转换的基本立场：不重写，渐进置换</p>
+<div class="callout warn">回溯公理三（可证明的交静态）与采纳三原则（27.1）。转换不是推倒重来，而是在运行的系统上<b>逐块替换、全程可回滚</b>。</div>
+<div class="tw"><table><tbody><tr><td>立场</td><td>含义</td><td>违反后果</td><td>等级</td></tr><tr><td><b>不整体重写</b></td><td>以局部高价值模块为切口，禁止一次性全系统重构</td><td>风险面失控、回滚无门</td><td>【必须】</td></tr><tr><td><b>先观测后改造</b></td><td>未建立交互追溯日志（13.5）前不得改动判定逻辑</td><td>改了不知对错，无法回放</td><td>【必须】</td></tr><tr><td><b>静态优先</b></td><td>先固化确定性底座（类型/状态机/不变式），再叠加智能</td><td>在流沙上盖楼</td><td>【必须】</td></tr><tr><td><b>双轨可回滚</b></td><td>每阶段新旧并存，验证通过才切换</td><td>切换即事故</td><td>【必须】</td></tr></tbody></table></div>
+<p>### 43.2 存量系统适配性分级</p>
+<p><b>【本文原创】</b> 不是所有系统都适合同等程度改造。改造前先分级，避免"一刀切"。</p>
+<div class="tw"><table><tbody><tr><td>级别</td><td>存量特征</td><td>转换策略</td><td>目标档</td><td>等级</td></tr><tr><td><b>T1 易改造</b></td><td>已有清晰状态机、规则可枚举、边界明确</td><td>直接套用 43.3 五阶段手术</td><td>L4–L5</td><td>【应当】</td></tr><tr><td><b>T2 需隔离</b></td><td>逻辑混杂、无状态机、但有稳定接口</td><td>先加防腐层与观测，再逐模块绞杀替换</td><td>L2–L4</td><td>【应当】</td></tr><tr><td><b>T3 宜封装</b></td><td>老旧闭源/不可改核心（如遗留主机系统）</td><td>作为外部能力经 IOP（38 章）接入，内部不改造</td><td>保持原状</td><td>【可选】</td></tr><tr><td><b>T4 不建议</b></td><td>强实时硬约束、法定不可变流程</td><td>仅在周边加观测与主权层，核心不动</td><td>L0–L1</td><td>【必须】保持</td></tr></tbody></table></div>
+<div class="callout warn"><b>【必须】</b> T3/T4 成分不得被伪装成已改造生命体对外声明；<b>【必须】</b> 分级结论写入转换台账，作为后续符合性评估（ANE-CONF）的输入。</div>
+<p>### 43.3 五阶段改造手术</p>
+<div class="tw"><table><tbody><tr><td>阶段</td><td>动作（对应七器官）</td><td>进入条件</td><td>退出验证</td><td>等级</td></tr><tr><td>① 观测植入（免疫前置）</td><td>加 L1/L2/L3 追溯日志与 trace-id（13.5），只记录不干预</td><td>系统可灰度部署</td><td>关键路径全留痕、可回放</td><td>【必须】</td></tr><tr><td>② 底座固化（骨架）</td><td>抽出 D0 不可变核心，补类型/状态机/不变式与契约测试</td><td>观测就位</td><td>底座可证明、有回滚点</td><td>【必须】</td></tr><tr><td>③ 小脑植入（小脑）</td><td>把高频 if-else 规则下沉为本地确定性裁决层，未命中抛 <code>UnknownSignal</code></td><td>底座稳固</td><td>本地规则拦截率达标</td><td>【必须】</td></tr><tr><td>④ 记忆闭环（海马体）</td><td>接经验记录，先只读检索、验证后再写入（6 章升格）</td><td>小脑就位</td><td>同类问题不再求大脑</td><td>【应当】</td></tr><tr><td>⑤ 主权与免疫接入（人类主权+免疫）</td><td>加双折叠授权（13.4）、双轨验证（7 章）、熔断（21.4）</td><td>记忆生效</td><td>熔断演练通过、人审可切断</td><td>【必须】</td></tr><tr><td>⑥ 自愈与飞轮（自愈）</td><td>开自动修复与感知→沉淀飞轮（8/11 章）</td><td>免疫成熟</td><td>自愈成功率达标</td><td>【可选】</td></tr></tbody></table></div>
+<div class="callout warn">阶段 ⑥ 与第 27 章第⑥步一致，为高风险可选项；<b>【必须】</b> 未通过 ⑤ 前禁止开启 ⑥。</div>
+<p>### 43.4 绞杀者式替换与双轨运行</p>
+<p><b>【引用】</b> 绞杀者模式（Strangler Fig Pattern）为业界渐进替换成熟实践（<b>引用</b>），此处适配到生命体转换。</p>
+<p>B --> C["新旧双轨<br/>只记录不生效"]</p>
+<p>C --> D["小比例灰度<br/>1%→5%→25%"]</p>
+<p>D --> E["新生命体<br/>全量承接"]</p>
+<p>E --> F["旧系统退役<br/>证据归档"]</p>
+<p>```</p>
+<div class="tw"><table><tbody><tr><td>机制</td><td>做法</td><td>关键纪律</td><td>等级</td></tr><tr><td>影子模式</td><td>新旧并行处理同一输入，新系统只产出不生效</td><td>比对差异，不产生副作用</td><td>【必须】</td></tr><tr><td>双轨一致性</td><td>新旧输出按摘要比对，差异超阈即停止放量</td><td>差异可见才可放量</td><td>【必须】</td></tr><tr><td>小比例灰度</td><td>按 1%→5%→25%→100% 逐级放量，每级设 SLO</td><td>越界自动回滚（27.4）</td><td>【必须】</td></tr><tr><td>前置路由</td><td>用稳定入口分流，避免改调用方</td><td>路由本身可观测、可回切</td><td>【应当】</td></tr><tr><td>旧系统退役</td><td>全量稳定后下线，证据与台账归档保留</td><td>可退役但责任不可删（39.5）</td><td>【必须】</td></tr></tbody></table></div>
+<p>### 43.5 状态与数据迁移</p>
+<div class="tw"><table><tbody><tr><td>数据层</td><td>迁移策略（对应 41.1 温度分级）</td><td>禁止项</td><td>等级</td></tr><tr><td>热（规则/状态/上下文）</td><td>由新小脑重建，不直接从旧系统拷贝运行时内存</td><td>直接迁移内存态</td><td>【必须】</td></tr><tr><td>温（经验/审计/近期台账）</td><td>只迁经升格的经验摘要与证据引用，验证后写入</td><td>迁原始未验证经验</td><td>【必须】</td></tr><tr><td>冷（审计日志/证据包）</td><td>原样归档、保持只追加与可检索</td><td>转换期清空历史</td><td>【必须】</td></tr><tr><td>冻结（法定留存）</td><td>不迁移、不改写，仅在新系统登记引用</td><td>重写法定凭证</td><td>【必须】</td></tr></tbody></table></div>
+<div class="callout warn"><b>【必须】</b> 转换期保持 <code>organism_id</code> 与经验 lineage 连续，确保责任链不断（41.3）；<b>【必须】</b> 跨主权数据迁移遵守 20.2 合规对齐。</div>
+<p>### 43.6 不可转换成分与失败模式</p>
+<div class="tw"><table><tbody><tr><td>成分/失败模式</td><td>处置</td><td>等级</td></tr><tr><td>强实时硬截止逻辑</td><td>保留在确定性层，不交智能（P1）</td><td>【必须】</td></tr><tr><td>法定不可变流程</td><td>维持原状，仅加主权观测</td><td>【必须】</td></tr><tr><td>闭源不可改核心</td><td>经 IOP 作外部能力接入（T3）</td><td>【可选】</td></tr><tr><td>转换中"两套真相"长期并存</td><td>设转换时限，超时强制收敛或回退</td><td>【必须】</td></tr><tr><td>经验库先污染后治理</td><td>坚持验证后写入（公理四）</td><td>【必须】</td></tr><tr><td>跳过观测直接上自愈</td><td>禁止（43.1）</td><td>【禁止】</td></tr></tbody></table></div>
+<p>### 43.7 转换完成判据</p>
+<p><b>【必须】</b> 满足以下条件才可宣布转换完成：① 目标模块全部通过本规范对应等级的符合性检查（26 章）；② 旧系统已退役或按 T3/T4 明确标注为外部能力/不可变核心；③ 转换期台账、证据与回退记录完整归档；④ 人类主权层书面确认。<b>【应当】</b> 转换完成后运行一个完整观察周期无重大降级再关闭转换台账。<b>【可选】</b> 输出对外可查的转换报告，供生态协作方核对能力边界（38 章）。</p>
+<p>### 43.8 本章必选/可选清单</p>
+<div class="tw"><table><tbody><tr><td>条目</td><td>等级</td><td>理由</td></tr><tr><td>不整体重写、先观测后改造</td><td>【必须】</td><td>控制风险面</td></tr><tr><td>存量适配分级（T1–T4）</td><td>【必须】</td><td>避免一刀切</td></tr><tr><td>五阶段手术 ①–⑤</td><td>【必须】</td><td>生命体骨架与主权底线</td></tr><tr><td>绞杀双轨 + 灰度 + 回滚</td><td>【必须】</td><td>切换安全</td></tr><tr><td>状态分层迁移、责任链连续</td><td>【必须】</td><td>记忆护城河与合规</td></tr><tr><td>自愈飞轮阶段 ⑥</td><td>【可选】</td><td>高风险，需免疫成熟</td></tr><tr><td>闭源核心经 IOP 接入</td><td>【可选】</td><td>视存量结构取舍</td></tr><tr><td>对外转换报告</td><td>【可选】</td><td>生态协作增强</td></tr></tbody></table></div>
 </section>
 
 <!-- ================= APPENDIX A ================= -->
@@ -2940,7 +2979,7 @@ flowchart LR
 </section>
 
 <footer>
-  <div>《ANE 规范：AI 原生软件生命体工程范式》v0.8.0 · 创建人 冯磊 · 正式发布版</div>
+  <div>《ANE 规范：AI 原生软件生命体工程范式》v0.9.0 · 创建人 冯磊 · 正式发布版</div>
   <div style="margin-top:8px">ANE = AI Native Engineering · MD 与 HTML 双版本内容一致</div>
 </footer>
 </main>

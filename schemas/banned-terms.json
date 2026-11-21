@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0",
+  "title": "ANE Banned Terms",
+  "description": "措辞禁令清单：团队口号、产品名、制造业隐喻与具体项目专名不得进入任何交付轨。本文件自身是机器可读契约，由 tools/validate_ntp.py terms 消费。",
+  "matching": {
+    "case_insensitive": false,
+    "ascii_word_boundary": true,
+    "explanation": "ASCII 词按完整词匹配（避免 UIR 命中 REQUIRED）；含空格的短语按整串匹配；中文词按字面子串匹配。"
+  },
+  "scopes": {
+    "all_tracks": [
+      "ANE规范-AI原生软件生命体工程范式-DEBUG开发版.md",
+      "ANE规范-AI原生软件生命体工程范式-DEBUG开发版.html",
+      "ANE规范-AI原生软件生命体工程范式.md",
+      "ANE规范-AI原生软件生命体工程范式.html",
+      "ANE-Specification-AI-Native-Engineering-Paradigm.md",
+      "ANE-Specification-AI-Native-Engineering-Paradigm.html",
+      "README.md",
+      "README_EN.md"
+    ],
+    "release_only": [
+      "ANE规范-AI原生软件生命体工程范式.md",
+      "ANE规范-AI原生软件生命体工程范式.html"
+    ]
+  },
+  "terms": [
+    { "term": "三句话", "scope": "all_tracks", "category": "slogan", "replacement": "结构化上报", "reason": "具体话术模板，不是通用工程概念" },
+    { "term": "不过夜", "scope": "all_tracks", "category": "slogan", "replacement": "当轮上报", "reason": "口号化，改为可验证的时间要求" },
+    { "term": "压铸", "scope": "all_tracks", "category": "industry_metaphor", "replacement": "高内聚融合", "reason": "汽车制造业术语，与软件无关" },
+    { "term": "反串味", "scope": "all_tracks", "category": "colloquial", "replacement": "角色越界", "reason": "口语比喻，含义不可查" },
+    { "term": "烧 Token", "scope": "all_tracks", "category": "colloquial", "replacement": "消耗 Token", "reason": "口语化，不可度量" },
+    { "term": "烧钱", "scope": "all_tracks", "category": "colloquial", "replacement": "成本失控", "reason": "口语化，不可度量" },
+    { "term": "去层级", "scope": "all_tracks", "category": "slogan", "replacement": "结构化", "reason": "口号化，与授权纪律冲突" },
+    { "term": "闭眼", "scope": "all_tracks", "category": "colloquial", "replacement": "未经核对", "reason": "口语化，不描述可验证行为" },
+    { "term": "Autopilot", "scope": "all_tracks", "category": "product_name", "replacement": "自动模式", "reason": "具体产品名" },
+    { "term": "three-sentence", "scope": "all_tracks", "category": "slogan", "replacement": "structured", "reason": "具体话术模板" },
+    { "term": "overnight", "scope": "all_tracks", "category": "slogan", "replacement": "same-round", "reason": "口号化" },
+    { "term": "die-casting", "scope": "all_tracks", "category": "industry_metaphor", "replacement": "high-cohesion fusion", "reason": "汽车制造业术语" },
+    { "term": "crosstalk", "scope": "all_tracks", "category": "colloquial", "replacement": "role inversion", "reason": "口语比喻" },
+    { "term": "burning token", "scope": "all_tracks", "category": "colloquial", "replacement": "token overhead", "reason": "口语化" },
+    { "term": "burning money", "scope": "all_tracks", "category": "colloquial", "replacement": "cost overruns", "reason": "口语化" },
+    { "term": "UIR", "scope": "all_tracks", "category": "project_name", "replacement": "意图路由层（通用表述）", "reason": "具体项目专名" },
+    { "term": "MIR", "scope": "all_tracks", "category": "project_name", "replacement": "中间语义层（通用表述）", "reason": "具体项目专名" },
+    { "term": "HIR", "scope": "all_tracks", "category": "project_name", "replacement": "高层语义层（通用表述）", "reason": "具体项目专名" },
+    { "term": "Veriloom", "scope": "all_tracks", "category": "project_name", "replacement": "—", "reason": "具体项目专名" },
+    { "term": "UCR", "scope": "all_tracks", "category": "project_name", "replacement": "—", "reason": "具体项目专名" },
+    { "term": "UUMD", "scope": "all_tracks", "category": "project_name", "replacement": "—", "reason": "具体项目专名" },
+    { "term": "Aethera", "scope": "all_tracks", "category": "project_name", "replacement": "—", "reason": "具体项目专名" },
+    { "term": "DEBUG", "scope": "release_only", "category": "process_trace", "replacement": "—", "reason": "开发过程痕迹不得进入正式版" },
+    { "term": "六帽", "scope": "release_only", "category": "process_trace", "replacement": "—", "reason": "审计过程痕迹不得进入正式版" },
+    { "term": "30 轮", "scope": "release_only", "category": "process_trace", "replacement": "持续迭代周期", "reason": "迭代计划属过程层" },
+    { "term": "本轮新增", "scope": "release_only", "category": "process_trace", "replacement": "—", "reason": "版本过程标签不得进入正式版" },
+    { "term": "版本前史", "scope": "release_only", "category": "process_trace", "replacement": "—", "reason": "版本过程标签不得进入正式版" }
+  ]
+}

@@ -18,11 +18,11 @@ Three moats: **Cerebellum first** (high-frequency decisions cost zero tokens) ·
 
 ## Current version
 
-**v0.8.0** (2026-11-21) — living-system ecosystem, evolution ladder, and normative levels layer.
+**v0.9.0** (2026-11-21) — gate engineering and legacy conversion layer.
 
-Tenth round: Ch.38 IOP (card / envelope / four layers / no shared memory) · Ch.39 declarative suite composition and weakest-link protection · Ch.40 A0–A4 ladder toward AGI (non-decaying authority / bounded recursion) · Ch.41 data temperature tiers and connectivity tri-state (offline mandatory, online optional) · Ch.42 MUST/SHOULD/MAY checklist. Previous three recommendations closed with a real JSON Schema gate, ANS-1 canonicalization, and a Fold 1 binding credential.
+Eleventh round: Ch.43 converting legacy software into a living system (fitness tiers T1–T4 / five-stage surgery / strangler dual-track replacement / tiered state migration / non-convertible components) · 40.3b ten-item admission checklist before enabling A4. All four previous recommendations closed: (1) banned-term manifest (`schemas/banned-terms.json`) and full-track wording gate; (2) G8 dual-format consistency gate (`tools/check_dual_format.py`) fixing MD/HTML clause drift; (3) IOP four-payload Schema (`schemas/iop-1.0.schema.json`), 42/42 payloads valid and 18 digests reproducible; (4) A4 admission table. All four gates are exposed by `tools/validate_ntp.py` (validate / terms / canonicalize).
 
-The full version evolution and revision discipline are specified in Chapters 34–37 of the specification.
+The full version evolution and revision discipline are specified in Chapters 34–37 of the specification; the eighth 30-round plan (round-level) is in Appendix J of the DEBUG edition.
 
 ## File manifest
 
@@ -32,7 +32,10 @@ The full version evolution and revision discipline are specified in Chapters 34�
 | `ANE规范-AI原生软件生命体工程范式.html` | Chinese formal release (HTML, with sidebar nav and Mermaid diagrams) |
 | `ANE-Specification-AI-Native-Engineering-Paradigm.md` | English authoritative translation (Markdown) |
 | `ANE-Specification-AI-Native-Engineering-Paradigm.html` | English authoritative translation (HTML) |
-| `README.md` / `README_EN.md` | Chinese / English project overview |
+| `schemas/iop-1.0.schema.json` | IOP four-payload machine contract (card / envelope / suite / attestation) |
+| `schemas/banned-terms.json` | Banned-term manifest (slogans / product names / project names / process traces) |
+| `tools/check_dual_format.py` | G8 gate: clause-level MD/HTML verbatim consistency |
+| `README.md` / `README_EN.md` | Chinese / English project notes |
 | `LICENSE` / `LICENSE-zh.md` | CC BY 4.0 licence (English legal text / Chinese translation) |
 
 > Formal-release filenames carry **no suffix**; the DEBUG development edition (containing the six-hat audits, iteration plans, and version prehistory as process-layer content) carries a `-DEBUG开发版` suffix and is not among the externally released artefacts.

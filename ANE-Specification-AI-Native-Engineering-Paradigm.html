@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ANE Specification: AI-Native Engineering Paradigm for Living Software Systems v0.8.0 · White Paper (Formal Release)</title>
+<title>ANE Specification: AI-Native Engineering Paradigm for Living Software Systems v0.9.0 · White Paper (Formal Release)</title>
 <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
 <style>
   :root{
@@ -130,7 +130,7 @@
 <div class="layout">
 <aside>
   <div class="brand">AI Native Engineering</div>
-  <h1>ANE Specification v0.8.0</h1>
+  <h1>ANE Specification v0.9.0</h1>
   <div class="ver">AI-Native Engineering Paradigm for Living Software Systems · Created by Feng Lei · Formal Release</div>
   <nav>
     <div class="grp">Overview</div>
@@ -182,6 +182,7 @@
     <a href="#ch35">Chapter 35 · Multi-Language and Localization Governance</a>
     <a href="#ch36">Chapter 36 · Artefact Naming and Identification</a>
     <a href="#ch37">Chapter 37 · Structural Integrity and Post-Projection Verification</a>
+    <a href="#ch43">Chapter 43 · Converting Legacy Software into a Living System</a>
     <div class="grp">Appendix</div>
     <a href="#appa">Appendix A · Glossary</a>
   </nav>
@@ -190,7 +191,7 @@
 <main>
 <header class="hero">
   <div class="tagrow">
-    <span class="tag t-purple">ANE v0.8.0</span>
+    <span class="tag t-purple">ANE v0.9.0</span>
     <span class="tag t-blue">Static-Dynamic Integration</span>
     <span class="tag t-teal">Dual-Brain Collaboration</span>
     <span class="tag t-purple">Memory Moat</span>
@@ -203,7 +204,7 @@
   <p class="subtitle">ANE = <b>AI Native Engineering</b>. A general paradigm fusing classical cybernetics (static / Cerebellum) with modern artificial intelligence (dynamic / Main Brain). It turns AI from something "used" into something "harnessed," and applies to all systems and teams building AI-native software without binding to any specific product or framework.</p>
   <div class="meta">
     <span><b>Created by</b> Feng Lei (冯磊) · original paradigm and chief architecture design</span>
-    <span><b>Version</b> v0.8.0 · Formal Release</span>
+    <span><b>Version</b> v0.9.0 · Formal Release</span>
     <span><b>Date</b> 2026-11-21</span>
     <span><b>Status</b> Formal Release</span>
   </div>
@@ -588,7 +589,7 @@ flowchart LR
   <p>The same object serializes to different bytes across languages (key order, whitespace, Unicode escaping, number format), producing different digests for the same data. Every <code>*_digest</code> and <code>rationale_binding</code> hash must be computed after <b>ANS-1</b> canonicalization:</p>
   <ol><li><b>Key order</b>: object members sorted by UTF-16 code units (RFC 8785 JCS, <b>referenced</b>);</li><li><b>No whitespace</b>: no spaces, indentation, or newlines;</li><li><b>Strings</b>: only JSON control characters escaped; non-ASCII emitted as UTF-8;</li><li><b>Numbers</b>: integers in decimal; fixed significant digits for floats; non-finite forbidden;</li><li><b>Arrays</b>: original order preserved.</li></ol>
   <p>Binding input is fixed to five fields: <code>ANS-1({algorithm, proposal_id, rationale_digest, summary_ref, summary_text_canonical})</code>, written to <code>rationale_binding.digest</code>. <b>The authoritative text is the canonical English text</b>; translations carry <code>translation_of: summary_ref</code> and are excluded from binding.</p>
-  <div class="callout warn"><span class="lbl">Normative levels</span><b>【MUST】</b> all <code>sha256:</code> digests generated through ANS-1; <b>【MUST】</b> Fold 1 summary carries <code>summary_ref</code> and a recomputable binding digest; <b>【MAY】</b> translations declare <code>translation_of</code>. Contract: <code>schemas/ntp-1.1.schema.json</code>; tool: <code>tools/validate_ntp.py</code>.</div>
+  <div class="callout warn"><span class="lbl">Normative levels</span><b>【MUST】</b> All <code>sha256:</code> digests are generated through ANS-1; <b>【MUST】</b> the Fold 1 summary carries <code>summary_ref</code> and a recomputable binding digest; <b>【MAY】</b> translated summaries declare <code>translation_of</code>. Machine-readable contract: <code>schemas/ntp-1.1.schema.json</code>; runnable tool: <code>tools/validate_ntp.py</code> (<code>validate</code> for CI, <code>canonicalize</code> for ANS-1 output).</div>
   <div class="callout warn"><span class="lbl">Critical Semantics</span>The downlink payload <b>is not a command but a hypothesis awaiting verification</b>. <code>status</code> is always <code>PENDING_VERIFICATION</code>; there is no state called "approved by the Main Brain".</div>
   <h4 style="font-size:14.5px;margin:22px 0 10px">The four iron laws of the channel</h4>
   <div class="tw"><table>
@@ -988,7 +989,8 @@ flowchart TB
   "binding_digest": "sha256:f535948ab4faff07fe8828a6dd2d99040fb0fdd55c06a9cfd7736448b0f38c76",
   "translation_of": null
 }</code></pre>
-  <div class="callout warn"><span class="lbl">Binding discipline</span><b>【MUST】</b> <code>binding_digest</code> recomputed per 5.4 ANS-1 rules; mismatch means refuse to display. <b>【MUST】</b> <code>proposal_id</code> and <code>rationale_digest</code> match the downlink payload verbatim. <b>【MAY】</b> translations declare <code>translation_of: "sum-9a1e"</code>. The text a human reads is exactly the text the machine signed.</div>
+  <div class="callout warn"><span class="lbl">Binding discipline</span><b>【MUST】</b> <code>binding_digest</code> is recomputed per 5.4 ANS-1 rules over <code>algorithm + proposal_id + rationale_digest + summary_ref + summary_text_canonical</code>; the verifier recomputes from the ledger payload and refuses to display a mismatch. <b>【MUST】</b> <code>proposal_id</code> and <code>rationale_digest</code> match the downlink payload verbatim; summary text may not be edited independently of its binding. <b>【MAY】</b> Non-English summaries declare <code>translation_of: "sum-9a1e"</code> and are excluded from binding.</div>
+  <p>Thus "understandable" and "not swapped" are guaranteed by one credential — the text a human reads is exactly the text the machine signed.</p>
 
   <div class="callout"><span class="lbl">Full traceability</span>Every unfold, summary, binding, and denial is written to the ledger with an attest credential for replay. This pattern is the confluence of "full-spectrum white box" (Axiom 6) and "human sovereignty" (Axiom 5): Fold 1 ensures humans <b>understand</b>, Fold 2 ensures humans <b>decide</b>.</div>
   <h3>13.5 Interaction Traceability: Log Form and Replay</h3>
@@ -2265,6 +2267,10 @@ flowchart LR
 <td>【MUST】</td>
 </tr>
 </tbody></table></div>
+<h3>40.3b Admission checklist before enabling A4</h3>
+<div class="callout warn">A4【MAY】does not mean "enable at will". The following is the <b>precondition gate</b> for A4; every item is 【MUST】. Failure of any item keeps the system at A3 — no "enable first, fix later".</div>
+<div class="tw"><table><tbody><tr><td>#</td><td>Admission condition</td><td>Verifiable evidence</td><td>Level</td></tr><tr><td>1</td><td>Written human-sovereignty authorization</td><td>Signature + scope + validity + recovery plan complete (42.5)</td><td>【MUST】</td></tr><tr><td>2</td><td>Promotion audit passed</td><td>Promotion record (24.3) contains N independent reproductions and anti-inbreeding check</td><td>【MUST】</td></tr><tr><td>3</td><td>No D0 authority</td><td>Permission list explicitly denies D0 to A4, not merely "unconfigured"</td><td>【MUST】</td></tr><tr><td>4</td><td>Recursion cap configured</td><td><code>max_recursion_depth</code> is a finite integer; over the cap returns to human approval</td><td>【MUST】</td></tr><tr><td>5</td><td>Dual-track verification passed</td><td>Improvement Proposal accepted only after deterministic and intelligent verification agree (Ch.7)</td><td>【MUST】</td></tr><tr><td>6</td><td>Kill-switch drill executed</td><td>Human breaker can cut A4's improvement capability within a bounded time; drill in ledger</td><td>【MUST】</td></tr><tr><td>7</td><td>Fallback path drilled</td><td>A4→A3 fall-back steps, data and credential retention verified (40.3)</td><td>【MUST】</td></tr><tr><td>8</td><td>Full-chain replay</td><td>Proposal, evidence, signature and adoption decision replayable from the ledger</td><td>【MUST】</td></tr><tr><td>9</td><td>Validity and auto-review</td><td>A4 authorization has a review date; lapse degrades automatically (42.5)</td><td>【SHOULD】</td></tr><tr><td>10</td><td>Independent third-party audit</td><td>In high-regulation contexts an external auditor confirms the above</td><td>【MAY】</td></tr></tbody></table></div>
+<div class="callout warn"><b>【MUST】</b> The admission result is written into <code>evidence_refs</code> of the evolution attestation (40.4) and bound to <code>attestation_digest</code>; <b>【MUST】</b> on expiry or failure of any condition, automatically fall back to A3 with no manual "temporary waiver" (42.5).</div>
 <h3>40.4 Evolution Attestation</h3>
 <pre style="background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;overflow-x:auto;font-size:12.5px;color:var(--ink2)"><code>{
   "organism_id": "org-7a31",
@@ -2543,6 +2549,38 @@ flowchart LR
 <p><b>【MUST】</b> ANE-CONF passes only when all 【MUST】 items pass and no 【MUST NOT】 is violated. <b>【MUST】</b> Conclusions state deviations with rationale — no bare pass/fail. <b>【MUST】</b> Any exception to a 【MUST】 requires written human approval with scope, expiry, and recovery plan. <b>【MUST】</b> Exceptions never touch constitutional red lines. <b>【MAY】</b> Exceptions auto-expire.</p>
 </section>
 
+<section id="ch43">
+<h2 class="sec"><span class="num">Chapter 43</span>Converting Legacy Software into a Living System</h2>
+<p>## Chapter 43 · Converting Legacy Software into a Living System</p>
+<div class="callout warn"><b>【Original to this specification】</b> This chapter answers a practical question: <b>how does an already-running legacy system become a living system conforming to this specification, step by step?</b> Chapter 27 gives the organization-level "six adoption steps" (macro path); this chapter gives the "surgical procedure" for a single system (micro tactics). They complement each other: Ch.27 decides whether and how far to go; Ch.43 decides where to make the incision.</div>
+<p>### 43.1 Stance: no rewrite, progressive replacement</p>
+<div class="callout warn">Traces to Axiom 3 (prove what can be proved) and the adoption principles (27.1). Conversion is not a teardown — it is <b>block-by-block replacement of a running system, fully reversible throughout</b>.</div>
+<div class="tw"><table><tbody><tr><td>Stance</td><td>Meaning</td><td>Failure if violated</td><td>Level</td></tr><tr><td><b>No wholesale rewrite</b></td><td>Cut in at a local high-value module; no one-shot full rewrite</td><td>Uncontrolled risk, no rollback</td><td>【MUST】</td></tr><tr><td><b>Observe before change</b></td><td>Do not alter decision logic before interaction tracing (13.5) exists</td><td>Change without knowing right/wrong</td><td>【MUST】</td></tr><tr><td><b>Static first</b></td><td>Fix the deterministic base (types/state machine/invariants) before adding intelligence</td><td>Building on quicksand</td><td>【MUST】</td></tr><tr><td><b>Dual-track reversible</b></td><td>New and old coexist each stage; switch only after verification</td><td>Switching equals incident</td><td>【MUST】</td></tr></tbody></table></div>
+<p>### 43.2 Legacy fitness tiers</p>
+<p><b>【Original to this specification】</b> Not every system suits the same degree of conversion. Classify before cutting to avoid "one size fits all".</p>
+<div class="tw"><table><tbody><tr><td>Tier</td><td>Legacy traits</td><td>Conversion strategy</td><td>Target tier</td><td>Level</td></tr><tr><td><b>T1 easy</b></td><td>Clear state machine, enumerable rules, defined boundaries</td><td>Apply the five-stage surgery (43.3) directly</td><td>L4–L5</td><td>【SHOULD】</td></tr><tr><td><b>T2 isolate</b></td><td>Mixed logic, no state machine, stable interfaces</td><td>Add anti-corruption layer + observation, then strangler-replace module by module</td><td>L2–L4</td><td>【SHOULD】</td></tr><tr><td><b>T3 wrap</b></td><td>Legacy closed-source / unmodifiable core</td><td>Connect as external capability via IOP (Ch.38); do not convert internals</td><td>As-is</td><td>【MAY】</td></tr><tr><td><b>T4 avoid</b></td><td>Hard real-time deadlines, legally immutable flows</td><td>Add observation + sovereignty layer around it; core untouched</td><td>L0–L1</td><td>【MUST】 preserve</td></tr></tbody></table></div>
+<div class="callout warn"><b>【MUST】</b> T3/T4 components must not be declared as converted living systems; <b>【MUST】</b> the tier decision is written to the conversion ledger as input to conformance assessment (ANE-CONF).</div>
+<p>### 43.3 Five-stage conversion surgery</p>
+<div class="tw"><table><tbody><tr><td>Stage</td><td>Action (organ mapping)</td><td>Entry condition</td><td>Exit verification</td><td>Level</td></tr><tr><td>① Observation implant (immunity pre)</td><td>Add L1/L2/L3 trace logs with trace-id (13.5), record only</td><td>Grey-deployable</td><td>Key paths fully traced and replayable</td><td>【MUST】</td></tr><tr><td>② Base fixation (skeleton)</td><td>Extract D0 immutable core, add types/state machine/invariants/contract tests</td><td>Observation in place</td><td>Provable base with rollback point</td><td>【MUST】</td></tr><tr><td>③ Cerebellum implant (cerebellum)</td><td>Sink high-frequency if-else rules into local deterministic layer; throw <code>UnknownSignal</code> on miss</td><td>Base stable</td><td>Local interception rate met</td><td>【MUST】</td></tr><tr><td>④ Memory loop (hippocampus)</td><td>Attach experience records, read-only retrieval first, write only after validation (Ch.6)</td><td>Cerebellum ready</td><td>Similar questions no longer reach the brain</td><td>【SHOULD】</td></tr><tr><td>⑤ Sovereignty + immunity (sovereignty + immunity)</td><td>Add dual-fold authorization (13.4), dual-track verification (Ch.7), breaker (21.4)</td><td>Memory active</td><td>Breaker drill passed, human can cut off</td><td>【MUST】</td></tr><tr><td>⑥ Self-heal + flywheel (self-heal)</td><td>Enable automatic repair and sense→consolidate flywheel (Ch.8/11)</td><td>Immunity mature</td><td>Self-heal success rate met</td><td>【MAY】</td></tr></tbody></table></div>
+<div class="callout warn">Stage ⑥ matches step ⑥ of Ch.27 as a high-risk option; <b>【MUST】</b> enabling ⑥ before passing ⑤ is forbidden.</div>
+<p>### 43.4 Strangler replacement and dual-track running</p>
+<p><b>【Adopted】</b> The Strangler Fig Pattern is an established industry practice for progressive replacement (<b>adopted</b>), adapted here to living-system conversion.</p>
+<p>B --> C["Dual-track<br/>record only"]</p>
+<p>C --> D["Small grey release<br/>1%→5%→25%"]</p>
+<p>D --> E["New living system<br/>full traffic"]</p>
+<p>E --> F["Legacy retired<br/>evidence archived"]</p>
+<p>```</p>
+<div class="tw"><table><tbody><tr><td>Mechanism</td><td>Practice</td><td>Key discipline</td><td>Level</td></tr><tr><td>Shadow mode</td><td>New and old process same input; new produces output without effect</td><td>Compare diffs, no side effects</td><td>【MUST】</td></tr><tr><td>Dual-track consistency</td><td>Compare new/old output by digest; stop rollout if diff exceeds threshold</td><td>Visible diffs before scaling</td><td>【MUST】</td></tr><tr><td>Small grey release</td><td>Scale 1%→5%→25%→100%, SLO each step</td><td>Auto-rollback on breach (27.4)</td><td>【MUST】</td></tr><tr><td>Front router</td><td>Split traffic at a stable entry, avoid changing callers</td><td>Router itself observable and reversible</td><td>【SHOULD】</td></tr><tr><td>Legacy retirement</td><td>Retire after stable full traffic; archive evidence and ledger</td><td>Retireable but responsibility persists (39.5)</td><td>【MUST】</td></tr></tbody></table></div>
+<p>### 43.5 State and data migration</p>
+<div class="tw"><table><tbody><tr><td>Data tier</td><td>Migration strategy (per 41.1 temperature tiers)</td><td>Forbidden</td><td>Level</td></tr><tr><td>Hot (rules/state/context)</td><td>Rebuild in new cerebellum, do not copy runtime memory from legacy</td><td>Direct memory-state copy</td><td>【MUST】</td></tr><tr><td>Warm (experience/audit/recent ledger)</td><td>Migrate only promoted experience digests and evidence refs, write after validation</td><td>Migrate raw unverified experience</td><td>【MUST】</td></tr><tr><td>Cold (audit logs/evidence)</td><td>Archive as-is, keep append-only and searchable</td><td>Clear history during conversion</td><td>【MUST】</td></tr><tr><td>Frozen (legal retention)</td><td>Do not migrate or rewrite; register reference in new system</td><td>Rewrite legal credentials</td><td>【MUST】</td></tr></tbody></table></div>
+<div class="callout warn"><b>【MUST】</b> Keep <code>organism_id</code> and experience lineage continuous during conversion so the responsibility chain holds (41.3); <b>【MUST】</b> cross-sovereign data migration follows 20.2 compliance alignment.</div>
+<p>### 43.6 Non-convertible components and failure modes</p>
+<div class="tw"><table><tbody><tr><td>Component / failure mode</td><td>Handling</td><td>Level</td></tr><tr><td>Hard real-time deadline logic</td><td>Keep in deterministic layer, never delegate to intelligence (P1)</td><td>【MUST】</td></tr><tr><td>Legally immutable flows</td><td>Keep as-is, add sovereignty observation only</td><td>【MUST】</td></tr><tr><td>Closed-source unmodifiable core</td><td>Connect via IOP as external capability (T3)</td><td>【MAY】</td></tr><tr><td>"Two truths" coexisting too long</td><td>Set a conversion deadline; force convergence or rollback</td><td>【MUST】</td></tr><tr><td>Experience store polluted before governance</td><td>Insist on write-after-validation (Axiom 4)</td><td>【MUST】</td></tr><tr><td>Skip observation, go straight to self-heal</td><td>Forbidden (43.1)</td><td>【MUST NOT】</td></tr></tbody></table></div>
+<p>### 43.7 Conversion completion criteria</p>
+<p><b>【MUST】</b> Declare conversion complete only when: ① target modules pass conformance checks at their declared tier (Ch.26); ② legacy system retired or explicitly labeled T3/T4 external/immutable core; ③ conversion ledger, evidence and rollback records fully archived; ④ human sovereignty layer confirms in writing. <b>【SHOULD】</b> Run a full observation period with no major degradation before closing the conversion ledger. <b>【MAY】</b> Publish an externally verifiable conversion report so ecosystem partners can check capability boundaries (Ch.38).</p>
+<p>### 43.8 Chapter mandatory/optional checklist</p>
+<div class="tw"><table><tbody><tr><td>Item</td><td>Level</td><td>Rationale</td></tr><tr><td>No wholesale rewrite, observe before change</td><td>【MUST】</td><td>Control risk surface</td></tr><tr><td>Legacy fitness tiers (T1–T4)</td><td>【MUST】</td><td>Avoid one-size-fits-all</td></tr><tr><td>Five-stage surgery ①–⑤</td><td>【MUST】</td><td>Skeleton and sovereignty baseline</td></tr><tr><td>Strangler dual-track + grey release + rollback</td><td>【MUST】</td><td>Switch safety</td></tr><tr><td>Tiered state migration, continuous responsibility chain</td><td>【MUST】</td><td>Memory moat and compliance</td></tr><tr><td>Self-heal flywheel stage ⑥</td><td>【MAY】</td><td>High risk, needs mature immunity</td></tr><tr><td>Closed-source core via IOP</td><td>【MAY】</td><td>Depends on legacy structure</td></tr><tr><td>External conversion report</td><td>【MAY】</td><td>Ecosystem collaboration enhancement</td></tr></tbody></table></div>
+</section>
 <!-- ================= APPENDIX A ================= -->
 <section id="appa">
   <h2 class="sec"><span class="num">Appendix A</span>Glossary</h2>
@@ -2673,7 +2711,7 @@ flowchart LR
 </section>
 
 <footer>
-  <div>ANE Specification: AI-Native Engineering Paradigm for Living Software Systems v0.8.0 · Created by Feng Lei · Formal Release</div>
+  <div>ANE Specification: AI-Native Engineering Paradigm for Living Software Systems v0.9.0 · Created by Feng Lei · Formal Release</div>
   <div style="margin-top:8px">ANE = AI Native Engineering · MD and HTML versions carry identical content</div>
 </footer>
 </main>
