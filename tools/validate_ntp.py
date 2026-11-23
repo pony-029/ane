@@ -3,7 +3,7 @@
 """ANE document gates: JSON Schema subset validator, ANS-1 canonicalization, banned-term gate.
 
 Usage:
-  python tools/validate_ntp.py                       # validate all NTP payloads in all six tracks
+  python tools/validate_ntp.py                       # validate all NTP/IOP/conversion/experience payloads
   python tools/validate_ntp.py terms                 # banned-term gate on all tracks + READMEs
   python tools/validate_ntp.py --schema PATH --docs PATH [PATH ...]
   python tools/validate_ntp.py canonicalize FILE.json  # print ANS-1 form and sha256 digest
@@ -24,6 +24,7 @@ import sys
 DEFAULT_SCHEMA = pathlib.Path(__file__).resolve().parent.parent / "schemas" / "ntp-1.1.schema.json"
 DEFAULT_IOP_SCHEMA = pathlib.Path(__file__).resolve().parent.parent / "schemas" / "iop-1.0.schema.json"
 DEFAULT_CONVERSION_SCHEMA = pathlib.Path(__file__).resolve().parent.parent / "schemas" / "conversion-1.0.schema.json"
+DEFAULT_EXPERIENCE_SCHEMA = pathlib.Path(__file__).resolve().parent.parent / "schemas" / "experience-1.0.schema.json"
 DEFAULT_BANNED = pathlib.Path(__file__).resolve().parent.parent / "schemas" / "banned-terms.json"
 DEFAULT_DOCS = [
     "ANE规范-AI原生软件生命体工程范式-DEBUG开发版.md",
@@ -153,6 +154,70 @@ IOP_DIGESTS = {kind: digest for kind, _, digest in IOP_KINDS if digest}
 CONVERSION_MARKER = "conversion_version"
 CONVERSION_DIGEST = "conversion_digest"
 
+EXPERIENCE_MARKER = "experience_version"
+EXPERIENCE_DIGEST = "experience_digest"
+
+
+def experience_semantics(inst):
+    """Cross-field rules that turn cerebellar promotion from rhetoric into a gate.
+
+    Enforces five things a structural Schema cannot see:
+    cerebellar levels must pass all admissibility dimensions, level skipping is
+    forbidden, negative knowledge may never be frozen into tables, brain-assisted
+    experience must carry model lineage, and retired rules may not stay in the
+    cerebellum.
+    """
+    errors = []
+    level = inst.get("distill_level")
+    kind = inst.get("process_kind")
+    adm = inst.get("admissibility", {})
+    cases = adm.get("boundary_cases", {})
+    probe = adm.get("staleness_probe")
+    cerebellar = level in ("L2", "L3", "L4", "L5")
+
+    if cerebellar:
+        if adm.get("decidable") is not True:
+            errors.append("$.admissibility: cerebellar levels require decidable=true")
+        if adm.get("stability_reps", 0) < 3:
+            errors.append("$.admissibility: cerebellar levels require stability_reps>=3")
+        if cases.get("positive", 0) < 3 or cases.get("negative", 0) < 2:
+            errors.append("$.admissibility: cerebellar levels require >=3 positive and "
+                          ">=2 negative cases")
+        if not probe or probe == "none":
+            errors.append("$.admissibility: cerebellar levels require a staleness_probe "
+                          "(rules whose failure cannot be observed are not admissible)")
+        if adm.get("net_benefit", 0) < 1:
+            errors.append("$.admissibility: cerebellar levels require net_benefit>=1.0")
+
+    if level in ("L1", "L2", "L3", "L4", "L5") and not inst.get("replay_ref"):
+        errors.append("$.replay_ref: levels L1 and above require a replayable trace")
+
+    if level in ("L3", "L4", "L5") and not inst.get("previous_level_evidence"):
+        errors.append("$.previous_level_evidence: level skipping is forbidden; register "
+                      "the evidence of the level below")
+
+    if kind == "negative":
+        if level in ("L4", "L5"):
+            errors.append("$.distill_level: negative knowledge must not be frozen into "
+                          "lookup tables or the compiled baseline")
+        if not inst.get("failure_evidence"):
+            errors.append("$.failure_evidence: negative experience requires failure evidence")
+
+    if kind == "seed":
+        if not inst.get("human_expert_ref"):
+            errors.append("$.human_expert_ref: seed rules require a domain expert source")
+    elif not inst.get("brain_meta"):
+        errors.append("$.brain_meta: brain-assisted experience must record model lineage")
+
+    created, review = inst.get("created_at", ""), inst.get("review_after", "")
+    if created and review and review <= created:
+        errors.append("$.review_after: must be later than created_at")
+
+    if inst.get("review_state") == "RETIRED" and cerebellar:
+        errors.append("$.review_state: retired experience must fall back to L1 "
+                      "(cerebellar levels must not keep a retired rule)")
+    return errors
+
 
 def conversion_semantics(inst):
     """Cross-field lifecycle rules a structural Schema cannot express.
@@ -186,11 +251,13 @@ def conversion_semantics(inst):
 
 
 def classify(inst):
-    """Route a JSON object to the right schema: NTP, IOP kind, or conversion ledger."""
+    """Route a JSON object to the right schema: NTP, IOP kind, conversion, or experience."""
     if "ntp_version" in inst:
         return "ntp", None
     if CONVERSION_MARKER in inst:
         return "conversion", None
+    if EXPERIENCE_MARKER in inst:
+        return "experience", None
     for kind, marker in IOP_MARKERS:
         if marker in inst:
             return "iop", kind
@@ -320,6 +387,7 @@ def main():
         for kind, _, _ in IOP_KINDS
     }
     conversion_validator = Validator(json.loads(DEFAULT_CONVERSION_SCHEMA.read_text(encoding="utf-8")))
+    experience_validator = Validator(json.loads(DEFAULT_EXPERIENCE_SCHEMA.read_text(encoding="utf-8")))
     failures = 0
     total = 0
     digests = 0
@@ -340,6 +408,7 @@ def main():
                 inst = json.loads(raw)
             except json.JSONDecodeError as e:
                 if ("ntp_version" in raw or CONVERSION_MARKER in raw
+                        or EXPERIENCE_MARKER in raw
                         or any(m in raw for _, m in IOP_MARKERS)):
                     failures += 1
                     print(f"[FAIL] {p.name} block#{i}: invalid JSON: {e}")
@@ -353,11 +422,15 @@ def main():
                 target = validator
             elif kind == "conversion":
                 target = conversion_validator
+            elif kind == "experience":
+                target = experience_validator
             else:
                 target = iop_validators[sub]
             errors = target.validate(inst)
             if kind == "conversion":
                 errors += conversion_semantics(inst)
+            elif kind == "experience":
+                errors += experience_semantics(inst)
             if errors:
                 failures += 1
                 print(f"[FAIL] {p.name} block#{i} ({kind}/{sub or '-'}):")
@@ -365,7 +438,8 @@ def main():
                     print("       - " + e)
                 continue
             digest_key = IOP_DIGESTS.get(sub) if kind == "iop" else (
-                CONVERSION_DIGEST if kind == "conversion" else None)
+                CONVERSION_DIGEST if kind == "conversion" else (
+                    EXPERIENCE_DIGEST if kind == "experience" else None))
             if digest_key:
                 ok = check_digest(inst, digest_key)
                 if ok is False:

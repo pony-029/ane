@@ -1,0 +1,181 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ane.example/schemas/experience-1.0.schema.json",
+  "title": "ANE Experience Record 1.0",
+  "description": "海马体经验记录。承载结论型与过程型两类经验，并强制登记可升格判据、蒸馏级别、失效探针、复审期限与来源链。跨字段语义由 tools/validate_ntp.py 的 experience_semantics() 校验。",
+  "type": "object",
+  "required": [
+    "experience_version",
+    "experience_id",
+    "process_kind",
+    "distill_level",
+    "signature",
+    "context_digest",
+    "admissibility",
+    "scope_of_validity",
+    "created_at",
+    "review_after",
+    "review_state",
+    "owner",
+    "evidence_refs",
+    "lineage"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "experience_version": {
+      "const": "1.0"
+    },
+    "experience_id": {
+      "type": "string",
+      "pattern": "^EXP-[A-Z]{2,8}-[0-9]{4}$"
+    },
+    "process_kind": {
+      "type": "string",
+      "enum": ["conclusion", "procedure", "discriminator", "negative", "elicitation", "gate", "seed"],
+      "description": "经验来源类型：结论型/程序型/判据型/否决型/提问型/门禁型/种子规则。"
+    },
+    "distill_level": {
+      "type": "string",
+      "enum": ["L0", "L1", "L2", "L3", "L4", "L5"],
+      "description": "蒸馏阶梯级别，级别越高越确定、适用域越窄。禁止跨级升格。"
+    },
+    "signature": {
+      "type": "object",
+      "required": ["feature_digest"],
+      "additionalProperties": false,
+      "properties": {
+        "feature_digest": {
+          "type": "string",
+          "minLength": 8,
+          "description": "问题特征向量的规范化摘要，升格后即小脑规则的匹配键。"
+        },
+        "error_code": {
+          "type": "string",
+          "pattern": "^E-[A-Z]{2,8}-[0-9]{4}$"
+        },
+        "scenario": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "context_digest": {
+      "type": "string",
+      "minLength": 8,
+      "description": "触发时的最小上下文摘要，不含全量日志与源码。"
+    },
+    "brain_meta": {
+      "type": "object",
+      "description": "大脑侧元数据。凡由大脑协助产生的经验必须登记，用于判断经验归属：属于问题，还是仅仅属于当时的模型。",
+      "additionalProperties": false,
+      "properties": {
+        "model_id": { "type": "string", "minLength": 1 },
+        "prompt_version": { "type": "string", "minLength": 1 },
+        "temperature": { "type": "number", "minimum": 0, "maximum": 2 },
+        "retrieval_set": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "token_cost": { "type": "integer", "minimum": 0 },
+        "rejection_reason": { "type": "string", "minLength": 1 }
+      }
+    },
+    "human_expert_ref": {
+      "type": "string",
+      "minLength": 1,
+      "description": "种子规则的领域专家来源标识。"
+    },
+    "admissibility": {
+      "type": "object",
+      "required": ["decidable", "stability_reps", "boundary_cases", "net_benefit"],
+      "additionalProperties": false,
+      "properties": {
+        "decidable": {
+          "type": "boolean",
+          "description": "输入特征能否由本地代码无歧义计算，且特征提取本身不调用大模型。"
+        },
+        "stability_reps": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "同一签名下独立复现且结论一致的次数。"
+        },
+        "boundary_cases": {
+          "type": "object",
+          "required": ["positive", "negative"],
+          "additionalProperties": false,
+          "properties": {
+            "positive": { "type": "integer", "minimum": 0 },
+            "negative": { "type": "integer", "minimum": 0 }
+          }
+        },
+        "staleness_probe": {
+          "type": "string",
+          "enum": ["shadow_compare", "regression_case", "canary_metric", "none"],
+          "description": "失效探针。none 表示无法观测失效，此类经验禁止升格到小脑执行。"
+        },
+        "net_benefit": {
+          "type": "number",
+          "minimum": 0,
+          "description": "命中频次 × 单次大脑成本 ÷ 规则维护成本。"
+        }
+      }
+    },
+    "scope_of_validity": {
+      "type": "string",
+      "minLength": 1,
+      "description": "适用域。级别越高必须越窄，越界即失效。"
+    },
+    "created_at": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "review_after": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "review_state": {
+      "type": "string",
+      "enum": ["PENDING", "CONFIRMED", "NARROWED", "RETIRED"]
+    },
+    "owner": {
+      "type": "string",
+      "minLength": 1,
+      "description": "复审责任人。无主规则视为待退役。"
+    },
+    "replay_ref": {
+      "type": "string",
+      "minLength": 1,
+      "description": "可重放轨迹的定位符（L1 及以上必填）。"
+    },
+    "previous_level_evidence": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "description": "上一蒸馏级别的通过证据。跨级升格缺少此项即判污染。"
+    },
+    "failure_evidence": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "description": "否决型经验的失败证据。"
+    },
+    "evidence_refs": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 },
+      "description": "依据链：门禁结果、回归报告、复盘编号或规则 ID。"
+    },
+    "lineage": {
+      "type": "object",
+      "required": ["system", "change_ref", "authorized_by"],
+      "additionalProperties": false,
+      "properties": {
+        "system": { "type": "string", "minLength": 1 },
+        "change_ref": { "type": "string", "minLength": 1 },
+        "authorized_by": { "type": "string", "minLength": 1 }
+      }
+    },
+    "experience_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    }
+  }
+}

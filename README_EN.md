@@ -18,11 +18,11 @@ Three moats: **Cerebellum first** (high-frequency decisions cost zero tokens) ·
 
 ## Current version
 
-**v0.11.0** (2026-11-21) — gate self-proving and CI evidence layer.
+**v0.12.0** (2026-11-23) — cerebellar experience admissibility and process memory layer.
 
-Thirteenth round: §43.10 three ledger lifecycle states (BLOCKED / ROLLED_BACK / CLOSED) with cross-field semantic gates; assetized negative fixtures in `tests/` (9 cases, sandbox execution, evidence assertions, zero worktree pollution) and `check_all --self-test`; whitelist evidence loop (`--collect-evidence` / `--sync-from-evidence --apply` + provenance); CI workflow upgraded to run the self-test; real GitHub Actions receipt and branch-protection script. All four previous recommendations closed with real implementations and end-to-end negative tests. Unified command: `python tools/check_all.py --self-test`.
+Fourteenth round: §4.5 cerebellar experience admissibility (five dimensions: decidability / stability / boundary sharpness / observability of staleness / net benefit, with a may-promote and a must-never-promote list); §4.6 distillation ladder L0–L5 (no level skipping, narrower scope per level, failure falls back to L1 rather than L0); §6.5 six kinds of process memory (conclusion / procedure / discriminator / negative / elicitation / gate, each with its own promotion destination and mandatory fields, answering whether Main Brain assistance can become cerebellar experience); §6.6 experience aging, review and retirement (domain-graded horizons, shadow comparison, three review outcomes, zombie-rule red line); new `schemas/experience-1.0.schema.json` with semantic validation (level skipping, unobservable rules, frozen negative knowledge, retired rules left in the Cerebellum); corrected §18.2's "permanently removing LLM calls". Negative fixtures now 13. The previous round (v0.11.0) delivered gate self-proving and CI evidence. Unified command: `python tools/check_all.py --self-test`.
 
-The full version evolution and revision discipline are specified in Chapters 34–37 of the specification; the eighth 30-round plan (round-level) is in Appendix J of the DEBUG edition.
+The full version evolution and revision discipline are specified in Chapters 34–37 of the specification; the eleventh 30-round plan (round-level) is in Appendix M of the DEBUG edition.
 
 ## File manifest
 
@@ -36,6 +36,7 @@ The full version evolution and revision discipline are specified in Chapters 34�
 | `schemas/banned-terms.json` | Banned-term manifest (slogans / product names / project names / process traces) |
 | `tools/check_dual_format.py` | G8 gate: clause-level MD/HTML verbatim consistency |
 | `schemas/conversion-1.0.schema.json` | Ch.43 conversion ledger contract (tiers / stages / grey release / migration / completion) |
+| `schemas/experience-1.0.schema.json` | Experience record contract (six process kinds / five dimensions / distillation level / review horizon / digest) |
 | `schemas/term-whitelist.json` | Term whitelist: technical identifiers permitted in normative clauses |
 | `tools/check_term_whitelist.py` | Whitelist gate: blocks undefined technical identifiers in normative clauses |
 | `tools/check_all.py` | Unified gate: one entry point and exit code for all four gates (CI entry point) |
@@ -51,16 +52,18 @@ The full version evolution and revision discipline are specified in Chapters 34�
 
 ## Structure
 
-The specification has **37 chapters + a glossary (Appendix A)**, organized in layers:
+The specification has **43 chapters + a glossary (Appendix A)**, organized in layers:
 
 | Layer | Chapters | Topic |
 |---|---|---|
 | Foundation | 0–1 | Paradigm positioning, seven core axioms (static-dynamic duality, cerebellum first, memory moat, human sovereignty, etc.) |
-| Architecture | 2–8 | Seven-organ model, D0–D3 determinacy grading, Cerebellum / Main Brain / Hippocampus / Immune / Self-Repair specifications |
+| Architecture | 2–8 | Seven-organ model, D0–D3 determinacy grading, Cerebellum / Main Brain / Hippocampus / Immune / Self-Repair specifications, cerebellar admissibility and the distillation ladder (4.5/4.6), six kinds of process memory with review and retirement (6.5/6.6) |
 | Collaboration | 9–16 | Human-machine collaboration and tiered authorization, unified development-maintenance flywheel, interaction-pattern matrix, interaction primitives, MCP tool ecosystem, multi-agent protocols |
 | Assurance | 17–24 | OWASP security alignment, cost governance, sublation of traditional engineering, organizational governance and compliance, fail-safe, identity traceability, human factors, memory boundaries |
 | Governance | 25–31 | Meta-specification, conformance assessment (ANE-CONF), migration and adoption, observability, evolution-system testing, applicability boundaries, economics |
 | Release | 32–37 | Release forms, information grading and gates, single source of truth and deterministic projection, multi-language governance, artefact naming, structural integrity checks |
+| Ecosystem | 38–42 | Inter-organism protocol IOP, suite composition, AGI evolution ladder, data/connectivity policy, normative levels and the mandatory checklist |
+| Conversion | 43 | Converting legacy software into a living system: fitness tiers, five-stage surgery, strangler dual-track, state migration, completion criteria |
 
 ### Five additions and four fixes in v0.8.0 (v0.7.0 archived below)
 

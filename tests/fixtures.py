@@ -124,6 +124,60 @@ def mutate_missing_debug(sandbox):
             path.unlink()
 
 
+def _replace_experience(sandbox, mutate, name=ZH_FORMAL_MD):
+    """Locate the experience record block and apply a mutation to it."""
+    path = sandbox / name
+    text = path.read_text(encoding="utf-8")
+    blocks = JSON_BLOCK.findall(text)
+    raw = next(b for b in blocks if '"experience_version"' in b)
+    obj = json.loads(raw)
+    mutate(obj)
+    replacement = json.dumps(obj, ensure_ascii=False, indent=2)
+    assert text.count(raw) == 1, "experience block is not unique in sandbox"
+    path.write_text(text.replace(raw, replacement, 1), encoding="utf-8")
+
+
+def _resign_experience(obj):
+    """Recompute the experience digest so a case isolates semantic failure only."""
+    unsigned = {k: v for k, v in obj.items() if k != "experience_digest"}
+    obj["experience_digest"] = "sha256:" + hashlib.sha256(
+        canonicalize(unsigned).encode("utf-8")).hexdigest()
+
+
+def mutate_level_skip(sandbox):
+    """An L3 rule with no evidence from the level below: promotion skipped ranks."""
+    def change(obj):
+        obj.pop("previous_level_evidence", None)
+        _resign_experience(obj)
+    _replace_experience(sandbox, change)
+
+
+def mutate_no_staleness_probe(sandbox):
+    """A cerebellar rule whose failure cannot be observed."""
+    def change(obj):
+        obj["admissibility"]["staleness_probe"] = "none"
+        _resign_experience(obj)
+    _replace_experience(sandbox, change)
+
+
+def mutate_negative_frozen(sandbox):
+    """Negative knowledge frozen into a lookup table (L4)."""
+    def change(obj):
+        obj["process_kind"] = "negative"
+        obj["distill_level"] = "L4"
+        obj["failure_evidence"] = ["trace://build/0427/failed-path"]
+        _resign_experience(obj)
+    _replace_experience(sandbox, change)
+
+
+def mutate_retired_still_cerebellar(sandbox):
+    """A retired rule that still sits at a cerebellar level."""
+    def change(obj):
+        obj["review_state"] = "RETIRED"
+        _resign_experience(obj)
+    _replace_experience(sandbox, change)
+
+
 # id -> gate command (relative to sandbox/tools), expected rc, must-appear evidence
 GATE_COMMANDS = {
     "payload": ["validate_ntp.py"],
@@ -196,5 +250,33 @@ CASES = [
         "gate": "evidence_flow", "expect": 0,
         "evidence": "Evidence loop: 7/7 checks passed",
         "mutate": lambda sandbox: None,  # the flow tool builds its own sandbox
+    },
+    {
+        "id": "experience_level_skip",
+        "description": "L3 规则缺失下一级证据，跨级升格必须被拒（摘要正确）",
+        "gate": "payload", "expect": 1,
+        "evidence": "level skipping is forbidden",
+        "mutate": mutate_level_skip,
+    },
+    {
+        "id": "experience_no_probe",
+        "description": "小脑规则无失效探针，不可观测的规则必须被拒（摘要正确）",
+        "gate": "payload", "expect": 1,
+        "evidence": "require a staleness_probe",
+        "mutate": mutate_no_staleness_probe,
+    },
+    {
+        "id": "experience_negative_frozen",
+        "description": "否决型经验被固化为常量表，必须被拒（摘要正确）",
+        "gate": "payload", "expect": 1,
+        "evidence": "negative knowledge must not be frozen",
+        "mutate": mutate_negative_frozen,
+    },
+    {
+        "id": "experience_retired_cerebellar",
+        "description": "已退役规则仍停留在小脑级别，台账矛盾必须被拒（摘要正确）",
+        "gate": "payload", "expect": 1,
+        "evidence": "retired experience must fall back to L1",
+        "mutate": mutate_retired_still_cerebellar,
     },
 ]

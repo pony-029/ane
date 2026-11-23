@@ -8,7 +8,7 @@
 >
 > ANE = **AI Native Engineering** · static-dynamic integration · dual-brain collaboration · Memory Moat · unified development and maintenance · governance and resilience · verifiable and adoptable
 >
-> Version: **v0.11.0**　|　Date: 2026-11-21　|　Form: Formal Release
+> Version: **v0.12.0**　|　Date: 2026-11-23　|　Form: Formal Release
 >
 > This specification is expressed in a **general paradigm language**, not bound to any specific product, framework, or engineering implementation, and applies to all teams building AI-native software systems.
 >
@@ -344,10 +344,76 @@ In engineering terms the Cerebellum must be defined as the **absolute defender o
 | Hard boundary | Requirement | How it is judged |
 |---|---|---|
 | **Offline capability** | With the network cut and the Main Brain entirely unreachable, local rules plus promoted memory must still sustain no less than **80%** of routine transactions | Periodic "disconnection drills": block remote calls, run the full routine suite; the pass rate is the metric |
-| **Growable** | Rules are not hard-coded constants; new "muscle memory" may only grow through the Hippocampus's **experience promotion** | Every rule must trace back to its experience source and promotion-audit record (24.3) |
+| **Growable** | Rules are not hard-coded constants; new "muscle memory" may only grow through the Hippocampus's **experience promotion**, and must pass the admissibility criteria (4.5) and climb the distillation ladder (4.6) level by level | Every rule must trace back to its experience source, distillation level, and promotion-audit record (24.3) |
 | **No speculation** | When no local rule matches, the Cerebellum **must raise its hand immediately** and throw `UnknownSignal`; guessing, approximate substitution, or "let's just try it" is forbidden | The ledger may contain no record of "a judgment produced with no rule hit"; if one appears, it is contamination |
 
 > **Role inversion guard**: the Cerebellum's ceiling is "deterministically handling the known", not "reasonably handling the unknown". Writing the Cerebellum as a "miniature LLM" consumes tokens and loses determinism at the same time — the most expensive form of regression there is.
+
+### 4.5 Cerebellar experience admissibility
+
+Section 6.3 states that frequently hit experience "may be consolidated into a rule", but never answers what qualifies. Without admissibility criteria, promotion degrades into copying what the Main Brain once said into an if-else branch: token cost looks lower, while a single coincidence is frozen into permanent misjudgment.
+
+An experience may grow into a Cerebellum rule only if it passes all five dimensions at once.
+
+- **【MUST】** Record a verdict for each dimension. If any dimension fails, the experience stays in the Hippocampus for retrieval augmentation — the only legitimate "not yet promoted", never a discard and never a bypass.
+
+| Dimension | Criterion | Pass line | Consequence of failing |
+|---|---|---|---|
+| **Decidability** | Input features can be computed locally without ambiguity, and feature extraction itself does not call the Main Brain | `decidable` is true | Every hit still needs the brain; promotion buys nothing |
+| **Stability** | Independent reproductions under the same signature agree on the conclusion | `stability_reps` ≥ 3 | An accident is taken for a law; the rule misjudges the moment it ships |
+| **Boundary sharpness** | Labelled positive and negative cases exist, and a boundary expression can be written | `boundary_cases` positive ≥ 3, negative ≥ 2 | Near-miss situations cannot be separated; the rule degrades into approximate substitution |
+| **Observability of staleness** | An automatically executable staleness probe must be designated | `staleness_probe` is not none | Rot goes unnoticed and the rule becomes a zombie instinct |
+| **Net benefit** | Hit frequency × per-call brain cost ÷ rule maintenance cost | `net_benefit` ≥ 1 | The rule costs more than it saves |
+
+> **Observability of staleness is the dimension most often skipped and the most lethal.** A rule whose failure cannot be observed is correct on the day it ships and may be wrong every day after, with nobody knowing. It is therefore written as a hard constraint rather than advice.
+
+- **【MUST NOT】** Promote an experience into a Cerebellum rule when no staleness probe exists, even if hit rate and stability are both high.
+
+Not every experience deserves the Cerebellum. The two lists below are the reference table for promotion review.
+
+- **【MUST NOT】** Promote anything listed in the right-hand column below, regardless of hit rate. Matters that require value judgment are decided only by human sovereignty (Chapter 9).
+
+| May grow into a Cerebellum rule | Must never grow into a Cerebellum rule |
+|---|---|
+| Parameterized thresholds (timeouts, batching, concurrency ceilings) | Trade-offs requiring value judgment (e.g. "which requirement matters more") |
+| Routing criteria (dispatch by feature to a fixed branch) | Conclusions valid only in one context (special cases of a single incident) |
+| Error code to disposition mapping | Judgments that depend on the current model's output style |
+| Verified operation sequences (with preconditions and rollback points) | Rules whose failure cannot be observed |
+| Discriminator boundaries (classification separable by positive and negative cases) | Experience with no positive or negative cases, only "probably" |
+| Constant and lookup tables | Rules touching legal, ethical, or human-rights judgment |
+
+### 4.6 The distillation ladder
+
+Experience is not a binary choice between "in the brain" and "in the Cerebellum"; it is distilled level by level. Each step up raises determinism and narrows generality — a trade of generality for determinism, and the traded object must be priced explicitly.
+
+| Level | Form | Executability | Evidence required to promote | Scope |
+|---|---|---|---|---|
+| **L0** | Free reasoning trace (verbatim) | No; reference for retrieval only | Original record plus lineage | Widest, least reliable |
+| **L1** | Replayable trace (input snapshot, tool arguments, assertions) | Replayable, not independently decisive | One successful replay | Wide |
+| **L2** | Discriminator (feature expression to branch) | Unit-testable | Positive and negative case sets all pass | Medium |
+| **L3** | Operation sequence or state machine (preconditions, steps, postconditions, rollback point) | Executable and rollback-capable | ≥3 independent reproductions plus a passed rollback drill | Narrow |
+| **L4** | Constant table (pure lookup, zero logic) | Executable, zero inference | One full cycle at L3 with no exceptional branch | Very narrow |
+| **L5** | Compiled into the static baseline | Same status as code | Full L4 regression plus human signature | Narrowest |
+
+```mermaid
+flowchart LR
+    L0["L0 free trace<br/>reference only"] -->|replay succeeds| L1["L1 replayable trace<br/>reproducible"]
+    L1 -->|cases all pass| L2["L2 discriminator<br/>unit-testable"]
+    L2 -->|repeats + rollback drill| L3["L3 operation sequence<br/>executable, rollbackable"]
+    L3 -->|one clean cycle| L4["L4 constant table<br/>zero inference"]
+    L4 -->|regression + human signoff| L5["L5 compiled<br/>static baseline"]
+    L1 -.probe alarm.-> L1
+    L2 -.probe alarm.-> L1
+    L3 -.probe alarm.-> L1
+    L4 -.probe alarm.-> L1
+    L5 -.probe alarm.-> L1
+```
+
+Three iron rules constrain the ladder:
+
+1. **【MUST NOT】Skip a level**: writing an L3 state machine straight from L0 freezes a coincidence into a procedure. Every promotion must carry the passing evidence of the level below (`previous_level_evidence`); when it is missing, the promotion is contamination.
+2. **【MUST】Narrow the scope as the level rises**: L3 and above must declare `scope_of_validity`. Beyond that scope the rule is wrong by construction; the higher the level, the narrower the scope allowed.
+3. **【MUST】Fall back to L1, not L0**: when a staleness probe fires, the fallback target is the replayable trace rather than the raw text — only replay can tell "the rule is wrong" from "the world changed". Returning to L0 abandons the ability to locate the cause.
 
 ---
 
@@ -642,7 +708,7 @@ stateDiagram-v2
     Decay --> Archived: Confirmed invalid
 ```
 
-> Key mechanism: **experience can be promoted to a Cerebellum rule** (turning a Main Brain insight into a Cerebellum instinct) — the fundamental reason the flywheel becomes ever more token-efficient.
+> Key mechanism: **experience can be promoted to a Cerebellum rule** (turning a Main Brain insight into a Cerebellum instinct) — the fundamental reason the flywheel becomes ever more token-efficient. But promotion is not a single write: it passes the admissibility criteria (4.5), climbs the distillation ladder (4.6) level by level, and remains subject to review (6.6).
 
 ### 6.4 Cold Start and Knowledge Quenching
 
@@ -659,6 +725,115 @@ stateDiagram-v2
 | **Exploit** | Coverage threshold met, hit rate stable | Low (local priority) | Save cost, reduce latency | Hit rate falls below lower bound |
 
 > **Knowledge quenching**: the process by which seed rules and Explore-phase samples are quenched into stable rules after immune verification. It complements natural promotion (6.3) — the former shortens cold start, the latter sustains long-term evolution. Both must pass the same immune verification; "going live quickly" is never grounds to bypass it.
+
+### 6.5 Process memory: structuring what the Main Brain helped with
+
+> Corresponds to Axioms 3 and 4. The record structure in 6.2 captures a *conclusion*; it cannot capture a *process*. The expensive part of the Main Brain is not the answer it gives but **how it ruled out wrong paths**. A memory store that keeps only conclusions throws away the most costly part and keeps the part that expires fastest.
+
+**Conclusions expire; the discriminating power of process does not all expire.** A conclusion is bound to the model version and context of its day; a process is bound to the structure of the problem. After a model upgrade, "this timeout should be 800 ms" may fail, while "this class of problem is decomposed as collect, locate, verify" usually still holds.
+
+One act of Main Brain assistance yields three reusable process assets:
+
+| Asset | Content | Why it is valuable |
+|---|---|---|
+| **Decomposition skeleton** | The order in which the unknown was cut into known sub-problems | The next problem of the same class can reuse the cut instead of re-planning |
+| **Retrieval path** | Which experience entries, evidence, and documents proved useful | The next retrieval can hit them early, shortening context construction |
+| **Negative knowledge** | Which paths were tried and why they failed | Fail once, never retry — the cheapest experience per unit cost |
+
+Process memory falls into six kinds, each with a different promotion destination. **Not every process experience can become a Cerebellum rule**:
+
+| Kind | What it captures | Promotion destination | Mandatory extra field |
+|---|---|---|---|
+| conclusion | The answer the Main Brain gave | L2 / L4, after passing the five dimensions of 4.5 | `brain_meta` |
+| procedure | Decomposition order, tool call sequence | L3 operation sequence | `replay_ref` |
+| discriminator | What separates two similar situations | L2 discriminator | positive and negative case sets |
+| negative | Paths tried and failed, with reasons | **Negative case set only; never a positive rule** | `failure_evidence` |
+| elicitation | Which piece of context the Main Brain lacked | **Does not enter the Cerebellum**; improves the uplink payload of 5.4 | none |
+| gate | The pattern of rejection the output triggered | L2 pre-check rule | rejection records |
+
+Three disciplines nail the table down:
+
+1. **【MUST NOT】Turn negative experience into a positive rule.** "This path fails" does not mean "another path must succeed". Writing it as a positive rule is textbook over-generalization; negative experience enters the negative case set and is used only for exclusion.
+2. **【MUST NOT】Push elicitation experience into the Cerebellum.** It optimizes "asking precisely", not "judging quickly"; its destination is the design of the uplink payload and feature compression strategy (5.4). Forcing it into the rule base only makes the Cerebellum guess the Main Brain's preferences — a role inversion.
+3. **【MUST】Land process experience at L1 before discussing promotion.** A "thought process" that cannot be replayed is a story, not experience.
+
+Experience produced with Main Brain assistance must record the brain-side metadata (`brain_meta`): model identifier, prompt version, temperature, retrieval set, token cost, and rejection reason.
+
+- **【MUST】** All six `brain_meta` fields must be present before promotion may be requested. They answer one question: **does this experience belong to the problem, or only to that model?** Without them, a model upgrade leaves the rule neither safe to use nor possible to retire, and the specification treats such experience as inadmissible.
+
+### 6.6 Experience aging, review, and retirement
+
+> Corresponds to Axioms 4 and 6. Promotion without a review horizon installs a set of judgments that never go offline by themselves. They were correct when written and keep judging by inertia afterwards — such rules are zombie instincts, more dangerous than no rule at all, because the error is silent.
+
+- **【MUST】The review horizon is mandatory.** Every experience entering the Cerebellum must declare `review_after`, graded by domain:
+
+| Domain | Default review horizon | Rationale |
+|---|---|---|
+| Static baseline (D0) related | 365 days | The baseline changes slowly, but a change affects everything |
+| Ordinary business rules | 180 days | Business and traffic structure drift with the quarter |
+| Fast-drifting domains (external APIs, models, prices, regulation) | 30 days | The external condition is itself a variable |
+
+- **【MUST】Detect staleness actively, never wait for discovery.** Use shadow comparison (`shadow_compare`): at a sampling rate (1% by default, 5% in high-risk domains) send the same input to both the rule and the Main Brain and compare conclusions. Agreement below **95%** triggers review. Sampling rather than full coverage keeps detection cost far below the loss it prevents.
+- **【MUST NOT】** Allow a rule past its review horizon, unreviewed, to keep deciding; once found, it is downgraded as an unverified rule.
+
+Review has exactly three outcomes; there is no "let's watch it a while longer":
+
+| Outcome | Meaning | Action |
+|---|---|---|
+| CONFIRMED | The criteria still hold | Extend to the next horizon |
+| NARROWED | The conclusion holds locally, with a tighter boundary | Narrow `scope_of_validity`, downgrade to L2 if needed |
+| RETIRED | The criteria have failed | Force back to L1 and remove from the execution path |
+
+- **【MUST】Three failed reviews force retirement**: fall back to L1, keeping the replayable trace for postmortem; a rule with an empty `owner` is treated as pending retirement and may not stay effective merely because nobody manages it.
+
+> This section corrects a common misstatement: promotion is **not** "leaving the Main Brain behind forever", but "leaving it until the next review". The permanent framing erodes the team's ability to doubt a rule, and that ability is the Cerebellum-side counterpart of the immune system.
+
+A complete process-experience record follows. It is gated: the five dimensions, the ladder evidence, the review horizon, and the digest are all machine-checkable.
+
+```json
+{
+  "experience_version": "1.0",
+  "experience_id": "EXP-BUILD-0007",
+  "process_kind": "procedure",
+  "distill_level": "L3",
+  "signature": {
+    "feature_digest": "fd-9a1c4e77",
+    "error_code": "E-BUILD-0427",
+    "scenario": "dependency resolution fails in a clean environment but succeeds with a local cache"
+  },
+  "context_digest": "ctx-3f81b2",
+  "brain_meta": {
+    "model_id": "reasoner-large-2026-09",
+    "prompt_version": "triage-v7",
+    "temperature": 0.2,
+    "retrieval_set": ["EXP-BUILD-0003", "EXP-BUILD-0005"],
+    "token_cost": 1840
+  },
+  "admissibility": {
+    "decidable": true,
+    "stability_reps": 4,
+    "boundary_cases": { "positive": 6, "negative": 3 },
+    "staleness_probe": "shadow_compare",
+    "net_benefit": 2.4
+  },
+  "scope_of_validity": "single-repository Node.js project whose lockfile was not hand-edited",
+  "created_at": "2026-11-23",
+  "review_after": "2027-05-22",
+  "review_state": "CONFIRMED",
+  "owner": "build-platform",
+  "replay_ref": "trace://build/0427/replay-4",
+  "previous_level_evidence": ["trace://build/0427/replay-1", "trace://build/0427/replay-2"],
+  "evidence_refs": ["gate:regression-2026-11-21", "postmortem:INC-2211"],
+  "lineage": {
+    "system": "build-pipeline",
+    "change_ref": "chg-2026-1104",
+    "authorized_by": "platform-review-board"
+  },
+  "experience_digest": "sha256:5326aa0b586b39998ac5027d9c4038cf6cbbac067b7d60a8f2d97ae21bf27e2f"
+}
+```
+
+The record shows a procedure experience that has passed every criterion: `previous_level_evidence` proves it climbed level by level (no skipping), `replay_ref` makes failure locatable by replay, `staleness_probe` designates the detection mechanism, and `review_after` pins the review horizon. **The purpose of a criterion is not to let experience pass more easily, but to make "whether it should pass" arguable and evidential.**
 
 ---
 
@@ -910,6 +1085,11 @@ When confidence reaches **99%**, enter grey release rather than waiting for 100%
 | Quota exhaustion rate | denied uplinks due to budget exhaustion / all uplink requests | observation item; a spike triggers a rate-limit review |
 | Rejection rate | requests forced back to conservative Cerebellum rules / all uplink requests | ↓ a high value indicates a rule gap, not Main Brain incapacity |
 | D0/D1 preemption rate | high-priority preemptions / total arbitrations | observation item; audits arbitration fairness (5.5) |
+| Promotion quality rate | experiences entering the Cerebellum / all promotion requests | observation item; too low indicates an over-strict criterion or too few samples |
+| Process-memory reuse rate | process experiences retrieved again / all process experiences | ↑ the true value measure of process memory |
+| Negative-knowledge hit rate | repeated attempts blocked by excluded paths / all repeated attempts | ↑ directly reflects avoided token waste |
+| Rule drift rate | rules whose shadow agreement falls below threshold / rules in service | ↓ |
+| Zombie-rule share | rules past their review horizon or without an owner / rules in service | = 0 (red line) |
 
 ### 12.2 Anti-pattern list (explicit "don'ts")
 
@@ -926,6 +1106,10 @@ When confidence reaches **99%**, enter grey release rather than waiting for 100%
 | Automating before simplifying | Pipelines technical debt; green ticks mask decay | Five-step algorithm order (10.4) |
 | Masking a missing rule base with high-frequency distress | Hollow Cerebellum; cost rises linearly with traffic | Rate limiting + attributing misses to rule gaps (5.5) |
 | Cerebellum forcing a guess (answering without a rule) | Hallucination into the trunk, unreplayable | Throw `UnknownSignal`; no approximate substitution (4.4) |
+| Level skipping (writing an L0 trace directly as a state machine) | Freezes a coincidence into a permanent procedure, with no replay evidence to correct it | Climb the ladder level by level with evidence (4.6) |
+| Recording conclusions without processes | After a model upgrade the experience is neither safe to use nor possible to retire | Record process memory and brain-side metadata (6.5) |
+| Promoting once and forever | After drift the rule misjudges silently, worse than no rule | Review horizon + shadow comparison + three outcomes (6.6) |
+| Turning negative experience into a positive rule | Over-generalization: "this path fails" misread as "another must succeed" | Negative experience enters the negative case set only (6.5) |
 
 ---
 
@@ -1264,7 +1448,7 @@ Before any new tool is integrated, it must pass:
 2. **Caching**: prompt caching for stable prefixes and high-frequency knowledge, avoiding repeated billing.
 3. **Subtask isolation**: sub-agents use fresh contexts and return only digests, preventing context bloat.
 4. **Retrieval instead of stuffing**: use RAG to fetch on demand rather than stuffing all material into the prompt.
-5. **Experience promotion**: consolidate high-frequency conclusions into Cerebellum rules, permanently removing LLM calls.
+5. **Experience promotion**: consolidate high-frequency conclusions into Cerebellum rules through the admissibility criteria of 4.5 and the distillation ladder of 4.6, removing LLM calls until the next review horizon; when the horizon expires the rule is re-judged under 6.6.
 
 ### 18.3 Cost observability
 
@@ -1550,7 +1734,8 @@ On top of this, any experience promoted from a "private zone / sandbox zone" to 
   2. **Human engineer signature endorsement**: at least one authorized human engineer must review the reproduction evidence and sign; the Main Brain (LLM) may never self-sign a promotion. Signatures count toward RACI (see 20.3) and are traceable to a specific natural person.
   3. **Anti-inbreeding check**: examine the correlation between the experience and its "ancestor experiences / homologous variants"; if the promotion basis is highly dependent on homologous samples (near self-reference), it is judged as inbreeding and rejected, downgraded to "under observation."
 - **Audit credential**: every promotion generates an independent credential recording the experience ID, the N-reproduction evidence chain, the endorser's signature, and the correlation-check result, written to a tamper-proof ledger for post-hoc review and regulatory evidence.
-- **Degradation linkage**: if corruption is discovered after promotion, it must be possible to roll back to the pre-promotion state with one action and cascade-invalidate all downstream rules derived from it (aligning with the cascade cleanup of the right to be forgotten in 24.4).
+- **Admissibility and review fields in the credential**: the credential must also record the verdicts of the five dimensions in 4.5, the distillation level and the passing evidence of the level below in 4.6, and the review horizon and staleness probe in 6.6. A promotion request missing any of these is not accepted; a rule whose review horizon has passed without review is treated as "never audited" and downgraded as an unverified rule.
+- **Degradation linkage**: if corruption is discovered after promotion (including a shadow-agreement drop below threshold in 6.6), it must be possible to roll back to the pre-promotion state with one action and cascade-invalidate all downstream rules derived from it (aligning with the cascade cleanup of the right to be forgotten in 24.4).
 
 > **Why this is mandatory**: Chapter 17 lists "data and model poisoning" as a risk, but this system's unique attack surface is "promotion" — an attacker can induce the Cerebellum to solidify a wrong experience into a global instinct, far more damaging than a single wrong output. The Promotion Audit, through "independent reproduction + human endorsement + anti-inbreeding," demotes AI self-promotion from "trusted" to "must be proven," upholding Axiom 5 (human sovereignty) and Axiom 6 (anti-self-deception).
 
@@ -2919,6 +3104,13 @@ flowchart LR
 | Conversion ledger | Machine-readable contract recording fitness tier, stage exit verification, grey-release decisions and completion criteria | Original (contract definition) | Ch.43 §43.9 · `schemas/conversion-1.0.schema.json` | Conversion Ledger |
 | Term whitelist | List of technical identifiers permitted in normative clauses, preventing undefined new jargon | Original (gate mechanism) | `schemas/term-whitelist.json` | Term Whitelist |
 | Unified gate entry | Payload, wording, dual-format and term-whitelist checks collapsed into one command and one exit code | Original (engineering practice) | `tools/check_all.py` | Unified Gate Entry |
+| Evidence loop | A new term may enter the whitelist only with a source annotation and a located evidence reference | Original (gate mechanism) | `tools/check_term_whitelist.py --sync-from-evidence` | Evidence Loop |
+| Branch protection | Making CI checks a precondition of merging, set with an administrator token | Adopted (GitHub branch protection) + adapted here | `tools/setup_branch_protection.py` | Branch Protection |
+| CI evidence receipt | A real API-queried workflow run record and conclusion, not a local simulation | Original (engineering practice) | README · `tools/setup_branch_protection.py --check` | CI Evidence Receipt |
+| Cerebellar admissibility | Five gates an experience must pass at once to enter the Cerebellum: decidable, stable, sharp boundary, observable staleness, positive net benefit | Original (criteria) | 4.5 | Cerebellar Admissibility |
+| Distillation ladder | The six-level path compressing experience from free trace to compiled baseline; level skipping is forbidden | Original (process model) | 4.6 | Distillation Ladder |
+| Process memory | Decomposition skeletons, retrieval paths and negative knowledge distilled from Main Brain assistance, recorded in six kinds | Original (memory classification) | 6.5 | Process Memory |
+| Zombie instinct | A rule still executing after its review horizon or after failing, with silent and unnoticed errors | Original (failure mode) | 6.6 · 12.2 | Zombie Instinct |
 
 > **Source discipline**: terms marked "original" are defined authoritatively by this specification — cite ANE when reusing them. "Adopted" terms retain their industry meaning; this specification only assigns them a role inside the living system.
 

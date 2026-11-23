@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ANE 规范 v0.11.0 · AI 原生软件生命体工程范式白皮书（正式发布版）</title>
+<title>ANE 规范 v0.12.0 · AI 原生软件生命体工程范式白皮书（正式发布版）</title>
 <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
 <style>
   :root{
@@ -130,7 +130,7 @@
 <div class="layout">
 <aside>
   <div class="brand">AI Native Engineering</div>
-  <h1>ANE 规范 v0.11.0</h1>
+  <h1>ANE 规范 v0.12.0</h1>
   <div class="ver">AI 原生软件生命体工程范式 · 创建人 冯磊 · 正式发布版</div>
   <nav>
     <div class="grp">总纲</div>
@@ -196,7 +196,7 @@
 <main>
 <header class="hero">
   <div class="tagrow">
-    <span class="tag t-purple">ANE v0.11.0</span>
+    <span class="tag t-purple">ANE v0.12.0</span>
     <span class="tag t-blue">动静结合</span>
     <span class="tag t-teal">双脑协同</span>
     <span class="tag t-purple">记忆护城河</span>
@@ -209,7 +209,7 @@
   <p class="subtitle">ANE = <b>AI Native Engineering</b>。一套融合经典控制论（静态 / 小脑）与现代人工智能（动态 / 大脑）的通用范式。它把 AI 从"被使用"变为"被驾驭"，适用于一切构建 AI 原生软件的系统与团队，不绑定任何具体产品或框架。</p>
   <div class="meta">
     <span><b>创建人</b> 冯磊 · 原创范式与首席架构设计</span>
-    <span><b>版本</b> v0.11.0 · 正式发布版</span>
+    <span><b>版本</b> v0.12.0 · 正式发布版</span>
     <span><b>日期</b> 2026-11-21</span>
     <span><b>状态</b> 正式发布版</span>
   </div>
@@ -452,6 +452,65 @@ flowchart LR
     </tbody>
   </table></div>
   <div class="callout warn"><span class="lbl">角色越界</span>小脑的能力上限是"确定地处理已知"，不是"合理地处理未知"。把小脑写成一个"小号大模型"，等于既消耗了 Token 又丢了确定性——这是最昂贵的一种退化。</div>
+
+  <h3>4.5 小脑经验的准入判据</h3>
+  <p>6.3 规定"高频命中可固化为规则"，但没有回答"什么叫够格"。缺了判据，升格就退化为把大脑说过的话抄成 if-else——看着省了 Token，实则把一次巧合固化成永久误判。</p>
+  <div class="callout warn"><span class="lbl">规范性等级</span><b>【必须】</b> 升格申请须逐维给出判据结论；任一维不通过，该经验只能留在海马体做检索增强——这是唯一合法的"暂不升格"，不是丢弃，也不是绕过。</div>
+  <div class="tw"><table>
+    <thead><tr><th>维度</th><th>判据</th><th>通过线</th><th>不通过的后果</th></tr></thead>
+    <tbody>
+      <tr><td><b>可判定性</b></td><td>输入特征能由本地代码无歧义计算，且提取特征本身不调用大脑</td><td><code>decidable</code> 为真</td><td>每次命中仍要问大脑，升格毫无收益</td></tr>
+      <tr><td><b>稳定度</b></td><td>同一签名下独立复现且结论一致</td><td><code>stability_reps</code> ≥ 3</td><td>把偶发当规律，规则一上线就错判</td></tr>
+      <tr><td><b>边界清晰</b></td><td>有标注的正例与反例，且能写出边界表达式</td><td><code>boundary_cases</code> 正 ≥ 3、反 ≥ 2</td><td>无法区分近似情形，退化为近似替代</td></tr>
+      <tr><td><b>失效可观测</b></td><td>必须指定一个可自动执行的失效探针</td><td><code>staleness_probe</code> 不为 none</td><td>规则腐化无人察觉，成为僵尸本能</td></tr>
+      <tr><td><b>净收益</b></td><td>命中频次 × 单次大脑成本 ÷ 规则维护成本</td><td><code>net_benefit</code> ≥ 1</td><td>规则比它省下的成本更贵</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout"><span class="lbl">最易被跳过的一维</span>一条无法观测失效的规则，上线那天是对的，之后每一天都可能是错的，而且没人知道。因此它被写成硬约束而非建议。</div>
+  <div class="callout warn"><span class="lbl">规范性等级</span><b>【禁止】</b> 没有失效探针的经验升格为小脑规则，即使命中率与稳定度都很高。</div>
+  <p>并不是所有经验都有资格进入小脑。以下两类清单是升格评审的对照表：</p>
+  <div class="tw"><table>
+    <thead><tr><th>可以长成小脑规则</th><th>永远不能长成小脑规则</th></tr></thead>
+    <tbody>
+      <tr><td>参数化阈值（超时、批量、并发上限）</td><td>需要价值判断的取舍（如"哪个需求更重要"）</td></tr>
+      <tr><td>路由判据（按特征分发到固定分支）</td><td>只在单次上下文才成立的结论（一次性事故的特例）</td></tr>
+      <tr><td>错误码 → 处置映射</td><td>依赖当前模型输出风格的判断</td></tr>
+      <tr><td>验证过的操作序列（带前置条件与回滚点）</td><td>失效无法观测的规则</td></tr>
+      <tr><td>判别式边界（正反例可分的分类规则）</td><td>无正例反例、只有"大概是"的经验</td></tr>
+      <tr><td>常量表 / 查找表</td><td>涉及法律、伦理与人权判断的规则</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout warn"><b>【禁止】</b> "永远不能长成小脑规则"一栏所列情形一律不得升格，不因命中率高而例外；需要价值判断的事项只能交由人类主权（第九章）裁决。</div>
+
+  <h3>4.6 经验蒸馏阶梯</h3>
+  <p>经验不是"要么在大脑、要么在小脑"的二值状态，而是逐级蒸馏的。每升一级，确定性上升、泛化范围下降——这是一笔<strong>用泛化换确定性</strong>的交易，交易标的必须明码标价。</p>
+  <div class="tw"><table>
+    <thead><tr><th>级别</th><th>形态</th><th>可执行性</th><th>升格所需证据</th><th>适用域</th></tr></thead>
+    <tbody>
+      <tr><td><b>L0</b></td><td>自由推理轨迹（原文）</td><td>否，仅供检索参照</td><td>原始记录 + 来源链</td><td>最宽，最不可靠</td></tr>
+      <tr><td><b>L1</b></td><td>可重放轨迹（输入快照、工具参数、断言）</td><td>可重放，不可独立决策</td><td>一次成功重放</td><td>宽</td></tr>
+      <tr><td><b>L2</b></td><td>判别式（特征表达式 → 分支）</td><td>可单测</td><td>正反例集全过</td><td>中</td></tr>
+      <tr><td><b>L3</b></td><td>操作序列 / 状态机（前置条件、步骤、后置断言、回滚点）</td><td>可执行、可回滚</td><td>≥3 次独立复现 + 回滚演练通过</td><td>窄</td></tr>
+      <tr><td><b>L4</b></td><td>常量表（纯查表，零逻辑）</td><td>可执行、零推理</td><td>L3 运行一周期无例外分支</td><td>很窄</td></tr>
+      <tr><td><b>L5</b></td><td>编译固化（进入静态底座）</td><td>与代码同级</td><td>L4 全量回归 + 人类签名</td><td>最窄</td></tr>
+    </tbody>
+  </table></div>
+  <div class="mermaid">
+flowchart LR
+    L0["L0 自由轨迹<br/>仅供参照"] -->|重放成功| L1["L1 可重放轨迹<br/>可复现"]
+    L1 -->|正反例全过| L2["L2 判别式<br/>可单测"]
+    L2 -->|多次复现+回滚演练| L3["L3 操作序列<br/>可执行可回滚"]
+    L3 -->|一周期无例外| L4["L4 常量表<br/>零推理"]
+    L4 -->|全量回归+人工签名| L5["L5 编译固化<br/>进入静态底座"]
+    L2 -.探针报警.-> L1
+    L3 -.探针报警.-> L1
+    L4 -.探针报警.-> L1
+    L5 -.探针报警.-> L1
+  </div>
+  <p>三条铁律约束这条阶梯：</p>
+  <div class="callout warn"><span class="lbl">规范性等级</span><b>【禁止】</b> 跨级升格：从 L0 直接写成 L3 状态机，等于把一次巧合固化成流程。每次升格必须持有上一级的通过证据（<code>previous_level_evidence</code>），缺失即判污染。</div>
+  <div class="callout warn"><span class="lbl">规范性等级</span><b>【必须】</b> 级别与适用域同步收窄：L3 以上必须登记 <code>scope_of_validity</code>（适用域），越界即错判。级别越高，允许声明的适用域越窄。</div>
+  <div class="callout warn"><span class="lbl">规范性等级</span><b>【必须】</b> 失效回退到 L1，不回 L0：失效探针报警时，回退目标是可重放轨迹，而不是原始文本——因为只有能重放，才能判定"是规则错了"还是"是世界变了"。回到 L0 等于放弃定位能力。</div>
 </section>
 
 <!-- ================= CH5 ================= -->
@@ -724,6 +783,101 @@ stateDiagram-v2
     </tbody>
   </table></div>
   <div class="callout"><span class="lbl">知识冷淬火</span>种子规则与探索期样本经免疫验证后"淬火"为稳定规则的过程，与 6.3 自然升格互为补充——前者缩短冷启动周期，后者支撑长期进化；二者都必须经过同一套免疫验证，不得因"急于上线"而绕过。</div>
+
+  <h3>6.5 过程经验：大脑协助过程的结构化沉淀</h3>
+  <p>6.2 的记录结构只够记"结论"，记不住"过程"。而大脑真正昂贵的地方不是它给出的答案，是它<strong>如何排除错误路径</strong>。只记结论的记忆库，等于把最贵的部分扔掉，只留下最易过期的部分。</p>
+  <div class="callout"><span class="lbl">核心判断</span><strong>结论会过期，过程的分辨力不会全过期。</strong>结论绑定当时的模型版本与上下文；过程绑定的是问题的结构。模型换代后，"这个超时阈值应该是 800ms"可能失效，但"这类问题要按 采集→定位→验证 三步拆解"通常仍然成立。</div>
+  <div class="tw"><table>
+    <thead><tr><th>资产</th><th>内容</th><th>为什么值钱</th></tr></thead>
+    <tbody>
+      <tr><td><b>拆解骨架</b></td><td>把未知切成已知子问题的顺序</td><td>下一次遇到同类问题时，切法可直接复用，无需重新规划</td></tr>
+      <tr><td><b>检索路径</b></td><td>哪几条经验、证据、文档被证明有用</td><td>下次检索可优先命中，缩短上下文构造时间</td></tr>
+      <tr><td><b>否定知识</b></td><td>哪些路走过、为什么不通</td><td>试错一次、永不再试，是单位成本最低的经验</td></tr>
+    </tbody>
+  </table></div>
+  <p>过程经验按来源分为六类，各自的可升格去向不同——<strong>不是所有过程经验都能变成小脑规则</strong>：</p>
+  <div class="tw"><table>
+    <thead><tr><th>类型</th><th>捕获的是什么</th><th>可升格去向</th><th>强制附加字段</th></tr></thead>
+    <tbody>
+      <tr><td>结论型 conclusion</td><td>大脑给出的答案</td><td>L2 / L4，须先过 4.5 五维</td><td><code>brain_meta</code></td></tr>
+      <tr><td>程序型 procedure</td><td>拆解步骤序、工具调用序</td><td>L3 操作序列</td><td><code>replay_ref</code></td></tr>
+      <tr><td>判据型 discriminator</td><td>凭什么区分两个相似情境</td><td>L2 判别式</td><td>正反例集</td></tr>
+      <tr><td>否决型 negative</td><td>试过且不通的路径与失败原因</td><td><b>仅可作反例集，禁止作正向规则</b></td><td><code>failure_evidence</code></td></tr>
+      <tr><td>提问型 elicitation</td><td>大脑当时最缺哪一段上下文</td><td><b>不进小脑</b>，用于改进 5.4 上行载荷</td><td>无</td></tr>
+      <tr><td>门禁型 gate</td><td>大脑输出被驳回的原因模式</td><td>L2 预检规则</td><td>驳回记录</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout warn"><span class="lbl">规范性等级</span><b>【禁止】</b> 把否决型经验反向写成正向规则。"这条路走不通"不等于"别的路一定通"。把它写成正向规则，是以偏概全的标准形态；否决型经验只可进入反例集，用于排除。</div>
+  <div class="callout warn"><span class="lbl">规范性等级</span><b>【禁止】</b> 把提问型经验塞进小脑。它优化的是"问得准"而不是"判得快"，落点是上行载荷与特征压缩策略的设计（5.4）。硬塞进规则库，只会让小脑开始猜测大脑的偏好——这是角色越界。</div>
+  <div class="callout warn"><span class="lbl">规范性等级</span><b>【必须】</b> 先落到 L1 再谈升格。一段无法重放的"思考过程"只是故事，不是经验。</div>
+  <p>凡由大脑协助产生的经验，必须登记大脑侧元数据（<code>brain_meta</code>）：模型标识、提示词版本、温度、检索集、Token 成本、被驳回原因。</p>
+  <div class="callout warn"><span class="lbl">规范性等级</span><b>【必须】</b> <code>brain_meta</code> 六个字段齐备方可申请升格。这些字段回答一个关键问题——<strong>这条经验属于问题，还是只属于那个模型？</strong> 缺少元数据，模型换代后既不敢用也无法退役，规范把这种情况直接判为不可升格。</div>
+
+  <h3>6.6 经验老化、复审与退役</h3>
+  <p>经验升格若没有复审期限，等于给系统安装了一批永远不会自动下线的判断。它们在被写下那天是对的，之后靠惯性继续裁决——这类规则称为僵尸本能，比没有规则更危险，因为错误是静默的。</p>
+  <div class="callout warn"><span class="lbl">规范性等级</span><b>【必须】</b> 复审期必填。每条进入小脑的经验必须声明 <code>review_after</code>，按域分级：</div>
+  <div class="tw"><table>
+    <thead><tr><th>域</th><th>默认复审期</th><th>理由</th></tr></thead>
+    <tbody>
+      <tr><td>D0 静态底座相关</td><td>365 天</td><td>底座变化慢，但一旦变化影响全局</td></tr>
+      <tr><td>常规业务规则</td><td>180 天</td><td>业务与流量结构随季度漂移</td></tr>
+      <tr><td>快速漂移域（外部接口、模型、价格、法规）</td><td>30 天</td><td>外部条件本身就是变量</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout warn"><span class="lbl">规范性等级</span><b>【必须】</b> 失效主动探测，不得等人发现。采用影子比对（<code>shadow_compare</code>）：按抽样率（默认 1%，高风险域 5%）把同一输入并行送交规则与大脑，比较两者结论。一致率跌破 <b>95%</b> 即触发复审。抽样而非全量，是为了让探测成本远低于它挽回的损失。</div>
+  <div class="callout warn"><span class="lbl">规范性等级</span><b>【禁止】</b> 超过复审期而未复审的规则继续参与裁决；此类规则一经发现即按未验证规则降级处理。</div>
+  <div class="tw"><table>
+    <thead><tr><th>结论</th><th>含义</th><th>动作</th></tr></thead>
+    <tbody>
+      <tr><td>CONFIRMED</td><td>判据仍然成立</td><td>顺延下一个复审期</td></tr>
+      <tr><td>NARROWED</td><td>结论局部有效，边界比原先更窄</td><td>收窄 <code>scope_of_validity</code>，必要时降到 L2</td></tr>
+      <tr><td>RETIRED</td><td>判据已失效</td><td>强制退回 L1，从执行路径移除</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout warn"><span class="lbl">规范性等级</span><b>【必须】</b> 三次复审未通过即强制退役，退回 L1 保留可重放轨迹以备复盘；<code>owner</code> 为空的规则视为待退役，不得因"没人管"而继续生效。</div>
+  <div class="callout"><span class="lbl">一处常见误述的修正</span>经验升格<strong>不是</strong>"永久脱离大模型调用"，而是"在下一次复审前脱离"。永久化的表述会让团队失去对规则的怀疑能力，而怀疑能力正是免疫系统在小脑侧的对应物。</div>
+  <p>一条完整的过程经验记录如下（该记录受门禁校验：五维判据、阶梯证据、复审期限与摘要均可机器复核）：</p>
+  <pre style="background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;overflow-x:auto;font-size:12.5px;color:var(--ink2)"><code>{
+  "experience_version": "1.0",
+  "experience_id": "EXP-BUILD-0007",
+  "process_kind": "procedure",
+  "distill_level": "L3",
+  "signature": {
+    "feature_digest": "fd-9a1c4e77",
+    "error_code": "E-BUILD-0427",
+    "scenario": "依赖解析在干净环境失败、在本地缓存环境成功"
+  },
+  "context_digest": "ctx-3f81b2",
+  "brain_meta": {
+    "model_id": "reasoner-large-2026-09",
+    "prompt_version": "triage-v7",
+    "temperature": 0.2,
+    "retrieval_set": ["EXP-BUILD-0003", "EXP-BUILD-0005"],
+    "token_cost": 1840
+  },
+  "admissibility": {
+    "decidable": true,
+    "stability_reps": 4,
+    "boundary_cases": { "positive": 6, "negative": 3 },
+    "staleness_probe": "shadow_compare",
+    "net_benefit": 2.4
+  },
+  "scope_of_validity": "单仓库 Node.js 项目，锁文件存在且未被手工改写",
+  "created_at": "2026-11-23",
+  "review_after": "2027-05-22",
+  "review_state": "CONFIRMED",
+  "owner": "build-platform",
+  "replay_ref": "trace://build/0427/replay-4",
+  "previous_level_evidence": ["trace://build/0427/replay-1", "trace://build/0427/replay-2"],
+  "evidence_refs": ["gate:regression-2026-11-21", "postmortem:INC-2211"],
+  "lineage": {
+    "system": "build-pipeline",
+    "change_ref": "chg-2026-1104",
+    "authorized_by": "platform-review-board"
+  },
+  "experience_digest": "sha256:c2f09bc50d096467868a2c358143dd982940764fc7a66096eba4fbd0f1a3dfc0"
+}</code></pre>
+  <p>该记录展示了一条已通过全部判据的程序型经验：<code>previous_level_evidence</code> 证明它是一级一级升上来的（未跨级），<code>replay_ref</code> 保证失效时可重放定位，<code>staleness_probe</code> 指定了失效探针，<code>review_after</code> 钉住了复审期限。<strong>判据的作用不是让经验更容易通过，而是让"该不该通过"变成可争论、可举证的事。</strong></p>
 </section>
 
 <!-- ================= CH7 ================= -->
@@ -930,6 +1084,11 @@ flowchart TB
       <tr><td>配额耗尽率</td><td>预算耗尽被拒请求 / 全部上行请求</td><td>观察项；突升触发限频复核</td></tr>
       <tr><td>被打回率</td><td>仲裁打回小脑保守规则的请求 / 全部上行请求</td><td>↓ 高值指向规则缺口，非大脑无能</td></tr>
       <tr><td>D0/D1 抢占率</td><td>高优先级抢占低优先级次数 / 总仲裁次数</td><td>观察项；审计仲裁公平性（5.5）</td></tr>
+      <tr><td>升格质量率</td><td>通过五维判据进入小脑的经验 / 全部申请升格的经验</td><td>观察项；过低指向判据过严或样本不足</td></tr>
+      <tr><td>过程经验复用率</td><td>被再次检索命中的过程型经验 / 过程型经验总数</td><td>↑（过程经验的真实价值度量）</td></tr>
+      <tr><td>否定知识命中率</td><td>检索时被排除路径拦下的重复尝试 / 全部重复尝试</td><td>↑（直接反映 Token 浪费的减少）</td></tr>
+      <tr><td>规则漂移率</td><td>影子比对一致率低于阈值的规则数 / 在用规则总数</td><td>↓</td></tr>
+      <tr><td>僵尸规则占比</td><td>超过复审期未复审或 owner 为空的规则 / 在用规则总数</td><td>= 0（红线）</td></tr>
     </tbody>
   </table></div>
   <h3>反模式清单（明确的"不要"）</h3>
@@ -947,6 +1106,10 @@ flowchart TB
       <tr><td>先自动化再简化</td><td>把技术负债流水线化</td><td>五步算法顺序（10.4）</td></tr>
       <tr><td>以高频求助掩盖规则缺失</td><td>小脑空心化，成本随流量线性上升</td><td>限频 + 未命中率归因到规则缺口（5.5）</td></tr>
       <tr><td>小脑强行推测（无规则也给答案）</td><td>幻觉直入主干，不可回溯</td><td>抛 <code>UnknownSignal</code>，禁止近似替代（4.4）</td></tr>
+      <tr><td>跨级升格（L0 直接写成状态机）</td><td>把一次巧合固化成永久流程，且无重放证据可纠</td><td>逐级蒸馏，持上一级证据（4.6）</td></tr>
+      <tr><td>只记结论不记过程</td><td>模型换代后经验既不敢用也无法退役</td><td>登记过程经验与大脑侧元数据（6.5）</td></tr>
+      <tr><td>升格即永久</td><td>环境漂移后规则静默错判，比无规则更糟</td><td>复审期 + 影子比对 + 三态复审（6.6）</td></tr>
+      <tr><td>把否决型经验写成正向规则</td><td>以偏概全，把"此路不通"误当"他路必通"</td><td>否决型经验只作反例集（6.5）</td></tr>
     </tbody>
   </table></div>
 </section>
@@ -1226,7 +1389,7 @@ flowchart TB
     <div class="card blue"><h4>缓存</h4><p>稳定前缀与高频知识做提示缓存。</p></div>
     <div class="card teal"><h4>子任务隔离</h4><p>子智能体用全新上下文，仅回传摘要。</p></div>
     <div class="card amber"><h4>检索代替塞入</h4><p>用 RAG 按需取，而非全量塞入。</p></div>
-    <div class="card purple"><h4>经验升格</h4><p>高频结论固化进小脑，永久脱离大模型。</p></div>
+    <div class="card purple"><h4>经验升格</h4><p>高频结论经 4.5 五维判据与 4.6 蒸馏阶梯固化进小脑规则，在下一次复审期前脱离大模型调用；复审到期须按 6.6 重新判定。</p></div>
   </div>
   <div class="callout quote"><span class="lbl">成本可观测</span>每次决策记录 Token、延迟、成本、是否命中记忆；以"小脑拦截率/记忆命中率/Token 决策比"为一级指标；拒绝服务式消耗与钱包攻击纳入告警熔断。</div>
   <h3>18.4 提示词资产治理（Prompt Asset Governance）</h3>
@@ -1453,7 +1616,7 @@ flowchart TB
     <div class="card teal"><h4>① 连续 N 次独立复现</h4><p>在 N 个相互独立的运行周期/环境/评测者中复现同一收益，N 由治理委员会按风险设定（建议 N ≥ 3）；独立指数据来源、执行环境、验证主体至少两项不同，防同一模型"自我背书"。</p></div>
     <div class="card purple"><h4>② 人类工程师签名背书</h4><p>至少一名有权限的人类工程师审核复现证据并签名；大脑（大模型）永远不得自签升格。签名计入 RACI（20.3），可追溯到具体自然人。</p></div>
     <div class="card amber"><h4>③ 反近亲繁殖检验</h4><p>检查经验与其祖先/同源变体的相关性；若升格依据高度依赖同源样本（近似自我引用），判定为近亲繁殖，驳回并降级为"待观察"。</p></div>
-    <div class="card blue"><h4>审计凭证 + 降级联动</h4><p>每次升格生成独立凭证（经验 ID、N 次复现证据链、背书签名、相关性检验），写入不可篡改台账；发现腐化可一键回滚至升格前，并级联失效下游规则（对齐 24.4）。</p></div>
+    <div class="card blue"><h4>审计凭证 + 降级联动</h4><p>每次升格生成独立凭证（经验 ID、N 次复现证据链、背书签名、相关性检验），写入不可篡改台账；凭证还须登记 4.5 五维判据结论、4.6 蒸馏级别与上一级证据、6.6 复审期与失效探针，缺任一项不予受理；发现腐化（含影子比对一致率跌破阈值）可一键回滚至升格前，并级联失效下游规则（对齐 24.4）。</p></div>
   </div>
   <div class="callout warn"><span class="lbl">为何必须如此</span>第十七章已把"数据与模型投毒"列为风险，而本系统独有攻击面是"升格"——攻击者可用诱导让小脑把错误经验固化为全局本能，危害远大于单次错误输出。升格审计以"独立复现 + 人类背书 + 反近亲繁殖"把 AI 的自我升格从"可信"降格为"待证"，守住公理五（人类主权）与公理六（防自欺）。</div>
 </section>
@@ -3171,7 +3334,7 @@ flowchart LR
       <tr><td>RAG</td><td>按需取回过往经验，而非把全部资料塞进提示</td><td>引用</td><td>0.3 · 6.1</td><td>Retrieval-Augmented Generation</td></tr>
       <tr><td>MCP / A2A</td><td>工具与智能体之间的标准接入协议</td><td>引用（业界协议）</td><td>15.1 · 16.1</td><td>Model Context Protocol / Agent-to-Agent</td></tr>
       <tr><td>NIST RMF / EU AI Act / ISO 42001</td><td>外部治理与合规框架，ANE 将其内建为工程机制</td><td>引用（标准法规）</td><td>20.1 · 20.2</td><td>NIST AI RMF / EU AI Act / ISO/IEC 42001</td></tr>
-      <tr><td>FMEA / RACI</td><td>失效模式分析与责任矩阵，ANE 直接沿用</td><td>引用（工程方法）</td><td>21.2 · 20.3</td><td>FMEA / RACI</td></tr><tr><td>转换台账</td><td>记录适配分级、阶段退出验证、灰度决策与完成判据的机器可读契约</td><td>本文原创（契约定义）</td><td>第四十三章 43.9 · <code>schemas/conversion-1.0.schema.json</code></td><td>Conversion Ledger</td></tr><tr><td>术语白名单</td><td>规范性条款中允许出现的技术标识清单，防止未经定义的新黑话</td><td>本文原创（门禁机制）</td><td><code>schemas/term-whitelist.json</code></td><td>Term Whitelist</td></tr><tr><td>一键门禁</td><td>把载荷、措辞、双格式、术语白名单四类校验收敛为单一命令与退出码</td><td>本文原创（工程实践）</td><td><code>tools/check_all.py</code></td><td>Unified Gate Entry</td></tr><tr><td>负向测试自检</td><td>在一次性沙箱中注入缺陷，证明门禁会真实拦下，避免门禁恒为绿</td><td>本文原创（工程实践）</td><td><code>tests/run_self_test.py</code></td><td>Negative Self-Test</td></tr><tr><td>跨字段语义校验</td><td>Schema 之外对字段组合施加的生命周期约束（BLOCKED / RETIRED / 完成判据）</td><td>本文原创（契约规则）</td><td><code>tools/validate_ntp.py</code> · §43.10</td><td>Cross-Field Semantic Validation</td></tr><tr><td>证据闭环</td><td>新术语须带来源标注与定位证据方可入册，否则拒绝</td><td>本文原创（门禁机制）</td><td><code>tools/check_term_whitelist.py --sync-from-evidence</code></td><td>Evidence Loop</td></tr><tr><td>分支保护</td><td>把 CI 检查设为分支合并前置条件，需管理员令牌实际设置</td><td>引用（GitHub 分支保护）+ 本文适配</td><td><code>tools/setup_branch_protection.py</code></td><td>Branch Protection</td></tr><tr><td>CI 实证回执</td><td>真实 API 查询得到的 workflow 运行记录与结论，而非本地仿真</td><td>本文原创（工程实践）</td><td>README · <code>tools/setup_branch_protection.py --check</code></td><td>CI Evidence Receipt</td></tr>
+      <tr><td>FMEA / RACI</td><td>失效模式分析与责任矩阵，ANE 直接沿用</td><td>引用（工程方法）</td><td>21.2 · 20.3</td><td>FMEA / RACI</td></tr><tr><td>转换台账</td><td>记录适配分级、阶段退出验证、灰度决策与完成判据的机器可读契约</td><td>本文原创（契约定义）</td><td>第四十三章 43.9 · <code>schemas/conversion-1.0.schema.json</code></td><td>Conversion Ledger</td></tr><tr><td>术语白名单</td><td>规范性条款中允许出现的技术标识清单，防止未经定义的新黑话</td><td>本文原创（门禁机制）</td><td><code>schemas/term-whitelist.json</code></td><td>Term Whitelist</td></tr><tr><td>一键门禁</td><td>把载荷、措辞、双格式、术语白名单四类校验收敛为单一命令与退出码</td><td>本文原创（工程实践）</td><td><code>tools/check_all.py</code></td><td>Unified Gate Entry</td></tr><tr><td>负向测试自检</td><td>在一次性沙箱中注入缺陷，证明门禁会真实拦下，避免门禁恒为绿</td><td>本文原创（工程实践）</td><td><code>tests/run_self_test.py</code></td><td>Negative Self-Test</td></tr><tr><td>跨字段语义校验</td><td>Schema 之外对字段组合施加的生命周期约束（BLOCKED / RETIRED / 完成判据）</td><td>本文原创（契约规则）</td><td><code>tools/validate_ntp.py</code> · §43.10</td><td>Cross-Field Semantic Validation</td></tr><tr><td>证据闭环</td><td>新术语须带来源标注与定位证据方可入册，否则拒绝</td><td>本文原创（门禁机制）</td><td><code>tools/check_term_whitelist.py --sync-from-evidence</code></td><td>Evidence Loop</td></tr><tr><td>分支保护</td><td>把 CI 检查设为分支合并前置条件，需管理员令牌实际设置</td><td>引用（GitHub 分支保护）+ 本文适配</td><td><code>tools/setup_branch_protection.py</code></td><td>Branch Protection</td></tr><tr><td>CI 实证回执</td><td>真实 API 查询得到的 workflow 运行记录与结论，而非本地仿真</td><td>本文原创（工程实践）</td><td>README · <code>tools/setup_branch_protection.py --check</code></td><td>CI Evidence Receipt</td></tr><tr><td>小脑经验准入判据</td><td>一条经验要进小脑必须同时过的五道关：可判定、稳定、边界清晰、失效可观测、净收益为正</td><td>本文原创（判据）</td><td>第四章 4.5</td><td>Cerebellar Admissibility</td></tr><tr><td>蒸馏阶梯</td><td>经验从"自由轨迹"逐级压缩到"编译固化"的六级路径，禁止跨级</td><td>本文原创（流程模型）</td><td>第四章 4.6</td><td>Distillation Ladder</td></tr><tr><td>过程经验</td><td>从大脑协助过程中提炼的拆解骨架、检索路径与否定知识，按六类分别沉淀</td><td>本文原创（记忆分类）</td><td>第六章 6.5</td><td>Process Memory</td></tr><tr><td>僵尸本能</td><td>已过复审期或失效却仍在执行的规则，错误静默且无人察觉</td><td>本文原创（失效模式）</td><td>第六章 6.6 · 第十二章 12.2</td><td>Zombie Instinct</td></tr>
     </tbody>
   </table></div>
   <div class="callout quote"><span class="lbl">来源纪律</span>"本文原创"术语定义以本规范为准，引用时请注明 ANE；"引用"术语保留业界原义，本规范只规定其在生命体中的角色。</div>
@@ -3268,6 +3431,21 @@ flowchart LR
       <tr><td>无责复盘 Blameless Postmortem</td><td>针对机制而非个人的事件复盘；隐瞒与篡改台账才是红线</td></tr>
       <tr><td>仲裁可观测</td><td>配额耗尽率 / 被打回率 / D0-D1 抢占率三项审计指标</td></tr>
       <tr><td>超时判定 Timeout Disposition</td><td>上行超时一律走 DEGRADED，不得记为"大脑拒绝"或静默重试</td></tr>
+      <tr><td>可判定性</td><td>输入特征能由本地代码无歧义计算，且特征提取本身不调用大脑</td></tr>
+      <tr><td>稳定度 Stability</td><td>同一签名下独立复现且结论一致的次数，小脑经验要求 ≥3</td></tr>
+      <tr><td>边界清晰度</td><td>有标注的正例与反例可写出边界表达式，要求正 ≥3、反 ≥2</td></tr>
+      <tr><td>失效探针 Staleness Probe</td><td>自动检测规则是否已失效的机制（影子比对 / 回归用例 / 金丝雀指标）</td></tr>
+      <tr><td>净收益 Net Benefit</td><td>命中频次 × 单次大脑成本 ÷ 规则维护成本，≥1 方可升格</td></tr>
+      <tr><td>蒸馏级别 L0–L5</td><td>经验形态的六级：自由轨迹 / 可重放轨迹 / 判别式 / 操作序列 / 常量表 / 编译固化</td></tr>
+      <tr><td>禁止跨级</td><td>升格必须持有上一级通过证据，L0 直接写成状态机即判污染</td></tr>
+      <tr><td>过程经验六分类</td><td>结论型 / 程序型 / 判据型 / 否决型 / 提问型 / 门禁型，各有独立升格去向</td></tr>
+      <tr><td>否定知识 Negative Knowledge</td><td>试过且不通的路径与原因；只能作反例集，禁止反向生成正向规则</td></tr>
+      <tr><td>提问型经验 Elicitation Memory</td><td>大脑当时最缺哪段上下文；不进小脑，用于改进上行载荷设计</td></tr>
+      <tr><td>大脑侧元数据</td><td>模型标识、提示词版本、温度、检索集、Token 成本、驳回原因，用于判断经验归属</td></tr>
+      <tr><td>复审期 Review Horizon</td><td>升格规则的到期复审期限，按域分级（底座 365 天 / 常规 180 天 / 快漂移域 30 天）</td></tr>
+      <tr><td>影子比对 Shadow Compare</td><td>按抽样率并行送交规则与大脑并比较结论，一致率跌破 95% 触发复审</td></tr>
+      <tr><td>复审三态</td><td>CONFIRMED 顺延 / NARROWED 收窄适用域 / RETIRED 退回 L1</td></tr>
+      <tr><td>适用域 Scope of Validity</td><td>规则允许生效的边界，级别越高必须越窄，越界即错判</td></tr>
     </tbody>
   </table></div>
   <div class="callout quote" style="margin-top:24px"><span class="lbl">结语</span>当一个组织还在做"加法"——堆算力、堆模型、堆 Token——ANE 在做"减法与乘法"：给小脑定规则，给大脑画边界，给记忆筑护城河，给进化装免疫系统。<b>连这份规范自身也遵守它定下的规则——从单一真源投影出干净正式版，用门禁证明自己的纯粹。能管好自己的规范，才有资格治理生命体。</b></div>
@@ -3278,9 +3456,11 @@ flowchart LR
 
 <!-- ================= APPENDIX L ================= -->
 
+<!-- ================= APPENDIX M ================= -->
+
 
 <footer>
-  <div>《ANE 规范：AI 原生软件生命体工程范式》v0.11.0 · 创建人 冯磊 · 正式发布版</div>
+  <div>《ANE 规范：AI 原生软件生命体工程范式》v0.12.0 · 创建人 冯磊 · 正式发布版</div>
   <div style="margin-top:8px">ANE = AI Native Engineering · MD 与 HTML 双版本内容一致</div>
 </footer>
 </main>

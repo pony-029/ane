@@ -85,6 +85,7 @@
     "auth_ref",
     "binding",
     "binding_digest",
+    "brain_meta",
     "budget_hint",
     "canonicalize",
     "capabilities",
@@ -126,13 +127,17 @@
     "owner",
     "payload_format",
     "payload_ref",
+    "previous_level_evidence",
     "proposal_id",
     "rationale_digest",
+    "review_after",
     "rollback_ready",
     "schemas/conversion-1.0.schema.json",
     "schemas/iop-1.0.schema.json",
     "schemas/ntp-1.1.schema.json",
+    "scope_of_validity",
     "sha256:",
+    "shadow_compare",
     "stages",
     "state",
     "strategy",
@@ -151,7 +156,28 @@
     "type",
     "validate"
   ],
-  "provenance": {},
+  "provenance": {
+    "previous_level_evidence": {
+      "source_type": "本文原创",
+      "evidence_ref": "ANE规范-AI原生软件生命体工程范式-DEBUG开发版.md:451"
+    },
+    "scope_of_validity": {
+      "source_type": "本文原创",
+      "evidence_ref": "ANE规范-AI原生软件生命体工程范式-DEBUG开发版.md:452"
+    },
+    "brain_meta": {
+      "source_type": "本文原创",
+      "evidence_ref": "ANE规范-AI原生软件生命体工程范式-DEBUG开发版.md:784"
+    },
+    "review_after": {
+      "source_type": "本文原创",
+      "evidence_ref": "ANE规范-AI原生软件生命体工程范式-DEBUG开发版.md:805"
+    },
+    "shadow_compare": {
+      "source_type": "本文原创",
+      "evidence_ref": "ANE规范-AI原生软件生命体工程范式-DEBUG开发版.md:813"
+    }
+  },
   "scopes": {
     "all_tracks": [
       "ANE规范-AI原生软件生命体工程范式-DEBUG开发版.md",
